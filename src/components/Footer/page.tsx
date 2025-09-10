@@ -1,0 +1,162 @@
+"use client";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Icon from "../Icon/page";
+import Link from "next/link";
+import { FaChevronUp } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import { UserService } from "@/utils/Services/allApi";
+
+interface FooterProps {
+  services: any;
+  industry: any;
+  page: any;
+  contact: any;
+}
+
+export default function Footer() {
+  const router = useRouter();
+  const [service, setService] = useState([]);
+  const [industry, setIndustry] = useState([]);
+  const [contact, setContact] = useState<any>();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const res = await UserService.getServices();
+      const industryRes = await UserService.getIndustry();
+      const contactRes = await UserService.getContact()
+      setService(res);
+      setIndustry(industryRes);
+      setContact(contactRes?.data)
+    } catch (error) {}
+  };
+
+  return (
+    <footer className="bg-black py-8">
+      <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-5 gap-6">
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-2 text-xl font-bold">
+            <span
+              className="text-orange-500 cursor-pointer"
+              onClick={() => router.push("/")}
+            >
+              <Image
+                src={"/image/nexthikes.png"}
+                alt="logo"
+                width={160}
+                height={70}
+                className="cursor-pointer"
+              />
+            </span>
+          </div>
+          <div className="flex flex-col mt-5">
+            <h5 className="uppercase text-white text-xl">Email address*</h5>
+            <input
+              type="text"
+              className="bg-white text-[#393939] w-full max-w-[320px] py-4 pl-3 px-2 mt-2 focus:outline-none"
+              placeholder="Enter Your Email Address"
+            />
+            <button className="w-full max-w-[320px] bg-transparent text-white text-center border border-[#FFFFFF] mt-2 py-4 cursor-pointer">
+              Subscribe to our Newsletter
+            </button>
+          </div>
+          {/* <p className="text-sm text-white mb-4 mt-3">{contact?.about}</p>
+          <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
+            {contact?.socialLinks?.map((item: any, index: any) => (
+              <Link
+                href={item?.url}
+                target="_blank"
+                className={`text-xl p-2 border border-[#fff] aspect-square rounded-full cursor-pointer`}
+                key={index}
+              >
+                <Icon name={item?.platform} color="#fff" />
+              </Link>
+            ))}
+          </div> */}
+        </div>
+
+        <div>
+          <h4 className="text-lg font-semibold mb-4 text-white uppercase">
+            Services
+          </h4>
+          {/* <ul className="space-y-2 text-sm flex flex-col text-white">
+            {service?.slice(0, 4)?.map((item: any, index: any) => (
+              <Link href={`/services/${item.slug}`} key={index}>
+                <li className="hover:text-orange-400 cursor-pointer">
+                  {item.title}
+                </li>
+              </Link>
+            ))}
+          </ul> */}
+        </div>
+
+        <div>
+          <h4 className="text-lg font-semibold mb-4 text-white uppercase">
+            Industries
+          </h4>
+          {/* <ul className="space-y-2 text-sm flex flex-col text-white">
+            {industry?.slice(0, 4)?.map((item: any, index: any) => (
+              <Link href={`/industries/${item.slug}`} key={index}>
+                <li className="hover:text-orange-400 cursor-pointer">
+                  {item.title}
+                </li>
+              </Link>
+            ))}
+          </ul> */}
+        </div>
+
+        <div>
+          <h4 className="text-lg font-semibold mb-4 text-white">Contact Us</h4>
+          <ul className="space-y-4 text-sm text-white">
+            <li className="flex items-start gap-2">
+              <div className="mt-1">
+                <Icon name={"pin"} />
+              </div>
+              {/* {contact?.address} */}
+            </li>
+            {/* <li className="flex items-center gap-2">
+              <Icon name={"email"} />
+              <Link
+                href={`mailto:${contact?.officialEmail}`}
+                className="hover:underline"
+              >
+                {contact?.officialEmail}
+              </Link>
+            </li> */}
+
+            {/* <li className="flex items-center gap-2">
+              <Icon name={"phone"} />
+              <Link
+                href={`tel:${contact?.contactNumber}`}
+                className="hover:underline"
+              >
+                {" "}
+                {contact?.contactNumber} (9AM - 6PM, Mon - Sat)
+              </Link>
+            </li> */}
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-white mt-4 w-full" />
+      <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+        <p className="text-[#A7A7A7]">© {new Date().getFullYear()} Copyright Nexthikes All Rights Reserved</p>
+        <div
+          className="flex items-center justify-center gap-2 cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <p className="text-white">Back To Top</p>
+          <FaChevronUp className="text-white" />
+        </div>
+      </div>
+      <div className="border-b border-white w-full" />
+      {/* <p className="text-center px-2 text-[#A7A7A7] mt-4">
+        Copyright 2020-2024 
+      </p> */}
+    </footer>
+  );
+}
