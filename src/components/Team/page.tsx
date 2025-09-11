@@ -1,3 +1,5 @@
+"use client";
+
 import ProfileCard from "../ProfileCard/ProfileCard";
 
 const teamMembers = [
@@ -7,7 +9,7 @@ const teamMembers = [
     handle: "javicodes",
     status: "Online",
     contactText: "Contact Me",
-    avatarUrl: "/path/to/avatar1.jpg",
+    avatarUrl: "/image/team-1.webp",
   },
   {
     name: "Aisha R. Khan",
@@ -15,7 +17,7 @@ const teamMembers = [
     handle: "aishadesigns",
     status: "Offline",
     contactText: "Contact Me",
-    avatarUrl: "/path/to/avatar2.jpg",
+    avatarUrl: "/image/team-1.webp",
   },
   {
     name: "Leo Chen",
@@ -23,7 +25,7 @@ const teamMembers = [
     handle: "leodatasci",
     status: "Online",
     contactText: "Contact Me",
-    avatarUrl: "/path/to/avatar3.jpg",
+    avatarUrl: "/image/team-1.webp",
   },
   {
     name: "Maria B. Lopez",
@@ -31,7 +33,7 @@ const teamMembers = [
     handle: "marialopez",
     status: "Online",
     contactText: "Contact Me",
-    avatarUrl: "/path/to/avatar4.jpg",
+    avatarUrl: "/image/team-1.webp",
   },
 ];
 
