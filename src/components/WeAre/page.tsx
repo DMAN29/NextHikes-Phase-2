@@ -26,16 +26,13 @@ export default function WhoWeAre() {
         </p>
 
         <StarBorder
-  as="button"
-  color="cyan"
-  speed="5s"
-  className="bg-[linear-gradient(90deg,#F6DDE5_0%,#F37021_51.05%,#F6DDE5_94.71%)] 
-             text-black py-4 px-8 text-lg font-medium capitalize 
-             cursor-pointer shadow-md hover:scale-105 transition-transform"
->
-  Get a free consultation <FaArrowRight />
-</StarBorder>
-
+          as="button"
+          className="cursor-pointer "
+          color="cyan"
+          speed="5s"
+        >
+          Get a free consultation <FaArrowRight />
+        </StarBorder>
       </div>
       <div className="my-16 flex flex-col gap-10">
         <Marquee speed={50} gradient={false} autoFill direction="left">
