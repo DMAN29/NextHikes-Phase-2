@@ -15,7 +15,7 @@ export default function WhoWeAre() {
     "/icons/johnson.svg",
   ];
   return (
-    <section className="py-20">
+    <section className="pb-10">
       <div className="custom-container flex flex-col items-center text-center gap-8 max-w-3xl mx-auto">
         <h4 className="font-semibold text-2xl uppercase tracking-wide text-gray-700">
           Who We Are
