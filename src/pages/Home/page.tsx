@@ -9,11 +9,11 @@ export default function HomePage() {
   return (
     <div className="">
       {/* <Banner /> */}
-      {/* <WhoWeAre /> */}
-      {/* <OurService /> */}
+      <WhoWeAre />
+      <OurService />
       <ProjectHighlights />
-      {/* <Team /> */}
-      {/* <Gallery /> */}
+      <Team />
+      <Gallery />
     </div>
   );
 }
