@@ -8,7 +8,14 @@ import WhoWeAre from "@/components/WeAre/page";
 export default function HomePage() {
   return (
     <div className="">
-      {/* <Banner /> */}
+      <Banner
+        platform="home"
+        backgroundColor={[""]}
+        bannerImage=""
+        subTitle=""
+        cta={[]}
+        title=""
+      />
       <WhoWeAre />
       <OurService />
       <ProjectHighlights />
