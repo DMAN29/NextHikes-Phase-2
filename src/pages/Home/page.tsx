@@ -4,6 +4,7 @@ import OurService from "@/components/OurService/page";
 import ProjectHighlights from "@/components/ProjectHighlights/page";
 import Team from "@/components/Team/page";
 import WhoWeAre from "@/components/WeAre/page";
+import WhyUs from "@/components/WhyUs/page";
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       {/* <WhoWeAre /> */}
       {/* <OurService /> */}
       <ProjectHighlights />
+      <WhyUs />
       {/* <Team /> */}
       {/* <Gallery /> */}
     </div>

@@ -786,7 +786,7 @@ const MagicBento: React.FC<BentoProps> = ({
                         {card.title}
                       </h3>
                       <button
-                        className={`card__description text-lg leading-5 opacity-90 flex items-center gap-5 mt-5 hover:gap-7 transition-all duration-300`}
+                        className={`card__description text-lg leading-5 opacity-90 flex items-center gap-5 mt-5 `}
                       >
                         <span
                           className={`${
