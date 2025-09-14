@@ -20,11 +20,9 @@ export default function HomePage() {
       <WhoWeAre />
       <OurService />
       <ProjectHighlights />
+      <WhyUs />
       <Team />
       <Gallery />
-      <WhyUs />
-      {/* <Team /> */}
-      {/* <Gallery /> */}
     </div>
   );
 }

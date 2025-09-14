@@ -7,7 +7,7 @@ export default function ProjectHighlights() {
         <h1 className="text-2xl md:text-5xl xl:text-7xl  font-semibold leading-relaxed">
           Our Latest Work
         </h1>
-        <p className="font-semibold flex gap-5 items-center mx-auto md:mx-0  ">
+        <p className="font-semibold flex gap-5 items-center mx-auto md:mx-0  text-gray-700 ">
           <span>OUR CASE STUDIES</span>
           <FaArrowRight />
         </p>
