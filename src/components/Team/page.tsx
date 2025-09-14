@@ -1,41 +1,61 @@
 "use client";
 
-import ProfileCard from "../ProfileCard/ProfileCard";
+import Horizontal from "../ProfileCard/ProfileCard";
 
-const teamMembers = [
+interface SocialLink {
+  url: string;
+  platform: "linkedin" | "twitter" | "facebook" | "github" | "instagram";
+}
+
+export interface Member {
+  name: string;
+  designation: string;
+  imageUrl: string;
+  socialLinks: SocialLink[];
+}
+
+
+const teamMembers: Member[] = [
   {
     name: "Javi A. Torres",
-    title: "Software Engineer",
-    handle: "javicodes",
-    status: "Online",
-    contactText: "Contact Me",
-    avatarUrl: "/image/team-1.webp",
+    designation: "Software Engineer",
+    imageUrl: "/image/team-1.webp",
+    socialLinks: [
+      { platform: "linkedin", url: "https://linkedin.com/in/javicodes" },
+      { platform: "github", url: "https://github.com/javicodes" },
+      { platform: "twitter", url: "https://twitter.com/javicodes" },
+    ],
   },
   {
     name: "Aisha R. Khan",
-    title: "Product Designer",
-    handle: "aishadesigns",
-    status: "Offline",
-    contactText: "Contact Me",
-    avatarUrl: "/image/team-1.webp",
+    designation: "Product Designer",
+    imageUrl: "/image/team-1.webp",
+    socialLinks: [
+      { platform: "linkedin", url: "https://linkedin.com/in/aishadesigns" },
+      { platform: "instagram", url: "https://instagram.com/aishadesigns" },
+    ],
   },
   {
     name: "Leo Chen",
-    title: "Data Scientist",
-    handle: "leodatasci",
-    status: "Online",
-    contactText: "Contact Me",
-    avatarUrl: "/image/team-1.webp",
+    designation: "Data Scientist",
+    imageUrl: "/image/team-1.webp",
+    socialLinks: [
+      { platform: "linkedin", url: "https://linkedin.com/in/leodatasci" },
+      { platform: "twitter", url: "https://twitter.com/leodatasci" },
+    ],
   },
   {
     name: "Maria B. Lopez",
-    title: "UI/UX Designer",
-    handle: "marialopez",
-    status: "Online",
-    contactText: "Contact Me",
-    avatarUrl: "/image/team-1.webp",
+    designation: "UI/UX Designer",
+    imageUrl: "/image/team-1.webp",
+    socialLinks: [
+      { platform: "linkedin", url: "https://linkedin.com/in/marialopez" },
+      { platform: "facebook", url: "https://facebook.com/marialopez" },
+      { platform: "instagram", url: "https://instagram.com/marialopez" },
+    ],
   },
 ];
+
 
 export default function Team() {
   return (
@@ -52,7 +72,7 @@ export default function Team() {
         <div className="border border-black max-w-[150px] w-full my-5" />
       </div>
 
-      <div className="flex flex-wrap justify-center items-center gap-6 mt-10">
+      {/* <div className="flex flex-wrap justify-center items-center gap-6 mt-10">
         {teamMembers.map((member) => (
           <ProfileCard
             key={member.handle}
@@ -70,7 +90,8 @@ export default function Team() {
             iconUrl="/icons/triangle-pattern.svg"
           />
         ))}
-      </div>
+      </div> */}
+        <Horizontal data={teamMembers} />
     </section>
   );
 }

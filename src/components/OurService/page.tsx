@@ -1,8 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import ShapeBlur from "../ShapeBlur";
+import { useEffect, useState } from "react";
 
 export default function OurService() {
+  const [pixelRatio, setPixelRatio] = useState(1);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setPixelRatio(window.devicePixelRatio || 1);
+    }
+  }, []);
   const points = [
     {
       icon: "/icons/web.svg",
@@ -37,8 +46,8 @@ export default function OurService() {
   ];
 
   return (
-    <section className="bg-black/75 py-12 sm:py-16 lg:py-20">
-      <div className="custom-container px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-black/75 py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div className="custom-container px-4 sm:px-6 lg:px-8 relative z-10">
         <h4 className="text-white text-center uppercase text-sm sm:text-base md:text-lg font-medium tracking-wide">
           Our Best Services
         </h4>
@@ -47,10 +56,7 @@ export default function OurService() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 md:gap-x-12 md:gap-y-10 mt-10 max-w-5xl mx-auto">
           {points.map((point, index) => (
-            <div
-              className="flex items-start gap-3 sm:gap-4"
-              key={index}
-            >
+            <div className="flex items-start gap-3 sm:gap-4" key={index}>
               <Image
                 src={point.icon}
                 alt={point.title}
@@ -70,6 +76,17 @@ export default function OurService() {
           ))}
         </div>
       </div>
+
+      {/* <ShapeBlur
+        className="w-1/2 h-[300px]"
+        variation={0}
+        pixelRatioProp={pixelRatio}
+        shapeSize={0.5}
+        roundness={0.5}
+        borderSize={0.05}
+        circleSize={1.5}
+        circleEdge={1}
+      /> */}
     </section>
   );
 }

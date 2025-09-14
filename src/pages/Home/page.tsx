@@ -9,10 +9,19 @@ import WhyUs from "@/components/WhyUs/page";
 export default function HomePage() {
   return (
     <div className="">
-      {/* <Banner /> */}
-      {/* <WhoWeAre /> */}
-      {/* <OurService /> */}
+      <Banner
+        platform="home"
+        backgroundColor={[""]}
+        bannerImage=""
+        subTitle=""
+        cta={[]}
+        title=""
+      />
+      <WhoWeAre />
+      <OurService />
       <ProjectHighlights />
+      <Team />
+      <Gallery />
       <WhyUs />
       {/* <Team /> */}
       {/* <Gallery /> */}

@@ -262,7 +262,7 @@ const ShapeBlur: FC<ShapeBlurProps> = ({
     circleEdge,
   ]);
 
-  return <div ref={mountRef} className={`w-full h-full ${className}`} />;
+  return <div ref={mountRef} className={`absolute right-0 bottom-0 pointer-events-none w-full h-full ${className}`} />;
 };
 
 export default ShapeBlur;
