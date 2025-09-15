@@ -8,21 +8,19 @@ const TestimonialCard: React.FC<{
   <div
     className={`
       flex flex-col items-center justify-end
-      rounded-2xl bg-white
-      mt-4 
-      transition-transform duration-500
-      origin-bottom
+      rounded-2xl bg-white mt-4
+      transition-transform duration-500 origin-bottom
+      w-[220px] sm:w-[270px] md:w-[330px] xl:w-[350px]
+      h-[330px] sm:h-[370px] md:h-[450px] xl:h-[480px]
       ${
+        // Active look only on md and up
         isActive
-          ? "scale-110 z-20 border-2 border-orange-300 shadow-md"
+          ? "md:scale-110 md:z-20 md:border-2 md:border-orange-300 md:shadow-md scale-100 z-10 border border-transparent shadow-none"
           : "scale-90 opacity-80 z-10 border border-transparent"
       }
     `}
     style={{
-      minHeight: 410,
-      maxWidth: 340,
-      minWidth: 250,
-      height: 450,
+      minHeight: 160,
       transformOrigin: "bottom center",
     }}
   >
@@ -30,7 +28,7 @@ const TestimonialCard: React.FC<{
       <img
         src={testimonial.image}
         alt={testimonial.name}
-        className="w-32 h-32 object-cover rounded-xl mb-4"
+        className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 object-cover rounded-xl mb-4"
         draggable={false}
         onError={(e) => {
           e.currentTarget.src = "https://via.placeholder.com/150";

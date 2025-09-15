@@ -57,38 +57,18 @@ const testimonials: Testimonial[] = [
 ];
 
 const responsive = {
-  largeDesktop: {
-    breakpoint: { max: 4000, min: 1200 },
-    items: 3,
-    partialVisibilityGutter: 0,
-  },
-  desktop: {
-    breakpoint: { max: 1200, min: 900 },
-    items: 3,
-    partialVisibilityGutter: 0,
-  },
-  tablet: {
-    breakpoint: { max: 900, min: 640 },
-    items: 1,
-    partialVisibilityGutter: 0,
-  },
-  mobile: {
-    breakpoint: { max: 640, min: 0 },
-    items: 1,
-    partialVisibilityGutter: 0,
-  },
+  largeDesktop: { breakpoint: { max: 4000, min: 1200 }, items: 3 },
+  desktop: { breakpoint: { max: 1200, min: 900 }, items: 3 },
+  tablet: { breakpoint: { max: 900, min: 640 }, items: 1 },
+  mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
 };
 
 const Testimonials: React.FC = () => {
   const [firstVisibleIndex, setFirstVisibleIndex] = useState(0);
-
   const handleBeforeChange = (
     nextSlide: number,
     _state: CarouselInternalState
-  ) => {
-    setFirstVisibleIndex(nextSlide);
-  };
-
+  ) => setFirstVisibleIndex(nextSlide);
   const getActiveIndex = (idx: number) =>
     idx === (firstVisibleIndex + 1) % testimonials.length;
 
@@ -96,22 +76,22 @@ const Testimonials: React.FC = () => {
     <section
       style={{
         background: `
-      radial-gradient(circle at top left, #fed7aa 0%, transparent 60%),
-      radial-gradient(circle at bottom right, #fed7aa 0%, transparent 60%),
-      #fff
-    `,
+          radial-gradient(circle at top left, #fed7aa 0%, transparent 60%),
+          radial-gradient(circle at bottom right, #fed7aa 0%, transparent 60%),
+          #fff
+        `,
       }}
+      // className="py-16 w-full min-h-[500px]"
     >
       <div className="max-w-4xl mx-auto mb-7">
         <h1 className="text-2xl md:text-5xl xl:text-7xl font-semibold leading-relaxed text-center">
           Featured Testimonials
         </h1>
-        <p className="lg:text-2xl gap-5 text-gray-700 text-center">
+        <p className="lg:text-2xl gap-5 text-gray-700 text-center px-5">
           Presenting our recent feedbacks — Have a look!
         </p>
       </div>
       <div className="max-w-[1116px] mx-auto relative overflow-visible">
-        {" "}
         <Carousel
           responsive={responsive}
           infinite
