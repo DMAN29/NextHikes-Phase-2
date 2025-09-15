@@ -11,7 +11,7 @@ const TestimonialCard: React.FC<{
       rounded-2xl bg-white mt-4
       transition-transform duration-500 origin-bottom
       w-[220px] sm:w-[270px] md:w-[330px] xl:w-[350px]
-      h-[330px] sm:h-[370px] md:h-[450px] xl:h-[480px]
+      h-[330px] sm:h-[370px] md:h-[450px] xl:h-[450px]
       ${
         // Active look only on md and up
         isActive
