@@ -4,29 +4,25 @@ import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaAngleRight } from "react-icons/fa6";
+import { FaAngleUp } from "react-icons/fa";
+import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { IoMenuSharp, IoClose } from "react-icons/io5";
 
 export default function Header() {
   const [isFixed, setIsFixed] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [industriesOpen, setIndustriesOpen] = useState(false); // dropdown state
 
   const { textColor } = useHeaderColor();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsFixed(false);
-      } else {
-        setIsFixed(true);
-      }
+      setIsFixed(window.scrollY === 0);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  console.log(textColor);
 
   return (
     <header
@@ -39,37 +35,72 @@ export default function Header() {
         style={{ color: textColor || "#fff" }}
       >
         <div className="flex items-center gap-2 font-semibold tracking-wide cursor-pointer">
-          {textColor === "#fff" ? (
-            <Link href={"/"}>
-              <Image
-                src="/image/nexthikes.webp"
-                alt="nexthikes-logo"
-                width={150}
-                height={50}
-                priority
-              />
-            </Link>
-          ) : (
-            <Link href={"/"}>
-              <Image
-                src="/image/nexthikes-black.webp"
-                alt="nexthikes-logo"
-                width={150}
-                height={50}
-                priority
-              />
-            </Link>
-          )}
+          <Link href={"/"}>
+            <Image
+              src={
+                textColor === "#fff"
+                  ? "/image/nexthikes.webp"
+                  : "/image/nexthikes-black.webp"
+              }
+              alt="nexthikes-logo"
+              width={150}
+              height={50}
+              priority
+            />
+          </Link>
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-5 font-semibold text-xl">
+        <div className="hidden md:flex gap-8 font-semibold text-xl relative">
           <Link href="">Services</Link>
-          <Link href="">Industries</Link>
+
+          {/* Industries Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setIndustriesOpen(true)}
+            // onMouseLeave={() => setIndustriesOpen(false)}
+          >
+            <button className="flex items-center gap-1 cursor-pointer">
+              Industries{" "}
+              <FaAngleDown
+                className={`transform transition-transform ${
+                  industriesOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {industriesOpen && (
+              <div
+                className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md text-black flex flex-col"
+                onMouseLeave={() => setIndustriesOpen(false)}
+              >
+                <Link
+                  href="/industries/astrology"
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  Astrology
+                </Link>
+                {/* <Link
+                  href="/industries/e-commerce"
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  E-Commerce
+                </Link> */}
+                {/* <Link
+                  href="/industries/education"
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  Education
+                </Link> */}
+              </div>
+            )}
+          </div>
+
           <Link href="">About Us</Link>
           <Link href="">Blog</Link>
         </div>
 
+        {/* Contact Button */}
         <div className="hidden md:flex items-center gap-8 text-sm">
           <button
             className={`${
@@ -90,6 +121,7 @@ export default function Header() {
           {menuOpen ? <IoClose /> : <IoMenuSharp />}
         </button>
       </div>
+
       {menuOpen && (
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
@@ -107,15 +139,51 @@ export default function Header() {
           <Link href="#services" onClick={() => setMenuOpen(false)}>
             Services
           </Link>
-          <Link href="#industries" onClick={() => setMenuOpen(false)}>
-            Industries
-          </Link>
+
+          {/* Mobile Industries Dropdown */}
+          <div>
+            <button
+              onClick={() => setIndustriesOpen(!industriesOpen)}
+              className="flex items-center justify-between w-full"
+            >
+              Industries{" "}
+              <FaAngleUp
+                className={`transition-transform ${
+                  industriesOpen ? "rotate-90" : ""
+                }`}
+              />
+            </button>
+            {industriesOpen && (
+              <div className="flex flex-col pl-4 mt-2 space-y-1">
+                <Link
+                  href="/industries/astrology"
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  Astrology
+                </Link>
+                {/* <Link
+                  href="/industries/healthcare"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Healthcare
+                </Link>
+                <Link
+                  href="/industries/education"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Education
+                </Link> */}
+              </div>
+            )}
+          </div>
+
           <Link href="#about" onClick={() => setMenuOpen(false)}>
             About Us
           </Link>
           <Link href="#blog" onClick={() => setMenuOpen(false)}>
             Blog
           </Link>
+
           <button className="ml-4 rounded-full flex gap-2 items-center bg-white/20 px-4 py-2 text-white backdrop-blur-md text-sm hover:bg-white/30 transition">
             Contact Us <FaAngleRight />
           </button>

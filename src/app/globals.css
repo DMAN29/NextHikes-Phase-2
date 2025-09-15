@@ -170,7 +170,6 @@
   }
 }
 
-/* Gradient mesh: layered radial-gradients with blur */
 .gradient-mesh {
   position: absolute;
   inset: 0;
@@ -197,5 +196,5 @@
 }
 
 .banner-heading {
-  font-family: "ZCOOL XiaoWei" !important;
+  font-family: "ZCOOL XiaoWei", sans-serif !important;
 }
