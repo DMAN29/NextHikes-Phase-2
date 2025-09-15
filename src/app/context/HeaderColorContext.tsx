@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useMemo, useRef } from "react";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
 type HeaderColorContextType = {
   textColor: string;
@@ -13,7 +13,11 @@ export function HeaderColorProvider({ children }: { children: React.ReactNode })
   const [textColor, setTextColor] = useState<string>("#fff");
   const value = useMemo(() => ({ textColor, setTextColor }), [textColor]);
 
-  return <HeaderColorContext.Provider value={value}>{children}</HeaderColorContext.Provider>;
+  return (
+    <HeaderColorContext.Provider value={value}>
+      {children}
+    </HeaderColorContext.Provider>
+  );
 }
 
 export function useHeaderColor() {

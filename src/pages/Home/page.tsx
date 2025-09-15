@@ -37,6 +37,7 @@ export default function HomePage() {
               Business with Our
               <br />
               <span class="text-slate-800">IT Solutions</span>`}
+        headerTextColor="#fff"
       />
       <WhoWeAre />
       <OurService />

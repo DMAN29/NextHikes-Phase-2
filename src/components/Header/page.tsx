@@ -11,7 +11,7 @@ import { IoMenuSharp, IoClose } from "react-icons/io5";
 export default function Header() {
   const [isFixed, setIsFixed] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [industriesOpen, setIndustriesOpen] = useState(false); // dropdown state
+  const [industriesOpen, setIndustriesOpen] = useState(false);
 
   const { textColor } = useHeaderColor();
 
