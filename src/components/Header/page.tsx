@@ -1,5 +1,6 @@
 "use client";
 
+import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -9,6 +10,8 @@ import { IoMenuSharp, IoClose } from "react-icons/io5";
 export default function Header() {
   const [isFixed, setIsFixed] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { textColor } = useHeaderColor();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,43 +26,58 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  console.log(textColor);
+
   return (
     <header
       className={`top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isFixed ? "fixed bg-transparent" : "absolute"
       }`}
     >
-      <div className="relative mx-auto max-w-6xl px-6 py-4 flex items-center justify-between text-white">
-        {/* Logo */}
-        <div className="flex items-center gap-2 font-semibold tracking-wide">
-          <Image
-            src="/image/nexthikes.png"
-            alt="nexthikes-logo"
-            width={150}
-            height={50}
-            priority
-          />
+      <div
+        className="relative mx-auto max-w-6xl px-6 py-4 flex items-center justify-between"
+        style={{ color: textColor || "#fff" }}
+      >
+        <div className="flex items-center gap-2 font-semibold tracking-wide cursor-pointer">
+          {textColor === "#fff" ? (
+            <Link href={"/"}>
+              <Image
+                src="/image/nexthikes.webp"
+                alt="nexthikes-logo"
+                width={150}
+                height={50}
+                priority
+              />
+            </Link>
+          ) : (
+            <Link href={"/"}>
+              <Image
+                src="/image/nexthikes-black.webp"
+                alt="nexthikes-logo"
+                width={150}
+                height={50}
+                priority
+              />
+            </Link>
+          )}
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-5">
-          <Link href="#services" className="hover:text-white/80">
-            Services
-          </Link>
-          <Link href="#industries" className="hover:text-white/80">
-            Industries
-          </Link>
-          <Link href="#about" className="hover:text-white/80">
-            About Us
-          </Link>
-          <Link href="#blog" className="hover:text-white/80">
-            Blog
-          </Link>
+        <div className="hidden md:flex gap-5 font-semibold text-xl">
+          <Link href="">Services</Link>
+          <Link href="">Industries</Link>
+          <Link href="">About Us</Link>
+          <Link href="">Blog</Link>
         </div>
 
-        {/* Contact Button */}
         <div className="hidden md:flex items-center gap-8 text-sm">
-          <button className="ml-4 rounded-full flex gap-2 items-center cursor-pointer bg-white/20 px-4 py-2 text-white backdrop-blur-md text-sm hover:bg-white/30 transition">
+          <button
+            className={`${
+              textColor === "#fff"
+                ? "text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition"
+                : "text-black bg-white"
+            } rounded-full flex gap-2 items-center px-4 py-2`}
+          >
             Contact Us <FaAngleRight />
           </button>
         </div>
@@ -72,8 +90,6 @@ export default function Header() {
           {menuOpen ? <IoClose /> : <IoMenuSharp />}
         </button>
       </div>
-
-      {/* Background Overlay */}
       {menuOpen && (
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
