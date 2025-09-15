@@ -2,7 +2,6 @@ import Image from "next/image";
 import img1 from "@/assets/images/WhyUs.png";
 import CardSwap, { Card } from "./CardSwap";
 import StarBorder from "../StarBorder";
-import { FaArrowRight } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 
 export default function WhyUs() {
@@ -22,7 +21,7 @@ export default function WhyUs() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
-    <section className="lg:h-[900px] flex mt-5 lg:mt-24 mb-10">
+    <section className="lg:h-[900px] flex mt-5 lg:mt-24 mb-10 overflow-hidden">
       {/* Card Column */}
       <div className="md:ml-5 lg:ml-15 md:w-2/3 relative w-full">
         <div className=" py-5 ">
@@ -34,7 +33,7 @@ export default function WhyUs() {
           </p>
         </div>
         {/* Changed from absolute to relative */}
-        <div className="relative z-10 w-0 h-[150px] md:w-[600px] xl:w-[700px] md:h-[450px] mx-auto md:mx-0">
+        <div className="relative z-10 w-0 h-[150px] md:w-[600px] xl:w-[700px] md:h-[450px] mx-auto md:mx-0 ">
           <CardSwap
             pauseOnHover={false}
             delay={5000}
