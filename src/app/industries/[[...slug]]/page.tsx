@@ -12,7 +12,7 @@ const IndustriesPage = dynamic(() => import("@/pages/Industries/page"), {
 export default function Industries() {
   const params = useParams<{ slug?: string[] }>();
   const slugParam = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
-  console.log(slugParam);
+  
   return (
     <Suspense fallback={<Skeleton />}>
       <IndustriesPage slug={slugParam} />

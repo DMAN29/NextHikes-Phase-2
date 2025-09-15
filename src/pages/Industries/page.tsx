@@ -24,7 +24,6 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
     { name: "GitHub", imageUrl: "/image/tech/github.svg" },
   ];
 
-  console.log(slug);
   const data = {
     descriptionBlock: `"{\\"imageUrl\\": \\"/image/astrology-industry.jpg\\", \\"description\\": \\"We specialize in astrology app development, creating personalized and engaging experiences for users seeking astrological insights. Our apps offer features like daily horoscopes, birth chart analysis, and compatibility reports, all designed to help users connect with the stars and understand their cosmic journey.\\"}"`,
   };
