@@ -1,47 +1,46 @@
 import React from "react";
+import { Testimonial } from "./page";
 
-interface TestimonialCardProps {
-  testimonial: {
-    id: number;
-    name: string;
-    title: string;
-    image: string;
-    feedback: string;
-  };
+const TestimonialCard: React.FC<{
+  testimonial: Testimonial;
   isActive: boolean;
-}
-
-const TestimonialCard: React.FC<TestimonialCardProps> = ({
-  testimonial,
-  isActive,
-}) => (
+}> = ({ testimonial, isActive }) => (
   <div
     className={`
-      flex flex-col items-center justify-center rounded-2xl
-      shadow-xl bg-white m-4 px-6 py-8 transition-transform duration-500
+      flex flex-col items-center justify-end
+      rounded-2xl bg-white
+      mt-4 
+      transition-transform duration-500
+      origin-bottom
       ${
         isActive
-          ? "scale-110 z-20 shadow-2xl border-2 border-orange-200"
-          : "scale-90 opacity-80 z-10"
+          ? "scale-110 z-20 border-2 border-orange-300 shadow-md"
+          : "scale-90 opacity-80 z-10 border border-transparent"
       }
     `}
     style={{
       minHeight: 410,
       maxWidth: 340,
       minWidth: 250,
-      transformOrigin: "bottom center", // grow upwards from the bottom
+      height: 450,
+      transformOrigin: "bottom center",
     }}
   >
-    <img
-      src={testimonial.image}
-      alt={testimonial.name}
-      className="w-32 h-32 object-cover rounded-xl mb-4"
-      draggable={false}
-    />
-    <div className="font-bold text-lg">{testimonial.name}</div>
-    <div className="text-sm text-gray-500 mb-2">{testimonial.title}</div>
-    <div className="text-gray-700 text-center text-base">
-      {testimonial.feedback}
+    <div className="flex flex-col items-center justify-end h-full px-6 py-8">
+      <img
+        src={testimonial.image}
+        alt={testimonial.name}
+        className="w-32 h-32 object-cover rounded-xl mb-4"
+        draggable={false}
+        onError={(e) => {
+          e.currentTarget.src = "https://via.placeholder.com/150";
+        }}
+      />
+      <div className="font-bold text-lg">{testimonial.name}</div>
+      <div className="text-sm text-gray-500 mb-2">{testimonial.title}</div>
+      <div className="text-gray-700 text-center text-base">
+        {testimonial.feedback}
+      </div>
     </div>
   </div>
 );
