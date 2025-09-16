@@ -1,3 +1,5 @@
+"use client";
+
 import Banner from "@/components/Banner/page";
 import Gallery from "@/components/Gallery/page";
 import OurService from "@/components/OurService/page";

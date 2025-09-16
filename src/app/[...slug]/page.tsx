@@ -1,6 +1,6 @@
 // "use server";
 
-import AboutUs from "@/pages/AboutUs/page";
+import AboutUs from "@/features/AboutUs/page";
 import { UserService } from "@/utils/Services/allApi";
 // import StaticPage from "@/pages/StaticPages/page";
 

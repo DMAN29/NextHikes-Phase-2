@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { Suspense } from "react";
 
-const IndustriesPage = dynamic(() => import("@/pages/Industries/page"), {
+const IndustriesPage = dynamic(() => import("@/features/Industries/page"), {
   loading: () => <Skeleton />,
 });
 

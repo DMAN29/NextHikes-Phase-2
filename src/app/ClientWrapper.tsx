@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { HeaderColorProvider } from "./context/HeaderColorContext";
 import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
