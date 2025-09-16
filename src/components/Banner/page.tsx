@@ -6,8 +6,15 @@ import { FaAngleRight } from "react-icons/fa6";
 import Aurora from "../Aurora";
 import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import { useEffect, useRef } from "react";
+import Galaxy from "../Galaxy";
 
-type Platform = "home" | "astrology" | "e-commerce" | "services" | "about";
+type Platform =
+  | "home"
+  | "astrology"
+  | "e-commerce"
+  | "services"
+  | "about"
+  | "gaming";
 
 interface BannerCTA {
   text: string;
@@ -101,11 +108,31 @@ export default function Banner({
               <Link
                 key={idx}
                 href={btn.url}
-                className="px-6 py-3 rounded-full font-medium border text-center transition hover:opacity- uppercase"
+                className="px-6 py-3 rounded-full w-full max-w-sm font-medium border text-center transition hover:opacity- uppercase"
                 style={{
                   background: btn.backgroundColor || "transparent",
                   color: btn.textColor,
                   borderColor: btn.borderColor,
+                }}
+              >
+                {btn.text}
+              </Link>
+            ))}
+          </div>
+        );
+
+      case "gaming":
+        return (
+          <div className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 w-full">
+            {cta.map((btn, idx) => (
+              <Link
+                key={idx}
+                href={btn.url}
+                className="px-6 py-3 rounded-full w-full sm:w-auto font-medium text-center transition hover:opacity-90 inline-flex uppercase"
+                style={{
+                  background: btn.backgroundColor || "transparent",
+                  color: btn.textColor,
+                  border: `2px solid ${btn.borderColor || "transparent"}`,
                 }}
               >
                 {btn.text}
@@ -245,7 +272,6 @@ export default function Banner({
                   />
                 </div>
 
-                {/* Banner image */}
                 <Image
                   src={bannerImage}
                   alt="banner"
@@ -262,29 +288,113 @@ export default function Banner({
 
     case "e-commerce":
       return (
-        <section className="relative py-30 px-20">
+        <section className="relative flex flex-col md:flex-row items-center pt-20 md:py-30 px-6 sm:px-10 md:px-20">
           <div
             className="absolute inset-0 -z-10"
             style={{
               background: backgroundColor?.[0] || "#FCF4EC",
             }}
           ></div>
-
-          <div className="mx-auto px-6">
+          <div className="mx-auto md:mx-0 md:flex-1 px-0 md:px-6 text-center md:text-left">
             {title && (
               <h1
-                className="text-5xl font-semibold text-[#000000]"
+                className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#000000] leading-snug"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
             )}
             {subTitle && (
               <p
-                className="mt-5 text-lg font-normal text-[#000000]"
+                className="mt-4 sm:mt-5 text-base sm:text-lg md:text-lg font-normal text-[#000000]"
                 dangerouslySetInnerHTML={{ __html: subTitle }}
               />
             )}
-            <div className="mt-8">{renderCTA("e-commerce")}</div>
+            <div className="mt-6 md:mt-8">{renderCTA("e-commerce")}</div>
           </div>
+
+          {bannerImage && (
+            <div className="mt-6 md:mt-0 md:ml-8 flex-shrink-0 w-full md:w-auto max-w-[600px]">
+              <Image
+                src={bannerImage}
+                alt="services-banner"
+                width={600}
+                height={600}
+                className="w-full h-auto object-contain"
+                priority
+              />
+            </div>
+          )}
+        </section>
+      );
+
+    case "gaming":
+      return (
+        <section className="relative w-full flex flex-col items-center pt-40">
+          <div className="absolute inset-0 z-1 w-full h-full">
+            <Galaxy
+              mouseRepulsion={true}
+              mouseInteraction={true}
+              density={1}
+              glowIntensity={0.3}
+              saturation={0}
+              hueShift={140}
+              rotationSpeed={0.1}
+              twinkleIntensity={0.3}
+              repulsionStrength={2}
+              starSpeed={0.5}
+            />
+          </div>
+
+          <div
+            className="absolute inset-0 -z-10"
+            style={{ background: backgroundColor?.[0] || "#FCF4EC" }}
+          ></div>
+
+          <div className="relative z-10 mx-auto px-4 text-center max-w-4xl flex flex-col items-center gap-6">
+            {title && (
+              <h1
+                className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#fff] leading-snug uppercase"
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+            )}
+            {subTitle && (
+              <p
+                className="text-base sm:text-lg md:text-lg font-normal text-[#fff]"
+                dangerouslySetInnerHTML={{ __html: subTitle }}
+              />
+            )}
+
+            {/* CTA Buttons */}
+            <div className="mt-6 flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
+              {cta.map((btn, idx) => (
+                <Link
+                  key={idx}
+                  href={btn.url}
+                  className="px-6 py-3 rounded-full font-medium text-center w-full sm:w-auto transition hover:opacity-90 inline-flex uppercase"
+                  style={{
+                    background: btn.backgroundColor || "transparent",
+                    color: btn.textColor,
+                    border: `2px solid ${btn.borderColor || "transparent"}`,
+                  }}
+                >
+                  {btn.text}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Optional Banner Image */}
+          {bannerImage && (
+            <div className="relative z-10 mt-8 w-full">
+              <Image
+                src={bannerImage}
+                alt="services-banner"
+                width={1000}
+                height={1000}
+                className="w-full h-auto object-cover rounded-xl"
+                priority
+              />
+            </div>
+          )}
         </section>
       );
 

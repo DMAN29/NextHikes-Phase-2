@@ -16,19 +16,19 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
 
   try {
     if (slugPath === "about-us") {
-      // const [projectRes, reviewRes, dataRes] = await Promise.all([
-      //   UserService.getProjects(),
-      //   UserService.getReviews(),
-      //   UserService.getPageByType(slugPath),
-      // ]);
+      const [projectRes, reviewRes, dataRes] = await Promise.all([
+        UserService.getProjects(),
+        UserService.getReviews(),
+        UserService.getPageByType(slugPath),
+      ]);
 
-      // return (
-      //   <AboutUs
-      //     project={Array.isArray(projectRes?.data) ? projectRes.data : []}
-      //     reviews={Array.isArray(reviewRes) ? reviewRes : []}
-      //     data={dataRes?.data || []}
-      //   />
-      // );
+      return (
+        <AboutUs
+          project={Array.isArray(projectRes?.data) ? projectRes.data : []}
+          reviews={Array.isArray(reviewRes) ? reviewRes : []}
+          data={dataRes?.data || []}
+        />
+      );
     }
 
     if (

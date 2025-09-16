@@ -1,6 +1,8 @@
 import Banner from "@/components/Banner/page";
+import ChooseNexthikesPage from "@/components/ChooseNexthikes/page";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import Expertise from "@/components/Expertise/page";
+import MarketPage from "@/components/Market/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import TechStack from "@/components/TechStack/page";
 import WhoAreWe from "@/components/WhoAreWe/page";
@@ -150,13 +152,13 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
         </>
       )}
       {matchedConfig?.styleKey === "e-commerce" && (
-        <>
+        <div>
           <Banner
             platform="e-commerce"
             backgroundColor={[
               "linear-gradient(180deg, #FFFFFF 0%, #E3EBF1 100%)",
             ]}
-            bannerImage="/image/mobile.webp"
+            bannerImage="/image/e-comm.webp"
             subTitle={`SELL MORE WITH HIGH PERFORMANCE E-COMMERCE PLATFORM`}
             cta={[
               {
@@ -178,20 +180,52 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
 EVERYWHERE`}
             headerTextColor="#000"
           />
+          <MarketPage />
           <ElevateBusinessPage />
-          <WhoAreWe data={""} />
-          <div className="flex justify-center items-center my-2">
-            <Image
-              src="/icons/magic.svg"
-              alt="magic-svg"
-              width={350}
-              height={200}
-            />
-          </div>
-        </>
+          <ChooseNexthikesPage />
+        </div>
       )}
 
-      <ServiceFormPage backgroundColor="#452A7C1A" />
+      {matchedConfig?.styleKey === "gaming" && (
+        <div>
+          <Banner
+            platform="gaming"
+            backgroundColor={["#000"]}
+            bannerImage="/image/game-bg.webp"
+            subTitle={``}
+            cta={[
+              {
+                text: "Get a free e-commerce quote",
+                url: "",
+                backgroundColor:
+                  "linear-gradient(90deg, #E0802E 0%, #F6A756 100%)",
+                textColor: "#ffffff",
+                borderColor: "",
+              },
+              {
+                text: "View Our Portfolio",
+                url: "",
+                textColor: "#ffffff",
+                borderColor: "#B3D8F0",
+              },
+            ]}
+            title={`Level Up Your Vision.<br /> Build the Next Big Game <br />
+with NextHike.`}
+            headerTextColor="#fff"
+          />
+          <MarketPage />
+          <section className="custom-container">
+            <h3 className="text-[#363636] font-semibold text-6xl">Solutions Built for Every Stage of Your Business Growth</h3>
+            <Expertise />
+          </section>
+          <ElevateBusinessPage />
+          <ChooseNexthikesPage />
+        </div>
+      )}
+
+      {matchedConfig?.styleKey !== "e-commerce" && (
+        <ServiceFormPage backgroundColor="#452A7C1A" />
+      )}
     </div>
   );
 }

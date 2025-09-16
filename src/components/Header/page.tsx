@@ -107,7 +107,7 @@ export default function Header() {
               textColor === "#fff"
                 ? "text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition"
                 : "text-black bg-white"
-            } rounded-full flex gap-2 items-center px-4 py-2`}
+            } rounded-full font-medium text-lg flex gap-2 items-center px-4 py-2 cursor-pointer`}
           >
             Contact Us <FaAngleRight />
           </button>
@@ -118,7 +118,7 @@ export default function Header() {
           className="md:hidden text-3xl text-white focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <IoClose /> : <IoMenuSharp />}
+          {menuOpen ? <IoClose /> : <IoMenuSharp color={textColor || "fff"} />}
         </button>
       </div>
 
