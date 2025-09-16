@@ -1,8 +1,10 @@
 import Image from "next/image";
-import img1 from "@/assets/images/WhyUs.png";
+// import img1 from "@/assets/images/WhyUs.png";
 import CardSwap, { Card } from "./CardSwap";
 import StarBorder from "../StarBorder";
 import { useEffect, useState } from "react";
+
+const img = "/Image/WhyUs.png";
 
 export default function WhyUs() {
   const [cardSize, setCardSize] = useState({ width: 600, height: 400 });
@@ -70,7 +72,7 @@ export default function WhyUs() {
       {/* Image Column */}
       <div className="w-1/3 relative hidden lg:block">
         <Image
-          src={img1}
+          src={img}
           alt="Why Choose Us"
           fill
           className="object-cover"
