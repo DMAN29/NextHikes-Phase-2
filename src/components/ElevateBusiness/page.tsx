@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ElevateBusinessPage() {
   return (
-    <div className="bg-[#003049]">
+    <div className="bg-[#003049] mb-10">
       <div className="max-w-7xl mx-auto px-4 py-8 text-center">
         <h1 className="text-white text-2xl font-medium mb-4">
           Elevate your business with professional Development services

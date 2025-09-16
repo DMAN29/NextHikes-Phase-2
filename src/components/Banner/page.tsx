@@ -6,7 +6,7 @@ import { FaAngleRight } from "react-icons/fa6";
 import Aurora from "../Aurora";
 import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import { useEffect, useRef } from "react";
-import Galaxy from "../Galaxy";
+import Particles from "../Particles";
 
 type Platform =
   | "home"
@@ -328,19 +328,17 @@ export default function Banner({
 
     case "gaming":
       return (
-        <section className="relative w-full flex flex-col items-center pt-40">
+        <section className="relative w-full min-h-screen flex flex-col items-center pt-40">
           <div className="absolute inset-0 z-1 w-full h-full">
-            <Galaxy
-              mouseRepulsion={true}
-              mouseInteraction={true}
-              density={1}
-              glowIntensity={0.3}
-              saturation={0}
-              hueShift={140}
-              rotationSpeed={0.1}
-              twinkleIntensity={0.3}
-              repulsionStrength={2}
-              starSpeed={0.5}
+            <Particles
+              particleColors={["#ffffff", "#ffffff"]}
+              particleCount={200}
+              particleSpread={10}
+              speed={0.1}
+              particleBaseSize={100}
+              moveParticlesOnHover={true}
+              alphaParticles={false}
+              disableRotation={false}
             />
           </div>
 

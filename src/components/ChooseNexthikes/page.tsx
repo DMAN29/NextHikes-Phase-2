@@ -28,7 +28,7 @@ export default function ChooseNexthikesPage() {
   ];
 
   return (
-    <div className="custom-container !p-6 flex flex-col items-center gap-12 md:gap-16 min-h-screen">
+    <div className="custom-container !px-6 !pb-6 flex flex-col items-center gap-12 md:gap-16 min-h-screen">
       {/* Heading Section */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-0 text-center md:text-left">
         <h3 className="font-semibold text-[#363636] text-4xl sm:text-5xl md:text-6xl leading-tight">

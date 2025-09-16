@@ -14,16 +14,16 @@ interface IndustriesPageProps {
 
 export default function IndustriesPage({ slug }: IndustriesPageProps) {
   const techStackData = [
-    { name: "Next.js", imageUrl: "/image/tech/nextjs.svg" },
-    { name: "React", imageUrl: "/image/tech/react.svg" },
-    { name: "Tailwind CSS", imageUrl: "/image/tech/tailwind.svg" },
-    { name: "Node.js", imageUrl: "/image/tech/nodejs.svg" },
-    { name: "Express.js", imageUrl: "/image/tech/express.svg" },
-    { name: "PostgreSQL", imageUrl: "/image/tech/postgresql.svg" },
-    { name: "MongoDB", imageUrl: "/image/tech/mongodb.svg" },
-    { name: "AWS", imageUrl: "/image/tech/aws.svg" },
-    { name: "Docker", imageUrl: "/image/tech/docker.svg" },
-    { name: "GitHub", imageUrl: "/image/tech/github.svg" },
+    { name: "Next.js", imageUrl: "/icons/nextjs-icon.svg" },
+    { name: "React", imageUrl: "/icons/react.svg" },
+    { name: "Tailwind CSS", imageUrl: "/icons/tailwind.svg" },
+    { name: "Node.js", imageUrl: "/icons/nodejs.svg" },
+    { name: "Express.js", imageUrl: "/icons/express.svg" },
+    { name: "PostgreSQL", imageUrl: "/icons/postgresql.svg" },
+    { name: "MongoDB", imageUrl: "/icons/mongodb.svg" },
+    { name: "AWS", imageUrl: "/icons/aws.svg" },
+    { name: "Docker", imageUrl: "/icons/docker.svg" },
+    { name: "GitHub", imageUrl: "/icons/github.svg" },
   ];
 
   const data = {
@@ -181,6 +181,12 @@ EVERYWHERE`}
             headerTextColor="#000"
           />
           <MarketPage />
+          <section className="custom-container !my-5">
+            <h3 className="text-[#363636] font-semibold text-2xl md:text-6xl">
+              Solutions Built for Every Stage of Your Business Growth
+            </h3>
+            <Expertise />
+          </section>
           <ElevateBusinessPage />
           <ChooseNexthikesPage />
         </div>
@@ -210,15 +216,18 @@ EVERYWHERE`}
               },
             ]}
             title={`Level Up Your Vision.<br /> Build the Next Big Game <br />
-with NextHike.`}
+with NextHikes.`}
             headerTextColor="#fff"
           />
-          <MarketPage />
-          <section className="custom-container">
-            <h3 className="text-[#363636] font-semibold text-6xl">Solutions Built for Every Stage of Your Business Growth</h3>
+
+          <TechStack data={techStackData} />
+          <ElevateBusinessPage />
+          <section className="custom-container !my-[100px]">
+            <h3 className="text-[#363636] font-semibold text-2xl md:text-3xl text-center capitalize mb-5">
+              Our Game Development Expertise
+            </h3>
             <Expertise />
           </section>
-          <ElevateBusinessPage />
           <ChooseNexthikesPage />
         </div>
       )}
