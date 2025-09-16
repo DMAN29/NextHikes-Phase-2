@@ -80,18 +80,18 @@ export default function Header() {
                 >
                   Astrology
                 </Link>
-                {/* <Link
+                <Link
                   href="/industries/e-commerce"
                   className="px-4 py-2 hover:bg-gray-100"
                 >
                   E-Commerce
-                </Link> */}
-                {/* <Link
-                  href="/industries/education"
+                </Link>
+                <Link
+                  href="/industries/gaming"
                   className="px-4 py-2 hover:bg-gray-100"
                 >
-                  Education
-                </Link> */}
+                  Gaming
+                </Link>
               </div>
             )}
           </div>
@@ -161,18 +161,18 @@ export default function Header() {
                 >
                   Astrology
                 </Link>
-                {/* <Link
-                  href="/industries/healthcare"
-                  onClick={() => setMenuOpen(false)}
+                <Link
+                  href="/industries/e-commerce"
+                  className="px-4 py-2 hover:bg-gray-100"
                 >
-                  Healthcare
+                  E-Commerce
                 </Link>
                 <Link
-                  href="/industries/education"
-                  onClick={() => setMenuOpen(false)}
+                  href="/industries/gaming"
+                  className="px-4 py-2 hover:bg-gray-100"
                 >
-                  Education
-                </Link> */}
+                  Gaming
+                </Link>
               </div>
             )}
           </div>
