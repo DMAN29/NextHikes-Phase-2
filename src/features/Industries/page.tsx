@@ -222,11 +222,13 @@ with NextHikes.`}
 
           <TechStack data={techStackData} />
           <ElevateBusinessPage />
-          <section className="custom-container !my-[100px]">
+          <section className="custom-container relative !my-[100px]">
+            <div className="absolute top-5 left-0 w-full max-w-[300px] h-20 bg-[#153A9C] blur-[100px]"></div>
             <h3 className="text-[#363636] font-semibold text-2xl md:text-3xl text-center capitalize mb-5">
               Our Game Development Expertise
             </h3>
             <Expertise />
+            <div className="absolute bottom-0 right-0 w-full max-w-[300px] h-20 bg-[#5D1B99] blur-[100px]"></div>
           </section>
           <ChooseNexthikesPage />
         </div>
