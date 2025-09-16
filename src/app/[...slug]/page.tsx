@@ -2,7 +2,7 @@
 
 import AboutUs from "@/features/AboutUs/page";
 import { UserService } from "@/utils/Services/allApi";
-// import StaticPage from "@/pages/StaticPages/page";
+import { notFound } from "next/navigation";
 
 interface DynamicPageProps {
   params: Promise<{ slug?: string[] }>;
@@ -10,11 +10,25 @@ interface DynamicPageProps {
 
 export const revalidate = 10;
 
+const VALID_SLUGS = [
+  "about-us",
+  "terms-and-conditions",
+  "privacy-policy",
+  "refund-policy",
+];
+
 export default async function DynamicPage({ params }: DynamicPageProps) {
   const { slug } = await params;
   const slugPath = slug?.join("/");
 
+  // agar slug hi missing ho
+  if (!slugPath) return notFound();
+
+  // agar slug invalid hai
+  if (!VALID_SLUGS.includes(slugPath)) return notFound();
+
   try {
+    // about-us page
     if (slugPath === "about-us") {
       const [projectRes, reviewRes, dataRes] = await Promise.all([
         UserService.getProjects(),
@@ -22,11 +36,13 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
         UserService.getPageByType(slugPath),
       ]);
 
+      if (!dataRes?.data) return notFound();
+
       return (
         <AboutUs
           project={Array.isArray(projectRes?.data) ? projectRes.data : []}
           reviews={Array.isArray(reviewRes) ? reviewRes : []}
-          data={dataRes?.data || []}
+          data={dataRes.data}
         />
       );
     }
@@ -37,11 +53,11 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
       slugPath === "refund-policy"
     ) {
       // const dataRes = await UserService.getPageByType(slugPath);
-      // return <StaticPage data={dataRes?.data || []} />;
-    }
+      // if (!dataRes?.data) return notFound();
 
-    return <div className="container mx-auto p-6" />;
-  } catch {
-    throw new Error("Failed to fetch data");
+      // return <div>{dataRes.data?.content || "Static page content"}</div>;
+    }
+  } catch (error) {
+    throw new Error("Something went wrong while loading this page");
   }
 }
