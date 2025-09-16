@@ -26,7 +26,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  console.log(textColor);
+  // console.log(textColor);
 
   return (
     <header

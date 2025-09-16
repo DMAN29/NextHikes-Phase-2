@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
       "cdn.sanity.io",
       "media.istockphoto.com",
       "www.nexthikes.in",
-      "thumbs.dreamstime.com",
     ],
   },
 };

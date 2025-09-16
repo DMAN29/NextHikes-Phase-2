@@ -60,16 +60,18 @@ export default function CRMBanner() {
   return (
     <section className="relative h-screen overflow-hidden text-white pt-24">
       <div className="absolute inset-0 bg-[#003049] rounded-bl-[250px] -translate-y-10 translate-x-10 -z-1"></div>
-      <div className="flex h-full">
-        <div className="w-1/2 flex flex-col px-8 ">
-          <h1 className="md:text-xl xl:text-4xl font-semibold leading-relaxed mt-10 w-1/2 mx-auto">
-            Smart CRM & HRMS Solutions to Power Your Business
-          </h1>
-          <p className="w-1/2 mx-auto my-5">
-            Streamline your customer relationships and workforce management with
-            our intelligent, all-in-one platform designed for efficiency,
-            transparency, and growth.
-          </p>
+      <div className="flex flex-col md:flex-row h-full">
+        <div className="w-full md:w-1/2 flex flex-col px-8 ">
+          <div className="md:w-1/2 mx-auto">
+            <h1 className="md:text-xl xl:text-4xl font-semibold leading-relaxed mt-10 ">
+              Smart CRM & HRMS Solutions to Power Your Business
+            </h1>
+            <p className=" my-5">
+              Streamline your customer relationships and workforce management
+              with our intelligent, all-in-one platform designed for efficiency,
+              transparency, and growth.
+            </p>
+          </div>
           <div className="flex gap-5 mx-auto mt-10">
             <button className="flex items-center px-8 py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white font-semibold text-lg rounded-full gap-3 shadow-md hover:from-orange-500 hover:to-orange-600 transition">
               Request a Demo
@@ -81,11 +83,9 @@ export default function CRMBanner() {
             </button>
           </div>
         </div>
-        <div
-          className="w-1/2
-        "
-        >
-          <div className="bg-white rounded-tl-[200px] rounded-bl-3xl shadow-2xl p-14 w-full h-[80%] flex flex-col justify-center items-center ml-10 relative">
+
+        <div className="w-full md:w-1/2 relative">
+          <div className="bg-white rounded-tl-[200px] rounded-bl-3xl shadow-2xl p-14 w-full h-[80%] flex flex-col justify-center items-center ml-0 md:ml-10 relative">
             <Carousel
               ref={carouselRef}
               responsive={responsive}
@@ -98,9 +98,11 @@ export default function CRMBanner() {
               autoPlay={true}
               transitionDuration={2000}
               itemClass="flex items-center justify-center"
-              afterChange={(previousSlide, { currentSlide }) =>
-                setCurrentSlide(currentSlide)
+              // Use beforeChange to sync currentSlide immediately before transition
+              beforeChange={(nextSlide: number) =>
+                setCurrentSlide(nextSlide % dummyCarouselItems.length)
               }
+              // Optionally, remove afterChange or leave empty
               customTransition="transform 500ms cubic-bezier(0.23, 1, 0.32, 1)"
             >
               {dummyCarouselItems.map((item) => (
@@ -136,8 +138,7 @@ export default function CRMBanner() {
                 <FaArrowLeft />
               </button>
               <span className="mx-2">
-                {(currentSlide % dummyCarouselItems.length) + 1} of{" "}
-                {dummyCarouselItems.length}
+                {currentSlide + 1} of {dummyCarouselItems.length}
               </span>
               <button
                 className="p-2 hover:opacity-70 transition rounded"
