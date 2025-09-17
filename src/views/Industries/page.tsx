@@ -212,7 +212,7 @@ EVERYWHERE`}
               },
               {
                 text: "View Our Portfolio",
-                url: "",
+                url: "https://next-hikes.framer.website",
                 textColor: "#ffffff",
                 borderColor: "#B3D8F0",
               },
