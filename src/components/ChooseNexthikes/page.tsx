@@ -32,7 +32,7 @@ export default function ChooseNexthikesPage() {
       {/* Heading Section */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-0 text-center md:text-left">
         <h3 className="font-semibold text-[#363636] text-4xl sm:text-5xl md:text-6xl leading-tight">
-          Why Choose Next <br /> Hikes?
+          Why Choose Next Hikes?
         </h3>
         <h6 className="font-normal text-[#363636] text-2xl sm:text-2xl md:text-3xl leading-snug">
           Your Local E-commerce <br /> Experts in the Delhi NCR
@@ -46,7 +46,7 @@ export default function ChooseNexthikesPage() {
           alt="curve-icon"
           width={1000}
           height={1000}
-          className="w-full max-w-[1000px] h-auto -mt-5"
+          className="w-full max-w-[1000px] h-auto -my-8"
         />
       </div>
 
@@ -71,7 +71,8 @@ export default function ChooseNexthikesPage() {
           <Image
             src={"/image/choose-nexthikes.webp"}
             alt="choose-nexthikes"
-            fill
+            width={1000}
+            height={1000}
             className="object-cover rounded-md"
           />
         </div>
