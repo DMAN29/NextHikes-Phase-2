@@ -6,7 +6,7 @@ import { FaAngleRight } from "react-icons/fa6";
 import Aurora from "../Aurora";
 import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import { useEffect, useRef } from "react";
-import Particles from "../Particles";
+import Galaxy from "../Galaxy";
 
 type Platform =
   | "home"
@@ -177,34 +177,36 @@ export default function Banner({
               speed={1.7}
             />
           </div>
-          <div className="relative mx-auto max-w-6xl px-6 pt-[150px] pb-24 md:pb-36">
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-              <div>
-                {title && (
-                  <h1
-                    className="text-4xl md:text-5xl font-extrabold text-slate-900"
-                    dangerouslySetInnerHTML={{ __html: title }}
-                  />
-                )}
-                {subTitle && (
-                  <p
-                    className="mt-5 text-slate-600"
-                    dangerouslySetInnerHTML={{ __html: subTitle }}
-                  />
-                )}
-                {renderCTA("home")}
+          <div className="relative mx-auto px-6 pt-[150px] pb-24 md:pb-36">
+            <div className="custom-container">
+              <div className="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                  {title && (
+                    <h1
+                      className="text-4xl md:text-5xl font-extrabold text-slate-900"
+                      dangerouslySetInnerHTML={{ __html: title }}
+                    />
+                  )}
+                  {subTitle && (
+                    <p
+                      className="mt-5 text-slate-600"
+                      dangerouslySetInnerHTML={{ __html: subTitle }}
+                    />
+                  )}
+                  {renderCTA("home")}
+                </div>
               </div>
-              {bannerImage && (
-                <Image
-                  src={bannerImage}
-                  alt="banner"
-                  width={1000}
-                  height={1000}
-                  className="w-full"
-                  priority
-                />
-              )}
             </div>
+            {bannerImage && (
+              <Image
+                src={bannerImage}
+                alt="banner"
+                width={1000}
+                height={1000}
+                className="relative w-[90%] h-auto mx-auto mt-12 md:absolute md:w-[55vw] md:h-[80vh] md:top-20 md:-right-30 md:mt-0"
+                priority
+              />
+            )}
           </div>
         </section>
       );
@@ -330,15 +332,15 @@ export default function Banner({
       return (
         <section className="relative w-full min-h-screen flex flex-col items-center pt-40">
           <div className="absolute inset-0 z-1 w-full h-full">
-            <Particles
-              particleColors={["#ffffff", "#ffffff"]}
-              particleCount={200}
-              particleSpread={10}
-              speed={0.1}
-              particleBaseSize={100}
-              moveParticlesOnHover={true}
-              alphaParticles={false}
-              disableRotation={false}
+            <Galaxy
+              mouseRepulsion={true}
+              mouseInteraction={true}
+              density={1}
+              glowIntensity={0.3}
+              saturation={0}
+              hueShift={140}
+              rotationSpeed={0.1}
+              twinkleIntensity={0.3}
             />
           </div>
 

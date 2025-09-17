@@ -20,13 +20,15 @@ const icons: Record<string, JSX.Element> = {
       width="1em"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 
+      <path
+        d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 
        0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 
        0c0 29.7-24.1 54.3-53.79 
        54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 
        0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 
        42.69-48.3 87.88-48.3 94 0 111.28 61.9 
-       111.28 142.3V448z"></path>
+       111.28 142.3V448z"
+      ></path>
     </svg>
   ),
   twitter: <FaXTwitter />,
@@ -132,18 +134,23 @@ const teamMembers: Member[] = [
 
 export default function Team() {
   return (
-    <section className="custom-container min-h-screen flex flex-col justify-center items-center">
-      <div className="flex flex-col items-center max-w-2xl text-center">
-        <h3 className="uppercase text-4xl font-semibold mb-3">
-          meet our best team
-        </h3>
-        <p>
-          Cras eu dignissim mauris. Duis imperdiet erat sapien, molestie aliquet
-          arcu tincidunt id. Mauris sit amet quam mi. Duis porttitor lectus quis
-          turpis malesuada, eu luctus elit dignissim.
-        </p>
-        <div className="border border-black max-w-[150px] w-full my-5" />
-      </div>
+    <section className="custom-container min-h-screen flex flex-col !mt-20 !mb-20 md:!mb-0">
+      {/* <div className="flex flex-col"> */}
+      <h3 className="uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl  mb-3">
+        meet our team at <span className="text-[#F37021] font-semibold">next hikes</span>
+      </h3>
+
+      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700">
+        Cras eu dignissim mauris. Duis imperdiet erat sapien, molestie aliquet
+        arcu tincidunt id. Mauris sit amet quam mi. Duis porttitor lectus quis
+        turpis malesuada, eu luctus elit dignissim.
+      </p>
+
+      <p className="text-[#363636] font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl capitalize my-6 sm:my-8 md:my-9 tracking-[3px] sm:tracking-[4px] md:tracking-[5px] lg:tracking-[6px] xl:tracking-[7.56px]">
+        core members
+      </p>
+
+      {/* </div> */}
 
       <Swiper
         modules={[Autoplay]}
@@ -153,7 +160,7 @@ export default function Team() {
           disableOnInteraction: false,
         }}
         breakpoints={{
-          0: { slidesPerView: 2, spaceBetween: 10 },
+          0: { slidesPerView: 1, spaceBetween: 10 },
           480: { slidesPerView: 2, spaceBetween: 15 },
           768: { slidesPerView: 3, spaceBetween: 20 },
           1024: { slidesPerView: 4, spaceBetween: 30 },

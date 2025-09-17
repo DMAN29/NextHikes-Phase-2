@@ -1,7 +1,6 @@
 import { Work_Sans, ZCOOL_XiaoWei } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
-import ClientWrapper from "./ClientWrapper";
 import { HeaderColorProvider } from "./context/HeaderColorContext";
 import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";

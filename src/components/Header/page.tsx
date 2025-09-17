@@ -34,7 +34,7 @@ export default function Header() {
         className="relative mx-auto max-w-6xl px-6 py-4 flex items-center justify-between"
         style={{ color: textColor || "#fff" }}
       >
-        <div className="flex items-center gap-2 font-semibold tracking-wide cursor-pointer">
+        <div className="flex items-center gap-2 font-medium tracking-wide cursor-pointer">
           <Link href={"/"}>
             <Image
               src={
@@ -51,7 +51,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8 font-semibold text-xl relative">
+        <div className="hidden md:flex gap-8 font-medium text-xl relative">
           <Link href="">Services</Link>
 
           {/* Industries Dropdown */}

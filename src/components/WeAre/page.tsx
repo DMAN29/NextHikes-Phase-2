@@ -16,14 +16,15 @@ export default function WhoWeAre() {
   ];
   return (
     <section className="pb-10">
-      <div className="custom-container flex flex-col items-center text-center gap-8 max-w-3xl mx-auto">
-        <h4 className="font-semibold text-2xl uppercase tracking-wide text-gray-700">
+      <div className="custom-container relative flex flex-col items-center text-center gap-8 max-w-3xl mx-auto">
+        <h4 className="font-medium text-xl uppercase tracking-wide text-gray-700">
           Who We Are
         </h4>
-        <p className="font-medium text-lg md:text-4xl leading-relaxed text-black px-5">
+        <p className="font-medium text-lg md:text-5xl leading-relaxed text-black px-5">
           Nexthikes is a digital solution for a product agency that relates
           people relations with products, story development, and other services.
         </p>
+        <Image src={"/icons/bowl-bottom.svg"} alt="bowl-bottom-icon" width={100} height={100} className=" absolute bottom-0 right-0" />
 
         <StarBorder
           as="button"

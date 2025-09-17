@@ -6,53 +6,46 @@ import TestimonialCard from "./TestimonialCard";
 export interface Testimonial {
   id: number;
   name: string;
-  title: string;
+  profession: string;
   image: string;
-  feedback: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "title 1",
-    title: "Co-Founder of SaaSWave",
-    image: "/images/testimonial1.jpg",
-    feedback: "Amazing experience, truly professional service.",
+    name: "Esther Howard",
+    profession: "Co-Founder of SaaSWave",
+    image: "/image/testimonial.webp",
   },
   {
     id: 2,
-    name: "title 2",
-    title: "CTO of FinSuite",
-    image: "/images/testimonial2.jpg",
-    feedback: "Their work ethics are remarkable and results-driven.",
+    name: "Esther Howard",
+    profession: "CTO of FinSuite",
+    image: "/image/testimonial.webp",
   },
   {
     id: 3,
-    name: "title 3",
-    title: "Head HR at TechNify",
-    image: "/images/testimonial3.jpg",
-    feedback: "Highly recommended for anyone seeking top talent.",
+    name: "Esther Howard",
+    profession: "Head HR at TechNify",
+    image: "/image/testimonial.webp",
   },
   {
     id: 4,
-    name: "title 4",
-    title: "Product Manager",
-    image: "/images/testimonial4.jpg",
-    feedback: "They exceeded our expectations in every way.",
+    name: "Esther Howard",
+    profession: "Product Manager",
+    image: "/image/testimonial.webp",
   },
   {
     id: 5,
-    name: "title 5",
-    title: "Marketing Lead",
-    image: "/images/testimonial5.jpg",
-    feedback: "Creative team with a commitment to excellence.",
+    name: "Esther Howard",
+    profession: "Marketing Lead",
+    image: "/image/testimonial.webp",
   },
   {
     id: 6,
-    name: "title 6",
-    title: "CEO at DevHub",
-    image: "/images/testimonial6.jpg",
-    feedback: "A seamless collaboration from start to finish.",
+    name: "Esther Howard",
+    profession: "CEO at DevHub",
+    image: "/image/testimonial.webp",
   },
 ];
 

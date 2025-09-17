@@ -181,11 +181,13 @@ EVERYWHERE`}
             headerTextColor="#000"
           />
           <MarketPage />
-          <section className="custom-container !my-5">
-            <h3 className="text-[#363636] font-semibold text-2xl md:text-6xl">
-              Solutions Built for Every Stage of Your Business Growth
+          <section className="bg-[url('/image/bg-image.webp')] bg-cover bg-center bg-no-repeat py-20">
+            <div className="custom-container ">
+              <h3 className="text-[#363636] font-semibold text-2xl md:text-6xl">
+              Solutions Built for Every Stage of Your <br /> Business Growth
             </h3>
             <Expertise />
+            </div>
           </section>
           <ElevateBusinessPage />
           <ChooseNexthikesPage />

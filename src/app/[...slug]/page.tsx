@@ -1,6 +1,6 @@
 // "use server";
 
-import AboutUs from "@/features/AboutUs/page";
+import AboutUs from "@/views/AboutUs/page";
 import { UserService } from "@/utils/Services/allApi";
 import { notFound } from "next/navigation";
 

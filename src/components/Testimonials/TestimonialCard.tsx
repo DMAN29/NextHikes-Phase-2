@@ -1,5 +1,6 @@
 import React from "react";
 import { Testimonial } from "./page";
+import Image from "next/image";
 
 const TestimonialCard: React.FC<{
   testimonial: Testimonial;
@@ -7,16 +8,14 @@ const TestimonialCard: React.FC<{
 }> = ({ testimonial, isActive }) => (
   <div
     className={`
-      flex flex-col items-center justify-end
-      rounded-2xl bg-white mt-4
-      transition-transform duration-500 origin-bottom
-      w-[220px] sm:w-[270px] md:w-[330px] xl:w-[350px]
-      h-[330px] sm:h-[370px] md:h-[450px] xl:h-[450px]
+      relative mt-4 transition-transform duration-500 origin-bottom
+      w-[220px] sm:w-[270px] md:w-[280px]
+      h-[330px] sm:h-[370px] md:h-[450px]
+      rounded-2xl
       ${
-        // Active look only on md and up
         isActive
-          ? "md:scale-110 md:z-20 md:border-2 md:border-orange-300 md:shadow-md scale-100 z-10 border border-transparent shadow-none"
-          : "scale-90 opacity-80 z-10 border border-transparent"
+          ? "md:scale-110 md:shadow-md scale-100 z-10 p-[2px] bg-[linear-gradient(163.17deg,#AEFF93_-1.22%,rgba(168,252,140,0.1)_70.61%,rgba(166,251,137,0)_98.61%)]"
+          : "scale-100 opacity-80 z-10 bg-transparent"
       }
     `}
     style={{
@@ -24,21 +23,27 @@ const TestimonialCard: React.FC<{
       transformOrigin: "bottom center",
     }}
   >
-    <div className="flex flex-col items-center justify-end h-full px-6 py-8">
-      <img
+    {/* Inner Card */}
+    <div className="relative w-full h-full rounded-2xl bg-white overflow-hidden flex flex-col items-center justify-end">
+      <Image
         src={testimonial.image}
         alt={testimonial.name}
-        className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 object-cover rounded-xl mb-4"
-        draggable={false}
-        onError={(e) => {
-          e.currentTarget.src = "https://via.placeholder.com/150";
-        }}
+        fill
+        className="object-cover"
       />
-      <div className="font-bold text-lg">{testimonial.name}</div>
-      <div className="text-sm text-gray-500 mb-2">{testimonial.title}</div>
-      <div className="text-gray-700 text-center text-base">
-        {testimonial.feedback}
-      </div>
+
+      {isActive && (
+        <div
+          className="absolute bottom-0 left-0 w-full text-white p-4"
+          style={{
+            background:
+              "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+          }}
+        >
+          <h5 className="font-semibold text-lg">{testimonial.name}</h5>
+          <p className="text-[#D4D4D8] text-sm font-normal">{testimonial.profession}</p>
+        </div>
+      )}
     </div>
   </div>
 );
