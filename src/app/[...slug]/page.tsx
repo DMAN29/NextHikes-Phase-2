@@ -1,6 +1,4 @@
 // "use server";
-
-import CRM from "@/pages/CRM/page";
 import { UserService } from "@/utils/Services/allApi";
 import AboutUs from "@/views/AboutUs/page";
 import { notFound } from "next/navigation";
