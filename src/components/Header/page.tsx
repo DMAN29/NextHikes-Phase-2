@@ -12,6 +12,7 @@ export default function Header() {
   const [isFixed, setIsFixed] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   const { textColor } = useHeaderColor();
 
@@ -43,6 +44,25 @@ export default function Header() {
     },
   ];
 
+  const serviceMenus = [
+    {
+      url: "/industries/web-dev",
+      name: "Web Development",
+    },
+    // {
+    //   url: "/industries/e-commerce",
+    //   name: "E-Commerce",
+    // },
+    // {
+    //   url: "/industries/gaming",
+    //   name: "Gaming",
+    // },
+    // {
+    //   url: "/industries/crm",
+    //   name: "CRM & ERP",
+    // },
+  ];
+
   return (
     <header
       className={`top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -70,7 +90,37 @@ export default function Header() {
         </div>
 
         <div className="hidden md:flex gap-8 font-medium text-xl relative">
-          <Link href="">Services</Link>
+          <div
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <button className="flex items-center gap-1 cursor-pointer">
+              Services{" "}
+              <FaAngleDown
+                className={`transform transition-transform ${
+                  servicesOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {servicesOpen && (
+              <div
+                className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50"
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                {serviceMenus.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-lg font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div
             className="relative"
@@ -144,9 +194,37 @@ export default function Header() {
         }`}
       >
         <div className="flex flex-col p-6 space-y-6 text-white">
-          <Link href="#services" onClick={() => setMenuOpen(false)}>
-            Services
-          </Link>
+          <div
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <button className="flex items-center gap-1 cursor-pointer">
+              Services{" "}
+              <FaAngleDown
+                className={`transform transition-transform ${
+                  servicesOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {servicesOpen && (
+              <div
+                className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50"
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                {serviceMenus.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-lg font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Mobile Industries Dropdown */}
           <div>
@@ -157,7 +235,7 @@ export default function Header() {
               Industries{" "}
               <FaAngleUp
                 className={`transition-transform ${
-                  industriesOpen ? "rotate-90" : ""
+                  industriesOpen ? "rotate-180" : ""
                 }`}
               />
             </button>

@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { HeaderColorProvider } from "./context/HeaderColorContext";
 import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
+import FloatingContactWidget from "@/components/FloatingContactWidget/page";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -32,6 +33,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           {children}
           <Footer />
+          <FloatingContactWidget
+          // whatsappNumber={contact?.data?.whatsappNumber}
+          // contactNumber={contact?.data?.contactNumber}
+        />
         </HeaderColorProvider>
       </body>
     </html>
