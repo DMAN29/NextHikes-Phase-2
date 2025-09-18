@@ -1,12 +1,14 @@
 import Banner from "@/components/Banner/page";
 import ChooseNexthikesPage from "@/components/ChooseNexthikes/page";
+import CRMBanner from "@/components/CRMBanner/page";
+import CRMFeatures from "@/components/CRMFeatures/page";
+import CRMWhy from "@/components/CRMWhy/page";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import Expertise from "@/components/Expertise/page";
 import MarketPage from "@/components/Market/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import TechStack from "@/components/TechStack/page";
 import WhoAreWe from "@/components/WhoAreWe/page";
-import CRM from "@/pages/CRM/page";
 import Image from "next/image";
 
 interface IndustriesPageProps {
@@ -14,6 +16,7 @@ interface IndustriesPageProps {
 }
 
 export default function IndustriesPage({ slug }: IndustriesPageProps) {
+  const img = "/image/crm.png";
   const techStackData = [
     { name: "Next.js", imageUrl: "/icons/nextjs-icon.svg" },
     { name: "React", imageUrl: "/icons/react.svg" },
@@ -260,11 +263,21 @@ with NextHikes.`}
 
       {matchedConfig?.styleKey === "crm" && (
         <div>
-          <CRM />
+          <CRMBanner />
+          <Image
+            src={img}
+            alt="CRM Banner"
+            width={1000}
+            height={1000}
+            priority
+            className="w-full h-auto"
+          />
+          <CRMFeatures />
+          <CRMWhy />
         </div>
       )}
 
-      {matchedConfig?.styleKey !== "e-commerce" && matchedConfig?.styleKey !== "crm" && (
+      {matchedConfig?.styleKey !== "e-commerce" && (
         <ServiceFormPage backgroundColor="#452A7C1A" />
       )}
     </div>

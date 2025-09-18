@@ -88,11 +88,15 @@ export default function Header() {
 
             {industriesOpen && (
               <div
-                className="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md text-black flex flex-col"
+                className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50"
                 onMouseLeave={() => setIndustriesOpen(false)}
               >
                 {menus.map((item, index) => (
-                  <Link href={item.url} className="px-4 py-2 hover:bg-gray-100">
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-lg font-medium"
+                  >
                     {item.name}
                   </Link>
                 ))}
