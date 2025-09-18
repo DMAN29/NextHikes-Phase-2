@@ -58,34 +58,41 @@ export default function CRMBanner() {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden text-white pt-24">
-      <div className="absolute inset-0 bg-[#003049] rounded-bl-[250px] -translate-y-10 translate-x-10 -z-1"></div>
+    <section className="relative md:h-screen h-auto overflow-hidden text-white pt-20 md:pt-24 pb-5 mb-5">
+      {/* Blue background: no border-radius, no translate on small screens */}
+      <div className="absolute inset-0 bg-[#003049] rounded-bl-0 md:rounded-bl-[250px] translate-x-0 translate-y-0 md:translate-x-10 md:-translate-y-10 -z-1"></div>
+
       <div className="flex flex-col md:flex-row h-full">
         <div className="w-full md:w-1/2 flex flex-col px-8 ">
           <div className="md:w-1/2 mx-auto">
-            <h1 className="md:text-xl xl:text-4xl font-semibold leading-relaxed mt-10 ">
+            <h1 className="md:text-xl xl:text-4xl font-semibold leading-relaxed mt-3 md:mt-10 ">
               Smart CRM & HRMS Solutions to Power Your Business
             </h1>
-            <p className=" my-5">
+            <p className="my-5 text-xs md:text-base text-gray-300">
               Streamline your customer relationships and workforce management
               with our intelligent, all-in-one platform designed for efficiency,
               transparency, and growth.
             </p>
           </div>
-          <div className="flex gap-5 mx-auto mt-10">
-            <button className="flex items-center px-8 py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white font-semibold text-lg rounded-full gap-3 shadow-md hover:from-orange-500 hover:to-orange-600 transition">
+          {/* Smaller buttons on small screens only */}
+          <div className="flex gap-3 md:gap-5 mx-auto mt-6 md:mt-10 mb-10">
+            <button className="flex items-center px-2 py-1 md:px-8 md:py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white font-semibold text-xs md:text-lg rounded-full gap-2 md:gap-3 shadow-md hover:from-orange-500 hover:to-orange-600 transition">
               Request a Demo
               <FaArrowRight />
             </button>
-            <button className="flex items-center px-8 py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white font-semibold text-lg rounded-full gap-3 shadow-md hover:from-orange-500 hover:to-orange-600 transition">
+            <button className="flex items-center px-2 py-1 md:px-8 md:py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white font-semibold text-xs md:text-lg rounded-full gap-2 md:gap-3 shadow-md hover:from-orange-500 hover:to-orange-600 transition">
               Get Started Today
               <FaArrowRight />
             </button>
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 relative">
+        {/* <div className="w-full md:w-1/2 relative">
           <div className="bg-white rounded-tl-[200px] rounded-bl-3xl shadow-2xl p-14 w-full h-[80%] flex flex-col justify-center items-center ml-0 md:ml-10 relative">
+           */}
+        <div className="w-11/12 mx-auto md:w-1/2 relative">
+          <div className="bg-white rounded-tl-[80px] rounded-bl-xl md:rounded-tl-[200px] md:rounded-bl-3xl shadow-2xl p-8 md:p-14 w-full h-[300px] md:h-[80%] flex flex-col justify-center items-center ml-0 md:ml-10 relative">
+            {/* Carousel and navigation here */}
             <Carousel
               ref={carouselRef}
               responsive={responsive}
@@ -98,11 +105,9 @@ export default function CRMBanner() {
               autoPlay={true}
               transitionDuration={2000}
               itemClass="flex items-center justify-center"
-              // Use beforeChange to sync currentSlide immediately before transition
               beforeChange={(nextSlide: number) =>
                 setCurrentSlide(nextSlide % dummyCarouselItems.length)
               }
-              // Optionally, remove afterChange or leave empty
               customTransition="transform 500ms cubic-bezier(0.23, 1, 0.32, 1)"
             >
               {dummyCarouselItems.map((item) => (
@@ -129,9 +134,9 @@ export default function CRMBanner() {
             </Carousel>
 
             {/* Custom navigation positioned bottom-left */}
-            <div className="absolute bottom-0 left-0 flex items-center justify-center bg-[#b0b0b0] text-white px-5 py-2 rounded-tr-xl rounded-bl-xl gap-5 shadow-md text-lg font-medium min-w-[180px] ">
+            <div className="absolute bottom-0 left-0 flex items-center justify-center bg-[#b0b0b0] text-white px-3 py-1 rounded-tr-xl rounded-bl-xl gap-3 md:gap-5 shadow-md text-sm md:text-lg font-medium min-w-[140px] md:min-w-[180px]">
               <button
-                className="p-2 hover:opacity-70 transition rounded"
+                className="p-1 md:p-2 hover:opacity-70 transition rounded"
                 aria-label="Previous Slide"
                 onClick={handlePrev}
               >
@@ -141,7 +146,7 @@ export default function CRMBanner() {
                 {currentSlide + 1} of {dummyCarouselItems.length}
               </span>
               <button
-                className="p-2 hover:opacity-70 transition rounded"
+                className="p-1 md:p-2 hover:opacity-70 transition rounded"
                 aria-label="Next Slide"
                 onClick={handleNext}
               >

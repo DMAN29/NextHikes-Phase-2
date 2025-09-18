@@ -44,25 +44,37 @@ const CRMFeatures: React.FC = () => {
       <hr className="w-11/12 mx-auto border-b-2 border-gray-200" />
       <div className="flex flex-col md:flex-row w-11/12 mx-auto justify-center my-10">
         {/* Left Sidebar */}
-        <div className="flex flex-col items-center justify-center w-11/12 mx-auto md:mx-0 md:w-[30%] mr-0 md:mr-8 mb-6 md:mb-0">
+        <div className="flex flex-row md:flex-col items-center justify-center w-11/12 mx-auto md:mx-0 md:w-[30%] mr-0 md:mr-8 mb-6 md:mb-0">
           {FEATURES.map((feature, idx) => (
             <button
               key={feature.key}
               type="button"
-              className={`flex items-center space-x-2 px-3 py-2 mb-2
-                text-lg font-semibold transition
-                ${
-                  activeTab === idx
-                    ? "text-orange-600"
-                    : "text-gray-600 hover:text-orange-600"
-                }`}
+              className={`flex flex-col md:flex-row items-center px-1 md:px-3 py-2 mb-2
+    text-xs md:text-lg font-semibold transition
+    ${
+      activeTab === idx
+        ? "text-orange-600"
+        : "text-gray-600 hover:text-orange-600"
+    }`}
               onClick={() => setActiveTab(idx)}
             >
-              {activeTab === idx && <CiLocationArrow1 size={20} />}
-              <span>{feature.key}</span>
+              {activeTab === idx && (
+                <>
+                  {/* Icon below text on small screens */}
+                  <span className="md:hidden mb-1 flex justify-center">
+                    <CiLocationArrow1 size={20} />
+                  </span>
+                  {/* Icon inline left of text on md+ */}
+                  <span className="hidden md:inline-flex mr-2 mb-0">
+                    <CiLocationArrow1 size={20} />
+                  </span>
+                </>
+              )}
+              <span className="text-center md:text-left">{feature.key}</span>
             </button>
           ))}
         </div>
+
         {/* Right Content */}
         <div
           className="w-11/12 mx-auto md:mx-0 rounded-lg shadow-md px-7 py-7  md:w-[70%]"
@@ -70,10 +82,10 @@ const CRMFeatures: React.FC = () => {
             background: "linear-gradient(90deg, #33556E 0%, #0f3654 100%)",
           }}
         >
-          <h2 className="font-semibold text-lg mb-4 text-white">
+          <h2 className="font-semibold text-sm md:text-lg mb-4 text-white">
             {FEATURES[activeTab].title}
           </h2>
-          <ul className="list-disc list-inside space-y-2 text-white">
+          <ul className="list-disc list-inside text-xs md:text-base  space-y-2 text-white">
             {FEATURES[activeTab].items.map((item) => (
               <li key={item}>{item}</li>
             ))}

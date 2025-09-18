@@ -22,27 +22,27 @@ export default function CRMWhy() {
         </h1>
         <div className="w-60 md:w-96 h-1 bg-gradient-to-r from-[#003049] to-[#00F0FF] rounded mt-2" />
       </div>
-      {/* Hex Grid */}
-      <div className="flex justify-between gap-3">
+
+      {/* Hex Grid using CSS Grid with padding and separation */}
+      <div className="grid grid-cols-3 lg:grid-cols-6 gap-3">
         {hexItems.map((item, i) => (
           <div
             key={item.label}
-            className="flex flex-col items-center group transition-transform duration-300 ease-in-out hover:scale-105"
+            className="flex flex-col items-center group transition-transform duration-300 ease-in-out hover:scale-105
+              p-4 bg-white  xl:px-10"
           >
             {/* Label above for odd indexes */}
             {i % 2 === 1 && (
-              <span className="mb-4 text-center font-medium text-sm max-w-[110px]">
+              <span className="mb-2 text-center font-medium text-xs md:text-sm max-w-[110px]">
                 {item.label}
               </span>
             )}
-            <div className="relative w-40">
+            <div className="relative w-full aspect-[1/1]">
               <img
                 src={imgHex}
                 alt="Hexagon"
+                className="w-full h-full object-cover"
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
                   filter: `brightness(${brightness[i]}%)`,
                   transform: i % 2 === 1 ? "rotate(180deg)" : "rotate(0deg)",
                   transition:
@@ -50,18 +50,16 @@ export default function CRMWhy() {
                 }}
               />
               <FaReact
-                className="absolute inset-x-0 mx-auto text-white opacity-90"
-                style={{
-                  fontSize: "2.5rem",
-                  pointerEvents: "none",
-                  top: i % 2 === 0 ? "72px" : undefined,
-                  bottom: i % 2 === 1 ? "72px" : undefined,
-                }}
+                className={`absolute inset-x-0 mx-auto text-white opacity-90 pointer-events-none 
+    ${i % 2 === 0 ? "top-[29%] lg:top-[29%] xl:top-[29%]" : ""} 
+    ${i % 2 === 1 ? "bottom-[9%] lg:bottom-[12%] xl:bottom-[15%]" : ""} 
+    translate-y-[-50%] 
+    text-[1.5rem] md:text-[2.5rem]`}
               />
             </div>
             {/* Label below for even indexes */}
             {i % 2 === 0 && (
-              <span className="mt-4 text-center font-medium text-sm max-w-[110px]">
+              <span className="mt-2 text-center font-medium text-xs md:text-sm max-w-[110px]">
                 {item.label}
               </span>
             )}
