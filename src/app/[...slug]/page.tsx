@@ -1,7 +1,8 @@
 // "use server";
 
-import AboutUs from "@/views/AboutUs/page";
+import CRM from "@/pages/CRM/page";
 import { UserService } from "@/utils/Services/allApi";
+import AboutUs from "@/views/AboutUs/page";
 import { notFound } from "next/navigation";
 
 interface DynamicPageProps {
@@ -45,6 +46,10 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
           data={dataRes.data}
         />
       );
+    }
+
+    if (slugPath === "crm") {
+      return <CRM />;
     }
 
     if (

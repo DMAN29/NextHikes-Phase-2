@@ -4,6 +4,8 @@ import StarBorder from "../StarBorder";
 import { useEffect, useState } from "react";
 import CardSwap, { Card } from "../CardSwap";
 
+const img = "/Image/WhyUs.png";
+
 export default function WhyUs() {
   const [cardSize, setCardSize] = useState({ width: 450, height: 300 });
 
@@ -88,7 +90,7 @@ export default function WhyUs() {
       </div>
       <div className="w-[50%] relative hidden lg:block">
         <Image
-          src={img1}
+          src={img}
           alt="Why Choose Us"
           width={1000}
           height={1000}
