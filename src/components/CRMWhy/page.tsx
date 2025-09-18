@@ -1,6 +1,6 @@
 import React from "react";
 import { FaReact } from "react-icons/fa";
-const imgHex = "./image/hex.png";
+const imgHex = "/image/hex.png";
 const hexItems = [
   { label: "All-in-One Solution" },
   { label: "Cloud-Based & Secure" },

@@ -6,6 +6,7 @@ import MarketPage from "@/components/Market/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import TechStack from "@/components/TechStack/page";
 import WhoAreWe from "@/components/WhoAreWe/page";
+import CRM from "@/pages/CRM/page";
 import Image from "next/image";
 
 interface IndustriesPageProps {
@@ -100,7 +101,28 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
     },
     {
       styleKey: "crm",
-      keywords: ["crm", "customer-relationship"],
+      keywords: [
+        "crm",
+        "customer-relationship",
+        "customer-management",
+        "sales-management",
+        "contact-management",
+        "lead-management",
+        "pipeline",
+        "customer-support",
+        "client-management",
+        "customer-service",
+        "marketing-automation",
+        "customer-engagement",
+        "customer-loyalty",
+        "sales-tracking",
+        "business-relationships",
+        "account-management",
+        "customer-data",
+        "crm-software",
+        "erp",
+        "customer-insights",
+      ],
     },
   ];
 
@@ -184,9 +206,9 @@ EVERYWHERE`}
           <section className="bg-[url('/image/bg-image.webp')] bg-cover bg-center bg-no-repeat py-20">
             <div className="custom-container ">
               <h3 className="text-[#363636] font-semibold text-2xl md:text-6xl">
-              Solutions Built for Every Stage of Your <br /> Business Growth
-            </h3>
-            <Expertise />
+                Solutions Built for Every Stage of Your <br /> Business Growth
+              </h3>
+              <Expertise />
             </div>
           </section>
           <ElevateBusinessPage />
@@ -236,7 +258,13 @@ with NextHikes.`}
         </div>
       )}
 
-      {matchedConfig?.styleKey !== "e-commerce" && (
+      {matchedConfig?.styleKey === "crm" && (
+        <div>
+          <CRM />
+        </div>
+      )}
+
+      {matchedConfig?.styleKey !== "e-commerce" && matchedConfig?.styleKey !== "crm" && (
         <ServiceFormPage backgroundColor="#452A7C1A" />
       )}
     </div>

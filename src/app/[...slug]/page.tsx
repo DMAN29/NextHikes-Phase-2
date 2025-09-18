@@ -22,10 +22,8 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
   const { slug } = await params;
   const slugPath = slug?.join("/");
 
-  // agar slug hi missing ho
   if (!slugPath) return notFound();
 
-  // agar slug invalid hai
   if (!VALID_SLUGS.includes(slugPath)) return notFound();
 
   try {
@@ -46,10 +44,6 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
           data={dataRes.data}
         />
       );
-    }
-
-    if (slugPath === "crm") {
-      return <CRM />;
     }
 
     if (

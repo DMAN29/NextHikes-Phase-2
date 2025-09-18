@@ -24,6 +24,25 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const menus = [
+    {
+      url: "/industries/astrology",
+      name: "Astrology",
+    },
+    {
+      url: "/industries/e-commerce",
+      name: "E-Commerce",
+    },
+    {
+      url: "/industries/gaming",
+      name: "Gaming",
+    },
+    {
+      url: "/industries/crm",
+      name: "CRM & ERP",
+    },
+  ];
+
   return (
     <header
       className={`top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -50,15 +69,13 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex gap-8 font-medium text-xl relative">
           <Link href="">Services</Link>
 
-          {/* Industries Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setIndustriesOpen(true)}
-            // onMouseLeave={() => setIndustriesOpen(false)}
+            onMouseLeave={() => setIndustriesOpen(false)}
           >
             <button className="flex items-center gap-1 cursor-pointer">
               Industries{" "}
@@ -71,27 +88,14 @@ export default function Header() {
 
             {industriesOpen && (
               <div
-                className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md text-black flex flex-col"
+                className="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md text-black flex flex-col"
                 onMouseLeave={() => setIndustriesOpen(false)}
               >
-                <Link
-                  href="/industries/astrology"
-                  className="px-4 py-2 hover:bg-gray-100"
-                >
-                  Astrology
-                </Link>
-                <Link
-                  href="/industries/e-commerce"
-                  className="px-4 py-2 hover:bg-gray-100"
-                >
-                  E-Commerce
-                </Link>
-                <Link
-                  href="/industries/gaming"
-                  className="px-4 py-2 hover:bg-gray-100"
-                >
-                  Gaming
-                </Link>
+                {menus.map((item, index) => (
+                  <Link href={item.url} className="px-4 py-2 hover:bg-gray-100">
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             )}
           </div>
@@ -155,24 +159,11 @@ export default function Header() {
             </button>
             {industriesOpen && (
               <div className="flex flex-col pl-4 mt-2 space-y-1">
-                <Link
-                  href="/industries/astrology"
-                  className="px-4 py-2 hover:bg-gray-100"
-                >
-                  Astrology
-                </Link>
-                <Link
-                  href="/industries/e-commerce"
-                  className="px-4 py-2 hover:bg-gray-100"
-                >
-                  E-Commerce
-                </Link>
-                <Link
-                  href="/industries/gaming"
-                  className="px-4 py-2 hover:bg-gray-100"
-                >
-                  Gaming
-                </Link>
+                {menus.map((item, index) => (
+                  <Link href={item.url} className="px-4 py-2 hover:bg-gray-100">
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             )}
           </div>
