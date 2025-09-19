@@ -1,13 +1,34 @@
 import React from "react";
+import Image from "next/image";
 import { FaReact } from "react-icons/fa";
+
 const imgHex = "/image/hex.png";
+
 const hexItems = [
-  { label: "All-in-One Solution" },
-  { label: "Cloud-Based & Secure" },
-  { label: "Customizable & Scalable" },
-  { label: "Real-Time Insights" },
-  { label: "User-Friendly Interface" },
-  { label: "24/7 Support & Training" },
+  {
+    label: "All-in-One Solution",
+    description: "Manage customers and employees in one platform",
+  },
+  {
+    label: "Cloud-Based & Secure",
+    description: "Access from anywhere with top-level data protection",
+  },
+  {
+    label: "Customizable & Scalable",
+    description: "Tailor the system to your workflow",
+  },
+  {
+    label: "Real-Time Insights",
+    description: "Make informed decisions with real-time insights",
+  },
+  {
+    label: "User-Friendly Interface",
+    description: "Easy-to-use and intuitive for everyone",
+  },
+  {
+    label: "24/7 Support & Training",
+    description: "Access comprehensive support and training anytime",
+  },
 ];
 
 const brightness = [100, 180, 260, 340, 420, 500];
@@ -28,40 +49,89 @@ export default function CRMWhy() {
         {hexItems.map((item, i) => (
           <div
             key={item.label}
-            className="flex flex-col items-center group transition-transform duration-300 ease-in-out hover:scale-105
-              p-4 bg-white  xl:px-10"
+            className="flex flex-col items-center group transition-transform duration-300 ease-in-out hover:scale-105 p-4 bg-white xl:px-10"
           >
-            {/* Label above for odd indexes */}
+            {/* Label and description above for odd indexes */}
             {i % 2 === 1 && (
-              <span className="mb-2 text-center font-medium text-xs md:text-sm max-w-[110px]">
-                {item.label}
-              </span>
+              <div className="mb-2 text-center max-w-[110px]">
+                <h1
+                  className="font-semibold text-xs md:text-sm"
+                  style={{
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
+                  {item.label}
+                </h1>
+
+                <p
+                  className="text-xs md:text-[13px] mt-1"
+                  style={{
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
+                  {item.description}
+                </p>
+              </div>
             )}
-            <div className="relative w-full aspect-[1/1]">
-              <img
+            <div className="relative w-full aspect-[1/2]">
+              <Image
                 src={imgHex}
                 alt="Hexagon"
-                className="w-full h-full object-cover"
+                fill
                 style={{
                   filter: `brightness(${brightness[i]}%)`,
                   transform: i % 2 === 1 ? "rotate(180deg)" : "rotate(0deg)",
                   transition:
                     "transform 0.3s ease-in-out, filter 0.3s ease-in-out",
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
                 }}
+                sizes="(min-width: 1024px) 16vw, (min-width: 768px) 25vw, 33vw"
+                priority
               />
               <FaReact
                 className={`absolute inset-x-0 mx-auto text-white opacity-90 pointer-events-none 
-    ${i % 2 === 0 ? "top-[29%] lg:top-[29%] xl:top-[29%]" : ""} 
-    ${i % 2 === 1 ? "bottom-[9%] lg:bottom-[12%] xl:bottom-[15%]" : ""} 
-    translate-y-[-50%] 
-    text-[1.5rem] md:text-[2.5rem]`}
+      ${i % 2 === 0 ? "top-[29%] lg:top-[29%] xl:top-[29%]" : ""} 
+      ${i % 2 === 1 ? "bottom-[9%] lg:bottom-[12%] xl:bottom-[15%]" : ""} 
+      translate-y-[-50%] 
+      text-[1.5rem] md:text-[2.5rem]`}
               />
             </div>
-            {/* Label below for even indexes */}
+
+            {/* Label and description below for even indexes */}
             {i % 2 === 0 && (
-              <span className="mt-2 text-center font-medium text-xs md:text-sm max-w-[110px]">
-                {item.label}
-              </span>
+              <div className="mt-2 text-center max-w-[110px]">
+                <h1
+                  className="font-semibold text-xs md:text-sm"
+                  style={{
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
+                  {item.label}
+                </h1>
+
+                <p
+                  className="text-xs md:text-[13px] mt-1"
+                  style={{
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
+                  {item.description}
+                </p>
+              </div>
             )}
           </div>
         ))}
