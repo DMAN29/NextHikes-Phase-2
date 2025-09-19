@@ -3,6 +3,7 @@
 import Image from "next/image";
 import WeAre from "@/components/WeAre/page";
 import IndustriesServe from "@/components/IndustriesServe/page";
+import ChallengesSolution from "@/components/ChallengesSolution/page";
 import Industries from "@/app/industries/[[...slug]]/page";
 import Marquee from "react-fast-marquee";
 
@@ -19,33 +20,26 @@ export default function MarketingPage() {
   return (
     <main className="w-full min-h-screen">
       {/* 🔹 Hero Section */}
-      <section className="w-full  flex items-center justify-center px-4 my-40 sm:px-6 md:px-12 lg:px-20">
-        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <section className="w-full flex items-center justify-center px-4 my-30 sm:px-6 md:px-12 lg:px-20">
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-items-center">
           {/* Left Side Image */}
           <div className="flex justify-center">
             <Image
               src="/image/image.png"
               alt="Digital Growth Illustration"
-              width={571}
-              height={504}
+              width={400}      // choti kiya
+              height={350}     // choti kiya
               className="
-                w-[280px]           /* default mobile */
-                sm:w-[350px]        /* small screens */
-                md:w-[420px]        /* tablets */
-                lg:w-[480px]        /* laptops */
-                xl:w-[500px]        /* desktops */
-                2xl:w-[520px]       /* large screens */
+                w-[200px] sm:w-[250px] md:w-[300px] lg:w-[350px] xl:w-[400px] 2xl:w-[420px]
                 h-auto
-                rounded-[30px]      /* smaller radius on mobile */
-                sm:rounded-[35px] 
-                lg:rounded-[39px]
+                rounded-[25px] sm:rounded-[30px] lg:rounded-[35px]
                 object-cover
               "
             />
           </div>
 
           {/* Right Side Content */}
-          <div className="flex flex-col justify-center space-y-4 text-center md:text-left px-2 md:px-0">
+          <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-4 px-2 md:px-0">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-snug">
               Unlock Unstoppable Digital Growth. Trusted by Brands Across India & Beyond.
             </h1>
@@ -54,7 +48,7 @@ export default function MarketingPage() {
               Trusted by Brands Across India & Beyond
             </p>
 
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg">
               NextHike IT Solutions is your strategic partner for building powerful web, app,
               and digital marketing ecosystems that deliver measurable results and elevate
               your market presence.
@@ -68,7 +62,7 @@ export default function MarketingPage() {
       </section>
 
       {/* 🔹 Marquee Section */}
-     <section className="my-1 sm:my-8">
+      <section className="my-1 sm:my-8">
         <div className="flex flex-col gap-8 sm:gap-12">
           <Marquee speed={50} gradient={false} autoFill direction="left">
             {icons.map((icon, index) => (
@@ -102,6 +96,7 @@ export default function MarketingPage() {
 
       {/* 🔹 Other Components */}
       <IndustriesServe />
+      <ChallengesSolution />
     </main>
   );
 }

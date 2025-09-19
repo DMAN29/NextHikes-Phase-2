@@ -19,7 +19,7 @@ export default function Industries() {
     <section className="py-12 bg-white">
       {/* 🔹 Container aur wide aur px kam */}
       <div className="max-w-8xl mx-auto px-2 sm:px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-15">
           Industries We Serve as a Software Development Company
         </h2>
 
