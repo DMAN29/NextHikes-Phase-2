@@ -22,15 +22,52 @@ export default function PaymentPage() {
       subtitle: "Secure payments via cards, Net banking and wallet",
     },
   ];
+
+  const points = [
+    "100% Secure SSL Connection",
+    "PCI DSS Compliant",
+    "Privacy Protected",
+  ];
   return (
     <section>
-      <Image
-        src={"/image/world.webp"}
-        alt="world-image"
-        width={1000}
-        height={1000}
-        className="w-full h-auto min-h-screen object-cover"
-      />
+      <div className="relative">
+        <Image
+          src={"/image/world.webp"}
+          alt="world-image"
+          width={1000}
+          height={1000}
+          className="w-full h-auto min-h-screen object-cover"
+        />
+        <div className="absolute w-full max-w-xl px-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+          <h1 className="text-white uppercase text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-center leading-snug">
+            Complete your secure payments
+          </h1>
+
+          <h6 className="text-white font-semibold text-base sm:text-lg md:text-xl lg:text-2xl my-5 sm:my-7 text-center uppercase leading-relaxed">
+            Your transaction is safe with us. We use industry-standard
+            encryption to protect your data.
+          </h6>
+
+          <ul className="space-y-3 sm:space-y-4 mt-4 sm:mt-6">
+            {points.map((point, index) => (
+              <li
+                key={index}
+                className="flex items-center gap-2 sm:gap-3 text-white text-sm sm:text-lg md:text-xl uppercase font-medium"
+              >
+                <Image
+                  src="/icons/tick-icon.svg"
+                  alt="icon"
+                  width={28}
+                  height={20}
+                  className="w-5 sm:w-6 md:w-8 h-auto"
+                />
+                <span className="leading-snug">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
       <div className="custom-container flex flex-col items-center !my-5 !px-4 sm:!px-6 lg:!px-0">
         <h2 className="capitalize font-semibold text-3xl sm:text-4xl md:text-5xl text-center">
           Choose your payment method
