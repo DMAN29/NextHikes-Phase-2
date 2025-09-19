@@ -79,10 +79,10 @@ export default function Footer() {
       url: "/services/web-development",
       name: "Web Development",
     },
-    {
-      url: "/services/app-development",
-      name: "App Development",
-    },
+    // {
+    //   url: "/services/app-development",
+    //   name: "App Development",
+    // },
     // {
     //   url: "/industries/gaming",
     //   name: "Gaming",
