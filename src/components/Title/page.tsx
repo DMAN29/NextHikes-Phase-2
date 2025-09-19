@@ -11,15 +11,19 @@ export default function Title({
   secondText,
   firstColor = "text-[#840065]",
   secondColor = "text-[#363636]",
-  subText
+  subText,
 }: TitleProps) {
   return (
     <div className="text-center max-w-5xl mx-auto px-4">
-      <h2 className="text-6xl text-center">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl leading-snug">
         <span className={`${firstColor} font-bold`}>{firstText}</span>{" "}
-        <span className={`${secondColor} font-thin`}>{secondText}</span>
+        <span className={`${secondColor} font-light`}>{secondText}</span>
       </h2>
-      <p className="text-[#363636] mt-4 text-xl font-normal">{subText}</p>
+      {subText && (
+        <p className="text-[#363636] mt-2 sm:mt-4 text-base sm:text-lg md:text-xl font-normal">
+          {subText}
+        </p>
+      )}
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       title: "SEO Services",
       textColor: "text-[#F37021]",
     },
-    mobile: {
+    "app-development": {
       bgColor: "bg-[#FFF1C2]",
       title: "App Development",
       textColor: "text-[#F37021]",
@@ -154,7 +154,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             headerTextColor="#000"
           />
           <ElevateBusinessPage />
-          <div className={`py-16`}>
+          <div className={`md:py-16`}>
             <Title
               firstText={currentStyle.title}
               firstColor={currentStyle.textColor || "text-[#840065]"}
@@ -172,7 +172,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       {matchedConfig?.styleKey === "app-development" && (
         <div className="">
           <Banner
-            platform="web-dev"
+            platform="app-development"
             backgroundColor={["#FCF4EC"]}
             bannerImage="/image/web-service.webp"
             subTitle={`Expert web development <br /> for unstoppable growth`}
