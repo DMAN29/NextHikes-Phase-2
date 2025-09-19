@@ -76,7 +76,7 @@ export default function Footer() {
 
   const serviceMenus = [
     {
-      url: "/industries/web-dev",
+      url: "/services/web-dev",
       name: "Web Development",
     },
     // {

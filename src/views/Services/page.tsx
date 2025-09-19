@@ -1,3 +1,5 @@
+"use client";
+
 import Banner from "@/components/Banner/page";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
@@ -41,19 +43,82 @@ export default function ServicePage({ slug, data }: ServiceProps) {
   const keywordMap = [
     {
       styleKey: "web-development",
-      keywords: ["web", "website", "frontend", "backend", "fullstack"],
+      keywords: [
+        "web",
+        "website",
+        "frontend",
+        "UI",
+        "UX",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "responsive",
+        "interactive",
+        "design",
+        "layout",
+        "accessibility",
+        "performance",
+        "SEO",
+        "animations",
+        "navigation",
+        "landing-page",
+        "portfolio",
+        "business-site",
+      ],
     },
     {
       styleKey: "seo-services",
       keywords: ["seo", "search-engine", "optimization"],
     },
     {
-      styleKey: "mobile",
-      keywords: ["mobile", "app", "game", "ios", "android"],
+      styleKey: "app-development",
+      keywords: [
+        "mobile",
+        "app",
+        "iOS",
+        "Android",
+        "native",
+        "cross-platform",
+        "UI",
+        "UX",
+        "design",
+        "prototype",
+        "navigation",
+        "performance",
+        "responsive",
+        "interactive",
+        "user-friendly",
+        "accessibility",
+        "push notifications",
+        "offline mode",
+        "app store",
+        "google play",
+      ],
     },
     {
       styleKey: "marketing",
-      keywords: ["marketing", "digital", "ads", "social-media"],
+      keywords: [
+        "marketing",
+        "digital",
+        "ads",
+        "social-media",
+        "SEO",
+        "content",
+        "email",
+        "branding",
+        "campaign",
+        "PPC",
+        "analytics",
+        "growth",
+        "strategy",
+        "influencer",
+        "engagement",
+        "conversion",
+        "traffic",
+        "leads",
+        "retargeting",
+        "optimization",
+      ],
     },
   ];
 
@@ -98,8 +163,41 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             />
             <ServiceFormPage backgroundColor="#452A7C1A" />
           </div>
+          <div>
+            <ChooseUsTimeline />
+          </div>
+        </div>
+      )}
 
-          {/* Timeline for web dev only */}
+      {matchedConfig?.styleKey === "app-development" && (
+        <div className="">
+          <Banner
+            platform="web-dev"
+            backgroundColor={["#FCF4EC"]}
+            bannerImage="/image/web-service.webp"
+            subTitle={`Expert web development <br /> for unstoppable growth`}
+            cta={[
+              {
+                text: "Explore Now",
+                url: "",
+                backgroundColor: "#ffffff",
+                textColor: "#363636",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`Build your digital <br /> foundation`}
+            headerTextColor="#000"
+          />
+          <ElevateBusinessPage />
+          <div className={`py-16`}>
+            <Title
+              firstText={currentStyle.title}
+              firstColor={currentStyle.textColor || "text-[#840065]"}
+              secondText="Services"
+              subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
+            />
+            <ServiceFormPage backgroundColor="#452A7C1A" />
+          </div>
           <div>
             <ChooseUsTimeline />
           </div>
