@@ -46,7 +46,7 @@ export default function Header() {
 
   const serviceMenus = [
     {
-      url: "/industries/web-dev",
+      url: "/services/web-dev",
       name: "Web Development",
     },
     // {
@@ -233,7 +233,7 @@ export default function Header() {
               className="flex items-center justify-between w-full"
             >
               Industries{" "}
-              <FaAngleUp
+              <FaAngleDown
                 className={`transition-transform ${
                   industriesOpen ? "rotate-180" : ""
                 }`}
