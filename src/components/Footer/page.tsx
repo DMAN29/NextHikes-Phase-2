@@ -173,7 +173,7 @@ export default function Footer() {
 
         <div>
           <h4
-            className="text-xl font-normal mb-4 uppercase"
+            className="text-xl font-medium mb-4 uppercase"
             style={{
               background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
               WebkitBackgroundClip: "text",
@@ -205,7 +205,7 @@ export default function Footer() {
 
         <div>
           <h4
-            className="text-xl font-normal mb-4 uppercase"
+            className="text-xl font-medium mb-4 uppercase"
             style={{
               background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
               WebkitBackgroundClip: "text",
@@ -236,7 +236,7 @@ export default function Footer() {
 
         <div>
           <h4
-            className="text-xl font-normal mb-4 uppercase"
+            className="text-xl font-medium mb-4 uppercase"
             style={{
               background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
               WebkitBackgroundClip: "text",
