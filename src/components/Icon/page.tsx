@@ -2,10 +2,10 @@
 
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn, FaPhoneAlt } from "react-icons/fa";
 import { AiOutlineHome } from "react-icons/ai";
-import { MdEmail } from "react-icons/md";
+import { HiOutlineMail } from "react-icons/hi";
 import { IconType } from "react-icons";
 import { FaXTwitter } from "react-icons/fa6";
-import { IoMdPin } from "react-icons/io";
+import { FiMapPin } from "react-icons/fi";
 
 type IconProps = {
   name: string;
@@ -21,8 +21,8 @@ const iconMap: Record<string, IconType> = {
   youtube: FaYoutube,
   linkedin: FaLinkedinIn,
   home: AiOutlineHome,
-  email: MdEmail,
-  pin: IoMdPin,
+  email: HiOutlineMail,
+  pin: FiMapPin,
   phone:FaPhoneAlt
 };
 

@@ -27,14 +27,71 @@ export default function Footer() {
 
   const fetchData = async () => {
     try {
-      const res = await UserService.getServices();
-      const industryRes = await UserService.getIndustry();
-      const contactRes = await UserService.getContact()
-      setService(res);
-      setIndustry(industryRes);
-      setContact(contactRes?.data)
+      // const res = await UserService.getServices();
+      // const industryRes = await UserService.getIndustry();
+      // const contactRes = await UserService.getContact();
+      // setService(res);
+      // setIndustry(industryRes);
+      // setContact(contactRes?.data);
     } catch (error) {}
   };
+
+  const menus = [
+    {
+      url: "/industries/astrology",
+      name: "Astrology",
+    },
+    {
+      url: "/industries/e-commerce",
+      name: "E-Commerce",
+    },
+    {
+      url: "/industries/gaming",
+      name: "Gaming",
+    },
+    {
+      url: "/industries/crm",
+      name: "CRM & ERP",
+    },
+  ];
+
+  const links = [
+    {
+      platform: "facebook",
+      url: "https://www.facebook.com/nexthikes",
+    },
+    {
+      platform: "instagram",
+      url: "https://www.instagram.com/next_hikes/?igsh=MThydTFxYTg2ZGt6MQ%3D%3D#",
+    },
+    {
+      platform: "linkedin",
+      url: "https://www.linkedin.com/company/next-hikes/",
+    },
+    {
+      platform: "twitter",
+      url: "https://x.com/i/flow/login?redirect_after_login=%2FNexthikes",
+    },
+  ];
+
+  const serviceMenus = [
+    {
+      url: "/industries/web-dev",
+      name: "Web Development",
+    },
+    // {
+    //   url: "/industries/e-commerce",
+    //   name: "E-Commerce",
+    // },
+    // {
+    //   url: "/industries/gaming",
+    //   name: "Gaming",
+    // },
+    // {
+    //   url: "/industries/crm",
+    //   name: "CRM & ERP",
+    // },
+  ];
 
   return (
     <footer className="bg-white pt-8">
@@ -48,8 +105,8 @@ export default function Footer() {
               <Image
                 src={"/image/nexthikes-black.webp"}
                 alt="logo"
-                width={160}
-                height={70}
+                width={231}
+                height={96}
                 className="cursor-pointer"
               />
             </span>
@@ -78,6 +135,26 @@ export default function Footer() {
               </Link>
             ))}
           </div> */}
+          <p className="my-7">
+            Next Hikes is a leading provider of IT solutions devoted to
+            providing cutting-edge services and technology to enable businesses
+            to thrive in the digital age.
+          </p>
+          <p className="text-black font-normal text-lg">
+            *Contacts information
+          </p>
+          <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
+            {links?.map((item: any, index: any) => (
+              <Link
+                href={item?.url}
+                target="_blank"
+                className={`text-xl p-2 border border-black aspect-square rounded-full cursor-pointer`}
+                key={index}
+              >
+                <Icon name={item?.platform} color="#000" />
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div>
@@ -93,6 +170,15 @@ export default function Footer() {
               </Link>
             ))}
           </ul> */}
+          <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
+            {serviceMenus?.slice(0, 4)?.map((item: any, index: any) => (
+              <Link href={item.url} key={index}>
+                <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
+                  {item.name}
+                </li>
+              </Link>
+            ))}
+          </ul>
         </div>
 
         <div>
@@ -108,15 +194,36 @@ export default function Footer() {
               </Link>
             ))}
           </ul> */}
+          <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
+            {menus?.slice(0, 4)?.map((item: any, index: any) => (
+              <Link href={item.url} key={index}>
+                <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
+                  {item.name}
+                </li>
+              </Link>
+            ))}
+          </ul>
         </div>
 
         <div>
           <h4 className="text-lg font-semibold mb-4 text-black">Contact Us</h4>
-          <ul className="space-y-4 text-sm text-white">
+          <ul className="space-y-4 text-lg font-normal text-black">
+            <li className="flex items-center gap-2">
+              <Icon name={"email"} color="#000" />
+              <Link
+                href={`mailto:${contact?.officialEmail}`}
+                className="hover:underline"
+              >
+                {contact?.officialEmail || "info@nexthikes.com"}
+              </Link>
+            </li>
             <li className="flex items-start gap-2">
               <div className="mt-1">
-                <Icon name={"pin"} />
+                <Icon name={"pin"} color="#000" />
               </div>
+              <p className="text-black">
+                Unit no. - 1137 ,11th Floor , Bhutani Alphathum Sector 90 Noida
+              </p>
               {/* {contact?.address} */}
             </li>
             {/* <li className="flex items-center gap-2">
@@ -144,7 +251,9 @@ export default function Footer() {
       </div>
       <div className="border-t border-black mt-4 w-full" />
       <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <p className="text-[#000]">© {new Date().getFullYear()} Copyright Nexthikes All Rights Reserved</p>
+        <p className="text-[#000]">
+          © {new Date().getFullYear()} Copyright Nexthikes All Rights Reserved
+        </p>
         <div
           className="flex items-center justify-center gap-2 cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

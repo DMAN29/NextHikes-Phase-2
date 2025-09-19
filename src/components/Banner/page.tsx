@@ -14,7 +14,8 @@ type Platform =
   | "e-commerce"
   | "services"
   | "about"
-  | "gaming";
+  | "gaming"
+  | "web-dev";
 
 interface BannerCTA {
   text: string;
@@ -395,6 +396,42 @@ export default function Banner({
               />
             </div>
           )}
+        </section>
+      );
+
+    case "web-dev":
+      return (
+        <section className="relative pt-20 pb-[200px] overflow-hidden">
+          <div className="absolute w-[1128px] h-[1128px] top-[22%] left-[10%] -translate-x-1/2 -translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10" />
+          <div className="custom-container mx-auto !px-6 flex flex-col md:flex-row items-center gap-10">
+            <div className="flex-1">
+              {title && (
+                <h1
+                  className="text-4xl md:text-5xl font-bold uppercase text-[#183153]"
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
+              )}
+              {subTitle && (
+                <p
+                  className="mt-5 text-[#183153] text-3xl capitalize font-medium"
+                  dangerouslySetInnerHTML={{ __html: subTitle }}
+                />
+              )}
+              {renderCTA("services")}
+            </div>
+            {bannerImage && (
+              <Image
+                src={bannerImage}
+                alt="services-banner"
+                width={600}
+                height={600}
+                className=""
+                priority
+              />
+            )}
+          </div>
+          <div className="absolute w-[217px] h-[217px] bottom-50 -right-[15%] -translate-x-1/2 translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10 overflow-hidden" />
+            <div className="absolute w-[272px] h-[272px] bottom-0 right-[10%] -translate-x-1/2 translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10" />
         </section>
       );
 

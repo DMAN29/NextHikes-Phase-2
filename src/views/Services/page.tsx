@@ -1,16 +1,16 @@
+import Banner from "@/components/Banner/page";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
+import Title from "@/components/Title/page";
+import ChooseUsTimeline from "@/components/WhyChooseUs/page";
 
-interface WebDevelopmentPageProps {
+interface ServiceProps {
   slug: any;
   data?: any;
 }
 
-export default function ServicePage ({
-  slug,
-  data,
-}: WebDevelopmentPageProps) {
-    const serviceStyles = {
+export default function ServicePage({ slug, data }: ServiceProps) {
+  const serviceStyles: any = {
     "web-development": {
       bgColor: "bg-[#DEF4FF]",
       title: "Web Development",
@@ -38,41 +38,75 @@ export default function ServicePage ({
     },
   };
 
-  let currentStyle;
+  const keywordMap = [
+    {
+      styleKey: "web-development",
+      keywords: ["web", "website", "frontend", "backend", "fullstack"],
+    },
+    {
+      styleKey: "seo-services",
+      keywords: ["seo", "search-engine", "optimization"],
+    },
+    {
+      styleKey: "mobile",
+      keywords: ["mobile", "app", "game", "ios", "android"],
+    },
+    {
+      styleKey: "marketing",
+      keywords: ["marketing", "digital", "ads", "social-media"],
+    },
+  ];
 
-  if (slug.includes("mobile") || slug.includes("app") ||  slug.includes("game")) {
-    currentStyle = serviceStyles["mobile"];
-  } else if (slug.includes("seo")) {
-    currentStyle = serviceStyles["seo-services"];
-  } else if (slug.includes("web") || slug.includes("website")) {
-    currentStyle = serviceStyles["web-development"];
-  } else if (slug.includes("marketing") || slug.includes("digital")) {
-    currentStyle = serviceStyles["marketing"];
-  } else {
-    currentStyle = serviceStyles["default"];
-  }
+  const currentSlug = typeof slug === "string" ? slug.toLowerCase() : "";
 
-  console.log(data);
+  const matchedConfig = keywordMap.find((config) =>
+    config.keywords.some((keyword) => currentSlug.includes(keyword))
+  );
+
+  const currentStyle = matchedConfig
+    ? serviceStyles[matchedConfig.styleKey]
+    : serviceStyles.default;
+
   return (
     <section>
-      <div className={`${currentStyle.bgColor} pt-[150px] pb-16`}>
-        {/* <Title
-          firstText={currentStyle.title}
-          firstColor={currentStyle.textColor || "text-[#840065]"}
-          secondText="Services"
-          subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-        /> */}
-        <ServiceFormPage />
-      </div>
-      <ElevateBusinessPage />
-      {slug.includes("web") ? (
-        <div>
-          <section className="bg-white !my-20">
-            {/* <ChooseUsTimeline /> */}
-          </section>
-          {/* <AiIntegrationPage /> */}
+      {matchedConfig?.styleKey === "web-development" && (
+        <div className="">
+          <Banner
+            platform="web-dev"
+            backgroundColor={["#FCF4EC"]}
+            bannerImage="/image/web-service.webp"
+            subTitle={`Expert web development <br /> for unstoppable growth`}
+            cta={[
+              {
+                text: "Explore Now",
+                url: "",
+                backgroundColor: "#ffffff",
+                textColor: "#363636",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`Build your digital <br /> foundation`}
+            headerTextColor="#000"
+          />
+          <ElevateBusinessPage />
+          <div className={`py-16`}>
+            <Title
+              firstText={currentStyle.title}
+              firstColor={currentStyle.textColor || "text-[#840065]"}
+              secondText="Services"
+              subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
+            />
+            <ServiceFormPage backgroundColor="#452A7C1A" />
+          </div>
+
+          {/* Timeline for web dev only */}
+          <div>
+            <ChooseUsTimeline />
+          </div>
         </div>
-      ) : (
+      )}
+
+      {matchedConfig?.styleKey !== "web-development" && (
         <section className="custom-container bg-white !mt-7 !mb-20">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[50px] leading-snug">
@@ -82,9 +116,7 @@ export default function ServicePage ({
               Learn More
             </button>
           </div>
-          <div className="">
-            {/* <Projects data={data?.featuredProjects} /> */}
-          </div>
+          <div>{/* <Projects data={data?.featuredProjects} /> */}</div>
         </section>
       )}
     </section>
