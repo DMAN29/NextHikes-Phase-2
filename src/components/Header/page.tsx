@@ -242,7 +242,11 @@ export default function Header() {
             {industriesOpen && (
               <div className="flex flex-col pl-4 mt-2 space-y-1">
                 {menus.map((item, index) => (
-                  <Link key={index} href={item.url} className="px-4 py-2 hover:bg-gray-100">
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="px-4 py-2 hover:bg-gray-100"
+                  >
                     {item.name}
                   </Link>
                 ))}

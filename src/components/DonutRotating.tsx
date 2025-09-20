@@ -1,146 +1,156 @@
-import React from "react";
+// import React, { useEffect, useRef, useState } from "react";
+// import Image from "next/image";
 
-const items = [
-  "Numerology",
-  "Live Consultation",
-  "Daily Horoscope",
-  "AI Integration",
-  "Deliverables",
-  "Tarot",
-  "Item 7",
-  "Item 8",
-];
+// const ROTATION_DURATION = 10000; // rotation duration in ms
+// const rotateSpeedFactor = 0.5; // slower rotation speed
+// const img = "/image/circle1.png";
 
-// Calculate SVG arc path for each donut segment
-function createArcPath(
-  cx: number,
-  cy: number,
-  rOuter: number,
-  rInner: number,
-  startAngle: number,
-  endAngle: number
-) {
-  const rad = (deg: number): number => (Math.PI / 180) * deg;
+// const items = [
+//   "item1",
+//   "item2",
+//   "item3",
+//   "item4",
+//   "item5",
+//   "item6",
+//   "item7",
+//   "item8",
+//   "item9",
+//   "item10",
+//   "item11",
+//   "item12",
+//   "item13",
+//   "item14",
+//   "item15",
+//   "item16",
+//   "item17",
+//   "item18",
+//   "item19",
+//   "item20",
+// ];
 
-  const startOuterX = cx + rOuter * Math.cos(rad(startAngle));
-  const startOuterY = cy + rOuter * Math.sin(rad(startAngle));
-  const endOuterX = cx + rOuter * Math.cos(rad(endAngle));
-  const endOuterY = cy + rOuter * Math.sin(rad(endAngle));
+// const SEGMENT_COUNT = 8;
+// const ITEMS_PER_UPDATE = 2;
 
-  const startInnerX = cx + rInner * Math.cos(rad(endAngle));
-  const startInnerY = cy + rInner * Math.sin(rad(endAngle));
-  const endInnerX = cx + rInner * Math.cos(rad(startAngle));
-  const endInnerY = cy + rInner * Math.sin(rad(startAngle));
+// const segmentAngles = Array.from(
+//   { length: SEGMENT_COUNT },
+//   (_, i) => -90 + i * 45
+// );
 
-  const largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1;
+// const normalizeAngle = (angle: number): number => {
+//   let a = angle % 360;
+//   if (a < 0) a += 360;
+//   return a;
+// };
 
-  // Path describes donut slice shape
-  return `
-    M ${startOuterX} ${startOuterY}
-    A ${rOuter} ${rOuter} 0 ${largeArcFlag} 1 ${endOuterX} ${endOuterY}
-    L ${startInnerX} ${startInnerY}
-    A ${rInner} ${rInner} 0 ${largeArcFlag} 0 ${endInnerX} ${endInnerY}
-    Z
-  `;
-}
+// const polarToCartesian = (cx: number, cy: number, r: number, angle: number) => {
+//   const rad = (angle * Math.PI) / 180;
+//   return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+// };
 
-const colors = [
-  "#FF6B6B",
-  "#4ECDC4",
-  "#556270",
-  "#C7F464",
-  "#FF6B6B",
-  "#4ECDC4",
-  "#556270",
-  "#C7F464",
-];
+// const updateBoundaries = [180, 270];
 
-const DonutRotating: React.FC = () => {
-  const cx = 200;
-  const cy = 200;
-  const rOuter = 150;
-  const rInner = 100;
-  const sliceAngle = 360 / items.length;
+// const SemiCircleRotating: React.FC = () => {
+//   const [rotation, setRotation] = useState(180);
+//   const requestRef = useRef<number | null>(null);
+//   const previousTimestamp = useRef<DOMHighResTimeStamp | null>(null);
+//   const previousRotation = useRef(normalizeAngle(180));
+//   const totalUpdates = useRef(0);
 
-  return (
-    <>
-      <style>{`
-        .rotate-container {
-          width: 400px;
-          height: 400px;
-          margin: 40px auto;
-          animation: spin 20s linear infinite;
-        }
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .segment-text {
-          font-family: Arial, sans-serif;
-          font-size: 14px;
-          fill: #fff;
-          font-weight: bold;
-          pointer-events: none;
-          user-select: none;
-        }
-      `}</style>
+//   const animate = (timestamp: DOMHighResTimeStamp) => {
+//     if (previousTimestamp.current !== null) {
+//       const elapsed = timestamp - previousTimestamp.current;
+//       const degreesPerMs = (360 / ROTATION_DURATION) * rotateSpeedFactor;
 
-      <div className="rotate-container">
-        <svg width="400" height="400" viewBox="0 0 400 400">
-          <g>
-            {items.map((label, i) => {
-              const startAngle = i * sliceAngle - 90; // subtract 90 to start from top
-              const endAngle = startAngle + sliceAngle;
-              const path = createArcPath(
-                cx,
-                cy,
-                rOuter,
-                rInner,
-                startAngle,
-                endAngle
-              );
+//       setRotation((prev) => {
+//         const newRotationRaw = prev - degreesPerMs * elapsed;
+//         const newRotation = normalizeAngle(newRotationRaw);
 
-              // Calculate mid angle for text placement
-              const midAngle = (startAngle + endAngle) / 2;
-              const radMid = (midAngle * Math.PI) / 180;
-              const textRadius = (rOuter + rInner) / 2;
+//         const crossedBoundary = (boundary: number): boolean => {
+//           if (previousRotation.current > boundary && newRotation <= boundary)
+//             return true;
+//           if (boundary === 270 && newRotation > previousRotation.current)
+//             return true;
+//           return false;
+//         };
 
-              const textX = cx + textRadius * Math.cos(radMid);
-              const textY = cy + textRadius * Math.sin(radMid);
+//         if (
+//           crossedBoundary(updateBoundaries[0]) ||
+//           crossedBoundary(updateBoundaries[1])
+//         ) {
+//           totalUpdates.current += 1;
+//         }
 
-              // Rotate text so it stays upright
-              const rotateAngle = midAngle + 90;
+//         previousRotation.current = newRotation;
+//         return newRotationRaw;
+//       });
+//     }
 
-              return (
-                <g key={label}>
-                  <path
-                    d={path}
-                    fill={colors[i % colors.length]}
-                    stroke="#fff"
-                    strokeWidth="2"
-                  />
-                  <text
-                    className="segment-text"
-                    x={textX}
-                    y={textY}
-                    textAnchor="middle"
-                    alignmentBaseline="middle"
-                    transform={`rotate(${rotateAngle}, ${textX}, ${textY})`}
-                  >
-                    {label}
-                  </text>
-                </g>
-              );
-            })}
-          </g>
-        </svg>
-      </div>
-    </>
-  );
-};
+//     previousTimestamp.current = timestamp;
+//     requestRef.current = requestAnimationFrame(animate);
+//   };
 
-export default DonutRotating;
+//   useEffect(() => {
+//     requestRef.current = requestAnimationFrame(animate);
+//     return () => {
+//       if (requestRef.current !== null) cancelAnimationFrame(requestRef.current);
+//     };
+//   }, []);
+
+//   return (
+//     <div
+//       style={{
+//         position: "relative",
+//         width: 800,
+//         height: 400,
+//         margin: "auto",
+//         overflow: "hidden",
+//       }}
+//     >
+//       <div
+//         style={{
+//           width: 800,
+//           height: 800,
+//           position: "absolute",
+//           top: 0,
+//           left: 0,
+//           transformOrigin: "50% 50%",
+//           transform: `rotate(${rotation}deg)`,
+//         }}
+//       >
+//         <Image src={img} alt="Rotating" width={800} height={800} priority />
+//         {segmentAngles.map((angle, idx) => {
+//           const itemIndex =
+//             (totalUpdates.current * ITEMS_PER_UPDATE + idx) % items.length;
+//           const item = items[itemIndex];
+//           const { x, y } = polarToCartesian(400, 400, 320, angle);
+
+//           return (
+//             <div
+//               key={idx}
+//               style={{
+//                 position: "absolute",
+//                 left: x - 50,
+//                 top: y - 10,
+//                 width: 100,
+//                 textAlign: "center",
+//                 fontWeight: "bold",
+//                 color: "#333",
+//                 textShadow: "1px 1px 3px white",
+//                 userSelect: "none",
+//                 pointerEvents: "none",
+//                 fontSize: 18,
+//                 whiteSpace: "nowrap",
+//                 transform: `rotate(${-rotation}deg)`,
+//                 transformOrigin: "50% 50%",
+//               }}
+//             >
+//               {item}
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SemiCircleRotating;

@@ -3,7 +3,7 @@ import ChooseNexthikesPage from "@/components/ChooseNexthikes/page";
 import CRMBanner from "@/components/CRMBanner/page";
 import CRMFeatures from "@/components/CRMFeatures/page";
 import CRMWhy from "@/components/CRMWhy/page";
-import DonutRotating from "@/components/DonutRotating";
+// import DonutRotating from "@/components/DonutRotating";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import Expertise from "@/components/Expertise/page";
 import MarketPage from "@/components/Market/page";
@@ -176,7 +176,7 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
               height={200}
             />
           </div>
-          <DonutRotating />
+          {/* <DonutRotating /> */}
         </>
       )}
       {matchedConfig?.styleKey === "e-commerce" && (
