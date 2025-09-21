@@ -6,6 +6,7 @@ import CRMWhy from "@/components/CRMWhy/page";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import Expertise from "@/components/Expertise/page";
 import MarketPage from "@/components/Market/page";
+import ProjectGraph from "@/components/ProjectGraph/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import TechStack from "@/components/TechStack/page";
 import WhoAreWe from "@/components/WhoAreWe/page";
@@ -165,6 +166,7 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
             headerTextColor="#000"
           />
           <ElevateBusinessPage />
+          <ProjectGraph />
           <WhoAreWe data={""} />
           <div className="flex justify-center items-center my-2">
             <Image

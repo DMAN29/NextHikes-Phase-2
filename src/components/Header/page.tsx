@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { IoMenuSharp, IoClose } from "react-icons/io5";
+import { RiMenu3Line } from "react-icons/ri";
 
 export default function Header() {
   const [isFixed, setIsFixed] = useState(true);
@@ -166,10 +167,14 @@ export default function Header() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-3xl text-white focus:outline-none"
+          className="md:hidden flex items-center justify-center text-3xl text-white focus:outline-none bg-[#C2C2C2] rounded-full w-10 h-10"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <IoClose /> : <IoMenuSharp color={textColor || "fff"} />}
+          {menuOpen ? (
+            <IoClose size={20} />
+          ) : (
+            <RiMenu3Line color={textColor || "#fff"} size={20} />
+          )}
         </button>
       </div>
 

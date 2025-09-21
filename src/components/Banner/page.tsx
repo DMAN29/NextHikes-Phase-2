@@ -217,7 +217,7 @@ export default function Banner({
 
     case "astrology":
       return (
-        <section className="relative overflow-hidden mb-7 h-screen">
+        <section className="relative overflow-hidden mb-7 md:min-h-screen">
           {/* Background */}
           <div
             className="absolute inset-0 -z-10"
