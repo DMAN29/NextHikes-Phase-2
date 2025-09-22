@@ -49,6 +49,10 @@ export default function Header() {
       url: "/services/web-dev",
       name: "Web Development",
     },
+    {
+      url: "/services/app-dev",
+      name: "App Development",
+    },
     // {
     //   url: "/industries/e-commerce",
     //   name: "E-Commerce",
