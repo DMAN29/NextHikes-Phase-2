@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       "cdn.sanity.io",
       "media.istockphoto.com",
       "www.nexthikes.in",
+      "35.208.89.220",
     ],
   },
 };

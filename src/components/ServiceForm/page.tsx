@@ -142,7 +142,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
   ];
 
   return (
-    <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans">
+    <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans mb-10">
       <main
         className="w-full max-w-7xl mx-auto backdrop-blur-xl border border-[#fff] rounded-3xl shadow-2xl shadow-sky-200/50 p-4 sm:p-6 lg:p-8"
         style={{
