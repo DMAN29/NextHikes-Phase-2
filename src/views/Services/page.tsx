@@ -31,6 +31,21 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       title: "App Development",
       textColor: "text-[#F37021]",
     },
+    "platform-development": {
+      bgColor: "bg-[#FFF1C2]",
+      title: "Platform Development",
+      textColor: "text-[#F37021]",
+    },
+    ai: {
+      bgColor: "bg-[#FFF1C2]",
+      title: "Artificial Intelligence",
+      textColor: "text-[#F37021]",
+    },
+    "digital-marketing": {
+      bgColor: "bg-[#FFF4F4]",
+      title: "Digital Marketing",
+      textColor: "text-[#7D0101]",
+    },
     marketing: {
       bgColor: "bg-[#FFF4F4]",
       title: "Digital Marketing",
@@ -123,6 +138,38 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "optimization",
       ],
     },
+    {
+      styleKey: "ai",
+      keywords: [
+        "AI",
+        "machine-learning",
+        "deep-learning",
+        "artificial-intelligence",
+      ],
+    },
+    {
+      styleKey: "platform-development",
+      keywords: [
+        "platform",
+        "API",
+        "backend",
+        "server",
+        "database",
+        "microservices",
+      ],
+    },
+    {
+      styleKey: "digital-marketing",
+      keywords: [
+        "digital",
+        "ads",
+        "social-media",
+        "SEO",
+        "content",
+        "email",
+        "branding",
+      ],
+    },
   ];
 
   const currentSlug = typeof slug === "string" ? slug.toLowerCase() : "";
@@ -185,37 +232,22 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           <ServiceFormPage backgroundColor="#452A7C1A" />
           <ElevateBusinessPage />
           <Projects />
-          {/* <Banner
-            platform="web-dev"
-            backgroundColor={["#FCF4EC"]}
-            bannerImage="/image/web-service.webp"
-            subTitle={`Expert web development <br /> for unstoppable growth`}
-            cta={[
-              {
-                text: "Explore Now",
-                url: "",
-                backgroundColor: "#ffffff",
-                textColor: "#363636",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`Build your digital <br /> foundation`}
-            headerTextColor="#000"
-          /> */}
-          {/* <ElevateBusinessPage /> */}
-          {/* <div className={`py-16`}>
-            <Title
-              firstText={currentStyle.title}
-              firstColor={currentStyle.textColor || "text-[#840065]"}
-              secondText="Services"
-              subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-            />
-            <ServiceFormPage backgroundColor="#452A7C1A" />
-          </div>
-          <div>
-            <ChooseUsTimeline />
-          </div> */}
         </div>
+      )}
+
+      {matchedConfig?.styleKey === "digital-marketing" && (
+        <>
+          <div className="h-56 border border-black bg-[#452A7C]"></div>
+          hello
+        </>
+      )}
+
+      {matchedConfig?.styleKey === "platform-development" && (
+        <div className="h-56 border border-black bg-[#452A7C]"></div>
+      )}
+
+      {matchedConfig?.styleKey === "ai" && (
+        <div className="h-56 border border-black bg-[#452A7C]"></div>
       )}
 
       {matchedConfig?.styleKey !== "web-development" && (
