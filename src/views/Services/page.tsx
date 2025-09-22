@@ -3,6 +3,7 @@
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
+import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
 import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import Title from "@/components/Title/page";
@@ -222,7 +223,10 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       {matchedConfig?.styleKey === "app-development" && (
         <div className="">
           <div className="h-56 border border-black bg-[#452A7C]"></div>
-          <AppBenfits />
+          <PlatformDevelopment />
+          <ElevateBusinessPage />
+          <Projects />
+          {/* <AppBenfits />
           <Title
             firstText={"App Development"}
             firstColor={"text-[#083E92]"}
@@ -231,7 +235,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           />
           <ServiceFormPage backgroundColor="#452A7C1A" />
           <ElevateBusinessPage />
-          <Projects />
+          <Projects /> */}
         </div>
       )}
 
