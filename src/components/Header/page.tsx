@@ -4,15 +4,16 @@ import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { IoMenuSharp, IoClose } from "react-icons/io5";
+import { RiMenu3Line } from "react-icons/ri";
 
 export default function Header() {
   const [isFixed, setIsFixed] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [dropdownMenu, setDropdownMenu] = useState("");
 
   const { textColor } = useHeaderColor();
 
@@ -67,6 +68,29 @@ export default function Header() {
     // },
   ];
 
+  const menuItems = [
+    {
+      title: "Services",
+      submenu: serviceMenus,
+    },
+    {
+      title: "Industries",
+      submenu: menus,
+    },
+    {
+      title: "About Us",
+      url: "",
+    },
+    {
+      title: "Blog",
+      url: "",
+    },
+    {
+      title: "Online Payment",
+      url: "/online-payment",
+    },
+  ];
+
   return (
     <header
       className={`top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -94,75 +118,45 @@ export default function Header() {
         </div>
 
         <div className="hidden md:flex gap-8 font-medium text-xl relative">
-          <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button className="flex items-center gap-1 cursor-pointer">
-              Services{" "}
-              <FaAngleDown
-                className={`transform transition-transform ${
-                  servicesOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
+          {menuItems.map((item, index) => (
+            <div
+              key={index}
+              className="relative"
+              onMouseEnter={() => item.submenu && setDropdownMenu(item.title)}
+              onMouseLeave={() => item.submenu && setDropdownMenu("")}
+            >
+              {item.submenu ? (
+                <>
+                  <button className="flex items-center gap-1 cursor-pointer">
+                    {item.title}{" "}
+                    <FaAngleDown
+                      className={`transform transition-transform ${
+                        dropdownMenu === item.title ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
-            {servicesOpen && (
-              <div
-                className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50"
-                onMouseLeave={() => setServicesOpen(false)}
-              >
-                {serviceMenus.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-lg font-medium"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div
-            className="relative"
-            onMouseEnter={() => setIndustriesOpen(true)}
-            onMouseLeave={() => setIndustriesOpen(false)}
-          >
-            <button className="flex items-center gap-1 cursor-pointer">
-              Industries{" "}
-              <FaAngleDown
-                className={`transform transition-transform ${
-                  industriesOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-
-            {industriesOpen && (
-              <div
-                className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50"
-                onMouseLeave={() => setIndustriesOpen(false)}
-              >
-                {menus.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-lg font-medium"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <Link href="">About Us</Link>
-          <Link href="">Blog</Link>
+                  {dropdownMenu === item.title && (
+                    <div className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50">
+                      {item.submenu.map((subItem, subIndex) => (
+                        <Link
+                          key={subIndex}
+                          href={subItem.url}
+                          className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-lg font-medium"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link href={item.url}>{item.title}</Link>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Contact Button */}
         <div className="hidden md:flex items-center gap-8 text-sm">
           <button
             className={`${
@@ -177,10 +171,14 @@ export default function Header() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-3xl text-white focus:outline-none"
+          className="md:hidden flex items-center justify-center text-3xl text-white focus:outline-none bg-[#C2C2C2] rounded-full w-10 h-10"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <IoClose /> : <IoMenuSharp color={textColor || "fff"} />}
+          {menuOpen ? (
+            <IoClose size={20} />
+          ) : (
+            <RiMenu3Line color={textColor || "#fff"} size={20} />
+          )}
         </button>
       </div>
 
@@ -191,79 +189,58 @@ export default function Header() {
         />
       )}
 
-      {/* Mobile Nav */}
       <div
         className={`md:hidden fixed top-0 right-0 h-full w-64 bg-black/90 backdrop-blur-md shadow-lg transform transition-transform duration-300 z-50 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col p-6 space-y-6 text-white">
-          <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button className="flex items-center gap-1 cursor-pointer">
-              Services{" "}
-              <FaAngleDown
-                className={`transform transition-transform ${
-                  servicesOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-
-            {servicesOpen && (
-              <div
-                className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50"
-                onMouseLeave={() => setServicesOpen(false)}
-              >
-                {serviceMenus.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-lg font-medium"
+          {menuItems.map((item, index) => (
+            <div key={index} className="flex flex-col">
+              {item.submenu ? (
+                <>
+                  <button
+                    onClick={() =>
+                      setDropdownMenu(
+                        dropdownMenu === item.title ? "" : item.title
+                      )
+                    }
+                    className="flex items-center justify-between w-full"
                   >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+                    {item.title}
+                    <FaAngleDown
+                      className={`transition-transform ${
+                        dropdownMenu === item.title ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
-          {/* Mobile Industries Dropdown */}
-          <div>
-            <button
-              onClick={() => setIndustriesOpen(!industriesOpen)}
-              className="flex items-center justify-between w-full"
-            >
-              Industries{" "}
-              <FaAngleDown
-                className={`transition-transform ${
-                  industriesOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            {industriesOpen && (
-              <div className="flex flex-col pl-4 mt-2 space-y-1">
-                {menus.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className="px-4 py-2 hover:bg-gray-100"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <Link href="#about" onClick={() => setMenuOpen(false)}>
-            About Us
-          </Link>
-          <Link href="#blog" onClick={() => setMenuOpen(false)}>
-            Blog
-          </Link>
+                  {dropdownMenu === item.title && (
+                    <div className="flex flex-col mt-2 space-y-1 text-black bg-white/90 backdrop-blur-sm rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                      {item.submenu.map((subItem, subIndex) => (
+                        <Link
+                          key={subIndex}
+                          href={subItem.url}
+                          onClick={() => setMenuOpen(false)}
+                          className="px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 text-base font-medium"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={item.url}
+                  onClick={() => setMenuOpen(false)}
+                  className=" py-2"
+                >
+                  {item.title}
+                </Link>
+              )}
+            </div>
+          ))}
 
           <button className="ml-4 rounded-full flex gap-2 items-center bg-white/20 px-4 py-2 text-white backdrop-blur-md text-sm hover:bg-white/30 transition">
             Contact Us <FaAngleRight />

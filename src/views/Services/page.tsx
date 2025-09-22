@@ -26,7 +26,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       title: "SEO Services",
       textColor: "text-[#F37021]",
     },
-    mobile: {
+    "app-development": {
       bgColor: "bg-[#FFF1C2]",
       title: "App Development",
       textColor: "text-[#F37021]",
@@ -157,7 +157,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             headerTextColor="#000"
           />
           <ElevateBusinessPage />
-          <div className={`py-16`}>
+          <div className={`md:py-16`}>
             <Title
               firstText={currentStyle.title}
               firstColor={currentStyle.textColor || "text-[#840065]"}

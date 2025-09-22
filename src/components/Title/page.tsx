@@ -14,14 +14,16 @@ export default function Title({
   subText,
 }: TitleProps) {
   return (
-    <div className="text-center max-w-5xl mx-auto px-4 py-5 md:py-16">
-      <h2 className="text-center text-2xl md:text-4xl lg:text-6xl">
+    <div className="text-center max-w-5xl mx-auto px-4">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl leading-snug">
         <span className={`${firstColor} font-bold`}>{firstText}</span>{" "}
-        <span className={`${secondColor} font-thin`}>{secondText}</span>
+        <span className={`${secondColor} font-light`}>{secondText}</span>
       </h2>
-      <p className="text-[#363636] mt-4 text-sm md:text-lg lg:text-xl font-normal">
-        {subText}
-      </p>
+      {subText && (
+        <p className="text-[#363636] mt-2 sm:mt-4 text-base sm:text-lg md:text-xl font-normal">
+          {subText}
+        </p>
+      )}
     </div>
   );
 }

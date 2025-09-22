@@ -1,9 +1,10 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
+import { useHeaderColor } from "@/app/context/HeaderColorContext";
 
 interface CarouselItem {
   id: number;
@@ -46,6 +47,18 @@ const responsive = {
 };
 
 export default function CRMBanner() {
+  const { textColor, setTextColor } = useHeaderColor();
+  const prevColorRef = useRef(textColor);
+  const headerTextColor = "#fff";
+
+  useEffect(() => {
+    prevColorRef.current = textColor;
+    setTextColor(headerTextColor);
+
+    return () => {
+      setTextColor(prevColorRef.current);
+    };
+  }, [headerTextColor, setTextColor]);
   const carouselRef = useRef<any>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 

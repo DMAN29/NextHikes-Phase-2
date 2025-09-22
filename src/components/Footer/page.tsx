@@ -76,12 +76,12 @@ export default function Footer() {
 
   const serviceMenus = [
     {
-      url: "/services/web-dev",
+      url: "/services/web-development",
       name: "Web Development",
     },
     // {
-    //   url: "/industries/e-commerce",
-    //   name: "E-Commerce",
+    //   url: "/services/app-development",
+    //   name: "App Development",
     // },
     // {
     //   url: "/industries/gaming",
@@ -115,10 +115,24 @@ export default function Footer() {
             <h5 className="uppercase text-black text-xl">Email address*</h5>
             <input
               type="text"
-              className="bg-white text-[#393939] w-full max-w-[320px] py-4 pl-3 px-2 mt-2 focus:outline-none border border-black"
+              className="bg-white text-[#393939] w-full max-w-[320px] py-4 pl-3 px-2 mt-2 focus:outline-none border rounded-md"
               placeholder="Enter Your Email Address"
+              style={{
+                border: "1px solid transparent",
+                borderRadius: "5px",
+                backgroundImage:
+                  "linear-gradient(white, white), linear-gradient(270deg, #D564AB 0%, #372874 100%)",
+                backgroundOrigin: "border-box",
+                backgroundClip: "padding-box, border-box",
+              }}
             />
-            <button className="w-full max-w-[320px] bg-black text-white rounded-[2px] text-center border border-[#000] mt-2 py-4 cursor-pointer">
+
+            <button
+              className="w-full max-w-[320px] text-white rounded-[5px] text-center border mt-2 py-4 cursor-pointer"
+              style={{
+                background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
+              }}
+            >
               Subscribe to our Newsletter
             </button>
           </div>
@@ -158,9 +172,17 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-black uppercase">
+          <h4
+            className="text-xl font-medium mb-4 uppercase"
+            style={{
+              background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
             Services
           </h4>
+
           {/* <ul className="space-y-2 text-sm flex flex-col text-white">
             {service?.slice(0, 4)?.map((item: any, index: any) => (
               <Link href={`/services/${item.slug}`} key={index}>
@@ -182,7 +204,14 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-black uppercase">
+          <h4
+            className="text-xl font-medium mb-4 uppercase"
+            style={{
+              background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
             Industries
           </h4>
           {/* <ul className="space-y-2 text-sm flex flex-col text-white">
@@ -206,7 +235,16 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-black">Contact Us</h4>
+          <h4
+            className="text-xl font-medium mb-4 uppercase"
+            style={{
+              background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Contact Us
+          </h4>
           <ul className="space-y-4 text-lg font-normal text-black">
             <li className="flex items-center gap-2">
               <Icon name={"email"} color="#000" />
@@ -255,11 +293,11 @@ export default function Footer() {
           © {new Date().getFullYear()} Copyright Nexthikes All Rights Reserved
         </p>
         <div
-          className="flex items-center justify-center gap-2 cursor-pointer"
+          className="items-center justify-center gap-2 cursor-pointer hidden md:flex"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <p className="text-black">Back To Top</p>
-          <FaChevronUp className="text-black" />
+          <p className="text-black leading-none">Back To Top</p>
+          <FaChevronUp className="text-black flex-shrink-0" />
         </div>
       </div>
       {/* <div className="border-b border-black w-full mb-0" /> */}

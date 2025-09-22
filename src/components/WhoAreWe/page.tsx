@@ -7,7 +7,7 @@ interface WhoWeInterface {
 export default function WhoAreWe({ data }: WhoWeInterface) {
   return (
     <section className="custom-container bg-white !my-[50px]">
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col-reverse lg:flex-row">
         <div className="relative w-full lg:w-1/2 h-[400px] lg:h-auto">
           <Image
             src={

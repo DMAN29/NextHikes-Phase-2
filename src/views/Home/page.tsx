@@ -8,6 +8,8 @@ import Team from "@/components/Team/page";
 import Testimonials from "@/components/Testimonials/page";
 import WhoWeAre from "@/components/WeAre/page";
 import WhyUs from "@/components/WhyUs/page";
+import IndustriesServe from "@/components/IndustriesServe/page";
+import Feathers from "@/components/Feathers/page";
 
 export default function HomePage() {
   return (
@@ -42,7 +44,11 @@ export default function HomePage() {
         headerTextColor="#fff"
       />
       <WhoWeAre />
+      <Feathers />
       <OurService />
+      <div className="custom-container">
+        <IndustriesServe />
+      </div>
       <ProjectHighlights />
       <WhyUs />
       <Testimonials />
