@@ -2,6 +2,7 @@
 
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
+import { DigitalMarkting } from "@/components/DigitalMarkting/digitalMarketing";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
 import Projects from "@/components/Projects/Projects";
@@ -223,9 +224,12 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       {matchedConfig?.styleKey === "app-development" && (
         <div className="">
           <div className="h-56 border border-black bg-[#452A7C]"></div>
-          <PlatformDevelopment />
+          <DigitalMarkting />
+
+          {/* <PlatformDevelopment />
           <ElevateBusinessPage />
-          <Projects />
+          <Projects /> */}
+
           {/* <AppBenfits />
           <Title
             firstText={"App Development"}
