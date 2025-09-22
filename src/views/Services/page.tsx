@@ -111,6 +111,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "offline mode",
         "app store",
         "google play",
+        "app-dev",
       ],
     },
     {
@@ -145,12 +146,34 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "machine-learning",
         "deep-learning",
         "artificial-intelligence",
+        "ai",
+        "neural-networks",
+        "natural-language-processing",
+        "NLP",
+        "computer-vision",
+        "robotics",
+        "reinforcement-learning",
+        "supervised-learning",
+        "unsupervised-learning",
+        "predictive-modeling",
+        "generative-ai",
+        "chatbots",
+        "automation",
+        "cognitive-computing",
+        "data-science",
+        "big-data",
+        "intelligent-systems",
+        "AI-algorithms",
+        "AI-research",
+        "AI-tools",
+        "AI-solutions",
       ],
     },
     {
       styleKey: "platform-development",
       keywords: [
         "platform",
+        "platform-dev",
         "API",
         "backend",
         "server",
@@ -168,6 +191,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "content",
         "email",
         "branding",
+        "digital-marketing",
       ],
     },
   ];
@@ -221,7 +245,24 @@ export default function ServicePage({ slug, data }: ServiceProps) {
 
       {matchedConfig?.styleKey === "app-development" && (
         <div className="">
-          <div className="h-56 border border-black bg-[#452A7C]"></div>
+          <Banner
+            platform="app-development"
+            backgroundColor={["#FFF"]}
+            bannerImage="/image/mobile-second.webp"
+            subTitle={`Revolutionary Mobile Experiences Starts Here.`}
+            cta={[
+              {
+                text: "lauch your app idea",
+                url: "",
+                backgroundColor: "#083E92",
+                textColor: "#FFFFFF",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`innovate. <br/> create. <br /> dominate.`}
+            headerTextColor="#000"
+            backgroundImage="/image/app-back.webp"
+          />
           <AppBenfits />
           <Title
             firstText={"App Development"}
@@ -251,17 +292,16 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       )}
 
       {matchedConfig?.styleKey !== "web-development" && (
-        <></>
-        // <section className="custom-container bg-white !mt-7 !mb-20">
-        //   <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-        //     <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[50px] leading-snug">
-        //       Our <span className="text-[#F37021] font-bold">Projects</span>
-        //     </h2>
-        //     <button className="cursor-pointer bg-[#262F2E] text-white text-sm rounded-full px-5 py-2">
-        //       Learn More
-        //     </button>
-        //   </div>
-        // </section>
+        <section className="custom-container bg-white !mt-7 !mb-20">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+            <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[50px] leading-snug">
+              Our <span className="text-[#F37021] font-bold">Projects</span>
+            </h2>
+            <button className="cursor-pointer bg-[#262F2E] text-white text-sm rounded-full px-5 py-2">
+              Learn More
+            </button>
+          </div>
+        </section>
       )}
     </section>
   );

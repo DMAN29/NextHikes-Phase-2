@@ -4,12 +4,12 @@ export default function ProjectHighlights() {
   return (
     <section className="md:flex my-10">
       <div className="w-full md:w-1/3 text-center md:text-left md:ml-5 lg:ml-15  flex flex-col  gap-5 justify-center mb-5 md:mb-0  ">
-        <h1 className="text-2xl md:text-5xl xl:text-7xl  font-semibold leading-relaxed">
+        <h1 className="text-[15px] md:text-5xl xl:text-7xl font-medium md:font-semibold leading-relaxed">
           Our Latest Work
         </h1>
-        <p className="font-semibold flex gap-5 items-center mx-auto md:mx-0  text-gray-700 lg:text-lg">
+        <p className="text-[#82B300] md:font-semibold flex gap-5 items-center mx-auto md:mx-0 lg:text-lg">
           <span>OUR CASE STUDIES</span>
-          <FaArrowRight />
+          <FaArrowRight className="hidden md:block" />
         </p>
       </div>
       <div className="w-full md:w-2/3 my-auto">

@@ -18,8 +18,7 @@ export default function HomePage() {
         platform="home"
         backgroundColor={[""]}
         bannerImage="/image/home-banner.webp"
-        subTitle={`At NextHike IT Solution, we offer cutting-edge digital and web solutions to help you take your business to the next level. Whether you need a stunning website, a powerful app, or a custom software, we have the expertise and experience to deliver it.
-`}
+        subTitle={`At NextHike IT Solution, we offer cutting-edge digital and web solutions to help you take your business to the next level. Whether you need a stunning website, a powerful app, or a custom software, we have the expertise and experience to deliver it.`}
         cta={[
           {
             text: "Explore Now",
