@@ -3,6 +3,7 @@
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
+import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
 import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import Title from "@/components/Title/page";
