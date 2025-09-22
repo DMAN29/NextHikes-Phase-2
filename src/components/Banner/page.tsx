@@ -16,7 +16,8 @@ type Platform =
   | "about"
   | "gaming"
   | "web-dev"
-  | "app-development";
+  | "app-development"
+  | "platform-development";
 
 interface BannerCTA {
   text: string;
@@ -24,6 +25,11 @@ interface BannerCTA {
   backgroundColor?: string;
   textColor?: string;
   borderColor?: string;
+}
+
+interface BannerImage {
+  icon: string;
+  title?: string;
 }
 
 interface BannerProps {
@@ -35,7 +41,7 @@ interface BannerProps {
     | [string, string, string, string];
   title?: string;
   subTitle?: string;
-  bannerImage?: string;
+  bannerImage?: BannerImage[];
   cta: BannerCTA[];
   headerTextColor?: string;
   backgroundImage?: string;
@@ -220,15 +226,20 @@ export default function Banner({
                 </div>
               </div>
             </div>
-            {bannerImage && (
-              <Image
-                src={bannerImage}
-                alt="banner"
-                width={1000}
-                height={1000}
-                className="relative w-[90%] h-auto mx-auto mt-12 md:absolute md:w-[55vw] md:h-[80vh] md:top-20 md:-right-30 md:mt-0"
-                priority
-              />
+            {bannerImage && bannerImage.length > 0 && (
+              <>
+                {bannerImage.map((img, idx) => (
+                  <Image
+                    key={idx}
+                    src={img.icon}
+                    alt={`banner-${idx}`}
+                    width={1000}
+                    height={1000}
+                    className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                    priority={idx === 0}
+                  />
+                ))}
+              </>
             )}
           </div>
         </section>
@@ -301,14 +312,21 @@ export default function Banner({
                 </div>
 
                 {/* Banner Image */}
-                <Image
-                  src={bannerImage}
-                  alt="banner"
-                  width={200}
-                  height={200}
-                  className="relative z-10 w-[100px] sm:w-[250px] md:w-[400px] h-auto"
-                  priority
-                />
+                {bannerImage && bannerImage.length > 0 && (
+                  <>
+                    {bannerImage.map((img, idx) => (
+                      <Image
+                        key={idx}
+                        src={img.icon}
+                        alt={`banner-${idx}`}
+                        width={1000}
+                        height={1000}
+                        className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                        priority={idx === 0}
+                      />
+                    ))}
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -340,24 +358,27 @@ export default function Banner({
             <div className="mt-6 md:mt-8">{renderCTA("e-commerce")}</div>
           </div>
 
-          {bannerImage && (
-            <div className="mt-6 md:mt-0 md:ml-8 flex-shrink-0 w-full md:w-auto max-w-[600px]">
-              <Image
-                src={bannerImage}
-                alt="services-banner"
-                width={600}
-                height={600}
-                className="w-full h-auto object-contain"
-                priority
-              />
-            </div>
+          {bannerImage && bannerImage.length > 0 && (
+            <>
+              {bannerImage.map((img, idx) => (
+                <Image
+                  key={idx}
+                  src={img.icon}
+                  alt={`banner-${idx}`}
+                  width={1000}
+                  height={1000}
+                  className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                  priority={idx === 0}
+                />
+              ))}
+            </>
           )}
         </section>
       );
 
     case "gaming":
       return (
-        <section className="relative w-full min-h-screen flex flex-col items-center pt-40">
+        <section className="relative w-full md:min-h-screen flex flex-col items-center pt-40">
           <div className="absolute inset-0 z-1 w-full h-full">
             <Galaxy
               mouseRepulsion={true}
@@ -409,25 +430,27 @@ export default function Banner({
             </div>
           </div>
 
-          {/* Optional Banner Image */}
-          {bannerImage && (
-            <div className="relative z-10 mt-8 w-full">
-              <Image
-                src={bannerImage}
-                alt="services-banner"
-                width={1000}
-                height={1000}
-                className="w-full h-auto object-cover rounded-xl"
-                priority
-              />
-            </div>
+          {bannerImage && bannerImage.length > 0 && (
+            <>
+              {bannerImage.map((img, idx) => (
+                <Image
+                  key={idx}
+                  src={img.icon}
+                  alt={`banner-${idx}`}
+                  width={1000}
+                  height={1000}
+                  className="relative w-[100%] h-auto"
+                  priority={idx === 0}
+                />
+              ))}
+            </>
           )}
         </section>
       );
 
     case "web-dev":
       return (
-        <section className="relative pt-20 md:pb-[200px] overflow-hidden">
+        <section className="relative pt-20 md:pb-[200px] overflow-hidden md:min-h-screen">
           <div className="absolute w-[1000px] h-[1000px] md:w-[1128px] md:h-[1128px] top-[22%] left-[10%] -translate-x-1/2 -translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10" />
           <div className="custom-container mx-auto !px-6 flex flex-col md:flex-row items-center gap-10">
             <div className="flex-1">
@@ -445,15 +468,20 @@ export default function Banner({
               )}
               {renderCTA("services")}
             </div>
-            {bannerImage && (
-              <Image
-                src={bannerImage}
-                alt="services-banner"
-                width={600}
-                height={600}
-                className=""
-                priority
-              />
+            {bannerImage && bannerImage.length > 0 && (
+              <>
+                {bannerImage.map((img, idx) => (
+                  <Image
+                    key={idx}
+                    src={img.icon}
+                    alt={`banner-${idx}`}
+                    width={1000}
+                    height={1000}
+                    className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                    priority={idx === 0}
+                  />
+                ))}
+              </>
             )}
           </div>
           <div className="absolute hidden md:block w-[217px] h-[217px] bottom-50 -right-[15%] -translate-x-1/2 translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10 overflow-hidden" />
@@ -474,13 +502,20 @@ export default function Banner({
               <div className="absolute inset-0 bg-black/60 rounded-[40px]"></div>
               <div className="relative flex items-center min-h-[400px] md:min-h-[450px] bg-opacity-0 rounded-[40px] overflow-hidden">
                 <div className="absolute z-10 hidden md:block left-[-2%] top-1/2 transform -translate-y-1/2 w-[40%] max-w-[396px] h-[100%]">
-                  {bannerImage && (
-                    <Image
-                      src={bannerImage}
-                      alt="App Development Mockups"
-                      fill
-                      className="w-full h-auto object-cover rounded-3xl"
-                    />
+                  {bannerImage && bannerImage.length > 0 && (
+                    <>
+                      {bannerImage.map((img, idx) => (
+                        <Image
+                          key={idx}
+                          src={img.icon}
+                          alt={`banner-${idx}`}
+                          width={1000}
+                          height={1000}
+                          className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                          priority={idx === 0}
+                        />
+                      ))}
+                    </>
                   )}
                 </div>
 
@@ -497,6 +532,56 @@ export default function Banner({
               </div>
               {renderCTA("app-development")}
             </div>
+          </div>
+        </section>
+      );
+
+    case "platform-development":
+      return (
+        <section
+          className="relative pt-20 md:pb-[200px] md:min-h-screen overflow-hidden"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="custom-container mx-auto !px-6 flex flex-col md:flex-row items-center gap-10">
+            <div className="flex-1">
+              {title && (
+                <h1
+                  className="text-4xl md:text-5xl text-center mt-15 font-medium uppercase bg-gradient-to-l from-[#72AFDD] to-[#E78667] bg-clip-text text-transparent"
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
+              )}
+              {subTitle && (
+                <p
+                  className="mt-5 text-[#183153] text-3xl capitalize font-medium"
+                  dangerouslySetInnerHTML={{ __html: subTitle }}
+                />
+              )}
+            </div>
+          </div>
+          <div className="flex absolute bottom-5 left-1/2 -translate-x-1/2 justify-center items-center gap-4">
+            {bannerImage && bannerImage.length > 0 && (
+              <>
+                {bannerImage.map((img, idx) => (
+                  <div className="flex flex-col items-center">
+                    <Image
+                      key={idx}
+                      src={img.icon}
+                      alt={`banner-${idx}`}
+                      width={1000}
+                      height={1000}
+                      className="w-[50px] sm:w-[250px] md:w-[600px] h-auto"
+                      priority={idx === 0}
+                    />
+                    <p className="text-white -mt-15 uppercase font-bold text-base">
+                      {img.title}
+                    </p>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </section>
       );
@@ -520,15 +605,20 @@ export default function Banner({
               )}
               {renderCTA("services")}
             </div>
-            {bannerImage && (
-              <Image
-                src={bannerImage}
-                alt="services-banner"
-                width={600}
-                height={600}
-                className="rounded-xl shadow-lg"
-                priority
-              />
+            {bannerImage && bannerImage.length > 0 && (
+              <>
+                {bannerImage.map((img, idx) => (
+                  <Image
+                    key={idx}
+                    src={img.icon}
+                    alt={`banner-${idx}`}
+                    width={1000}
+                    height={1000}
+                    className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                    priority={idx === 0}
+                  />
+                ))}
+              </>
             )}
           </div>
         </section>
@@ -551,17 +641,20 @@ export default function Banner({
               />
             )}
             {renderCTA("about")}
-            {bannerImage && (
-              <div className="mt-10 flex justify-center">
-                <Image
-                  src={bannerImage}
-                  alt="about-banner"
-                  width={700}
-                  height={700}
-                  className="rounded-2xl shadow-md"
-                  priority
-                />
-              </div>
+            {bannerImage && bannerImage.length > 0 && (
+              <>
+                {bannerImage.map((img, idx) => (
+                  <Image
+                    key={idx}
+                    src={img.icon}
+                    alt={`banner-${idx}`}
+                    width={1000}
+                    height={1000}
+                    className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                    priority={idx === 0}
+                  />
+                ))}
+              </>
             )}
           </div>
         </section>

@@ -114,7 +114,7 @@ export default function Footer() {
               />
             </span>
           </div>
-          <div className="flex flex-col mt-5">
+          {/* <div className="flex flex-col mt-5">
             <h5 className="uppercase text-black text-xl">Email address*</h5>
             <input
               type="text"
@@ -138,7 +138,7 @@ export default function Footer() {
             >
               Subscribe to our Newsletter
             </button>
-          </div>
+          </div> */}
           {/* <p className="text-sm text-black mb-4 mt-3">{contact?.about}</p>
           <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
             {contact?.socialLinks?.map((item: any, index: any) => (
