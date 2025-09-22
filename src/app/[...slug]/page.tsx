@@ -1,5 +1,4 @@
 // "use server";
-import { UserService } from "@/utils/Services/allApi";
 import AboutUs from "@/views/AboutUs/page";
 import { notFound } from "next/navigation";
 
@@ -27,20 +26,21 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
   try {
     // about-us page
     if (slugPath === "about-us") {
-      const [projectRes, reviewRes, dataRes] = await Promise.all([
-        UserService.getProjects(),
-        UserService.getReviews(),
-        UserService.getPageByType(slugPath),
-      ]);
+      // const [projectRes, reviewRes, dataRes] = await Promise.all([
+        // UserService.getProjects(),
+        // UserService.getReviews(),
+        // UserService.getPageByType(slugPath),
+      // ]);
 
-      if (!dataRes?.data) return notFound();
+      // if (!dataRes?.data) return notFound();
 
       return (
-        <AboutUs
-          project={Array.isArray(projectRes?.data) ? projectRes.data : []}
-          reviews={Array.isArray(reviewRes) ? reviewRes : []}
-          data={dataRes.data}
-        />
+        <h1>hey</h1>
+        // <AboutUs
+        //   project={Array.isArray(projectRes?.data) ? projectRes.data : []}
+        //   reviews={Array.isArray(reviewRes) ? reviewRes : []}
+        //   data={dataRes.data}
+        // />
       );
     }
 
