@@ -73,7 +73,7 @@ export default function Banner({
               <Link
                 key={idx}
                 href={btn.url}
-                className="rounded-full px-6 py-3 text-sm font-semibold flex items-center gap-1.5  transition hover:scale-105"
+                className="rounded-full p-2 md:px-6 md:py-3 text-xs md:text-sm font-semibold flex items-center gap-1  transition hover:scale-105"
                 style={{
                   backgroundColor: btn.backgroundColor || "#0f172a",
                   color: btn.textColor || "#fff",
@@ -193,7 +193,7 @@ export default function Banner({
     case "home":
       return (
         <section className="relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 [clip-path:polygon(0_0,100%_0,100%_18%,0_56%)]">
+          <div className="absolute inset-0 -z-10 [clip-path:polygon(0_0,100%_0,100%_4%,0_13%)] md:[clip-path:polygon(0_0,100%_0,100%_18%,0_56%)]">
             <Aurora
               colorStops={["#9AE3FF", "#FED375", "#FF403D", "#B98AD9"]}
               blend={0.96}
@@ -206,13 +206,13 @@ export default function Banner({
                 <div>
                   {title && (
                     <h1
-                      className="text-4xl md:text-5xl font-extrabold text-slate-900"
+                      className="text-2xl text-center md:text-start md:text-5xl font-extrabold text-slate-900"
                       dangerouslySetInnerHTML={{ __html: title }}
                     />
                   )}
                   {subTitle && (
                     <p
-                      className="mt-5 text-slate-600"
+                      className="mt-5 text-center md:text-start text-xs md:text-sm text-slate-600"
                       dangerouslySetInnerHTML={{ __html: subTitle }}
                     />
                   )}

@@ -18,7 +18,7 @@ export default function Feathers() {
   ];
   return (
     <section className="mb-10">
-      <h3 className="uppercase text-[#000000CC] text-4xl font-semibold text-center mb-10">
+      <h3 className="uppercase text-[#000000CC] text-[15px] md:text-4xl font-semibold text-center mb-5 md:mb-10">
         feathers in our cap
       </h3>
       <Marquee speed={50} gradient={false} autoFill direction="left">
@@ -29,23 +29,36 @@ export default function Feathers() {
               alt={`icon-${index}`}
               width={200}
               height={200}
-              className="object-contain grayscale"
+              className="object-contain grayscale h-[50px] md:h-auto"
             />
           </div>
         ))}
       </Marquee>
-      <h3 className="uppercase text-[#000000CC] text-4xl font-semibold text-center mt-10">
-        recognized by
-      </h3>
-      <Marquee speed={50} gradient={false} autoFill direction="left">
-        {icons2?.map((icon, index) => (
+      <Marquee speed={50} gradient={false} autoFill direction="left" className="mt-5">
+        {icons?.map((icon, index) => (
           <div key={index} className="mx-20 flex items-center">
             <Image
               src={icon}
               alt={`icon-${index}`}
               width={200}
               height={200}
-              className="object-contain grayscale"
+              className="object-contain grayscale h-[50px] md:h-auto"
+            />
+          </div>
+        ))}
+      </Marquee>
+      <h3 className="uppercase text-[#000000CC] text-[15px] md:text-4xl font-semibold text-center mt-10">
+        recognized by
+      </h3>
+      <Marquee speed={50} gradient={false} autoFill direction="left">
+        {icons2?.map((icon, index) => (
+          <div key={index} className="mx-20 mt-5 flex items-center">
+            <Image
+              src={icon}
+              alt={`icon-${index}`}
+              width={200}
+              height={200}
+              className="object-contain grayscale h-[24px] md:h-auto"
             />
           </div>
         ))}

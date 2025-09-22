@@ -83,29 +83,17 @@ export default function Footer() {
       name: "App Development",
     },
     {
-      url: "/service/platform-dev",
+      url: "/services/platform-dev",
       name: "Platform Development",
     },
     {
-      url: "/service/digital-marketing",
+      url: "/services/digital-marketing",
       name: "Digital Marketing",
     },
     {
-      url: "/service/ai",
+      url: "/services/ai",
       name: "Artificial Inteligence",
     },
-    // {
-    //   url: "/services/app-development",
-    //   name: "App Development",
-    // },
-    // {
-    //   url: "/industries/gaming",
-    //   name: "Gaming",
-    // },
-    // {
-    //   url: "/industries/crm",
-    //   name: "CRM & ERP",
-    // },
   ];
 
   return (

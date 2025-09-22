@@ -116,7 +116,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       ],
     },
     {
-      styleKey: "marketing",
+      styleKey: "digital-marketing",
       keywords: [
         "marketing",
         "digital",
@@ -292,7 +292,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         <div className="h-56 border border-black bg-[#452A7C]"></div>
       )}
 
-      {matchedConfig?.styleKey !== "web-development" && (
+      {/* {matchedConfig?.styleKey !== "web-development" && (
         <section className="custom-container bg-white !mt-7 !mb-20">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[50px] leading-snug">
@@ -303,7 +303,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             </button>
           </div>
         </section>
-      )}
+      )} */}
     </section>
   );
 }
