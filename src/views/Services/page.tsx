@@ -1,5 +1,6 @@
 "use client";
 
+import AIService from "@/components/AI/aiService";
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
 import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
@@ -302,6 +303,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       {matchedConfig?.styleKey === "ai" && (
         <>
           <div className="h-56 border border-black bg-[#452A7C]"></div>
+          <AIService />
         </>
       )}
 
