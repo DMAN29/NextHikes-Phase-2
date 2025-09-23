@@ -55,29 +55,17 @@ export default function Header() {
       name: "App Development",
     },
     {
-      url: "/service/platform-dev",
+      url: "/services/platform-dev",
       name: "Platform Development",
     },
     {
-      url: "/service/digital-marketing",
+      url: "/services/digital-marketing",
       name: "Digital Marketing",
     },
     {
-      url: "/service/ai",
+      url: "/services/ai",
       name: "Artificial Inteligence",
     },
-    // {
-    //   url: "/industries/e-commerce",
-    //   name: "E-Commerce",
-    // },
-    // {
-    //   url: "/industries/gaming",
-    //   name: "Gaming",
-    // },
-    // {
-    //   url: "/industries/crm",
-    //   name: "CRM & ERP",
-    // },
   ];
 
   const menuItems = [
@@ -149,7 +137,7 @@ export default function Header() {
                   </button>
 
                   {dropdownMenu === item.title && (
-                    <div className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-hidden transition-all duration-300 opacity-100 scale-100 origin-top z-50">
+                    <div className="absolute scrollbar-hide top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-y-auto max-h-60 transition-all duration-300 opacity-100 scale-100 origin-top z-50">
                       {item.submenu.map((subItem, subIndex) => (
                         <Link
                           key={subIndex}

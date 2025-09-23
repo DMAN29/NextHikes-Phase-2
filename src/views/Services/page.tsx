@@ -2,7 +2,7 @@
 
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
-import { DigitalMarkting } from "@/components/DigitalMarkting/digitalMarketing";
+import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
 import Projects from "@/components/Projects/Projects";
@@ -113,33 +113,34 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "offline mode",
         "app store",
         "google play",
+        "app-dev",
       ],
     },
-    {
-      styleKey: "marketing",
-      keywords: [
-        "marketing",
-        "digital",
-        "ads",
-        "social-media",
-        "SEO",
-        "content",
-        "email",
-        "branding",
-        "campaign",
-        "PPC",
-        "analytics",
-        "growth",
-        "strategy",
-        "influencer",
-        "engagement",
-        "conversion",
-        "traffic",
-        "leads",
-        "retargeting",
-        "optimization",
-      ],
-    },
+    // {
+    //   styleKey: "marketing",
+    //   keywords: [
+    //     "marketing",
+    //     "digital",
+    //     "ads",
+    //     "social-media",
+    //     "SEO",
+    //     "content",
+    //     "email",
+    //     "branding",
+    //     "campaign",
+    //     "PPC",
+    //     "analytics",
+    //     "growth",
+    //     "strategy",
+    //     "influencer",
+    //     "engagement",
+    //     "conversion",
+    //     "traffic",
+    //     "leads",
+    //     "retargeting",
+    //     "optimization",
+    //   ],
+    // },
     {
       styleKey: "ai",
       keywords: [
@@ -147,12 +148,34 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "machine-learning",
         "deep-learning",
         "artificial-intelligence",
+        "ai",
+        "neural-networks",
+        "natural-language-processing",
+        "NLP",
+        "computer-vision",
+        "robotics",
+        "reinforcement-learning",
+        "supervised-learning",
+        "unsupervised-learning",
+        "predictive-modeling",
+        "generative-ai",
+        "chatbots",
+        "automation",
+        "cognitive-computing",
+        "data-science",
+        "big-data",
+        "intelligent-systems",
+        "AI-algorithms",
+        "AI-research",
+        "AI-tools",
+        "AI-solutions",
       ],
     },
     {
       styleKey: "platform-development",
       keywords: [
         "platform",
+        "platform-dev",
         "API",
         "backend",
         "server",
@@ -170,6 +193,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "content",
         "email",
         "branding",
+        "digital-marketing",
       ],
     },
   ];
@@ -223,14 +247,25 @@ export default function ServicePage({ slug, data }: ServiceProps) {
 
       {matchedConfig?.styleKey === "app-development" && (
         <div className="">
-          <div className="h-56 border border-black bg-[#452A7C]"></div>
-          <DigitalMarkting />
-
-          {/* <PlatformDevelopment />
-          <ElevateBusinessPage />
-          <Projects /> */}
-
-          {/* <AppBenfits />
+          <Banner
+            platform="app-development"
+            backgroundColor={["#FFF"]}
+            bannerImage="/image/mobile-second.webp"
+            subTitle={`Revolutionary Mobile Experiences Starts Here.`}
+            cta={[
+              {
+                text: "lauch your app idea",
+                url: "",
+                backgroundColor: "#083E92",
+                textColor: "#FFFFFF",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`innovate. <br/> create. <br /> dominate.`}
+            headerTextColor="#000"
+            backgroundImage="/image/app-back.webp"
+          />
+          <AppBenfits />
           <Title
             firstText={"App Development"}
             firstColor={"text-[#083E92]"}
@@ -239,38 +274,44 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           />
           <ServiceFormPage backgroundColor="#452A7C1A" />
           <ElevateBusinessPage />
-          <Projects /> */}
+          <Projects />
         </div>
       )}
 
       {matchedConfig?.styleKey === "digital-marketing" && (
         <>
           <div className="h-56 border border-black bg-[#452A7C]"></div>
-          hello
+          <DigitalMarkting />
         </>
       )}
 
       {matchedConfig?.styleKey === "platform-development" && (
-        <div className="h-56 border border-black bg-[#452A7C]"></div>
+        <>
+          <div className="h-56 bg-white"></div>
+          <PlatformDevelopment />
+          <ElevateBusinessPage />
+          <Projects />
+        </>
       )}
 
       {matchedConfig?.styleKey === "ai" && (
-        <div className="h-56 border border-black bg-[#452A7C]"></div>
+        <>
+          <div className="h-56 border border-black bg-[#452A7C]"></div>
+        </>
       )}
 
-      {matchedConfig?.styleKey !== "web-development" && (
-        <></>
-        // <section className="custom-container bg-white !mt-7 !mb-20">
-        //   <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-        //     <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[50px] leading-snug">
-        //       Our <span className="text-[#F37021] font-bold">Projects</span>
-        //     </h2>
-        //     <button className="cursor-pointer bg-[#262F2E] text-white text-sm rounded-full px-5 py-2">
-        //       Learn More
-        //     </button>
-        //   </div>
-        // </section>
-      )}
+      {/* {matchedConfig?.styleKey !== "web-development" && (
+        <section className="custom-container bg-white !mt-7 !mb-20">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+            <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[50px] leading-snug">
+              Our <span className="text-[#F37021] font-bold">Projects</span>
+            </h2>
+            <button className="cursor-pointer bg-[#262F2E] text-white text-sm rounded-full px-5 py-2">
+              Learn More
+            </button>
+          </div>
+        </section>
+      )} */}
     </section>
   );
 }

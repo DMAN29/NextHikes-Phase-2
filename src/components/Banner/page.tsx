@@ -164,6 +164,25 @@ export default function Banner({
           </div>
         );
 
+      case "app-development":
+        return (
+          <div className="mt-8 flex gap-4 absolute bottom-0 right-[10%] transform translate-y-1/2 z-20">
+            {cta.map((btn, idx) => (
+              <Link
+                key={idx}
+                href={btn.url}
+                className="px-6 py-3 rounded-full text-sm font-semibold transition uppercase shadow-[0px_0px_14px_0px_#083E92]"
+                style={{
+                  backgroundColor: btn.backgroundColor || "#f59e0b",
+                  color: btn.textColor || "#fff",
+                }}
+              >
+                {btn.text}
+              </Link>
+            ))}
+          </div>
+        );
+
       default:
         return null;
     }
@@ -444,8 +463,41 @@ export default function Banner({
 
     case "app-development":
       return (
-        <section className="relative pt-20 md:pb-[200px] overflow-hidden">
-          
+        <section className="relative w-full flex items-center justify-center py-25 overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div
+              className="relative bg-cover bg-center rounded-[40px] shadow-2xl"
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+              }}
+            >
+              <div className="absolute inset-0 bg-black/60 rounded-[40px]"></div>
+              <div className="relative flex items-center min-h-[400px] md:min-h-[450px] bg-opacity-0 rounded-[40px] overflow-hidden">
+                <div className="absolute z-10 hidden md:block left-[-2%] top-1/2 transform -translate-y-1/2 w-[40%] max-w-[396px] h-[100%]">
+                  {bannerImage && (
+                    <Image
+                      src={bannerImage}
+                      alt="App Development Mockups"
+                      fill
+                      className="w-full h-auto object-cover rounded-3xl"
+                    />
+                  )}
+                </div>
+
+                <div className="w-full md:w-1/2 ml-auto text-white p-8 md:p-16 text-center md:text-left">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-tight">
+                    Innovate. <br />
+                    Create. <br />
+                    Dominate.
+                  </h1>
+                  <p className="mt-4 text-lg md:text-xl text-gray-200">
+                    Revolutionary Mobile Experiences Starts Here.
+                  </p>
+                </div>
+              </div>
+              {renderCTA("app-development")}
+            </div>
+          </div>
         </section>
       );
 

@@ -6,7 +6,6 @@ import Icon from "../Icon/page";
 import Link from "next/link";
 import { FaChevronUp } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { UserService } from "@/utils/Services/allApi";
 
 interface FooterProps {
   services: any;
