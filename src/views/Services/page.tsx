@@ -1,7 +1,9 @@
 "use client";
 
+import AIService from "@/components/AI/aiService";
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
+import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
 import Projects from "@/components/Projects/Projects";
@@ -228,15 +230,13 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             headerTextColor="#000"
           />
           <ElevateBusinessPage />
-          <div className={`md:py-16`}>
-            <Title
-              firstText={currentStyle.title}
-              firstColor={currentStyle.textColor || "text-[#840065]"}
-              secondText="Services"
-              subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-            />
-            <ServiceFormPage backgroundColor="#452A7C1A" />
-          </div>
+          <Title
+            firstText={currentStyle.title}
+            firstColor={currentStyle.textColor || "text-[#840065]"}
+            secondText="Services"
+            subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
+          />
+          <ServiceFormPage backgroundColor="#452A7C1A" />
           <div>
             <ChooseUsTimeline />
           </div>
@@ -279,7 +279,14 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       {matchedConfig?.styleKey === "digital-marketing" && (
         <>
           <div className="h-56 border border-black bg-[#452A7C]"></div>
-          hello
+          <DigitalMarkting />
+          <Title
+            firstText={"Digital Marketing"}
+            firstColor={"text-[#7D0101]"}
+            secondText="Services"
+            subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
+          />
+          <ServiceFormPage backgroundColor="#452A7C1A" />
         </>
       )}
 
@@ -315,7 +322,10 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       )}
 
       {matchedConfig?.styleKey === "ai" && (
-        <div className="h-56 border border-black bg-[#452A7C]"></div>
+        <>
+          <div className="h-56 border border-black bg-[#452A7C]"></div>
+          <AIService />
+        </>
       )}
 
       {/* {matchedConfig?.styleKey !== "web-development" && (
