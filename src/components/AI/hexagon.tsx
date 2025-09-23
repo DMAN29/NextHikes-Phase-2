@@ -101,10 +101,10 @@ const AiHexagon: React.FC<HexagonProps> = ({ data }) => {
                   overflow: "hidden",
                 }}
               >
-                <h3 className="font-bold text-base mb-2 leading-tight">
+                <h3 className="font-bold text-[8px] lg:text-2xl md:mb-2 leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-xs leading-tight">{item.description}</p>
+                <p className="text-[6px] leading-tight">{item.description}</p>
               </div>
             </div>
           ))}
