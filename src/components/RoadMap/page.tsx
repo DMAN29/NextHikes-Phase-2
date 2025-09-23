@@ -61,11 +61,12 @@ export default function RoadmapStep() {
           </section>
 
           {/* Step 3 */}
-        <section className="flex flex-col items-center text-center w-[220px] -mt-13">
+    <section className="flex flex-col items-center text-center w-[220px] -mt-12 md:-mt-12 mt-8">
+     
   <h3 className="text-lg md:text-xl font-semibold mb-2">
     Dedicated Project Manager
   </h3>
-  <div className="w-1 h-20 bg-gray-800"></div>
+  <div className="w-1 h-20  bg-gray-800"></div>
   <Image
     src="/image/vector (2).png"
     alt="Step 3"
@@ -73,13 +74,14 @@ export default function RoadmapStep() {
     height={110}
     className="object-contain md:w-[280px] md:h-[140px]"
   />
-   <div className="w-1 h-20 bg-gray-800"></div>
+  <div className="w-1 h-20 bg-gray-800"></div>
   <p className="text-sm md:text-base text-gray-600 mt-2 max-w-[200px] leading-relaxed">
     You'll have a single point of contact, ensuring seamless
     communication and that your project stays on track and within
     budget.
   </p>
 </section>
+
 
         </div>
       </div>
