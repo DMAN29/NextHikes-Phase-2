@@ -198,7 +198,7 @@ export default function Banner({
   switch (platform) {
     case "home":
       return (
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden md:min-h-screen">
           <div className="absolute inset-0 -z-10 [clip-path:polygon(0_0,100%_0,100%_4%,0_13%)] md:[clip-path:polygon(0_0,100%_0,100%_18%,0_56%)]">
             <Aurora
               colorStops={["#9AE3FF", "#FED375", "#FF403D", "#B98AD9"]}
@@ -226,20 +226,15 @@ export default function Banner({
                 </div>
               </div>
             </div>
-            {bannerImage && bannerImage.length > 0 && (
-              <>
-                {bannerImage.map((img, idx) => (
-                  <Image
-                    key={idx}
-                    src={img.icon}
-                    alt={`banner-${idx}`}
-                    width={1000}
-                    height={1000}
-                    className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
-                    priority={idx === 0}
-                  />
-                ))}
-              </>
+            {backgroundImage && (
+              <Image
+                src={backgroundImage}
+                alt={`banner`}
+                width={1000}
+                height={1000}
+                className="relative w-[90%] h-auto mx-auto mt-12 md:absolute md:w-[55vw] md:h-[80vh] md:top-20 md:-right-30 md:mt-0"
+                priority={true}
+              />
             )}
           </div>
         </section>

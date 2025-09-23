@@ -17,7 +17,7 @@ export default function HomePage() {
       <Banner
         platform="home"
         backgroundColor={[""]}
-        bannerImage="/image/home-banner.webp"
+        // bannerImage={[{ icon: "/image/home-banner.webp" }]}
         subTitle={`At NextHike IT Solution, we offer cutting-edge digital and web solutions to help you take your business to the next level. Whether you need a stunning website, a powerful app, or a custom software, we have the expertise and experience to deliver it.`}
         cta={[
           {
@@ -41,6 +41,7 @@ export default function HomePage() {
               <br />
               <span class="text-slate-800">IT Solutions</span>`}
         headerTextColor="#fff"
+        backgroundImage="/image/home-banner.webp"
       />
       <WhoWeAre />
       <Feathers />
