@@ -150,16 +150,9 @@ export default function AIService() {
         >
           AI That Fuels Innovation
         </h1>
-
-        <AiHexagon data={aiServiceHexagons.slice(0, 3)} />
-        <div className="-translate-x-[171px] -translate-y-[95px] ">
-          <AiHexagon data={aiServiceHexagons.slice(3, 6)} />
-        </div>
-        <div className="-translate-y-[190px]">
-          <AiHexagon data={aiServiceHexagons.slice(6, 9)} />
-        </div>
-        <div className="-translate-y-[280px] translate-x-[171px]">
-          <AiHexagon data={aiServiceHexagons.slice(9, 12)} />
+        
+        <div className="w-full flex justify-center">
+          <AiHexagon data={aiServiceHexagons} />
         </div>
       </div>
     </div>
