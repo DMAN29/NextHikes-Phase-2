@@ -36,7 +36,7 @@ export default function WhoWeAre() {
         </StarBorder>
       </div>
       <div className="my-16 flex flex-col gap-10">
-        <Marquee speed={50} gradient={false} autoFill direction="left">
+        <Marquee speed={50} gradient={false} autoFill direction="left" >
           {icons?.map((icon, index) => (
             <div key={index} className="mx-20 flex items-center">
               <Image

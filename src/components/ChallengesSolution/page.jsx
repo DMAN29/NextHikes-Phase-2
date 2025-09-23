@@ -108,19 +108,35 @@ const ChallengeSolution = () => {
           </div>
 
           {/* Solutions Section */}
-            {/* ================= SOLUTIONS SECTION ================= */}
+          {/* ================= SOLUTIONS SECTION ================= */}
           <div className="relative">
             {/* Header */}
             <div className="flex items-center ">
               <div className="relative w-20 h-20 flex items-center justify-center mr-6">
                 {/* Background Circle */}
-                <Image src="/image/Ellipse 1205.png" alt="Circle Icon" fill className="object-contain" />
+                <Image
+                  src="/image/Ellipse 1205.png"
+                  alt="Circle Icon"
+                  fill
+                  className="object-contain"
+                />
                 {/* Solution Icon */}
-                <Image src="/image/success.png" alt="Solution Icon" width={40} height={40} className="absolute z-10" />
+                <Image
+                  src="/image/success.png"
+                  alt="Solution Icon"
+                  width={40}
+                  height={40}
+                  className="absolute z-10"
+                />
               </div>
 
               <div className="relative w-52 h-52">
-                <Image src="/image/arrow.png" alt="arrow Icon" fill className="object-contain" />
+                <Image
+                  src="/image/arrow.png"
+                  alt="arrow Icon"
+                  fill
+                  className="object-contain"
+                />
                 <h2 className="absolute inset-0 flex items-center justify-center text-sm sm:text-base md:text-lg font-bold text-black">
                   Solutions
                 </h2>

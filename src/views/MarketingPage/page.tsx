@@ -6,7 +6,10 @@ import IndustriesServe from "@/components/IndustriesServe/page";
 import ChallengesSolution from "@/components/ChallengesSolution/page";
 import Industries from "@/app/industries/[[...slug]]/page";
 import Marquee from "react-fast-marquee";
+import ChooseNexthikesPage from "@/components/ChooseNexthikes/page";
+import RoadMap from "@/components/RoadMap/page"; 
 
+import ServiceForm from "@/components/ServiceForm/page";
 export default function MarketingPage() {
   const icons = [
     "/icons/ibm.webp",
@@ -97,6 +100,9 @@ export default function MarketingPage() {
       {/* 🔹 Other Components */}
       <IndustriesServe />
       <ChallengesSolution />
+      <RoadMap/>
+      <ChooseNexthikesPage/>
+      <ServiceForm/>
     </main>
   );
 }

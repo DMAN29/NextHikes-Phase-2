@@ -15,7 +15,8 @@ type Platform =
   | "services"
   | "about"
   | "gaming"
-  | "web-dev";
+  | "web-dev"
+  | "app-development";
 
 interface BannerCTA {
   text: string;
@@ -37,6 +38,7 @@ interface BannerProps {
   bannerImage?: string;
   cta: BannerCTA[];
   headerTextColor?: string;
+  backgroundImage?: string;
 }
 
 export default function Banner({
@@ -47,6 +49,7 @@ export default function Banner({
   bannerImage,
   cta,
   headerTextColor = "#000",
+  backgroundImage,
 }: BannerProps) {
   const { textColor, setTextColor } = useHeaderColor();
   const prevColorRef = useRef(textColor);
@@ -215,6 +218,7 @@ export default function Banner({
     case "astrology":
       return (
         <section className="relative overflow-hidden mb-7 h-screen">
+          {/* Background */}
           <div
             className="absolute inset-0 -z-10"
             style={{ backgroundColor: backgroundColor?.[0] || "#FCF4EC" }}
@@ -224,20 +228,23 @@ export default function Banner({
             {/* Heading */}
             {title && (
               <h1
-                className="banner-heading text-2xl sm:text-3xl md:text-4xl font-bold uppercase text-[#393939] leading-snug"
+                className="banner-heading text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold uppercase text-[#393939] leading-snug"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
             )}
+
             {subTitle && (
               <p
-                className="mt-3 sm:mt-4 text-lg sm:text-3xl text-[#363636] font-light max-w-xl sm:max-w-2xl"
+                className="mt-2 sm:mt-3 text-sm sm:text-lg md:text-3xl lg:text-3xl text-[#363636] font-light max-w-xs sm:max-w-xl md:max-w-2xl"
                 dangerouslySetInnerHTML={{ __html: subTitle }}
               />
             )}
-            <div className="mt-4 sm:mt-6">{renderCTA("astrology")}</div>
+
+            <div className="mt-3 sm:mt-4">{renderCTA("astrology")}</div>
+
             {bannerImage && (
-              <div className="relative w-full flex justify-center mt-8 sm:mt-10 h-[170px] sm:h-[350px] md:h-[500px]">
-                <div className="absolute -bottom-10 sm:-bottom-16 md:-bottom-20 w-[300px] sm:w-[600px] md:w-[980px] h-[150px] sm:h-[300px] md:h-[497px] rounded-t-full">
+              <div className="relative w-full flex justify-center mt-[80px] sm:mt-8 md:mt-10 h-[150px] sm:h-[250px] md:h-[500px]">
+                <div className="absolute -bottom-8 sm:-bottom-16 md:-bottom-20 w-[200px] sm:w-[600px] md:w-[980px] h-[120px] sm:h-[300px] md:h-[497px] rounded-t-full">
                   <Image
                     src="/icons/inner-circle-4.svg"
                     alt="inner-circle-icon"
@@ -246,7 +253,7 @@ export default function Banner({
                     className="rounded-t- z-10 animate-spin [animation-duration:17s]"
                   />
                 </div>
-                <div className="absolute -bottom-12 sm:-bottom-20 md:-bottom-24 w-[280px] sm:w-[500px] md:w-[900px] h-[140px] sm:h-[280px] md:h-[475px] rounded-t-full">
+                <div className="absolute -bottom-9 sm:-bottom-20 md:-bottom-24 w-[180px] sm:w-[500px] md:w-[900px] h-[110px] sm:h-[280px] md:h-[475px] rounded-t-full">
                   <Image
                     src="/icons/inner-circle-3.svg"
                     alt="inner-circle-icon"
@@ -255,7 +262,7 @@ export default function Banner({
                     className="rounded-t- z-10 animate-spin [animation-duration:17s]"
                   />
                 </div>
-                <div className="absolute -bottom-10 sm:-bottom-16 md:-bottom-20 w-[250px] sm:w-[450px] md:w-[810px] h-[120px] sm:h-[250px] md:h-[428px] rounded-t-full">
+                <div className="absolute -bottom-8 sm:-bottom-16 md:-bottom-20 w-[150px] sm:w-[450px] md:w-[810px] h-[100px] sm:h-[250px] md:h-[428px] rounded-t-full">
                   <Image
                     src="/icons/inner-circle-2.svg"
                     alt="inner-circle-icon"
@@ -264,8 +271,7 @@ export default function Banner({
                     className="rounded-t- z-10 animate-spin [animation-duration:17s]"
                   />
                 </div>
-
-                <div className="absolute -bottom-12 sm:-bottom-18 md:-bottom-25 w-[220px] sm:w-[400px] md:w-[750px] h-[110px] sm:h-[220px] md:h-[400px] rounded-t-full overflow-visible bg-[#E7FFDB]">
+                <div className="absolute -bottom-9 sm:-bottom-18 md:-bottom-25 w-[130px] sm:w-[400px] md:w-[750px] h-[90px] sm:h-[220px] md:h-[400px] rounded-t-full overflow-visible bg-[#E7FFDB]">
                   <Image
                     src="/icons/inner-circle-1.svg"
                     alt="inner-circle-icon"
@@ -275,12 +281,13 @@ export default function Banner({
                   />
                 </div>
 
+                {/* Banner Image */}
                 <Image
                   src={bannerImage}
                   alt="banner"
                   width={200}
                   height={200}
-                  className="relative z-10 w-[120px] sm:w-[250px] md:w-[400px] h-auto"
+                  className="relative z-10 w-[100px] sm:w-[250px] md:w-[400px] h-auto"
                   priority
                 />
               </div>
@@ -401,8 +408,8 @@ export default function Banner({
 
     case "web-dev":
       return (
-        <section className="relative pt-20 pb-[200px] overflow-hidden">
-          <div className="absolute w-[1128px] h-[1128px] top-[22%] left-[10%] -translate-x-1/2 -translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10" />
+        <section className="relative pt-20 md:pb-[200px] overflow-hidden">
+          <div className="absolute w-[1000px] h-[1000px] md:w-[1128px] md:h-[1128px] top-[22%] left-[10%] -translate-x-1/2 -translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10" />
           <div className="custom-container mx-auto !px-6 flex flex-col md:flex-row items-center gap-10">
             <div className="flex-1">
               {title && (
@@ -430,8 +437,15 @@ export default function Banner({
               />
             )}
           </div>
-          <div className="absolute w-[217px] h-[217px] bottom-50 -right-[15%] -translate-x-1/2 translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10 overflow-hidden" />
-            <div className="absolute w-[272px] h-[272px] bottom-0 right-[10%] -translate-x-1/2 translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10" />
+          <div className="absolute hidden md:block w-[217px] h-[217px] bottom-50 -right-[15%] -translate-x-1/2 translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10 overflow-hidden" />
+          <div className="absolute hidden md:block w-[272px] h-[272px] bottom-0 right-[10%] -translate-x-1/2 translate-y-1/2 bg-[#DEF4FF] rounded-full shadow-[0px_4px_24.3px_4px_#00000040] -z-10" />
+        </section>
+      );
+
+    case "app-development":
+      return (
+        <section className="relative pt-20 md:pb-[200px] overflow-hidden">
+          
         </section>
       );
 
