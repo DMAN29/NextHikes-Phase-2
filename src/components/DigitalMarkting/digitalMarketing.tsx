@@ -49,8 +49,9 @@ const img1 = "/image/digital1.png";
 
 export default function DigitalMarkting() {
   // Total elements = 5 (3 cards + 2 arrows)
-  const totalElements = 2 * horizontalBlocks.length - 1; // 3 + 2 =5
-
+  const horizontalElements = 2 * horizontalBlocks.length - 1; // 3 + 2 =5
+  const verticalElements = 2 * verticalBlocks.length - 1;
+  const arrowGap = "1.5rem";
   return (
     <div className="w-11/12 mx-auto">
       <h1 className="text-5xl mt-10 my-10 w-1/2">
@@ -62,7 +63,7 @@ export default function DigitalMarkting() {
       </p>
 
       <div className="flex items-center justify-between w-full mt-12">
-        {[...Array(totalElements)].map((_, idx) => {
+        {[...Array(horizontalElements)].map((_, idx) => {
           if (idx % 2 === 0) {
             // even index: card
             const cardIndex = Math.floor(idx / 2);
@@ -108,8 +109,11 @@ export default function DigitalMarkting() {
         })}
       </div>
 
-      <div className="flex justify-between items-end mt-4 gap-4">
-        {[...Array(totalElements)].map((_, idx) => {
+      <div
+        className="flex justify-between items-end gap-4"
+        style={{ marginTop: arrowGap }}
+      >
+        {[...Array(verticalElements)].map((_, idx) => {
           if (idx % 2 === 0) {
             // even index: card
             const cardIndex = Math.floor(idx / 2);
@@ -119,13 +123,12 @@ export default function DigitalMarkting() {
                 key={block.title}
                 className="flex flex-col items-center w-1/6"
               >
-                Arrow on top (rotated -90deg)
                 <FaArrowLeft
                   style={{
                     color: "#8F8AFF",
                     fontSize: "2rem",
                     transform: "rotate(-90deg)",
-                    marginBottom: "1rem",
+                    marginBottom: arrowGap,
                   }}
                 />
                 {/* Card */}

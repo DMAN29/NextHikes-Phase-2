@@ -230,15 +230,13 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             headerTextColor="#000"
           />
           <ElevateBusinessPage />
-          <div className={`md:py-16`}>
-            <Title
-              firstText={currentStyle.title}
-              firstColor={currentStyle.textColor || "text-[#840065]"}
-              secondText="Services"
-              subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-            />
-            <ServiceFormPage backgroundColor="#452A7C1A" />
-          </div>
+          <Title
+            firstText={currentStyle.title}
+            firstColor={currentStyle.textColor || "text-[#840065]"}
+            secondText="Services"
+            subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
+          />
+          <ServiceFormPage backgroundColor="#452A7C1A" />
           <div>
             <ChooseUsTimeline />
           </div>
@@ -282,6 +280,13 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         <>
           <div className="h-56 border border-black bg-[#452A7C]"></div>
           <DigitalMarkting />
+          <Title
+            firstText={"Digital Marketing"}
+            firstColor={"text-[#7D0101]"}
+            secondText="Services"
+            subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
+          />
+          <ServiceFormPage backgroundColor="#452A7C1A" />
         </>
       )}
 
