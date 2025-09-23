@@ -560,9 +560,8 @@ export default function Banner({
             {bannerImage && bannerImage.length > 0 && (
               <>
                 {bannerImage.map((img, idx) => (
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center" key={idx}>
                     <Image
-                      key={idx}
                       src={img.icon}
                       alt={`banner-${idx}`}
                       width={1000}
