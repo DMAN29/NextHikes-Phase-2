@@ -6,6 +6,7 @@ import Banner from "@/components/Banner/page";
 import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
+import ProcessFlow from "@/components/ProcessFlow/page";
 import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import Title from "@/components/Title/page";
@@ -317,7 +318,9 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             backgroundImage="/image/platform-banner.webp"
           />
           <PlatformDevelopment />
+          <ProcessFlow />
           <ElevateBusinessPage />
+
         </div>
       )}
 

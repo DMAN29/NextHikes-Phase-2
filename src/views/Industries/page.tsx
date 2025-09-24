@@ -163,11 +163,11 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
           <Banner
             platform="astrology"
             backgroundColor={["#FCF4EC"]}
-            bannerImage={[{ icon: "/image/mobile.webp" }]}
+            backgroundImage={"/image/mobile.webp"}
             subTitle="Astrology App and Website Development"
             cta={[
               {
-                text: "Explore Now",
+                text: "Contact Us",
                 url: "",
                 backgroundColor: "#ffffff",
                 textColor: "#363636",
@@ -176,6 +176,21 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
             ]}
             title={`Own your own <br /> Astrology app now !`}
             headerTextColor="#000"
+            bannerImage={[
+              {
+                icon: "/image/icon-1.jpg",
+                position: { bottom: 400, left: 190 },
+              },
+              {
+                icon: "/image/icon-2.png",
+                position: { bottom: 220, right: 80 },
+              },
+              {
+                icon: "/image/icon-3.jpg",
+                position: { top: 150, right: 60 },
+              },
+              { icon: "/image/icon-4.png", position: { top: 200, left: 140 } },
+            ]}
           />
           <ElevateBusinessPage />
           <ProjectGraph />

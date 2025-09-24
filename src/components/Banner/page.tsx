@@ -7,6 +7,10 @@ import Aurora from "../Aurora";
 import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import { useEffect, useRef } from "react";
 import Galaxy from "../Galaxy";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
 
 type Platform =
   | "home"
@@ -30,6 +34,12 @@ interface BannerCTA {
 interface BannerImage {
   icon: string;
   title?: string;
+  position?: {
+    top?: number;
+    left?: number;
+    right?: number;
+    bottom?: number;
+  };
 }
 
 interface BannerProps {
@@ -243,14 +253,12 @@ export default function Banner({
     case "astrology":
       return (
         <section className="relative overflow-hidden mb-7 md:min-h-screen">
-          {/* Background */}
           <div
             className="absolute inset-0 -z-10"
             style={{ backgroundColor: backgroundColor?.[0] || "#FCF4EC" }}
           ></div>
 
           <div className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-[80px] sm:pt-[100px] md:pt-[120px] flex flex-col items-center text-center">
-            {/* Heading */}
             {title && (
               <h1
                 className="banner-heading text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold uppercase text-[#393939] leading-snug"
@@ -267,7 +275,7 @@ export default function Banner({
 
             <div className="mt-3 sm:mt-4">{renderCTA("astrology")}</div>
 
-            {bannerImage && (
+            {backgroundImage && (
               <div className="relative w-full flex justify-center mt-[80px] sm:mt-8 md:mt-10 h-[150px] sm:h-[250px] md:h-[500px]">
                 <div className="absolute -bottom-8 sm:-bottom-16 md:-bottom-20 w-[200px] sm:w-[600px] md:w-[980px] h-[120px] sm:h-[300px] md:h-[497px] rounded-t-full">
                   <Image
@@ -306,24 +314,75 @@ export default function Banner({
                   />
                 </div>
 
-                {/* Banner Image */}
-                {bannerImage && bannerImage.length > 0 && (
-                  <>
-                    {bannerImage.map((img, idx) => (
-                      <Image
-                        key={idx}
-                        src={img.icon}
-                        alt={`banner-${idx}`}
-                        width={1000}
-                        height={1000}
-                        className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
-                        priority={idx === 0}
-                      />
-                    ))}
-                  </>
+                {backgroundImage && (
+                  <Image
+                    src={backgroundImage}
+                    alt={`banner`}
+                    width={1000}
+                    height={1000}
+                    className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                    priority
+                  />
                 )}
               </div>
             )}
+          </div>
+          <div className="absolute inset-0 z-20">
+            <div className="hidden  w-full h-full">
+              <Swiper
+                modules={[Autoplay]}
+                spaceBetween={10}
+                slidesPerView={3}
+                centeredSlides={true}
+                loop={true}
+                autoplay
+              >
+                {bannerImage?.map((img, idx) => (
+                  <SwiperSlide key={idx} className="flex justify-center">
+                    <Image
+                      src={img.icon}
+                      alt={`banner-${idx}`}
+                      width={150}
+                      height={250}
+                      className="w-[150px] h-[87px]"
+                      priority
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+
+            <div className="hidden md:flex justify-center items-center w-full h-full relative">
+              {bannerImage?.map((img, idx) => (
+                <motion.div
+                  key={idx}
+                  className="absolute rounded-lg overflow-hidden"
+                  style={{
+                    top: img.position?.top,
+                    left: img.position?.left,
+                    right: img.position?.right,
+                    bottom: img.position?.bottom,
+                  }}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    delay: idx * 0.3,
+                    duration: 1.2,
+                    type: "spring",
+                  }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <Image
+                    src={img.icon}
+                    alt={`banner-${idx}`}
+                    width={250}
+                    height={250}
+                    className="w-[100px] sm:w-[200px] md:w-[150px] h-auto"
+                    priority
+                  />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       );
@@ -534,19 +593,30 @@ export default function Banner({
     case "platform-development":
       return (
         <section
-          className="relative pt-20 md:pb-[200px] md:min-h-screen overflow-hidden"
+          className="relative pt-20 md:pb-[200px] min-h-screen overflow-hidden"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           <div className="custom-container mx-auto !px-6 flex flex-col md:flex-row items-center gap-10">
             <div className="flex-1">
               {title && (
-                <h1
-                  className="text-4xl md:text-5xl text-center mt-15 font-medium uppercase bg-gradient-to-l from-[#72AFDD] to-[#E78667] bg-clip-text text-transparent"
-                  dangerouslySetInnerHTML={{ __html: title }}
-                />
+                <>
+                  <h1
+                    className="hidden md:block md:text-5xl text-center md:mt-15 font-medium uppercase bg-gradient-to-l from-[#72AFDD] to-[#E78667] bg-clip-text text-transparent break-after-all"
+                    dangerouslySetInnerHTML={{ __html: title }}
+                  />
+                  <h1 className="text-lg block md:hidden text-center md:mt-15 font-medium uppercase bg-gradient-to-l from-[#72AFDD] to-[#E78667] bg-clip-text text-transparent">
+                    {title.split(" ").map((word, idx) => (
+                      <span key={idx} className="block md:inline">
+                        {word}
+                      </span>
+                    ))}
+                  </h1>
+                </>
               )}
               {subTitle && (
                 <p
@@ -560,16 +630,19 @@ export default function Banner({
             {bannerImage && bannerImage.length > 0 && (
               <>
                 {bannerImage.map((img, idx) => (
-                  <div className="flex flex-col items-center" key={idx}>
+                  <div
+                    className="flex flex-col items-center w-[60px] h-[150px] md:w-[200px] md:h-[200px]"
+                    key={idx}
+                  >
                     <Image
                       src={img.icon}
                       alt={`banner-${idx}`}
                       width={1000}
                       height={1000}
-                      className="w-[50px] sm:w-[250px] md:w-[600px] h-auto"
+                      className="w-full h-full"
                       priority={idx === 0}
                     />
-                    <p className="text-white -mt-15 uppercase font-bold text-base">
+                    <p className="text-white -mt-12 uppercase font-bold text-[10px] md:text-base">
                       {img.title}
                     </p>
                   </div>

@@ -93,41 +93,151 @@ const MemberCard: React.FC<{ member: Member }> = ({ member }) => {
 
 const teamMembers: Member[] = [
   {
-    name: "Javi A. Torres",
-    designation: "Software Engineer",
-    imageUrl: "/image/team-1.webp",
+    name: "Yunush",
+    designation: "Software Developer",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/3460fdb5-f859-4cc2-bb47-370bbd5c1796.png",
     socialLinks: [
-      { platform: "linkedin", url: "https://linkedin.com/in/javicodes" },
-      { platform: "github", url: "https://github.com/javicodes" },
-      { platform: "twitter", url: "https://twitter.com/javicodes" },
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/yunushansari?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/yunush_17?igsh=dm03bjU5NjJvOWp6",
+      },
     ],
   },
   {
-    name: "Aisha R. Khan",
-    designation: "Product Designer",
-    imageUrl: "/image/team-1.webp",
+    name: "Aman Saini",
+    designation: "Software Developer",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/0fb9a3e3-6877-4302-9049-93cabae16c92.jpeg",
     socialLinks: [
-      { platform: "linkedin", url: "https://linkedin.com/in/aishadesigns" },
-      { platform: "instagram", url: "https://instagram.com/aishadesigns" },
+      { platform: "linkedin", url: "https://linkedin.com/in/aman-saini" },
     ],
   },
   {
-    name: "Leo Chen",
-    designation: "Data Scientist",
-    imageUrl: "/image/team-1.webp",
+    name: "Shubham Bangwal",
+    designation: "Frontend developer",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/816c782f-9b68-4e61-bae0-e47d1e7c5947.jpg",
     socialLinks: [
-      { platform: "linkedin", url: "https://linkedin.com/in/leodatasci" },
-      { platform: "twitter", url: "https://twitter.com/leodatasci" },
+      { platform: "twitter", url: "https://twitter.com/bangwals2" },
+      {
+        platform: "linkedin",
+        url: "https://www.instagram.com/shubhu_bangwal/",
+      },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/shubhu_bangwal/",
+      },
     ],
   },
   {
-    name: "Maria B. Lopez",
+    name: "Abhijeet Kumar",
+    designation: "Unity Developer",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/513f67bd-f6d8-43ad-9750-135da85d6ed8.jpg",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/abhijeet-kumar-accurate?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      },
+      { platform: "twitter", url: "https://x.com/abhijeetk2606?s=21" },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/_abhi___jeet___?igsh=MWVrYjQ5MmdsNWMwaQ%3D%3D&utm_source=qr",
+      },
+    ],
+  },
+  {
+    name: "Ashish Sharma",
     designation: "UI/UX Designer",
-    imageUrl: "/image/team-1.webp",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/1ad9dc00-9a12-4c17-b0dc-ca5ffc609c6e.jpg",
     socialLinks: [
-      { platform: "linkedin", url: "https://linkedin.com/in/marialopez" },
-      { platform: "facebook", url: "https://facebook.com/marialopez" },
-      { platform: "instagram", url: "https://instagram.com/marialopez" },
+      { platform: "instagram", url: "https://www.instagram.com/aashuux" },
+      { platform: "twitter", url: "https://x.com/aashuux" },
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/syncwithashish/",
+      },
+    ],
+  },
+  {
+    name: "Yash Jha",
+    designation: "Senior Manager",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/1c9e2760-ad03-4140-9344-a3237bda2e7b.jpg",
+    socialLinks: [
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/official_yashjha?igsh=MXdsemc3aGdxdTN5ZA==",
+      },
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/yash-jha-94a0aa26a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
+    ],
+  },
+  {
+    name: "Mayank Singh",
+    designation: "Senior Software Engineer",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/22d1bbb9-6cfd-4fb0-9915-234bd20b3bf1.jpeg",
+    socialLinks: [],
+  },
+  {
+    name: "Tannu Malik",
+    designation: "HR Executive",
+    imageUrl:
+      "http://api.nexthikes.in/uploads/af3f7591-ea74-4d2c-a1b8-f24a7c944885.jpeg",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/tannu-malik-7a1968321/",
+      },
+    ],
+  },
+  {
+    name: "Annu Malik",
+    designation: "Software Developer",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/a9104bf1-e3c4-4ebf-a76f-b5309bebbc57.jpeg",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/annu-malik-79821931a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_apphttps://www.linkedin.com/in/annu-malik-79821931a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
+    ],
+  },
+  {
+    name: "Harshit Chauhan",
+    designation: "Software Developer ",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/aaf55258-9146-4354-ae03-f814904f94f8.png",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/harshit-chauhan-4785ba1b8/",
+      },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/__haarsh_it__/",
+      },
+    ],
+  },
+  {
+    name: "Pranjul Sharma",
+    designation: "Product Manager",
+    imageUrl:
+      "http://35.208.89.220:5500/uploads/80a04a96-4770-4b71-8cf8-9c06deeec6c5.jpeg",
+    socialLinks: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/pranjulsharma95325/",
+      },
     ],
   },
 ];
@@ -137,7 +247,8 @@ export default function Team() {
     <section className="custom-container min-h-screen flex flex-col !mt-20 !mb-20 md:!mb-0">
       {/* <div className="flex flex-col"> */}
       <h3 className="uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl  mb-3">
-        meet our team at <span className="text-[#F37021] font-semibold">next hikes</span>
+        meet our team at{" "}
+        <span className="text-[#F37021] font-semibold">next hikes</span>
       </h3>
 
       <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700">
