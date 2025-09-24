@@ -86,7 +86,18 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
   const keywordMap = [
     {
       styleKey: "healthcare",
-      keywords: ["healthcare", "medicine", "hospital", "doctor", "doctors"],
+      keywords: [
+        "healthcare",
+        "medicine",
+        "hospital",
+        "doctor",
+        "doctors",
+        "clinic",
+        "nurse",
+        "medical",
+        "pharmacy",
+        "treatment",
+      ],
     },
     {
       styleKey: "legal",
@@ -178,6 +189,30 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
               height={200}
             />
           </div>
+          {/* <DonutRotating /> */}
+        </>
+      )}
+      {matchedConfig?.styleKey === "healthcare" && (
+        <>
+          <Banner
+            platform="astrology"
+            backgroundColor={["#FCF4EC"]}
+            bannerImage={[{ icon: "/image/mobile.webp" }]}
+            subTitle="Astrology App and Website Development"
+            cta={[
+              {
+                text: "Explore Now",
+                url: "",
+                backgroundColor: "#ffffff",
+                textColor: "#363636",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`Own your own <br /> Astrology app now !`}
+            headerTextColor="#000"
+          />
+          <ElevateBusinessPage />
+
           {/* <DonutRotating /> */}
         </>
       )}

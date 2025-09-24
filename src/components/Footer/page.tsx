@@ -52,6 +52,10 @@ export default function Footer() {
       url: "/industries/crm",
       name: "CRM & ERP",
     },
+    {
+      url: "/industries/healthcare",
+      name: "Healthcare",
+    },
   ];
 
   const links = [
