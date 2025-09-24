@@ -318,6 +318,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           />
           <PlatformDevelopment />
           <ElevateBusinessPage />
+          <Projects />
         </div>
       )}
 
