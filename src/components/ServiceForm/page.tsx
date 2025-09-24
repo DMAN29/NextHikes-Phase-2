@@ -1,6 +1,5 @@
 "use client";
 
-// import { UserService } from "@/utils/Services/allApi";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -35,7 +34,9 @@ const ServiceCard = ({ icon, title, selected, onClick }: any) => (
     `}
   >
     <div className="relative h-12 lg:h-16 w-16 mb-4">{icon}</div>
-    <h3 className="font-semibold text-gray-700 mt-2">{title}</h3>
+    <h3 className="font-medium text-[#363636] sm:text-xs md:text-sm mt-2">
+      {title}
+    </h3>
   </div>
 );
 
@@ -141,7 +142,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
   ];
 
   return (
-    <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans">
+    <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans mb-10">
       <main
         className="w-full max-w-7xl mx-auto backdrop-blur-xl border border-[#fff] rounded-3xl shadow-2xl shadow-sky-200/50 p-4 sm:p-6 lg:p-8"
         style={{
@@ -152,7 +153,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
         }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
             {services.map((service) => (
               <ServiceCard
                 key={service.id}
@@ -304,14 +305,14 @@ export default function ServiceFormPage({ backgroundColor }: any) {
               </div>
 
               {/* Submit */}
-              <div className="flex justify-end">
+              <div className="w-full flex justify-center items-center md:justify-end">
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`px-4 py-2 md:px-6 md:py-3 cursor-pointer rounded-full shadow-lg focus:outline-none transform transition-all duration-300 ${
+                  className={`w-full md:w-auto px-4 py-2 md:px-6 md:py-3 rounded-full shadow-lg focus:outline-none transform transition-all duration-300 text-[12px] ${
                     loading
                       ? "bg-gray-400 text-white cursor-not-allowed"
-                      : "bg-gray-800 text-white"
+                      : "bg-[#011C2A] text-white cursor-pointer"
                   }`}
                 >
                   {loading ? "Submitting..." : "Send Message"}

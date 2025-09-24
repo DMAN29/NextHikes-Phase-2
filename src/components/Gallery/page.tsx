@@ -2,7 +2,7 @@ import DomeGallery from "../DomeGallery";
 
 export default function Gallery() {
   return (
-    <section className="w-full">
+    <section className="w-full md:min-h-screen">
       <h3
         className="text-center capitalize font-semibold text-[#363636] 
                text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
@@ -11,7 +11,7 @@ export default function Gallery() {
         nexthikes gallery
       </h3>
 
-      <div className="relative w-full h-[100vh] bg-black">
+      <div className="relative w-full h-[85vh] bg-black">
         <DomeGallery
           grayscale={false}
           minRadius={600}

@@ -6,7 +6,6 @@ import Icon from "../Icon/page";
 import Link from "next/link";
 import { FaChevronUp } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { UserService } from "@/utils/Services/allApi";
 
 interface FooterProps {
   services: any;
@@ -53,6 +52,10 @@ export default function Footer() {
       url: "/industries/crm",
       name: "CRM & ERP",
     },
+    {
+      url: "/industries/healthcare",
+      name: "Healthcare",
+    },
   ];
 
   const links = [
@@ -76,21 +79,25 @@ export default function Footer() {
 
   const serviceMenus = [
     {
-      url: "/services/web-development",
+      url: "/services/web-dev",
       name: "Web Development",
     },
-    // {
-    //   url: "/services/app-development",
-    //   name: "App Development",
-    // },
-    // {
-    //   url: "/industries/gaming",
-    //   name: "Gaming",
-    // },
-    // {
-    //   url: "/industries/crm",
-    //   name: "CRM & ERP",
-    // },
+    {
+      url: "/services/app-dev",
+      name: "App Development",
+    },
+    {
+      url: "/services/platform-dev",
+      name: "Platform Development",
+    },
+    {
+      url: "/services/digital-marketing",
+      name: "Digital Marketing",
+    },
+    {
+      url: "/services/ai",
+      name: "Artificial Inteligence",
+    },
   ];
 
   return (
@@ -111,7 +118,7 @@ export default function Footer() {
               />
             </span>
           </div>
-          <div className="flex flex-col mt-5">
+          {/* <div className="flex flex-col mt-5">
             <h5 className="uppercase text-black text-xl">Email address*</h5>
             <input
               type="text"
@@ -135,7 +142,7 @@ export default function Footer() {
             >
               Subscribe to our Newsletter
             </button>
-          </div>
+          </div> */}
           {/* <p className="text-sm text-black mb-4 mt-3">{contact?.about}</p>
           <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
             {contact?.socialLinks?.map((item: any, index: any) => (
@@ -293,11 +300,11 @@ export default function Footer() {
           © {new Date().getFullYear()} Copyright Nexthikes All Rights Reserved
         </p>
         <div
-          className="flex items-center justify-center gap-2 cursor-pointer"
+          className="items-center justify-center gap-2 cursor-pointer hidden md:flex"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <p className="text-black">Back To Top</p>
-          <FaChevronUp className="text-black" />
+          <p className="text-black leading-none">Back To Top</p>
+          <FaChevronUp className="text-black flex-shrink-0" />
         </div>
       </div>
       {/* <div className="border-b border-black w-full mb-0" /> */}

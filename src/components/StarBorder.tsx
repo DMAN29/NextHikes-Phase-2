@@ -43,7 +43,7 @@ const StarBorder = <T extends React.ElementType = 'button'>({
           animationDuration: speed
         }}
       ></div>
-      <div className="relative z-1 bg-[linear-gradient(90deg,#F6DDE5_0%,#F37021_51.05%,#F6DDE5_94.71%)] text-white text-center text-xl py-[16px] px-[26px] flex items-center justify-center gap-2 capitalize">
+      <div className="relative z-1 bg-[linear-gradient(90deg,#F6DDE5_0%,#F37021_51.05%,#F6DDE5_94.71%)] text-white text-center text-[10px] p-[10px] md:text-xl md:py-[16px] md:px-[26px] flex items-center justify-center gap-2 capitalize">
         {children}
       </div>
     </Component>

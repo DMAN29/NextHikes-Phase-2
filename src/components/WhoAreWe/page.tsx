@@ -7,7 +7,7 @@ interface WhoWeInterface {
 export default function WhoAreWe({ data }: WhoWeInterface) {
   return (
     <section className="custom-container bg-white !my-[50px]">
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col-reverse lg:flex-row">
         <div className="relative w-full lg:w-1/2 h-[400px] lg:h-auto">
           <Image
             src={
@@ -21,11 +21,11 @@ export default function WhoAreWe({ data }: WhoWeInterface) {
           />
         </div>
 
-        <div className="lg:w-1/2 p-6 space-y-6">
-          <h6 className="text-sm uppercase tracking-widest text-[#363636] font-bold">
+        <div className="lg:w-1/2 md:p-6 space-y-6">
+          <h6 className="text-sm uppercase tracking-widest text-[#363636] font-bold hidden md:block">
             {data?.smallTitle || "Who are we"}
           </h6>
-          <h2 className="font-bold lg:text-[40px] text-[28px] leading-tight text-[#363636]">
+          <h2 className="font-bold text-[15px] lg:text-[40px] md:text-[28px] leading-tight text-[#363636]">
             {data?.title ||
               "Astrology Development: Your Ultimate Business Maker"}
           </h2>
@@ -36,7 +36,7 @@ export default function WhoAreWe({ data }: WhoWeInterface) {
             dangerouslySetInnerHTML={{ __html: data?.description }}
             className="text-[#363636] text-base font-normal leading-relaxed"
           /> */}
-          <p className="text-[#363636] text-base font-normal leading-relaxed">
+          <p className="text-[#363636] text-[14px] md:text-lg font-normal leading-relaxed">
             At Nexthikes, we don’t just build projects — we build businesses.
             Our expertise spans across web and mobile app development, iOS
             solutions, SEO, and digital strategies, enabling us to deliver

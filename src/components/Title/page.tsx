@@ -14,7 +14,7 @@ export default function Title({
   subText,
 }: TitleProps) {
   return (
-    <div className="text-center max-w-5xl mx-auto px-4">
+    <div className="text-center max-w-5xl mx-auto px-4 mt-10 mb-6 ">
       <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl leading-snug">
         <span className={`${firstColor} font-bold`}>{firstText}</span>{" "}
         <span className={`${secondColor} font-light`}>{secondText}</span>

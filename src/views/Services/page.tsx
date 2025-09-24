@@ -1,7 +1,12 @@
 "use client";
 
+import AIService from "@/components/AI/aiService";
+import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
+import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
+import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
+import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import Title from "@/components/Title/page";
 import ChooseUsTimeline from "@/components/WhyChooseUs/page";
@@ -27,6 +32,21 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       bgColor: "bg-[#FFF1C2]",
       title: "App Development",
       textColor: "text-[#F37021]",
+    },
+    "platform-development": {
+      bgColor: "bg-[#FFF1C2]",
+      title: "Platform Development",
+      textColor: "text-[#F37021]",
+    },
+    ai: {
+      bgColor: "bg-[#FFF1C2]",
+      title: "Artificial Intelligence",
+      textColor: "text-[#F37021]",
+    },
+    "digital-marketing": {
+      bgColor: "bg-[#FFF4F4]",
+      title: "Digital Marketing",
+      textColor: "text-[#7D0101]",
     },
     marketing: {
       bgColor: "bg-[#FFF4F4]",
@@ -93,10 +113,11 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "offline mode",
         "app store",
         "google play",
+        "app-dev",
       ],
     },
     {
-      styleKey: "marketing",
+      styleKey: "digital-marketing",
       keywords: [
         "marketing",
         "digital",
@@ -120,6 +141,61 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "optimization",
       ],
     },
+    {
+      styleKey: "ai",
+      keywords: [
+        "AI",
+        "machine-learning",
+        "deep-learning",
+        "artificial-intelligence",
+        "ai",
+        "neural-networks",
+        "natural-language-processing",
+        "NLP",
+        "computer-vision",
+        "robotics",
+        "reinforcement-learning",
+        "supervised-learning",
+        "unsupervised-learning",
+        "predictive-modeling",
+        "generative-ai",
+        "chatbots",
+        "automation",
+        "cognitive-computing",
+        "data-science",
+        "big-data",
+        "intelligent-systems",
+        "AI-algorithms",
+        "AI-research",
+        "AI-tools",
+        "AI-solutions",
+      ],
+    },
+    {
+      styleKey: "platform-development",
+      keywords: [
+        "platform",
+        "platform-dev",
+        "API",
+        "backend",
+        "server",
+        "database",
+        "microservices",
+      ],
+    },
+    {
+      styleKey: "digital-marketing",
+      keywords: [
+        "digital",
+        "ads",
+        "social-media",
+        "SEO",
+        "content",
+        "email",
+        "branding",
+        "digital-marketing",
+      ],
+    },
   ];
 
   const currentSlug = typeof slug === "string" ? slug.toLowerCase() : "";
@@ -139,7 +215,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           <Banner
             platform="web-dev"
             backgroundColor={["#FCF4EC"]}
-            bannerImage="/image/web-service.webp"
+            bannerImage={[{ icon: "/image/web-service.webp" }]}
             subTitle={`Expert web development <br /> for unstoppable growth`}
             cta={[
               {
@@ -154,15 +230,13 @@ export default function ServicePage({ slug, data }: ServiceProps) {
             headerTextColor="#000"
           />
           <ElevateBusinessPage />
-          <div className={`md:py-16`}>
-            <Title
-              firstText={currentStyle.title}
-              firstColor={currentStyle.textColor || "text-[#840065]"}
-              secondText="Services"
-              subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-            />
-            <ServiceFormPage backgroundColor="#452A7C1A" />
-          </div>
+          <Title
+            firstText={currentStyle.title}
+            firstColor={currentStyle.textColor || "text-[#840065]"}
+            secondText="Services"
+            subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
+          />
+          <ServiceFormPage backgroundColor="#452A7C1A" />
           <div>
             <ChooseUsTimeline />
           </div>
@@ -173,38 +247,88 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         <div className="">
           <Banner
             platform="app-development"
-            backgroundColor={["#FCF4EC"]}
-            bannerImage="/image/web-service.webp"
-            subTitle={`Expert web development <br /> for unstoppable growth`}
+            backgroundColor={["#FFF"]}
+            bannerImage={[{ icon: "/icons/mobile-second.webp" }]}
+            subTitle={`Revolutionary Mobile Experiences Starts Here.`}
             cta={[
               {
-                text: "Explore Now",
+                text: "lauch your app idea",
                 url: "",
-                backgroundColor: "#ffffff",
-                textColor: "#363636",
+                backgroundColor: "#083E92",
+                textColor: "#FFFFFF",
                 borderColor: "#ffffff",
               },
             ]}
-            title={`Build your digital <br /> foundation`}
+            title={`innovate. <br/> create. <br /> dominate.`}
             headerTextColor="#000"
+            backgroundImage="/image/app-back.webp"
           />
+          <AppBenfits />
+          <Title
+            firstText={"App Development"}
+            firstColor={"text-[#083E92]"}
+            secondText="Services"
+            subText="Next Hikes delivers complete mobile app development solutions, covering frontend, backend, and full-stack services to help businesses create powerful, secure, and visually engaging mobile applications. From concept to launch, we ensure your app is fast, user-friendly, and optimized for performance across all devices."
+          />
+          <ServiceFormPage backgroundColor="#452A7C1A" />
           <ElevateBusinessPage />
-          <div className={`py-16`}>
-            <Title
-              firstText={currentStyle.title}
-              firstColor={currentStyle.textColor || "text-[#840065]"}
-              secondText="Services"
-              subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-            />
-            <ServiceFormPage backgroundColor="#452A7C1A" />
-          </div>
-          <div>
-            <ChooseUsTimeline />
-          </div>
+          <Projects />
         </div>
       )}
 
-      {matchedConfig?.styleKey !== "web-development" && (
+      {matchedConfig?.styleKey === "digital-marketing" && (
+        <>
+          <div className="h-56 border border-black bg-[#452A7C]"></div>
+          <DigitalMarkting />
+          <Title
+            firstText={"Digital Marketing"}
+            firstColor={"text-[#7D0101]"}
+            secondText="Services"
+            subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
+          />
+          <ServiceFormPage backgroundColor="#452A7C1A" />
+        </>
+      )}
+
+      {matchedConfig?.styleKey === "platform-development" && (
+        <div className="">
+          <Banner
+            platform="platform-development"
+            backgroundColor={["#FFF"]}
+            bannerImage={[
+              { icon: "/icons/app.svg", title: "app" },
+              { icon: "/icons/web-icon.svg", title: "web" },
+              { icon: "/icons/design.svg", title: "design" },
+              { icon: "/icons/branding.svg", title: "branding" },
+              { icon: "/icons/marketing-plat.svg", title: "marketing" },
+            ]}
+            subTitle={``}
+            cta={[
+              {
+                text: "lauch your app idea",
+                url: "",
+                backgroundColor: "#083E92",
+                textColor: "#FFFFFF",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`innovate. create. dominate.`}
+            headerTextColor="#fff"
+            backgroundImage="/image/platform-banner.webp"
+          />
+          <PlatformDevelopment />
+          <ElevateBusinessPage />
+        </div>
+      )}
+
+      {matchedConfig?.styleKey === "ai" && (
+        <>
+          <div className="h-56 border border-black bg-[#452A7C]"></div>
+          <AIService />
+        </>
+      )}
+
+      {/* {matchedConfig?.styleKey !== "web-development" && (
         <section className="custom-container bg-white !mt-7 !mb-20">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[50px] leading-snug">
@@ -214,9 +338,8 @@ export default function ServicePage({ slug, data }: ServiceProps) {
               Learn More
             </button>
           </div>
-          <div>{/* <Projects data={data?.featuredProjects} /> */}</div>
         </section>
-      )}
+      )} */}
     </section>
   );
 }

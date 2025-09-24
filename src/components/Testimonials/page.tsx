@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import Carousel, { CarouselInternalState } from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import TestimonialCard from "./TestimonialCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 export interface Testimonial {
   id: number;
@@ -49,22 +52,8 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const responsive = {
-  largeDesktop: { breakpoint: { max: 4000, min: 1200 }, items: 3 },
-  desktop: { breakpoint: { max: 1200, min: 900 }, items: 3 },
-  tablet: { breakpoint: { max: 900, min: 640 }, items: 1 },
-  mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
-};
-
 const Testimonials: React.FC = () => {
-  const [firstVisibleIndex, setFirstVisibleIndex] = useState(0);
-  const handleBeforeChange = (
-    nextSlide: number,
-    _state: CarouselInternalState
-  ) => setFirstVisibleIndex(nextSlide);
-  const getActiveIndex = (idx: number) =>
-    idx === (firstVisibleIndex + 1) % testimonials.length;
-
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section
       style={{
@@ -74,7 +63,6 @@ const Testimonials: React.FC = () => {
           #fff
         `,
       }}
-      // className="py-16 w-full min-h-[500px]"
     >
       <div className="max-w-4xl mx-auto mb-7">
         <h1 className="text-2xl md:text-5xl xl:text-7xl font-semibold leading-relaxed text-center">
@@ -84,29 +72,29 @@ const Testimonials: React.FC = () => {
           Presenting our recent feedbacks — Have a look!
         </p>
       </div>
-      <div className="max-w-[1116px] mx-auto relative overflow-visible">
-        <Carousel
-          responsive={responsive}
-          infinite
-          autoPlay
-          autoPlaySpeed={3500}
-          beforeChange={handleBeforeChange}
-          containerClass="carousel-container"
-          itemClass="flex justify-center py-8"
-          arrows={false}
-          showDots={false}
-          centerMode={false}
-          customTransition="transform 500ms cubic-bezier(.77,0,.18,1)"
-          slidesToSlide={1}
+
+      <div className="max-w-[1116px] h-[100%] mx-auto relative overflow-visible">
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 3 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          loop={true}
+          centeredSlides={true}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          className="w-full"
         >
           {testimonials.map((testimonial, idx) => (
-            <TestimonialCard
-              key={testimonial.id}
-              testimonial={testimonial}
-              isActive={getActiveIndex(idx)}
-            />
+            <SwiperSlide key={testimonial.id}>
+              <TestimonialCard testimonial={testimonial} isActive={idx === activeIndex} />
+            </SwiperSlide>
           ))}
-        </Carousel>
+        </Swiper>
       </div>
     </section>
   );
