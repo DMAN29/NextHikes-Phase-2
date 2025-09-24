@@ -210,3 +210,52 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.gradient-border {
+  position: relative;
+  background-color: transparent;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 3px;
+  background: linear-gradient(270deg, #72AFDD 0%, #E78667 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.large-dashed-border {
+  position: relative;
+}
+
+.large-dashed-border::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  
+  background:
+    repeating-linear-gradient(to right, black 0 22px, transparent 22px 44px), /* top */
+    repeating-linear-gradient(to right, black 0 22px, transparent 22px 44px), /* bottom */
+    repeating-linear-gradient(to bottom, black 0 22px, transparent 22px 44px), /* left */
+    repeating-linear-gradient(to bottom, black 0 22px, transparent 22px 44px); /* right */
+    
+  background-position: top left, bottom left, top left, top right;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 100% 3px, 100% 3px, 3px 100%, 3px 100%;
+  z-index: 1;
+}
+
+

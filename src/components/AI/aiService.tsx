@@ -82,13 +82,13 @@ export default function AIService() {
   ];
 
   return (
-    <div className="w-11/12 mx-auto mt-8">
+    <div className="w-11/12 mx-auto mt-8 md:mb-40">
       <div className="flex gap-4 w-11/12 mx-auto">
-        <div className="w-ful md:w-2/3">
-          <h1 className="text-2xl md:text-3xl lg:text-5xl leading-relaxed my-2 md:my-5 font-medium uppercase">
+        <div className="w-full md:w-2/3">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl leading-relaxed my-2 md:my-5 font-medium uppercase text-center md:text-left">
             Why ai for your business?
           </h1>
-          <p className="md:text-lg lg:text-xl leading-relaxed ">
+          <p className="text-sm md:text-lg lg:text-xl leading-relaxed ">
             AI is no longer a futuristic idea—it’s a business necessity that
             unlocks opportunities, drives innovation, and keeps you competitive
             in a fast-changing market. By integrating AI, you gain powerful
@@ -112,7 +112,7 @@ export default function AIService() {
         <h1 className="text-2xl md:text-3xl lg:text-5xl leading-relaxed my-2 md:my-5 font-medium text-center uppercase">
           Global AI Skills Landscape
         </h1>
-        <div className="relative w-5/6 h-[600px] mx-auto">
+        <div className="relative w-full md:w-11/12 aspect-[1.75]  mx-auto">
           <Image src={img1} alt="AI Service" fill className="object-contain" />
         </div>
       </div>
@@ -121,9 +121,9 @@ export default function AIService() {
           Global ai revenue forecast by 2025
         </h1>
 
-        <div className="w-11/12 mx-auto flex items-center gap-8 h-[500px]">
+        <div className="w-11/12 mx-auto flex flex-col md:flex-row items-center gap-8 ">
           {/* Left: Image */}
-          <div className="relative w-1/2 h-full">
+          <div className="relative w-full md:w-1/2 aspect-[1.3]">
             <Image
               src={img3}
               alt="AI bubbles"
@@ -132,8 +132,8 @@ export default function AIService() {
             />
           </div>
           {/* Right: JSON mapped content */}
-          <div className="w-1/2 flex flex-col justify-center h-full px-6">
-            <ul className="list-disc pl-4 text-sm md:text-base lg:text-lg leading-relaxed text-[#363636] ">
+          <div className="w-full md:w-1/2 flex flex-col justify-center h-full px-6">
+            <ul className="list-disc pl-4 text-xs md:text-base lg:text-lg leading-relaxed text-[#363636]">
               {aiUseCases.map((item, idx) => (
                 <li key={idx} className="my-2 md:my-5">
                   {item.text}
@@ -150,10 +150,34 @@ export default function AIService() {
         >
           AI That Fuels Innovation
         </h1>
-        
+
         <div className="w-full flex justify-center">
           <AiHexagon data={aiServiceHexagons} />
         </div>
+      </div>
+
+      <div className="w-11/12 mx-auto text-center  my-5 md:my-12">
+        <h1 className="text-2xl md:text-3xl lg:text-5xl leading-relaxed my-2 md:my-5 font-medium  ">
+          Grow Smarter with AI
+        </h1>
+        <p className="text-xs md:text-lg lg:text-xl leading-relaxed max-w-5xl mx-auto ">
+          Custom Solutions for India & the USA -IndiaNIC helps businesses unlock
+          opportunities, boost efficiency, and stay ahead with tailored AI
+          solutions. From automation and data-driven insights to customer
+          experience and product innovation, our experts guide you every step of
+          the way.
+        </p>
+      </div>
+      <div className="w-11/12 mx-auto text-center my-5 md:my-12">
+        <h1 className="text-2xl md:text-3xl lg:text-5xl leading-relaxed my-2 md:my-5 font-medium  ">
+          The Future is Intelligent Automation
+        </h1>
+        <p className="text-xs md:text-lg lg:text-xl leading-relaxed max-w-5xl mx-auto ">
+          AI is transforming industries worldwide. With advanced technologies
+          like machine learning, NLP, and computer vision, IndiaNIC empowers
+          businesses to cut costs, innovate, and scale smarter. Partner with us
+          to build a future-ready enterprise.
+        </p>
       </div>
     </div>
   );

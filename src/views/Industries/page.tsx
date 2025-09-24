@@ -6,6 +6,9 @@ import CRMWhy from "@/components/CRMWhy/page";
 // import DonutRotating from "@/components/DonutRotating";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import Expertise from "@/components/Expertise/page";
+import Mission from "@/components/HealthCare/mission";
+import SolutionsMap from "@/components/HealthCare/SolutionsMap";
+import TechFeatures from "@/components/HealthCare/techFeatures";
 import MarketPage from "@/components/Market/page";
 import ProjectGraph from "@/components/ProjectGraph/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
@@ -163,11 +166,11 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
           <Banner
             platform="astrology"
             backgroundColor={["#FCF4EC"]}
-            bannerImage={[{ icon: "/image/mobile.webp" }]}
+            backgroundImage={"/image/mobile.webp"}
             subTitle="Astrology App and Website Development"
             cta={[
               {
-                text: "Explore Now",
+                text: "Contact Us",
                 url: "",
                 backgroundColor: "#ffffff",
                 textColor: "#363636",
@@ -176,6 +179,21 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
             ]}
             title={`Own your own <br /> Astrology app now !`}
             headerTextColor="#000"
+            bannerImage={[
+              {
+                icon: "/image/icon-1.jpg",
+                position: { bottom: 400, left: 190 },
+              },
+              {
+                icon: "/image/icon-2.png",
+                position: { bottom: 220, right: 80 },
+              },
+              {
+                icon: "/image/icon-3.jpg",
+                position: { top: 150, right: 60 },
+              },
+              { icon: "/image/icon-4.png", position: { top: 200, left: 140 } },
+            ]}
           />
           <ElevateBusinessPage />
           <ProjectGraph />
@@ -194,26 +212,11 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
       )}
       {matchedConfig?.styleKey === "healthcare" && (
         <>
-          <Banner
-            platform="astrology"
-            backgroundColor={["#FCF4EC"]}
-            bannerImage={[{ icon: "/image/mobile.webp" }]}
-            subTitle="Astrology App and Website Development"
-            cta={[
-              {
-                text: "Explore Now",
-                url: "",
-                backgroundColor: "#ffffff",
-                textColor: "#363636",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`Own your own <br /> Astrology app now !`}
-            headerTextColor="#000"
-          />
+          <div className="h-[400px] bg-amber-900"></div>
           <ElevateBusinessPage />
-
-          {/* <DonutRotating /> */}
+          <Mission />
+          <TechFeatures />
+          <SolutionsMap />
         </>
       )}
       {matchedConfig?.styleKey === "e-commerce" && (

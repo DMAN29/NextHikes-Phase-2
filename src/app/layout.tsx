@@ -5,6 +5,7 @@ import { HeaderColorProvider } from "./context/HeaderColorContext";
 import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
 import FloatingContactWidget from "@/components/FloatingContactWidget/page";
+import { MobileMenuProvider } from "./context/MobileMenuContext";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -35,15 +36,17 @@ export default function RootLayout({
       <body
         className={`${workSans.variable} ${zcoolXiaoWei.variable} antialiased bg-white`}
       >
-        <HeaderColorProvider>
-          <Header />
-          {children}
-          <Footer />
-          <FloatingContactWidget
-          // whatsappNumber={contact?.data?.whatsappNumber}
-          // contactNumber={contact?.data?.contactNumber}
-          />
-        </HeaderColorProvider>
+        <MobileMenuProvider>
+          <HeaderColorProvider>
+            <Header />
+            {children}
+            <Footer />
+            <FloatingContactWidget
+            // whatsappNumber={contact?.data?.whatsappNumber}
+            // contactNumber={contact?.data?.contactNumber}
+            />
+          </HeaderColorProvider>
+        </MobileMenuProvider>
       </body>
     </html>
   );

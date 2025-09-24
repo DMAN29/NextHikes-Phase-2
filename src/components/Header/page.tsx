@@ -1,18 +1,18 @@
 "use client";
 
 import { useHeaderColor } from "@/app/context/HeaderColorContext";
+import { useMobileMenu } from "@/app/context/MobileMenuContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { IoMenuSharp, IoClose } from "react-icons/io5";
 import { RiMenu3Line } from "react-icons/ri";
+import Icon from "../Icon/page";
 
 export default function Header() {
   const [isFixed, setIsFixed] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [industriesOpen, setIndustriesOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  const { menuOpen, setMenuOpen } = useMobileMenu();
   const [dropdownMenu, setDropdownMenu] = useState("");
 
   const { textColor } = useHeaderColor();
@@ -99,6 +99,25 @@ export default function Header() {
     },
   ];
 
+  const links = [
+    {
+      platform: "facebook",
+      url: "https://www.facebook.com/nexthikes",
+    },
+    {
+      platform: "instagram",
+      url: "https://www.instagram.com/next_hikes/?igsh=MThydTFxYTg2ZGt6MQ%3D%3D#",
+    },
+    {
+      platform: "linkedin",
+      url: "https://www.linkedin.com/company/next-hikes/",
+    },
+    {
+      platform: "twitter",
+      url: "https://x.com/i/flow/login?redirect_after_login=%2FNexthikes",
+    },
+  ];
+
   return (
     <header
       className={`top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -177,16 +196,11 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="md:hidden flex items-center justify-center text-3xl text-white focus:outline-none bg-[#C2C2C2] rounded-full w-10 h-10"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? (
-            <IoClose size={20} />
-          ) : (
-            <RiMenu3Line color={textColor || "#fff"} size={20} />
-          )}
+          {<RiMenu3Line color={textColor || "#fff"} size={20} />}
         </button>
       </div>
 
@@ -198,11 +212,30 @@ export default function Header() {
       )}
 
       <div
-        className={`md:hidden fixed top-0 right-0 h-full w-64 bg-black/90 backdrop-blur-md shadow-lg transform transition-transform duration-300 z-50 ${
+        className={`md:hidden w-full fixed top-0 right-0 h-full bg-black/90 backdrop-blur-md shadow-lg transform transition-transform duration-300 z-60 overflow-hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ backgroundImage: "url('/image/header-back.webp')" }}
       >
-        <div className="flex flex-col p-6 space-y-6 text-white">
+        <div className="flex justify-between items-center px-5 py-3">
+          <Image
+            src={"/image/nexthikes-black.webp"}
+            alt="nexthikes-logo"
+            width={170}
+            height={90}
+            priority
+          />
+          <div className="bg-[#C2C2C2] w-10 h-10 rounded-full flex justify-center items-center">
+            <button
+              className="cursor-pointer"
+              onClick={() => setMenuOpen(false)}
+            >
+              <IoClose size={24} color="white" />
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col px-6 pt-3 pb-13 space-y-6 text-[#363636] font-semibold overflow-y-auto max-h-[calc(100%-4rem)]">
           {menuItems.map((item, index) => (
             <div key={index} className="flex flex-col">
               {item.submenu ? (
@@ -224,7 +257,7 @@ export default function Header() {
                   </button>
 
                   {dropdownMenu === item.title && (
-                    <div className="flex flex-col mt-2 space-y-1 text-black bg-white/90 backdrop-blur-sm rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <div className="flex flex-col scrollbar-hide mt-2 space-y-2 max-h-60 text-black bg-white/90 backdrop-blur-sm rounded-xl shadow-md overflow-y-auto transition-all duration-300">
                       {item.submenu.map((subItem, subIndex) => (
                         <Link
                           key={subIndex}
@@ -242,17 +275,25 @@ export default function Header() {
                 <Link
                   href={item.url}
                   onClick={() => setMenuOpen(false)}
-                  className=" py-2"
+                  className="py-2"
                 >
                   {item.title}
                 </Link>
               )}
             </div>
           ))}
-
-          <button className="ml-4 rounded-full flex gap-2 items-center bg-white/20 px-4 py-2 text-white backdrop-blur-md text-sm hover:bg-white/30 transition">
-            Contact Us <FaAngleRight />
-          </button>
+        </div>
+        <div className="flex justify-center gap-4 mb-4">
+          {links?.map((item: any, index: any) => (
+            <Link
+              href={item?.url}
+              target="_blank"
+              className={`text-xl p-2 border border-black aspect-square rounded-full cursor-pointer`}
+              key={index}
+            >
+              <Icon name={item?.platform} color="#000" />
+            </Link>
+          ))}
         </div>
       </div>
     </header>
