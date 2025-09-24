@@ -6,6 +6,9 @@ import CRMWhy from "@/components/CRMWhy/page";
 // import DonutRotating from "@/components/DonutRotating";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import Expertise from "@/components/Expertise/page";
+import Mission from "@/components/HealthCare/mission";
+import SolutionsMap from "@/components/HealthCare/SolutionsMap";
+import TechFeatures from "@/components/HealthCare/techFeatures";
 import MarketPage from "@/components/Market/page";
 import ProjectGraph from "@/components/ProjectGraph/page";
 import ServiceFormPage from "@/components/ServiceForm/page";
@@ -194,26 +197,11 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
       )}
       {matchedConfig?.styleKey === "healthcare" && (
         <>
-          <Banner
-            platform="astrology"
-            backgroundColor={["#FCF4EC"]}
-            bannerImage={[{ icon: "/image/mobile.webp" }]}
-            subTitle="Astrology App and Website Development"
-            cta={[
-              {
-                text: "Explore Now",
-                url: "",
-                backgroundColor: "#ffffff",
-                textColor: "#363636",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`Own your own <br /> Astrology app now !`}
-            headerTextColor="#000"
-          />
+          <div className="h-[400px] bg-amber-900"></div>
           <ElevateBusinessPage />
-
-          {/* <DonutRotating /> */}
+          <Mission />
+          <TechFeatures />
+          <SolutionsMap />
         </>
       )}
       {matchedConfig?.styleKey === "e-commerce" && (
