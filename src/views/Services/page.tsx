@@ -320,11 +320,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           <PlatformDevelopment />
           <ProcessFlow />
           <ElevateBusinessPage />
-<<<<<<< HEAD
-
-=======
           <Projects />
->>>>>>> dc9d1176c6f0b8a220fb108d546be4d03d62b623
         </div>
       )}
 
