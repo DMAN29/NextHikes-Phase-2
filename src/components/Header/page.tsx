@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
-import { IoMenuSharp, IoClose } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { RiMenu3Line } from "react-icons/ri";
 import Icon from "../Icon/page";
 
@@ -125,7 +125,7 @@ export default function Header() {
       }`}
     >
       <div
-        className="relative mx-auto max-w-6xl px-6 py-4 flex items-center justify-between"
+        className="relative mx-auto max-w-7xl px-6 py-4 flex items-center justify-between"
         style={{ color: textColor || "#fff" }}
       >
         <div className="flex items-center gap-2 font-medium tracking-wide cursor-pointer">
@@ -217,7 +217,7 @@ export default function Header() {
         }`}
         style={{ backgroundImage: "url('/image/header-back.webp')" }}
       >
-        <div className="flex justify-between items-center px-5 py-3">
+        <div className="flex justify-between items-center gap-3 px-5 py-3">
           <Image
             src={"/image/nexthikes-black.webp"}
             alt="nexthikes-logo"
@@ -282,8 +282,7 @@ export default function Header() {
               )}
             </div>
           ))}
-        </div>
-        <div className="flex justify-center gap-4 mb-4">
+          <div className="flex justify-center gap-4 mb-4">
           {links?.map((item: any, index: any) => (
             <Link
               href={item?.url}
@@ -295,6 +294,8 @@ export default function Header() {
             </Link>
           ))}
         </div>
+        </div>
+        
       </div>
     </header>
   );
