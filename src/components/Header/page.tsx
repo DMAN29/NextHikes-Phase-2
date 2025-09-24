@@ -91,7 +91,7 @@ export default function Header() {
     },
       {
     title: "Marketing", 
-    url: "/marketingpage",    
+    url: "/marketing",    
   },
     {
       title: "Online Payment",
