@@ -141,7 +141,7 @@ export default function AstrologyPoojas() {
       {/* Heading */}
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:bg-clip-text">
-          Astrology Poojas You'll Receive
+          Astrology Poojas You&lsquo;ll Receive
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Our Spiritual consultant will call and guide you through the process.
