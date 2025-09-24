@@ -51,7 +51,7 @@ const greenGradient: [string, string] = ["#7EC687", "#D8F3DE"];
 
 const CARD_WIDTH = 360;
 const SMALL_CARD_HEIGHT = 180;
-const LARGE_CARD_HEIGHT = 250;
+const LARGE_CARD_HEIGHT = 220;
 
 const img1 = "/image/health1.png";
 const img2 = "/image/health4.png";
