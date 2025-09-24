@@ -82,7 +82,7 @@ export default function AppBenfits() {
             The Mobile Advantage: Why Apps are Essential
           </h3>
           <p className="text-sm md:text-base lg:text-lg xl:text-2xl font-extralight">
-            In today's mobile-first world, a strong app presence is critical.
+            In today&lsquo;s mobile-first world, a strong app presence is critical.
             Mobile apps offer unparalleled opportunities for direct customer
             engagement, brand loyalty, and personalized experiences that
             traditional websites often cannot match. From enhancing customer

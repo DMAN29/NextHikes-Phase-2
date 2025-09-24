@@ -1,15 +1,16 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { FaArrowRight } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { FaArrowRight } from "react-icons/fa6";
 
 export interface BentoCardProps {
   color?: string;
   title?: string;
   description?: string;
   label?: string;
-  imgUrl?: string;
   textAutoHide?: boolean;
   disableAnimations?: boolean;
 }
@@ -26,13 +27,52 @@ export interface BentoProps {
   glowColor?: string;
   clickEffect?: boolean;
   enableMagnetism?: boolean;
-  projects?: BentoCardProps[];
+  cardData: any;
 }
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
 const DEFAULT_GLOW_COLOR = "132, 0, 255";
 const MOBILE_BREAKPOINT = 768;
+
+// const cardData: BentoCardProps[] = [
+//   {
+//     color: '#060010',
+//     title: 'Analytics',
+//     description: 'Track user behavior',
+//     label: 'Insights'
+//   },
+//   {
+//     color: '#060010',
+//     title: 'Dashboard',
+//     description: 'Centralized data view',
+//     label: 'Overview'
+//   },
+//   {
+//     color: '#060010',
+//     title: 'Collaboration',
+//     description: 'Work together seamlessly',
+//     label: 'Teamwork'
+//   },
+//   {
+//     color: '#060010',
+//     title: 'Automation',
+//     description: 'Streamline workflows',
+//     label: 'Efficiency'
+//   },
+//   {
+//     color: '#060010',
+//     title: 'Integration',
+//     description: 'Connect favorite tools',
+//     label: 'Connectivity'
+//   },
+//   {
+//     color: '#060010',
+//     title: 'Security',
+//     description: 'Enterprise-grade protection',
+//     label: 'Protection'
+//   }
+// ];
 
 const createParticleElement = (
   x: number,
@@ -77,16 +117,6 @@ const updateCardGlowProperties = (
   card.style.setProperty("--glow-intensity", glow.toString());
   card.style.setProperty("--glow-radius", `${radius}px`);
 };
-
-const CustomRightArrow = ({ onClick }: { onClick?: () => void }) => (
-  <button
-    onClick={onClick}
-    aria-label="Next slide"
-    className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10 bg-gray-500/30 text-white p-5 rounded-full "
-  >
-    <FaArrowRight />
-  </button>
-);
 
 const ParticleCard: React.FC<{
   children: React.ReactNode;
@@ -507,7 +537,7 @@ const BentoCardGrid: React.FC<{
   gridRef?: React.RefObject<HTMLDivElement | null>;
 }> = ({ children, gridRef }) => (
   <div
-    className="bento-section grid gap-2 pl-3 select-none relative"
+    className="bento-section grid gap-2 max-w-[100%] select-none relative"
     style={{ fontSize: "clamp(1rem, 0.9rem + 0.5vw, 1.5rem)" }}
     ref={gridRef}
   >
@@ -532,6 +562,7 @@ const useMobileDetection = () => {
 };
 
 const MagicBento: React.FC<BentoProps> = ({
+  cardData,
   textAutoHide = true,
   enableStars = true,
   enableSpotlight = true,
@@ -543,117 +574,137 @@ const MagicBento: React.FC<BentoProps> = ({
   glowColor = DEFAULT_GLOW_COLOR,
   clickEffect = true,
   enableMagnetism = true,
-  projects = [],
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobileDetection();
   const shouldDisableAnimations = disableAnimations || isMobile;
-
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1023 },
-      items: 2.5,
-      partialVisibilityGutter: 15,
-    },
-    tablet: {
-      breakpoint: { max: 1023, min: 768 },
-      items: 2,
-      partialVisibilityGutter: 10,
-    },
-    mobile: {
-      breakpoint: { max: 765, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 5,
-    },
-  };
 
   return (
     <>
       <style>
         {`
           .bento-section {
-             --glow-x: 50%;
-             --glow-y: 50%;
-             --glow-intensity: 0;
-             --glow-radius: 200px;
-             --glow-color: ${glowColor};
-             --border-color: #392e4e;
-             --background-dark: #060010;
-             --white: hsl(0, 0%, 100%);
-             --purple-primary: rgba(132, 0, 255, 1);
-             --purple-glow: rgba(132, 0, 255, 0.2);
-             --purple-border: rgba(132, 0, 255, 0.8);
-           }
-           
-           .card--border-glow::after {
-             content: '';
-             position: absolute;
-             inset: 0;
-             padding: 6px;
-             background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-                 rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
-                 rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
-                 transparent 60%);
-             border-radius: inherit;
-             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-             mask-composite: subtract;
-             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-             -webkit-mask-composite: xor;
-             pointer-events: none;
-             transition: opacity 0.3s ease;
-             z-index: 1;
-           }
-           
-           .card--border-glow:hover::after {
-             opacity: 1;
-           }
-           
-           .card--border-glow:hover {
-             box-shadow: 0 4px 20px rgba(46, 24, 78, 0.4), 0 0 30px rgba(${glowColor}, 0.2);
-           }
-           
-           .particle::before {
-             content: '';
-             position: absolute;
-             top: -2px;
-             left: -2px;
-             right: -2px;
-             bottom: -2px;
-             background: rgba(${glowColor}, 0.2);
-             border-radius: 50%;
-             z-index: -1;
-           }
-           
-           .particle-container:hover {
-             box-shadow: 0 4px 20px rgba(46, 24, 78, 0.2), 0 0 30px rgba(${glowColor}, 0.2);
-           }
-           
-           .text-clamp-1 {
-             display: -webkit-box;
-             -webkit-box-orient: vertical;
-             -webkit-line-clamp: 1;
-             line-clamp: 1;
-             overflow: hidden;
-             text-overflow: ellipsis;
-           }
-           
-           .text-clamp-2 {
-             display: -webkit-box;
-             -webkit-box-orient: vertical;
-             -webkit-line-clamp: 2;
-             line-clamp: 2;
-             overflow: hidden;
-             text-overflow: ellipsis;
-           }
-
-           .carousel-item {
-      padding-right: 15px;
-    }
-
-    .react-multiple-carousel__arrow--left {
-  display: none !important;
-}
-
+            --glow-x: 50%;
+            --glow-y: 50%;
+            --glow-intensity: 0;
+            --glow-radius: 200px;
+            --glow-color: ${glowColor};
+            --border-color: #392e4e;
+            --background-dark: #060010;
+            --white: hsl(0, 0%, 100%);
+            --purple-primary: rgba(132, 0, 255, 1);
+            --purple-glow: rgba(132, 0, 255, 0.2);
+            --purple-border: rgba(132, 0, 255, 0.8);
+          }
+          
+          .card-responsive {
+            grid-template-columns: 1fr;
+            width: 90%;
+            margin: 0 auto;
+            padding: 0.5rem;
+          }
+          
+          @media (min-width: 600px) {
+            .card-responsive {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+          
+          @media (min-width: 1024px) {
+            .card-responsive {
+              grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .card-responsive .card:nth-child(3) {
+              grid-column: span 2;
+              grid-row: span 2;
+            }
+            
+            .card-responsive .card:nth-child(4) {
+              grid-column: 1 / span 2;
+              grid-row: 2 / span 2;
+            }
+            
+            .card-responsive .card:nth-child(6) {
+              grid-column: 4;
+              grid-row: 3;
+            }
+          }
+          
+          .card--border-glow::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 6px;
+            background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+                rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
+                rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
+                transparent 60%);
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: subtract;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+          }
+          
+          .card--border-glow:hover::after {
+            opacity: 1;
+          }
+          
+          .card--border-glow:hover {
+            box-shadow: 0 4px 20px rgba(46, 24, 78, 0.4), 0 0 30px rgba(${glowColor}, 0.2);
+          }
+          
+          .particle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: rgba(${glowColor}, 0.2);
+            border-radius: 50%;
+            z-index: -1;
+          }
+          
+          .particle-container:hover {
+            box-shadow: 0 4px 20px rgba(46, 24, 78, 0.2), 0 0 30px rgba(${glowColor}, 0.2);
+          }
+          
+          .text-clamp-1 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          
+          .text-clamp-2 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          
+          @media (max-width: 599px) {
+            .card-responsive {
+              grid-template-columns: 1fr;
+              width: 90%;
+              margin: 0 auto;
+              padding: 0.5rem;
+            }
+            
+            .card-responsive .card {
+              width: 100%;
+              min-height: 180px;
+            }
+          }
         `}
       </style>
 
@@ -668,29 +719,23 @@ const MagicBento: React.FC<BentoProps> = ({
       )}
 
       <BentoCardGrid gridRef={gridRef}>
-        <Carousel
-          // className="border border-red-400"
-          responsive={responsive}
-          infinite
-          autoPlay
-          autoPlaySpeed={3000}
-          keyBoardControl
-          showDots={false}
-          slidesToSlide={1}
-          containerClass="carousel-container"
-          itemClass="carousel-item"
-          // partialVisible
-          removeArrowOnDeviceType={["mobile"]}
-          swipeable
-          draggable
-          transitionDuration={600}
-          customTransition="ease 0.6s"
-          customRightArrow={<CustomRightArrow />}
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={2.5}
+          breakpoints={{
+            640: { slidesPerView: 1.5 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 2.5 },
+          }}
+          loop
+          autoplay
+          className="w-full"
         >
-          {projects.map((card, index) => {
-            const baseClassName = `card flex flex-col justify-between relative aspect-[4/3] min-h-[200px]  md:w-full max-w-full p-5  border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5   hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]
-            h-[400px] xl:h-[500px] 
-            ${enableBorderGlow ? "card--border-glow" : ""}`;
+          {cardData.map((card: any, index: any) => {
+            const baseClassName = `card flex flex-col justify-between relative aspect-[4/3] h-[175px] md:min-h-[450px] w-full max-w-full  border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] rounded-[12px] md:rounded-none ${
+              enableBorderGlow ? "card--border-glow" : ""
+            }`;
 
             const cardStyle = {
               backgroundColor: card.color || "var(--background-dark)",
@@ -700,135 +745,69 @@ const MagicBento: React.FC<BentoProps> = ({
               "--glow-y": "50%",
               "--glow-intensity": "0",
               "--glow-radius": "200px",
-              backgroundImage: card.imgUrl ? `url(${card.imgUrl})` : undefined,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
             } as React.CSSProperties;
 
-            if (enableStars) {
-              return (
-                // <ParticleCard
-                //   key={index}
-                //   className={baseClassName}
-                //   style={cardStyle}
-                //   disableAnimations={shouldDisableAnimations}
-                //   particleCount={particleCount}
-                //   glowColor={glowColor}
-                //   enableTilt={enableTilt}
-                //   clickEffect={clickEffect}
-                //   enableMagnetism={enableMagnetism}
-                // >
-                //   <div className="card__header flex justify-between gap-3 relative text-white">
-                //     <span className="card__label text-base">{card.label}</span>
-                //   </div>
-                //   <div className="card__content flex flex-col relative text-white">
-                //     <h3
-                //       className={`card__title font-normal text-base m-0 mb-1 ${
-                //         textAutoHide ? "text-clamp-1" : ""
-                //       }`}
-                //     >
-                //       {card.title}
-                //     </h3>
-                //     <p
-                //       className={`card__description text-xs leading-5 opacity-90 ${
-                //         textAutoHide ? "text-clamp-2" : ""
-                //       }`}
-                //     >
-                //       {card.description}
-                //     </p>
-                //   </div>
-                // </ParticleCard>
-                <ParticleCard
-                  key={index}
-                  className={baseClassName}
-                  style={cardStyle}
-                  disableAnimations={shouldDisableAnimations}
-                  particleCount={particleCount}
-                  glowColor={glowColor}
-                  enableTilt={enableTilt}
-                  clickEffect={clickEffect}
-                  enableMagnetism={enableMagnetism}
-                >
-                  {/* Overlay div */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      backgroundColor: "rgba(6, 0, 16, 0.8)", // semi-transparent dark overlay
-                      //  dius: "20px", // match card border radius
-                      pointerEvents: "none",
-                      zIndex: 0,
-                    }}
-                  />
-
-                  {/* Card content */}
-                  <div
-                    style={{
-                      position: "relative",
-                      zIndex: 1,
-                      // border: "2px solid red",
-
-                      top: "70%",
-                    }}
+            return (
+              <SwiperSlide key={index}>
+                {enableStars ? (
+                  <ParticleCard
+                    className={baseClassName}
+                    style={cardStyle}
+                    disableAnimations={shouldDisableAnimations}
+                    particleCount={particleCount}
+                    glowColor={glowColor}
+                    enableTilt={enableTilt}
+                    clickEffect={clickEffect}
+                    enableMagnetism={enableMagnetism}
                   >
-                    {/* <div className="card__header flex justify-between gap-3 relative text-white">
+                    <div
+                      className="card__content flex flex-col relative text-white min-h-[100%] "
+                      style={{
+                        backgroundImage: `url(${card.image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-[#00000099]"></div>
+                      <div className="absolute bottom-13 left-7">
+                        <h3 className="card__title z-1 capitalize text-white text-2xl font-medium">
+                          {card.title}
+                        </h3>
+                        <p className="card__description uppercase text-[#B6F214] text-base flex items-center gap-3">
+                          {card.button} <FaArrowRight />
+                        </p>
+                      </div>
+                    </div>
+                  </ParticleCard>
+                ) : (
+                  <div className={baseClassName} style={cardStyle}>
+                    <div className="card__header flex justify-between gap-3 relative text-white">
                       <span className="card__label text-base">
                         {card.label}
                       </span>
-                    </div> */}
-                    <div className="card__content flex flex-col relative text-white p-5">
+                    </div>
+                    <div className="card__content flex flex-col relative text-white">
                       <h3
-                        className={`card__title font-semibold text-4xl m-0 mb-1 ${
+                        className={`card__title font-normal text-base m-0 mb-1 ${
                           textAutoHide ? "text-clamp-1" : ""
                         }`}
                       >
                         {card.title}
                       </h3>
-                      <button
-                        className={`card__description text-lg leading-5 opacity-90 flex items-center gap-5 mt-5 `}
+                      <p
+                        className={`card__description text-xs leading-5 opacity-90 ${
+                          textAutoHide ? "text-clamp-2" : ""
+                        }`}
                       >
-                        <span
-                          className={`${
-                            textAutoHide ? "text-clamp-1 truncate" : ""
-                          } text-[#B6F214] font-semibold`}
-                          style={{ flexShrink: 1 }}
-                        >
-                          CASE STUDY
-                        </span>
-                        <FaArrowRight />
-                      </button>
+                        {card.description}
+                      </p>
                     </div>
                   </div>
-                </ParticleCard>
-              );
-            }
-
-            return (
-              <div key={index} className={baseClassName} style={cardStyle}>
-                <div className="card__header flex justify-between gap-3 relative text-white">
-                  <span className="card__label text-base">{card.label}</span>
-                </div>
-                <div className="card__content flex flex-col relative text-white">
-                  <h3
-                    className={`card__title font-normal text-base m-0 mb-1 ${
-                      textAutoHide ? "text-clamp-1" : ""
-                    }`}
-                  >
-                    {card.title}
-                  </h3>
-                  <p
-                    className={`card__description text-xs leading-5 opacity-90 ${
-                      textAutoHide ? "text-clamp-2" : ""
-                    }`}
-                  >
-                    {card.description}
-                  </p>
-                </div>
-              </div>
+                )}
+              </SwiperSlide>
             );
           })}
-        </Carousel>
+        </Swiper>
       </BentoCardGrid>
     </>
   );

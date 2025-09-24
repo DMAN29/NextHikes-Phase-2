@@ -24,7 +24,7 @@ export default function WhoWeAre() {
           Nexthikes is a digital solution for a product agency that relates
           people relations with products, story development, and other services.
         </p>
-        <Image src={"/icons/bowl-bottom.svg"} alt="bowl-bottom-icon" width={100} height={100} className=" absolute bottom-0 right-0" />
+        {/* <Image src={"/icons/bowl-bottom.svg"} alt="bowl-bottom-icon" width={100} height={100} className=" absolute bottom-0 right-0" /> */}
 
         <StarBorder
           as="button"

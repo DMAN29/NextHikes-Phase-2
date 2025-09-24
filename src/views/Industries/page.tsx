@@ -152,7 +152,7 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
           <Banner
             platform="astrology"
             backgroundColor={["#FCF4EC"]}
-            bannerImage="/image/mobile.webp"
+            bannerImage={[{ icon: "/image/mobile.webp" }]}
             subTitle="Astrology App and Website Development"
             cta={[
               {
@@ -188,7 +188,7 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
             backgroundColor={[
               "linear-gradient(180deg, #FFFFFF 0%, #E3EBF1 100%)",
             ]}
-            bannerImage="/image/e-comm.webp"
+            bannerImage={[{ icon: "/image/e-comm.webp" }]}
             subTitle={`SELL MORE WITH HIGH PERFORMANCE E-COMMERCE PLATFORM`}
             cta={[
               {
@@ -229,7 +229,7 @@ EVERYWHERE`}
           <Banner
             platform="gaming"
             backgroundColor={["#000"]}
-            bannerImage="/image/game-bg.webp"
+            bannerImage={[{ icon: "/image/game-bg.webp" }]}
             subTitle={``}
             cta={[
               {

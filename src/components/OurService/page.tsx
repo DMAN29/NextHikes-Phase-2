@@ -51,7 +51,7 @@ export default function OurService() {
         <h4 className="text-white text-center uppercase text-sm sm:text-base md:text-lg font-medium tracking-wide">
           Our Best Services
         </h4>
-        <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center my-4 font-bold leading-snug">
+        <h2 className="text-white text-xl sm:text-3xl md:text-4xl lg:text-5xl text-center my-4 font-bold leading-snug">
           We provide end-to-end solutions
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 md:gap-x-12 md:gap-y-10 mt-10 max-w-5xl mx-auto">

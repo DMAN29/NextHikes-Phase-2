@@ -37,19 +37,21 @@ const data = {
 
 export default function PlatformDevelopment() {
   return (
-    <div>
-      <h1 className="text-4xl text-center font-semibold text-[#363636] mt-10 my-10 w-fit mx-auto  px-4 py-2">
+    <div className="mb-30">
+      <h1 className="text-4xl text-center font-semibold text-[#363636] mt-10 my-10 max-w-4xl mx-auto  px-4 py-2">
         Navigating the Digital Launchpad: Whats stopping Launching your brand?
       </h1>
 
       <div className="relative w-full h-[500px] my-10">
-        <Image
+        <div className="absolute  -bottom-20 w-[100%] h-[100%]">
+          <Image
           src={img1}
           alt="Digital Growth Illustration"
           fill
           priority
           className="w-full h-auto"
         />
+        </div>
 
         <div className="absolute top-0 left-0 w-full h-full flex items-start justify-between px-12 py-6">
           {/* Problems - left */}

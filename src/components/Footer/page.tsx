@@ -83,29 +83,17 @@ export default function Footer() {
       name: "App Development",
     },
     {
-      url: "/service/platform-dev",
+      url: "/services/platform-dev",
       name: "Platform Development",
     },
     {
-      url: "/service/digital-marketing",
+      url: "/services/digital-marketing",
       name: "Digital Marketing",
     },
     {
-      url: "/service/ai",
+      url: "/services/ai",
       name: "Artificial Inteligence",
     },
-    // {
-    //   url: "/services/app-development",
-    //   name: "App Development",
-    // },
-    // {
-    //   url: "/industries/gaming",
-    //   name: "Gaming",
-    // },
-    // {
-    //   url: "/industries/crm",
-    //   name: "CRM & ERP",
-    // },
   ];
 
   return (
@@ -126,7 +114,7 @@ export default function Footer() {
               />
             </span>
           </div>
-          <div className="flex flex-col mt-5">
+          {/* <div className="flex flex-col mt-5">
             <h5 className="uppercase text-black text-xl">Email address*</h5>
             <input
               type="text"
@@ -150,7 +138,7 @@ export default function Footer() {
             >
               Subscribe to our Newsletter
             </button>
-          </div>
+          </div> */}
           {/* <p className="text-sm text-black mb-4 mt-3">{contact?.about}</p>
           <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
             {contact?.socialLinks?.map((item: any, index: any) => (

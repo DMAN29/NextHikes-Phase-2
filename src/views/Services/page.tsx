@@ -10,7 +10,6 @@ import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import Title from "@/components/Title/page";
 import ChooseUsTimeline from "@/components/WhyChooseUs/page";
-import { div } from "framer-motion/client";
 
 interface ServiceProps {
   slug: any;
@@ -117,31 +116,31 @@ export default function ServicePage({ slug, data }: ServiceProps) {
         "app-dev",
       ],
     },
-    // {
-    //   styleKey: "marketing",
-    //   keywords: [
-    //     "marketing",
-    //     "digital",
-    //     "ads",
-    //     "social-media",
-    //     "SEO",
-    //     "content",
-    //     "email",
-    //     "branding",
-    //     "campaign",
-    //     "PPC",
-    //     "analytics",
-    //     "growth",
-    //     "strategy",
-    //     "influencer",
-    //     "engagement",
-    //     "conversion",
-    //     "traffic",
-    //     "leads",
-    //     "retargeting",
-    //     "optimization",
-    //   ],
-    // },
+    {
+      styleKey: "digital-marketing",
+      keywords: [
+        "marketing",
+        "digital",
+        "ads",
+        "social-media",
+        "SEO",
+        "content",
+        "email",
+        "branding",
+        "campaign",
+        "PPC",
+        "analytics",
+        "growth",
+        "strategy",
+        "influencer",
+        "engagement",
+        "conversion",
+        "traffic",
+        "leads",
+        "retargeting",
+        "optimization",
+      ],
+    },
     {
       styleKey: "ai",
       keywords: [
@@ -216,7 +215,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           <Banner
             platform="web-dev"
             backgroundColor={["#FCF4EC"]}
-            bannerImage="/image/web-service.webp"
+            bannerImage={[{ icon: "/image/web-service.webp" }]}
             subTitle={`Expert web development <br /> for unstoppable growth`}
             cta={[
               {
@@ -249,7 +248,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           <Banner
             platform="app-development"
             backgroundColor={["#FFF"]}
-            bannerImage="/image/mobile-second.webp"
+            bannerImage={[{ icon: "/icons/mobile-second.webp" }]}
             subTitle={`Revolutionary Mobile Experiences Starts Here.`}
             cta={[
               {
@@ -292,12 +291,34 @@ export default function ServicePage({ slug, data }: ServiceProps) {
       )}
 
       {matchedConfig?.styleKey === "platform-development" && (
-        <>
-          <div className="h-56 bg-white"></div>
+        <div className="">
+          <Banner
+            platform="platform-development"
+            backgroundColor={["#FFF"]}
+            bannerImage={[
+              { icon: "/icons/app.svg", title: "app" },
+              { icon: "/icons/web-icon.svg", title: "web" },
+              { icon: "/icons/design.svg", title: "design" },
+              { icon: "/icons/branding.svg", title: "branding" },
+              { icon: "/icons/marketing-plat.svg", title: "marketing" },
+            ]}
+            subTitle={``}
+            cta={[
+              {
+                text: "lauch your app idea",
+                url: "",
+                backgroundColor: "#083E92",
+                textColor: "#FFFFFF",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`innovate. create. dominate.`}
+            headerTextColor="#fff"
+            backgroundImage="/image/platform-banner.webp"
+          />
           <PlatformDevelopment />
           <ElevateBusinessPage />
-          <Projects />
-        </>
+        </div>
       )}
 
       {matchedConfig?.styleKey === "ai" && (
