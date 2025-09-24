@@ -51,7 +51,7 @@ const greenGradient: [string, string] = ["#7EC687", "#D8F3DE"];
 
 const CARD_WIDTH = 360;
 const SMALL_CARD_HEIGHT = 180;
-const LARGE_CARD_HEIGHT = 220;
+const LARGE_CARD_HEIGHT = 250;
 
 const img1 = "/image/health1.png";
 const img2 = "/image/health4.png";
@@ -195,10 +195,10 @@ const BigScreenTranslateY: React.FC = () => {
                             />
                           </div>
                         </div>
-                        <h3 className="font-bold text-xs md:text-sm lg:text-lg text-center mb-2">
+                        <h3 className="font-bold text-xs md:text-sm lg:text-base xl:text-lg text-center mb-2">
                           {card.title}
                         </h3>
-                        <p className="text-[10px] md:text-xs  lg:text-base text-center opacity-80">
+                        <p className="text-[10px] md:text-xs  lg:text-sm xl:text-base text-center opacity-80">
                           {card.description}
                         </p>
                       </div>
