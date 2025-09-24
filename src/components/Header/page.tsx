@@ -43,6 +43,10 @@ export default function Header() {
       url: "/industries/crm",
       name: "CRM & ERP",
     },
+    {
+      url: "/industries/healthcare",
+      name: "Healthcare",
+    },
   ];
 
   const serviceMenus = [

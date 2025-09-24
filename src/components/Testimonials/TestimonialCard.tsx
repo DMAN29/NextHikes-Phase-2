@@ -8,13 +8,13 @@ const TestimonialCard: React.FC<{
 }> = ({ testimonial, isActive }) => (
   <div
     className={`
-      relative mt-4 transition-transform duration-500 origin-bottom
+      relative my-17 transition-transform duration-500 origin-bottom
       w-[220px] sm:w-[270px] md:w-[280px]
       h-[330px] sm:h-[370px] md:h-[450px]
       rounded-2xl
       ${
         isActive
-          ? "md:scale-110 md:shadow-md scale-100 z-10 p-[2px] bg-[linear-gradient(163.17deg,#AEFF93_-1.22%,rgba(168,252,140,0.1)_70.61%,rgba(166,251,137,0)_98.61%)]"
+          ? "md:scale-110 md:shadow-md scale-100 z-10 p-[2px] bg-[linear-gradient(163.17deg,#AEFF93_-1.22%,rgba(168,252,140,0.1)_70.61%,rgba(166,251,137,0)_98.61%)] "
           : "scale-100 opacity-80 z-10 bg-transparent"
       }
     `}
