@@ -7,7 +7,7 @@ export default function RoadmapStep() {
     <div className="min-h-screen py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-29">
+      <div className="text-center mb-10 md:mb-29">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-10">
             Your Growth, Our Guarantee. Start With Confidence.
           </h1>

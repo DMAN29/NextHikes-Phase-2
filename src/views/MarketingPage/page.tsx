@@ -22,8 +22,11 @@ export default function MarketingPage() {
 
   return (
     <main className="w-full min-h-screen">
+      <div className="w-full lg:px-20 pt-32 bg-gradient-to-b from-purple-500 to-pink-400">
+</div>
       {/* 🔹 Hero Section */}
       <section className="w-full flex items-center justify-center px-4 my-30 sm:px-6 md:px-12 lg:px-20">
+        
         <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-items-center">
           {/* Left Side Image */}
           <div className="flex justify-center">
