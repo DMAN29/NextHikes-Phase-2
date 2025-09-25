@@ -326,7 +326,23 @@ export default function ServicePage({ slug, data }: ServiceProps) {
 
       {matchedConfig?.styleKey === "ai" && (
         <>
-          <div className="h-56 border border-black bg-[#452A7C]"></div>
+          <Banner
+            platform="ai"
+            backgroundColor={["#FFF"]}
+            subTitle={`Harness the power of AI to transform complex data into actionable insights that resonate with your audience and deliver measurable results. `}
+            cta={[
+              {
+                text: `Schedule a consultation`,
+                url: "",
+                backgroundColor: "linear-gradient(90deg, #5375CD 0%, #282E98 68.75%)",
+                textColor: "#FFFFFF",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`Artificial Intelligence Company in India`}
+            headerTextColor="#000"
+            backgroundImage="/image/ai-banner.webp"
+          />
           <AIService />
         </>
       )}

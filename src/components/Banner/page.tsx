@@ -21,7 +21,8 @@ type Platform =
   | "gaming"
   | "web-dev"
   | "app-development"
-  | "platform-development";
+  | "platform-development"
+  | "ai";
 
 interface BannerCTA {
   text: string;
@@ -129,6 +130,26 @@ export default function Banner({
                 key={idx}
                 href={btn.url}
                 className="px-6 py-3 rounded-full w-full max-w-sm font-medium border text-center transition hover:opacity- uppercase"
+                style={{
+                  background: btn.backgroundColor || "transparent",
+                  color: btn.textColor,
+                  borderColor: btn.borderColor,
+                }}
+              >
+                {btn.text}
+              </Link>
+            ))}
+          </div>
+        );
+
+      case "ai":
+        return (
+          <div className="mt-8 flex flex-col justify-center gap-3">
+            {cta.map((btn, idx) => (
+              <Link
+                key={idx}
+                href={btn.url}
+                className="px-6 py-3 rounded-full w-full text-base md:text-lg max-w-sm font-medium border text-center transition hover:opacity- uppercase"
                 style={{
                   background: btn.backgroundColor || "transparent",
                   color: btn.textColor,
@@ -410,6 +431,72 @@ export default function Banner({
               />
             )}
             <div className="mt-6 md:mt-8">{renderCTA("e-commerce")}</div>
+          </div>
+
+          {bannerImage && bannerImage.length > 0 && (
+            <>
+              {bannerImage.map((img, idx) => (
+                <Image
+                  key={idx}
+                  src={img.icon}
+                  alt={`banner-${idx}`}
+                  width={1000}
+                  height={1000}
+                  className="relative w-[100px] sm:w-[250px] md:w-[400px] h-auto"
+                  priority={idx === 0}
+                />
+              ))}
+            </>
+          )}
+        </section>
+      );
+
+    case "ai":
+      return (
+        <section className="relative flex flex-col md:min-h-screen md:flex-row items-center pt-20 md:py-30 px-6 sm:px-10 md:px-20">
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              background: backgroundColor?.[0] || "#FCF4EC",
+            }}
+          ></div>
+          <div
+            className="mx-auto h-[100%] md:mx-0 md:flex-1 px-0 md:px-6 flex flex-col justify-center items-center text-center"
+            style={{
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "top",
+              backgroundSize: "cover",
+            }}
+          >
+            {title && (
+              <h1
+                className="text-lg uppercase text-center sm:text-4xl md:text-5xl font-semibold leading-snug text-transparent"
+                style={{
+                  background: `linear-gradient(
+        90deg, 
+        #000000 0%, 
+        #212020 12.5%, 
+        #343333 19.23%, 
+        #9A014D 30.77%, 
+        #FF7DD6 37.02%, 
+        #000000 46.63%, 
+        #000000 63.94%
+      )`,
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                }}
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+            )}
+
+            {subTitle && (
+              <p
+                className="mt-4 sm:mt-5 capitalize w-full max-w-5xl text-[12px] sm:text-lg md:text-lg font-normal text-[#000000]"
+                dangerouslySetInnerHTML={{ __html: subTitle }}
+              />
+            )}
+            <div className="mt-6 md:mt-8">{renderCTA("ai")}</div>
           </div>
 
           {bannerImage && bannerImage.length > 0 && (

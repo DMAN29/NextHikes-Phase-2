@@ -154,4 +154,8 @@ export default function PaymentPage() {
       <ServiceFormPage backgroundColor="#452A7C1A" />
     </section>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0ca2e105aab57217f00bc4e99be01a8680768975

@@ -8,10 +8,10 @@ export default function PackageSection() {
       <div className="max-w-7xl mx-auto text-center">
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-          Your Transformation Package: What You'll Receive
+          Your Transformation Package: What You&lsquo;ll Receive
         </h2>
         <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-14">
-          When you embark on your journey with Nexthikes, you'll receive a
+          When you embark on your journey with Nexthikes, you&lsquo;ll receive a
           comprehensive package of spiritual tools and guidance to support your
           transformation:
         </p>
