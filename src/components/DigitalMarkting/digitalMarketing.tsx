@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 function useBreakpoint() {
   const [breakpoint, setBreakpoint] = useState("base");
   useEffect(() => {
+    if (typeof window === "undefined") return; // Guard for SSR
     const check = () => {
       if (window.innerWidth >= 1280) return setBreakpoint("xl");
       if (window.innerWidth >= 1024) return setBreakpoint("lg");
@@ -106,7 +107,7 @@ export default function DigitalMarketing() {
   const arrowGap = "1.5rem";
 
   // Responsive X values for desktop
-  const breakpoint = typeof window !== "undefined" ? useBreakpoint() : "xl";
+  const breakpoint = useBreakpoint(); // Hook now called unconditionally
   const getTranslateX = (index: number) => {
     if (breakpoint === "xl") return index === 0 || index === 3 ? -200 : -100;
     if (breakpoint === "lg") return index === 0 || index === 3 ? -80 : 10;
@@ -271,7 +272,6 @@ export default function DigitalMarketing() {
               className="object-contain"
               priority
             />
-            {/* Optionally add overlay text here if needed */}
           </div>
         </div>
 
