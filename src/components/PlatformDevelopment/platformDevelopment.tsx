@@ -89,18 +89,22 @@ export default function PlatformDevelopment() {
           </div>
         </div>
 
+        {/* ----- Mobile Layout ----- */}
         <div className="flex lg:hidden flex-col items-center gap-6">
           {/* Problems */}
-          <div className=" bg-opacity-90 mt-5 px-4 rounded-lg text-lg leading-relaxed w-5/6 ">
+          <div className=" bg-opacity-90 mt-5 px-4 rounded-lg text-lg leading-relaxed w-11/12 md:w-5/6 ">
             <h6
-              className="block lg:hidden text-black text-lg font-semibold uppercase text-center mb-2"
+              className="block lg:hidden text-black text-lg md:text-2xl font-semibold uppercase text-center mb-5"
               style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.4)" }}
             >
               the challenge
             </h6>
             <ul className="pl-5" style={{ listStyleType: "disc" }}>
               {data.problems.map(({ title, description }, idx) => (
-                <li key={idx} className="mb-6 font-extralight text-base">
+                <li
+                  key={idx}
+                  className="mb-6 font-extralight text-sm md:text-lg"
+                >
                   <span className="font-medium">{title} :</span> {description}
                 </li>
               ))}
@@ -115,16 +119,19 @@ export default function PlatformDevelopment() {
             className="w-full h-[190px]"
           />
 
-          <div className=" bg-opacity-90 p-4 rounded-lg text-base w-5/6 ">
+          <div className=" bg-opacity-90 p-4 rounded-lg text-base w-11/12 md:w-5/6 ">
             <h6
-              className="block lg:hidden text-black text-lg font-semibold uppercase text-center mb-2"
+              className="block lg:hidden text-black text-lg md:text-2xl font-semibold uppercase text-center mb-5"
               style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.4)" }}
             >
               our solution
             </h6>
             <ul className="pl-5" style={{ listStyleType: "disc" }}>
               {data.solutions.map(({ description }, idx) => (
-                <li key={idx} className="mb-6">
+                <li
+                  key={idx}
+                  className="mb-6 font-extralight text-sm md:text-lg"
+                >
                   {description}
                 </li>
               ))}
