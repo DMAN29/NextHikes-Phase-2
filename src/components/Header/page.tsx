@@ -194,7 +194,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
             className={`${
               textColor === "#fff"
                 ? "text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition"
-                : "text-black bg-white"
+                : "text-black bg-black/10 backdrop-blur-md hover:bg-black/30 transition"
             } rounded-full font-medium text-lg flex gap-2 items-center px-4 py-2 cursor-pointer`}
           >
             Contact Us <FaAngleRight />

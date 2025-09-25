@@ -86,7 +86,7 @@ export default function Banner({
       case "home":
         return (
           <div className="mt-7 flex items-center gap-4">
-            {cta.map((btn, idx) => (
+            {cta.map((btn: any, idx) => (
               <Link
                 key={idx}
                 href={btn.url}
@@ -96,7 +96,7 @@ export default function Banner({
                   color: btn.textColor || "#fff",
                 }}
               >
-                {btn.text} <FaAngleRight />
+                {btn.label} <FaAngleRight />
               </Link>
             ))}
           </div>

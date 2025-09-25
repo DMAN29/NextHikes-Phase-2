@@ -17,7 +17,7 @@ const industries = [
 
 export default function Industries() {
   return (
-    <section className="py-12 bg-white">
+    <section className="pb-12 bg-white">
       <div className="max-w-8xl mx-auto px-2 sm:px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
           Industries We Serve as a Software Development Company

@@ -11,7 +11,7 @@ export default function Gallery() {
         nexthikes gallery
       </h3>
 
-      <div className="relative w-full h-[85vh] bg-black">
+      <div className="relative w-full h-[80vh] md:h-[85vh] bg-black">
         <DomeGallery
           grayscale={false}
           minRadius={600}

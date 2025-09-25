@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import TestimonialCard from "./TestimonialCard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -79,10 +81,12 @@ const Testimonials: React.FC = () => {
           spaceBetween={20}
           slidesPerView={1}
           breakpoints={{
-            640: { slidesPerView: 3 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
+          "0": { slidesPerView: 1.5, spaceBetween: 10 },
+          "480": { slidesPerView: 2.5, spaceBetween: 20 },
+          "768": { slidesPerView: 3, spaceBetween: 50 },
+          "1024": { slidesPerView: 3, spaceBetween: 20 },
+          "1280": { slidesPerView: 3, spaceBetween: 20 },
+        }}
           loop={true}
           centeredSlides={true}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -91,7 +95,10 @@ const Testimonials: React.FC = () => {
         >
           {testimonials.map((testimonial, idx) => (
             <SwiperSlide key={testimonial.id}>
-              <TestimonialCard testimonial={testimonial} isActive={idx === activeIndex} />
+              <TestimonialCard
+                testimonial={testimonial}
+                isActive={idx === activeIndex}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
