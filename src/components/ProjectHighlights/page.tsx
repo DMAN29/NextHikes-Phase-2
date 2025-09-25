@@ -1,3 +1,5 @@
+"use client";
+
 import { FaArrowRight } from "react-icons/fa6";
 import MagicBento from "../MagicBento";
 export default function ProjectHighlights() {
@@ -16,7 +18,7 @@ export default function ProjectHighlights() {
         </h1>
         <p className="text-[#82B300] md:text-black md:font-medium md:text-base flex gap-5 items-center mx-auto md:mx-0 lg:text-lg">
           <span>OUR CASE STUDIES</span>
-          <FaArrowRight className="hidden md:block" />
+          {/* <FaArrowRight className="hidden md:block" /> */}
         </p>
       </div>
       <div className="w-full md:w-2/3 my-auto">
@@ -36,7 +38,7 @@ export default function ProjectHighlights() {
       </div>
       <div className="flex justify-center items-center mt-7">
         <button className="flex md:hidden bg-black w-10 h-10 justify-center items-center text-white rounded-full">
-          <FaArrowRight />
+          {/* <FaArrowRight /> */}
         </button>
       </div>
     </section>

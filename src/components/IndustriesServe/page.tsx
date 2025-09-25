@@ -67,7 +67,7 @@ export default function Industries() {
   }
 
   return (
-    <section className="py-12 bg-white">
+    <section className="pb-12 bg-white">
       <div className="max-w-8xl mx-auto px-2 sm:px-4">
         {/* Only show title if API returned it */}
         {title && (

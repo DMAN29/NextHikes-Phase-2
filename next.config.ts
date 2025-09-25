@@ -12,7 +12,8 @@ const nextConfig: NextConfig = {
       "media.istockphoto.com",
       "www.nexthikes.in",
       "35.208.89.220",
-      "example.com"
+      "example.com",
+      "cdn.example.com"
     ],
   },
 };

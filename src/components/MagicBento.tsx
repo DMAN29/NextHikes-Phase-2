@@ -774,7 +774,7 @@ const MagicBento: React.FC<BentoProps> = ({
                           {card.title}
                         </h3>
                         <p className="card__description uppercase text-[#B6F214] text-base flex items-center gap-3">
-                          {card.button} <FaArrowRight />
+                          {card.button}
                         </p>
                       </div>
                     </div>

@@ -245,7 +245,6 @@ const teamMembers: Member[] = [
 export default function Team() {
   return (
     <section className="custom-container min-h-screen flex flex-col !mt-20 !mb-20 md:!mb-0">
-      {/* <div className="flex flex-col"> */}
       <h3 className="uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl  mb-3">
         meet our team at{" "}
         <span className="text-[#F37021] font-semibold">next hikes</span>
@@ -261,8 +260,6 @@ export default function Team() {
         core members
       </p>
 
-      {/* </div> */}
-
       <Swiper
         modules={[Autoplay]}
         loop={true}
@@ -271,11 +268,11 @@ export default function Team() {
           disableOnInteraction: false,
         }}
         breakpoints={{
-          0: { slidesPerView: 1, spaceBetween: 10 },
-          480: { slidesPerView: 2, spaceBetween: 15 },
-          768: { slidesPerView: 3, spaceBetween: 20 },
-          1024: { slidesPerView: 4, spaceBetween: 30 },
-          1280: { slidesPerView: 5, spaceBetween: 40 },
+          "0": { slidesPerView: 1.5, spaceBetween: 10 },
+          "480": { slidesPerView: 2.5, spaceBetween: 15 },
+          "768": { slidesPerView: 3, spaceBetween: 20 },
+          "1024": { slidesPerView: 4, spaceBetween: 30 },
+          "1280": { slidesPerView: 5, spaceBetween: 40 },
         }}
         className="mySwiper w-full py-8"
       >

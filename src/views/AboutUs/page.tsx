@@ -18,14 +18,17 @@ interface AboutUsProps {
 }
 
 const AboutUs = ({ data }: AboutUsProps) => {
-  console.log(data);
   return (
 <>            
       <section
         className="w-full h-screen bg-cover bg-center relative flex items-center justify-center"
-        style={{ backgroundImage: `url(${data?.bannerImage})` }}
+        style={{
+          backgroundImage: `url(${
+            data?.bannerImage || "/image/about-banner.jpg"
+          })`,
+        }}
       >
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 w-full max-w-[894px] h-auto min-h-[200px] sm:min-h-[250px] flex flex-col items-center justify-center text-center px-4 sm:px-6">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
             {data?.title}
@@ -35,7 +38,7 @@ const AboutUs = ({ data }: AboutUsProps) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             {data?.buttons?.map((item: any, index: any) => (
-              <Link href={item.url}>
+              <Link href={item.url} key={index}>
                 <button className="px-4 py-2 sm:px-6 sm:py-2 bg-[#FB9326] text-white rounded-lg hover:text-black transition text-sm sm:text-base cursor-pointer">
                   {item.label}
                 </button>
@@ -95,15 +98,22 @@ const AboutUs = ({ data }: AboutUsProps) => {
 
       {data?.meetOurFounders && (
         <section className="custom-container !my-20 md:min-h-screen md:!my-12">
-          <div className="flex flex-col items-center justify-between">
+          <div className="flex flex-col items-center justify-between md:max-w-4xl mx-auto">
             <h3 className="uppercase font-medium text-xl md:text-7xl">
               {data?.meetOurFounders?.title}
             </h3>
-            <p className="capitalize text-lg font-normal">{data?.meetOurFounders?.subtitle}</p>
+            <p className="capitalize text-lg font-normal text-center">
+              {data?.meetOurFounders?.subtitle}
+            </p>
             <div className="border-2 max-w-3xs w-full border-black my-3"></div>
           </div>
-          {data?.meetOurFounders?.founders?.map((item: any, index: any)=>(
-            <ProfileCard avatarUrl={item.image} name={item.name} title={item.designation} />
+          {data?.meetOurFounders?.founders?.map((item: any, index: any) => (
+            <ProfileCard
+              avatarUrl={item.image}
+              name={item.name}
+              title={item.designation}
+              key={index}
+            />
           ))}
         </section>
       )}

@@ -6,7 +6,7 @@ interface DynamicPageProps {
   params: { slug?: string[] };
 }
 
-export const revalidate = 10;
+export const revalidate = 60;
 
 export default async function DynamicPage({ params }: DynamicPageProps) {
   const { slug } = params;
@@ -21,8 +21,7 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
       return notFound();
     }
 
-    // Example: if you have a generic Page component
-    return <AboutUs data={res.data} />; // Or use a generic Page component
+    return <AboutUs data={res.data} />;
 
   } catch (error) {
     console.error("Error loading page:", error);
