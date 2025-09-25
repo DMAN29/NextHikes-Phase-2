@@ -111,10 +111,10 @@ export default function RoadmapStep() {
               <div
                 className={`relative ${
                   i === 0
-                    ? "step-img-1 w-[200px] h-[150px] md:w-[250px] md:h-[170px]   mt-17"
+                    ? "step-img-1 w-[200px] h-[130px] md:w-[240px] md:h-[170px]  mt-19"
                     : i === 1
-                    ? "step-img-2 w-[200px] h-[90px] md:w-[260px] md:h-[130px] -mt-3"
-                    : "step-img-3 w-[220px] h-[120px] md:w-[280px] md:h-[150px] -mt-10 md:-mt-17 mt-19"
+                    ? "step-img-2 w-[200px] h-[100px] md:w-[260px] md:h-[130px]"
+                    : "step-img-3 w-[220px] h-[110px] md:w-[280px] md:h-[140px] -mt-12 md:-mt-12 mt-8"
                 }`}
               >
                 <Image
