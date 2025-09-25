@@ -8,7 +8,7 @@ import AstroPayment from "@/components/AstroPayment/page";
 export default function FeaturesSection() {
   return (
     <div>
-    <div className="w-full lg:px-20 pt-26 bg-gradient-to-b from-purple-500 to-pink-400">
+    <div className="w-full lg:px-20 pt-26 bg-gradient-to-b from-purple-500 to-pink-400 overflow-x-hidden">
 </div>
     <section className=" py-19 px-6 md:px-12">
         
@@ -29,7 +29,7 @@ export default function FeaturesSection() {
             unlock your true potential and manifest the life you’ve always
             desired.
           </p>
-          <button className=" bg-gradient-to-r from-purple-900 to-pink-400 text-white  px-6 py-3 rounded-full font-semibold shadow-lg hover:opacity-90 transition">
+          <button className=" bg-gradient-to-r from-purple-900 to-pink-400 text-white cursor-pointer px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-115 transition">
             Get Free Quote
           </button>
         </div>
@@ -70,7 +70,7 @@ export default function FeaturesSection() {
             Don’t Just Dream of a Better Life. Manifest It with Nexthikes
             Divine Guidance.
           </p>
-          <button className="bg-gradient-to-r from-purple-900 to-pink-400 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:opacity-90 transition">
+          <button className="bg-gradient-to-r from-purple-900 to-pink-400 cursor-pointer text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-115 transition">
             Learn More
           </button>
         </div>

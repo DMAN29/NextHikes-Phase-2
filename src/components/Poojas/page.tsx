@@ -39,7 +39,7 @@ const poojaServices: PoojaService[] = [
     title: "Bandham Yagna Pooja",
     price: "₹15,000",
     icon: "/image/icon3.png",
-    iconBg: "bg-blue-100",
+    iconBg: "bg-purple-100",
     benefits: [
       "Heal emotional wounds and restore relationships.",
       "Strengthen bonds with family and loved ones.",
@@ -110,7 +110,7 @@ const PoojaCard = ({ s }: { s: PoojaService }) => (
       </h3>
 
       <div className="flex items-start justify-between mb-6">
-        <h1 className="flex items-center space-x-2 text-xl text-gray-900">
+        <h1 className="flex items-center font-semibold space-x-2 text-xl text-purple-900">
           <span>{s.price}</span>
 
           {/* Image replaces icon */}
@@ -140,7 +140,7 @@ export default function AstrologyPoojas() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 py-16 px-6">
       {/* Heading */}
       <div className="max-w-7xl mx-auto text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:bg-clip-text">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 ">
           Astrology Poojas You'll Receive
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">

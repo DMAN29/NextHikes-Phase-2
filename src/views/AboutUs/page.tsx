@@ -20,7 +20,7 @@ interface AboutUsProps {
 
 const AboutUs = ({ project, reviews, data }: AboutUsProps) => {
   return (
-    <>
+<>            
       <section
         className="w-full h-screen bg-cover bg-center relative flex items-center justify-center"
         style={{ backgroundImage: `url(${data?.bannerImage})` }}

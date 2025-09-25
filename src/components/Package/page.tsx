@@ -27,8 +27,8 @@ export default function PackageSection() {
                 <Image
                   src={item.icon}
                   alt={item.title}
-                  width={64}
-                  height={64}
+                  width={40}
+                  height={40}
                   className="object-contain"
                 />
               </div>
@@ -44,7 +44,7 @@ export default function PackageSection() {
 
         {/* CTA Button */}
         <div className="mt-14 mb-8 flex items-center justify-center">
-          <button className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-purple-900 to-pink-500 text-lg sm:text-2xl text-white font-semibold rounded-full shadow-md hover:opacity-90 transition">
+          <button className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r cursor-pointer from-purple-900 to-pink-500 text-lg sm:text-2xl text-white font-semibold rounded-full shadow-md hover:scale-90 transition">
             Book Now - Begin your Astrology Journey
           </button>
         </div>
