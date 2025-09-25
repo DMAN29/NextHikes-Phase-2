@@ -1,5 +1,6 @@
+"use client";
+
 import Image from "next/image";
-import img1 from "@/assets/images/WhyUs.png";
 import StarBorder from "../StarBorder";
 import { useEffect, useState } from "react";
 import CardSwap, { Card } from "../CardSwap";

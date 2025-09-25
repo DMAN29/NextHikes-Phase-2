@@ -253,11 +253,13 @@ export default function Footer() {
             Contact Us
           </h4>
           <ul className="space-y-4 text-lg font-normal text-black">
-            <li className="flex items-center gap-2">
+            <li className="flex items-center gap-2 break-words">
               <Icon name={"email"} color="#000" />
               <Link
-                href={`mailto:${contact?.officialEmail}`}
-                className="hover:underline"
+                href={`mailto:${
+                  contact?.officialEmail || "info@nexthikes.com"
+                }`}
+                className="hover:underline break-all"
               >
                 {contact?.officialEmail || "info@nexthikes.com"}
               </Link>

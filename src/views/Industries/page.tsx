@@ -212,7 +212,15 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
       )}
       {matchedConfig?.styleKey === "healthcare" && (
         <>
-          <div className="h-[400px] bg-amber-900"></div>
+          <Banner
+            platform="healthcare"
+            backgroundColor={["#8bf6f6"]}
+            bannerImage={[{ icon: "/image/game-bg.webp" }]}
+            subTitle={`Empowering healthcare with apps that are accessible, efficient, and patient-focused.`}
+            cta={[]}
+            title={`Connecting Doctors & Patients, Smarter`}
+            headerTextColor="#000"
+          />
           <ElevateBusinessPage />
           <Mission />
           <TechFeatures />
