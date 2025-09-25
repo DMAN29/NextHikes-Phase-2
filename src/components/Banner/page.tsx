@@ -22,7 +22,9 @@ type Platform =
   | "web-dev"
   | "app-development"
   | "platform-development"
-  | "ai";
+  | "ai"
+  | "healthcare"
+  | "digital";
 
 interface BannerCTA {
   text: string;
@@ -517,10 +519,179 @@ export default function Banner({
         </section>
       );
 
+    case "healthcare":
+      return (
+        // <section
+        //   className="relative w-[90%] flex flex-col md:flex-row items-center pt-20 md:py-20 px-6 sm:px-10 md:px-20 rounded-bl-[50px]"
+        //   style={{ background: backgroundColor?.[0] || "#FCF4EC" }}
+        // >
+        //   <div className="flex-1 flex flex-col justify-center items-start text-left md:pr-10">
+        //     {title && (
+        //       <h1
+        //         className="text-2xl sm:text-4xl md:text-5xl font-bold leading-snug text-transparent"
+        //         style={{
+        //           background: `linear-gradient(
+        //         90deg,
+        //         #000000 0%,
+        //         #212020 12.5%,
+        //         #343333 19.23%,
+        //         #9A014D 30.77%,
+        //         #FF7DD6 37.02%,
+        //         #000000 46.63%,
+        //         #000000 63.94%
+        //       )`,
+        //           WebkitBackgroundClip: "text",
+        //           backgroundClip: "text",
+        //         }}
+        //         dangerouslySetInnerHTML={{ __html: title }}
+        //       />
+        //     )}
+
+        //     {subTitle && (
+        //       <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl font-normal text-black max-w-2xl">
+        //         {subTitle}
+        //       </p>
+        //     )}
+
+        //     {cta.length > 0 && (
+        //       <div className="mt-6 flex flex-wrap gap-4">
+        //         {cta.map((btn, idx) => (
+        //           <Link
+        //             key={idx}
+        //             href={btn.url}
+        //             className="px-6 py-3 rounded-full font-medium text-center uppercase transition hover:opacity-90"
+        //             style={{
+        //               background: btn.backgroundColor,
+        //               color: btn.textColor,
+        //               border: `2px solid ${btn.backgroundColor}`,
+        //             }}
+        //           >
+        //             {btn.text}
+        //           </Link>
+        //         ))}
+        //       </div>
+        //     )}
+        //   </div>
+
+        //   <div className="flex-1 mt-10 md:mt-0 flex justify-center items-center">
+        //     {bannerImage &&
+        //       bannerImage.map((img, idx) => (
+        //         <Image
+        //           key={idx}
+        //           src={img.icon}
+        //           alt={`banner-${idx}`}
+        //           width={400}
+        //           height={400}
+        //           className="w-[200px] sm:w-[250px] md:w-[400px] h-auto object-contain"
+        //           priority={idx === 0}
+        //         />
+        //       ))}
+        //   </div>
+        // </section>
+        <section className="md:min-h-screen">
+          <Image
+            src={"/image/healthcare-banner.webp"}
+            alt="healthcare"
+            width={1000}
+            height={1000}
+            className="w-full h-full"
+          />
+        </section>
+      );
+
+    case "digital":
+      return (
+        // <section
+        //   className="relative w-[90%] flex flex-col md:flex-row items-center pt-20 md:py-20 px-6 sm:px-10 md:px-20 rounded-bl-[50px]"
+        //   style={{ background: backgroundColor?.[0] || "#FCF4EC" }}
+        // >
+        //   <div className="flex-1 flex flex-col justify-center items-start text-left md:pr-10">
+        //     {title && (
+        //       <h1
+        //         className="text-2xl sm:text-4xl md:text-5xl font-bold leading-snug text-transparent"
+        //         style={{
+        //           background: `linear-gradient(
+        //         90deg,
+        //         #000000 0%,
+        //         #212020 12.5%,
+        //         #343333 19.23%,
+        //         #9A014D 30.77%,
+        //         #FF7DD6 37.02%,
+        //         #000000 46.63%,
+        //         #000000 63.94%
+        //       )`,
+        //           WebkitBackgroundClip: "text",
+        //           backgroundClip: "text",
+        //         }}
+        //         dangerouslySetInnerHTML={{ __html: title }}
+        //       />
+        //     )}
+
+        //     {subTitle && (
+        //       <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl font-normal text-black max-w-2xl">
+        //         {subTitle}
+        //       </p>
+        //     )}
+
+        //     {cta.length > 0 && (
+        //       <div className="mt-6 flex flex-wrap gap-4">
+        //         {cta.map((btn, idx) => (
+        //           <Link
+        //             key={idx}
+        //             href={btn.url}
+        //             className="px-6 py-3 rounded-full font-medium text-center uppercase transition hover:opacity-90"
+        //             style={{
+        //               background: btn.backgroundColor,
+        //               color: btn.textColor,
+        //               border: `2px solid ${btn.backgroundColor}`,
+        //             }}
+        //           >
+        //             {btn.text}
+        //           </Link>
+        //         ))}
+        //       </div>
+        //     )}
+        //   </div>
+
+        //   <div className="flex-1 mt-10 md:mt-0 flex justify-center items-center">
+        //     {bannerImage &&
+        //       bannerImage.map((img, idx) => (
+        //         <Image
+        //           key={idx}
+        //           src={img.icon}
+        //           alt={`banner-${idx}`}
+        //           width={400}
+        //           height={400}
+        //           className="w-[200px] sm:w-[250px] md:w-[400px] h-auto object-contain"
+        //           priority={idx === 0}
+        //         />
+        //       ))}
+        //   </div>
+        // </section>
+        <section className="md:min-h-screen">
+          <Image
+            src={"/image/digital-desk.webp"}
+            alt="digital"
+            width={1000}
+            height={1000}
+            className="w-full h-full hidden md:block"
+            priority
+          />
+          <Image
+            src={"/image/digital-mobile.webp"}
+            alt="digital"
+            width={1000}
+            height={1000}
+            className="w-full h-full block md:hidden"
+            priority
+          />
+        </section>
+      );
+
     case "gaming":
       return (
         <section className="relative w-full md:min-h-screen flex flex-col items-center pt-40">
-          <div className="absolute inset-0 z-1 w-full h-full">
+          <div className="absolute inset-0 z-1 w-full h-[400px] md:h-full">
             <Galaxy
               mouseRepulsion={true}
               mouseInteraction={true}

@@ -279,7 +279,24 @@ export default function ServicePage({ slug, data }: ServiceProps) {
 
       {matchedConfig?.styleKey === "digital-marketing" && (
         <>
-          <div className="h-56 border border-black bg-[#452A7C]"></div>
+          <Banner
+            platform="digital"
+            backgroundColor={["#000"]}
+            bannerImage={[{ icon: "/icons/mobile-second.webp" }]}
+            subTitle={`Revolutionary Mobile Experiences Starts Here.`}
+            cta={[
+              {
+                text: "lauch your app idea",
+                url: "",
+                backgroundColor: "#083E92",
+                textColor: "#FFFFFF",
+                borderColor: "#ffffff",
+              },
+            ]}
+            title={`innovate. <br/> create. <br /> dominate.`}
+            headerTextColor="#000"
+            backgroundImage="/image/app-back.webp"
+          />
           <DigitalMarkting />
           <Title
             firstText={"Digital Marketing"}

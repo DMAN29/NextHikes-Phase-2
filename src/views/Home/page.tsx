@@ -38,7 +38,7 @@ export default async function HomePage() {
         cta={data?.mainButtons}
         title={data?.title}
         headerTextColor="#000"
-        backgroundImage={data?.mainImage || "/image/home-banner.webp"}
+        backgroundImage={"/image/home-banner.webp"}
       />
       <WhoWeAre title={data?.whoWeAre?.description} button={data?.whoWeAre?.button} />
       <OurService />
