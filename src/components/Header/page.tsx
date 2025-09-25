@@ -11,8 +11,8 @@ import { RiMenu3Line } from "react-icons/ri";
 import Icon from "../Icon/page";
 
 interface HeaderProps {
-  menuItems: any;
-  links: any;
+  menuItems?: any;
+  links?: any;
 }
 
 export default function Header({ menuItems, links }: HeaderProps) {
@@ -92,7 +92,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
     },
     {
       title: "Blog",
-      url: "",
+      url: "/blogs",
     },
     {
       title: "Marketing",
