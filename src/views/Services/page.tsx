@@ -283,7 +283,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           <DigitalMarkting />
           <Title
             firstText={"Digital Marketing"}
-            firstColor={"text-[#7D0101]"}
+            firstColor={"text-[#8D88FF]"}
             secondText="Services"
             subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
           />
