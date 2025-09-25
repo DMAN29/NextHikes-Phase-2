@@ -1,31 +1,60 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
+interface SubPoint {
+  title: string;
+  description?: string;
+}
+
+interface Point {
+  heading: string;
+  subpoints: SubPoint[];
+}
+
+interface MarketData {
+  midTitleSection: {
+    title: string;
+    subtitle: string;
+  };
+  detailedPointsSection: {
+    title: string;
+    points: Point[];
+  };
+}
+
 export default function RoadmapStep() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+  const [data, setData] = useState<MarketData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const steps = [
-    {
-      title: "Free Initial Consultation",
-      img: "/image/vector.png",
-      desc: "Not sure where to begin? Schedule a free, no-obligation strategy session. We'll assess your needs and outline a clear path forward—no commitment required.",
-      imgClass: "w-[200px] h-[120px] md:w-[240px] md:h-[140px]",
-    },
-    {
-      title: "Transparent Pricing & Milestones",
-      img: "/image/vector (1).png",
-      desc: "We'll give you a clear breakdown of costs, timelines, and milestones so you always know what to expect.",
-      imgClass: "w-[200px] h-[100px] md:w-[260px] md:h-[130px]",
-    },
-    {
-      title: "Dedicated Project Manager",
-      img: "/image/vector (2).png",
-      desc: "You'll have a single point of contact, ensuring seamless communication and that your project stays on track and within budget.",
-      imgClass: "w-[220px] h-[110px] md:w-[280px] md:h-[140px]",
-    },
+  const images = [
+    "/image/vector.png",
+    "/image/vector (1).png",
+    "/image/vector (2).png",
   ];
+
+  const imageStyles = [
+    "w-[200px] h-[170px] md:w-[240px] md:h-[180px] mt-28", // 1st image
+     "w-[200px] h-[70px] md:w-[260px] md:h-[120px] mt-10", // 2nd image
+    "w-[220px] h-[110px] md:w-[280px] md:h-[150px] -mt-5", // 3rd image
+  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/market/all`);
+        const json = await res.json();
+        setData(json?.data);
+      } catch (err) {
+        console.error("Failed to fetch data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleMouseEnter = (idx: number) => {
     const section = sectionsRef.current[idx];
@@ -69,34 +98,46 @@ export default function RoadmapStep() {
       });
   };
 
+  if (loading) {
+    return <p className="text-center py-10 text-gray-600">Loading...</p>;
+  }
+
+  if (!data) {
+    return <p className="text-center py-10 text-red-500">No data available</p>;
+  }
+
+  // Flatten all subpoints to render as steps
+  const allSubpoints: SubPoint[] = data.detailedPointsSection.points.flatMap(
+    (point) => point.subpoints
+  );
+
+  // Only take first 3 steps
+  const visibleSubpoints = allSubpoints.slice(0, 3);
+
   return (
     <div className="min-h-screen py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Your Growth, Our Guarantee. Start With Confidence.
+            {data.midTitleSection.title}
           </h1>
-          <p className="text-xl text-gray-600">
-            Focus on reducing perceived risk and building trust.
-          </p>
+          <p className="text-xl text-gray-600">{data.midTitleSection.subtitle}</p>
         </div>
 
         {/* Steps */}
         <div className="flex justify-center items-start gap-6 flex-wrap">
-          {steps.map((step, i) => (
+          {visibleSubpoints.map((sp, i) => (
             <section
               key={i}
-              ref={(el) => {
-                sectionsRef.current[i] = el; // ✅ TypeScript-safe ref
-              }}
+              ref={(el) => (sectionsRef.current[i] = el)}
               onMouseEnter={() => handleMouseEnter(i)}
               onMouseLeave={() => handleMouseLeave(i)}
               className="flex flex-col items-center text-center w-[220px] mt-8 md:mt-0 cursor-pointer"
             >
               {/* Heading */}
-              <h3 className="text-lg md:text-xl font-semibold mb-15 transition-all duration-300">
-                {step.title}
+              <h3 className="text-lg md:text-xl font-semibold mb-4 transition-all duration-300">
+                {sp.title}
               </h3>
 
               {/* Top Line */}
@@ -107,19 +148,10 @@ export default function RoadmapStep() {
               />
 
               {/* Image */}
-              {/* Image */}
-              <div
-                className={`relative ${
-                  i === 0
-                    ? "step-img-1 w-[200px] h-[130px] md:w-[240px] md:h-[170px]  mt-19"
-                    : i === 1
-                    ? "step-img-2 w-[200px] h-[100px] md:w-[260px] md:h-[130px]"
-                    : "step-img-3 w-[220px] h-[110px] md:w-[280px] md:h-[140px] -mt-12 md:-mt-12 mt-8"
-                }`}
-              >
+              <div className={`relative ${imageStyles[i]}`}>
                 <Image
-                  src={step.img}
-                  alt={step.title}
+                  src={images[i]}
+                  alt={sp.title}
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 220px"
@@ -134,9 +166,11 @@ export default function RoadmapStep() {
               />
 
               {/* Description */}
-              <p className="text-sm md:text-base text-gray-600 mt-4 max-w-[200px] leading-relaxed">
-                {step.desc}
-              </p>
+              {sp.description && (
+                <p className="text-sm md:text-base text-gray-600 mt-4 max-w-[200px] leading-relaxed">
+                  {sp.description}
+                </p>
+              )}
             </section>
           ))}
         </div>

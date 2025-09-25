@@ -96,7 +96,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
     },
       {
     title: "Marketing", 
-    url: "/marketingpage",    
+    url: "/marketing",    
   },
     {
       title: "Online Payment",
