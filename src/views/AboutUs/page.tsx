@@ -39,7 +39,7 @@ const AboutUs = ({ data }: AboutUsProps) => {
           <div className="flex flex-col sm:flex-row gap-4">
             {data?.buttons?.map((item: any, index: any) => (
               <Link href={item.url}>
-                <button className="px-4 py-2 sm:px-6 sm:py-2 bg-[#FB9326] text-white rounded-lg hover:text-black transition text-sm sm:text-base cursor-pointer">
+                <button className="px-4 py-2 sm:px-6 sm:py-2 bg-[#FB9326] text-white rounded-lg hover:text-black transition text-sm sm:text-base cursor-pointer" key={index}>
                   {item.label}
                 </button>
               </Link>
@@ -112,6 +112,7 @@ const AboutUs = ({ data }: AboutUsProps) => {
               avatarUrl={item.image}
               name={item.name}
               title={item.designation}
+              key={index}
             />
           ))}
         </section>
