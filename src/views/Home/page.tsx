@@ -18,8 +18,6 @@ export default async function HomePage() {
   try {
     const res: any = await fetchGet(`${process.env.NEXT_PUBLIC_BASE_URL}/home`);
 
-    console.log(res);
-
     if (!res?.success) {
       throw new Error("Failed to fetch home data");
     }
@@ -38,9 +36,12 @@ export default async function HomePage() {
         cta={data?.mainButtons}
         title={data?.title}
         headerTextColor="#000"
-        backgroundImage={"/image/home-banner.webp"}
+        backgroundImage={"/image/home-banner.png"}
       />
-      <WhoWeAre title={data?.whoWeAre?.description} button={data?.whoWeAre?.button} />
+      <WhoWeAre
+        title={data?.whoWeAre?.description}
+        button={data?.whoWeAre?.button}
+      />
       <OurService />
       <Feathers />
       <div className="custom-container">

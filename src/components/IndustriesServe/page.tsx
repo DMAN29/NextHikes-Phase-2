@@ -5,7 +5,7 @@ import PixelTransition from "../PixelTransition";
 const industries = [
   { name: "Manufacturing", image: "/image/manufacturing.jpg" },
   { name: "Education", image: "/image/education.jpg" },
-  { name: "Healthcare", image: "/image/healthcare.jpg" },
+  { name: "Healthcare", image: "/image/Healthcare.jpg" },
   { name: "Insurance", image: "/image/insurance.jpg" },
   { name: "Media & Entertainment", image: "/image/media.jpg" },
   { name: "Agriculture", image: "/image/agriculture.jpg" },
