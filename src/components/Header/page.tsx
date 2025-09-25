@@ -6,11 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
-import { IoMenuSharp, IoClose } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { RiMenu3Line } from "react-icons/ri";
 import Icon from "../Icon/page";
 
-export default function Header() {
+interface HeaderProps {
+  menuItems: any;
+  links: any;
+}
+
+export default function Header({ menuItems, links }: HeaderProps) {
   const [isFixed, setIsFixed] = useState(true);
   const { menuOpen, setMenuOpen } = useMobileMenu();
   const [dropdownMenu, setDropdownMenu] = useState("");
@@ -72,7 +77,7 @@ export default function Header() {
     },
   ];
 
-  const menuItems = [
+  const menuItemss = [
     {
       title: "Services",
       submenu: serviceMenus,
@@ -83,23 +88,23 @@ export default function Header() {
     },
     {
       title: "About Us",
-      url: "",
+      url: `/${menuItems?.slug}`,
     },
     {
       title: "Blog",
       url: "",
     },
-      {
-    title: "Marketing", 
-    url: "/marketingpage",    
-  },
+    {
+      title: "Marketing",
+      url: "/marketing",
+    },
     {
       title: "Online Payment",
       url: "/online-payment",
     },
   ];
 
-  const links = [
+  const linkss = [
     {
       platform: "facebook",
       url: "https://www.facebook.com/nexthikes",
@@ -125,7 +130,7 @@ export default function Header() {
       }`}
     >
       <div
-        className="relative mx-auto max-w-6xl px-6 py-4 flex items-center justify-between"
+        className="relative mx-auto max-w-7xl px-6 py-4 flex items-center justify-between"
         style={{ color: textColor || "#fff" }}
       >
         <div className="flex items-center gap-2 font-medium tracking-wide cursor-pointer">
@@ -145,7 +150,7 @@ export default function Header() {
         </div>
 
         <div className="hidden md:flex gap-8 font-medium text-xl relative">
-          {menuItems.map((item, index) => (
+          {menuItemss.map((item, index) => (
             <div
               key={index}
               className="relative"
@@ -217,7 +222,7 @@ export default function Header() {
         }`}
         style={{ backgroundImage: "url('/image/header-back.webp')" }}
       >
-        <div className="flex justify-between items-center px-5 py-3">
+        <div className="flex justify-between items-center gap-3 px-5 py-3">
           <Image
             src={"/image/nexthikes-black.webp"}
             alt="nexthikes-logo"
@@ -236,7 +241,7 @@ export default function Header() {
         </div>
 
         <div className="flex flex-col px-6 pt-3 pb-13 space-y-6 text-[#363636] font-semibold overflow-y-auto max-h-[calc(100%-4rem)]">
-          {menuItems.map((item, index) => (
+          {menuItemss.map((item, index) => (
             <div key={index} className="flex flex-col">
               {item.submenu ? (
                 <>
@@ -282,18 +287,18 @@ export default function Header() {
               )}
             </div>
           ))}
-        </div>
-        <div className="flex justify-center gap-4 mb-4">
-          {links?.map((item: any, index: any) => (
-            <Link
-              href={item?.url}
-              target="_blank"
-              className={`text-xl p-2 border border-black aspect-square rounded-full cursor-pointer`}
-              key={index}
-            >
-              <Icon name={item?.platform} color="#000" />
-            </Link>
-          ))}
+          <div className="flex justify-center gap-4 mb-4">
+            {linkss?.map((item: any, index: any) => (
+              <Link
+                href={item?.url}
+                target="_blank"
+                className={`text-xl p-2 border border-black aspect-square rounded-full cursor-pointer`}
+                key={index}
+              >
+                <Icon name={item?.platform} color="#000" />
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </header>

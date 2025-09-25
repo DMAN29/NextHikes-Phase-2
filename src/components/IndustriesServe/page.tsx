@@ -27,41 +27,19 @@ export default function Industries() {
           {industries.map((industry, i) => (
             <div
               key={i}
-              className="flex flex-col items-center text-center rounded-xl mb-4"
+              className="flex flex-col items-center text-center rounded-lg mb-4"
             >
-              <PixelTransition
-                firstContent={
-                  <Image
-                    src={industry.image}
-                    alt="default pixel transition content, a cat!"
-                    fill
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                }
-                secondContent={
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      display: "grid",
-                      placeItems: "center",
-                      backgroundColor: "#111",
-                    }}
-                  >
-                    <p className="w-full max-w-[200px] text-sm md:text-2xl text-center font-bold">
-                      {industry.name}
-                    </p>
-                  </div>
-                }
-                gridSize={35}
-                pixelColor="#000"
-                animationStepDuration={0.3}
-                className="custom-pixel-card cursor-pointer"
+              <Image
+                src={industry.image}
+                alt={industry.name}
+                width={200}
+                height={200}
+                priority
+                className="rounded-lg object-cover w-full h-32 sm:h-40 md:h-48"
               />
+              <p className="mt-2 text-base md:text-lg font-bold text-gray-800">
+                {industry.name}
+              </p>
             </div>
           ))}
         </div>

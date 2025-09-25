@@ -6,6 +6,7 @@ import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
 import FloatingContactWidget from "@/components/FloatingContactWidget/page";
 import { MobileMenuProvider } from "./context/MobileMenuContext";
+import HeaderWrapper from "@/components/HeaderWrapper/HeaderWrapper";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -38,13 +39,10 @@ export default function RootLayout({
       >
         <MobileMenuProvider>
           <HeaderColorProvider>
-            <Header />
+            <HeaderWrapper />
             {children}
             <Footer />
-            <FloatingContactWidget
-            // whatsappNumber={contact?.data?.whatsappNumber}
-            // contactNumber={contact?.data?.contactNumber}
-            />
+            <FloatingContactWidget />
           </HeaderColorProvider>
         </MobileMenuProvider>
       </body>
