@@ -38,8 +38,8 @@ const AboutUs = ({ data }: AboutUsProps) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             {data?.buttons?.map((item: any, index: any) => (
-              <Link href={item.url}>
-                <button className="px-4 py-2 sm:px-6 sm:py-2 bg-[#FB9326] text-white rounded-lg hover:text-black transition text-sm sm:text-base cursor-pointer" key={index}>
+              <Link href={item.url} key={index}>
+                <button className="px-4 py-2 sm:px-6 sm:py-2 bg-[#FB9326] text-white rounded-lg hover:text-black transition text-sm sm:text-base cursor-pointer">
                   {item.label}
                 </button>
               </Link>
