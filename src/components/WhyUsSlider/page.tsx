@@ -17,30 +17,6 @@ interface WhyUsProps {
   data: any;
 }
 
-const slides = [
-  {
-    title: "Why Us?",
-    subtitle: "Innovation at Our Core",
-    description:
-      "At NextHikes, we’re more than just a development and IT solutions company – we’re your strategic digital partner. We combine innovation, expertise, and a client-first approach to deliver solutions that help your business thrive in an ever-evolving digital world.",
-    image: "/images/slide1.jpg",
-  },
-  {
-    title: "Our Mission",
-    subtitle: "Driving Digital Growth",
-    description:
-      "We aim to empower businesses by providing scalable digital solutions that boost productivity, efficiency, and growth.",
-    image: "/images/slide2.jpg",
-  },
-  {
-    title: "Our Vision",
-    subtitle: "Future-Ready Solutions",
-    description:
-      "We envision a future where every business can leverage technology to achieve its full potential and stay ahead of the curve.",
-    image: "/images/slide3.jpg",
-  },
-];
-
 export default function WhyUsSlider({ data }: WhyUsProps) {
   const swiperRef = useRef<any>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -96,7 +72,6 @@ export default function WhyUsSlider({ data }: WhyUsProps) {
           {data?.map((slide: any, i: any) => (
             <SwiperSlide key={i}>
               <div className="grid md:grid-cols-[2fr_2fr] gap-6 mb-7">
-                {/* Left Content */}
                 <div>
                   <h2 className="text-white text-2xl sm:text-3xl font-bold mb-4">
                     {slide.title}
@@ -109,7 +84,7 @@ export default function WhyUsSlider({ data }: WhyUsProps) {
                 {/* Right Image */}
                 <div className="relative w-full h-70 rounded-lg overflow-hidden">
                   <Image
-                    src={slide.imageUrl}
+                    src={slide.image}
                     alt={slide.title}
                     fill
                     className="object-cover"

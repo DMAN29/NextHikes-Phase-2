@@ -266,9 +266,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       } as React.CSSProperties),
     [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient]
   );
-  const handleContactClick = useCallback(() => {
-    onContactClick?.();
-  }, [onContactClick]);
   return (
     <div
       ref={wrapRef}
@@ -278,25 +275,23 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       {" "}
       <section ref={cardRef} className="pc-card">
         {" "}
-        <Image
-          className="avatar rounded-lg object-contain w-full h-auto z-1"
-          src={avatarUrl}
-          alt={`${name || "User"} avatar`}
-          width={250}
-          height={250}
-          loading="lazy"
-        />{" "}
-        <div className="pc-inside p-3">
+        <div className="pc-inside">
           {" "}
           <div className="pc-shine" /> <div className="pc-glare" />{" "}
           <div className="pc-content pc-avatar-content bg-white relative">
             {" "}
-            <div className="absolutes" />{" "}
+            <div className="absolutes">
+              <Image
+                className="avatar rounded-lg object-cover w-full h-auto z-1"
+                src={avatarUrl}
+                alt={`${name || "User"} avatar`}
+                fill
+                loading="lazy"
+              />
+            </div>
           </div>{" "}
           <div className="pc-content">
-            {" "}
             <div className="pc-details">
-              {" "}
               <h3 className="text-2xl text-black font-bold">{name}</h3>{" "}
               <p className="font-normal text-lg">{title}</p>{" "}
             </div>{" "}
