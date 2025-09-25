@@ -63,7 +63,7 @@
 
 .pc-card {
   height: 80vh;
-  max-height: 400px;
+  max-height: 600px;
   display: grid;
   aspect-ratio: 0.718;
   border-radius: var(--card-radius);
@@ -144,32 +144,6 @@
   background: transparent;
   background-size: cover;
   background-position: center;
-  /* background-image:
-    repeating-linear-gradient(
-      0deg,
-      var(--sunpillar-clr-1) calc(var(--space) * 1),
-      var(--sunpillar-clr-2) calc(var(--space) * 2),
-      var(--sunpillar-clr-3) calc(var(--space) * 3),
-      var(--sunpillar-clr-4) calc(var(--space) * 4),
-      var(--sunpillar-clr-5) calc(var(--space) * 5),
-      var(--sunpillar-clr-6) calc(var(--space) * 6),
-      var(--sunpillar-clr-1) calc(var(--space) * 7)
-    ),
-    repeating-linear-gradient(
-      var(--angle),
-      #0e152e 0%,
-      hsl(180, 10%, 60%) 3.8%,
-      hsl(180, 29%, 66%) 4.5%,
-      hsl(180, 10%, 60%) 5.2%,
-      #0e152e 10%,
-      #0e152e 12%
-    ),
-    radial-gradient(
-      farthest-corner circle at var(--pointer-x) var(--pointer-y),
-      hsla(0, 0%, 0%, 0.1) 12%,
-      hsla(0, 0%, 0%, 0.15) 20%,
-      hsla(0, 0%, 0%, 0.25) 120%
-    ); */
   background-position: 0 var(--background-y),
     var(--background-x) var(--background-y), center;
   background-blend-mode: color, hard-light;
@@ -199,7 +173,7 @@
   opacity: 1;
 }
 
-.pc-shine::before {
+/* .pc-shine::before {
   background-image: linear-gradient(
       45deg,
       var(--sunpillar-4),
@@ -223,7 +197,7 @@
     contrast(calc(var(--pointer-from-center) + 2))
     saturate(calc(0.5 + var(--pointer-from-center)));
   mix-blend-mode: luminosity;
-}
+} */
 
 .pc-shine::after {
   background-position: 0 var(--background-y),
@@ -314,7 +288,6 @@
 /* ✅ Mobile fix */
 @media (max-width: 768px) {
   .pc-avatar-content .avatar {
-    max-height: 180px; /* image ka height limit */
     width: auto;
   }
 
@@ -414,7 +387,7 @@
 
 .pc-content {
   max-height: 100%;
-  /* overflow: hidden; */
+  overflow: hidden;
   text-align: center;
   position: relative;
   /* transform: translate3d(
@@ -495,9 +468,9 @@
     max-height: 450px;
   }
 
-  .pc-details {
+  /* .pc-details {
     top: 2em;
-  }
+  } */
 
   .pc-details h3 {
     font-size: min(4svh, 2.5em);
@@ -543,9 +516,9 @@
     max-height: 380px;
   }
 
-  .pc-details {
-    top: 1.5em;
-  }
+  /* .pc-details {
+    top: 7.5em;
+  } */
 
   .pc-details h3 {
     font-size: min(3.5svh, 2em);
