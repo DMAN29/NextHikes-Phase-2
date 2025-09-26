@@ -4,17 +4,18 @@ import { getServicePageBySlug } from "@/api/services";
 import AIService from "@/components/AI/aiService";
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
-// import { DigitalFlow } from "@/components/DigitalMarkting/DigitalFlow";
-import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
-// import { OurProcess } from "@/components/DigitalMarkting/OurProcess";
+import DigitalFlow from "@/components/DigitalMarkting/DigitalFlow";
+// import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
+import OurProcess from "@/components/DigitalMarkting/OurProcess";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
 import ProcessFlow from "@/components/ProcessFlow/page";
 import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
+import Skeleton from "@/components/Skeleton/page";
 import Title from "@/components/Title/page";
 import ChooseUsTimeline from "@/components/WhyChooseUs/page";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface ServiceProps {
   slug: any;
@@ -22,20 +23,27 @@ interface ServiceProps {
 }
 
 export default function ServicePage({ slug }: ServiceProps) {
-  // useEffect(() => {
-  //   async function fetchServiceData() {
-  //     try {
-  //       const data = await getServicePageBySlug(slug);
-  //       console.log("Service data:", data);
-  //     } catch (error) {
-  //       console.error("Failed to fetch service data:", error);
-  //     }
-  //   }
+  const [loading, setLoading] = useState(false);
+  const [serviceData, setServiceData] = useState<any>(null);
 
-  //   if (slug) {
-  //     fetchServiceData();
-  //   }
-  // }, [slug]);
+  useEffect(() => {
+    async function fetchServiceData() {
+      setLoading(true);
+      try {
+        const data = await getServicePageBySlug(slug);
+        setServiceData(data);
+      } catch (error) {
+        console.error("Failed to fetch service data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (slug) {
+      fetchServiceData();
+    }
+  }, [slug]);
+
+  // console.log("Service slug:", serviceData);
 
   const serviceStyles: any = {
     "web-development": {
@@ -296,7 +304,7 @@ export default function ServicePage({ slug }: ServiceProps) {
         </div>
       )}
 
-      {matchedConfig?.styleKey === "digital-marketing" && (
+      {matchedConfig?.styleKey === "digital-marketing" && serviceData ? (
         <>
           <Banner
             platform="digital"
@@ -316,15 +324,24 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
             backgroundImage="/image/app-back.webp"
           />
-          <DigitalMarkting />
-          <Title
-            firstText={"Digital Marketing"}
-            firstColor={"text-[#8D88FF]"}
-            secondText="Services"
-            subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
-          />
+          {serviceData.blocks?.[0]?.data && (
+            <DigitalFlow data={serviceData.blocks[0].data} />
+          )}
+          {serviceData.blocks?.[1]?.data && (
+            <OurProcess data={serviceData.blocks[1].data} />
+          )}
+          {serviceData.blocks?.[2]?.data && (
+            <Title
+              firstText={"Digital Marketing"}
+              firstColor={"text-[#8D88FF]"}
+              secondText="Services"
+              subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
+            />
+          )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
         </>
+      ) : (
+        <Skeleton />
       )}
 
       {matchedConfig?.styleKey === "platform-development" && (
