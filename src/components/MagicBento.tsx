@@ -733,7 +733,7 @@ const MagicBento: React.FC<BentoProps> = ({
           className="w-full"
         >
           {cardData.map((card: any, index: any) => {
-            const baseClassName = `card flex flex-col justify-between relative aspect-[4/3] h-[175px] md:min-h-[450px] w-full max-w-full  border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] rounded-[12px] md:rounded-none ${
+            const baseClassName = `card flex flex-col justify-between relative aspect-[4/3] h-[175px] md:min-h-[550px] w-full max-w-full  border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] rounded-[12px] md:rounded-none ${
               enableBorderGlow ? "card--border-glow" : ""
             }`;
 
