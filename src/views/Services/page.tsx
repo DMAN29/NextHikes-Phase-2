@@ -43,7 +43,7 @@ export default function ServicePage({ slug }: ServiceProps) {
     }
   }, [slug]);
 
-  // console.log("Service slug:", serviceData);
+  console.log("Service Data:", serviceData);
 
   const serviceStyles: any = {
     "web-development": {
