@@ -13,8 +13,8 @@ import DigitalFlow from "@/components/DigitalMarkting/DigitalFlow";
 // import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
 import OurProcess from "@/components/DigitalMarkting/OurProcess";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
-import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
-import ProcessFlow from "@/components/ProcessFlow/page";
+import PlatformDevelopment from "@/components/Platform/platformDevelopment";
+import ProcessFlow from "@/components/Platform/ProgressFlow";
 import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import Skeleton from "@/components/Skeleton/page";
@@ -324,7 +324,7 @@ export default function ServicePage({ slug }: ServiceProps) {
         </div>
       )}
 
-      {matchedConfig?.styleKey === "digital-marketing" && serviceData ? (
+      {matchedConfig?.styleKey === "digital-marketing" && (
         <>
           <Banner
             platform="digital"
@@ -361,12 +361,10 @@ export default function ServicePage({ slug }: ServiceProps) {
 
           <ServiceFormPage backgroundColor="#452A7C1A" />
         </>
-      ) : (
-        <Skeleton />
       )}
 
       {matchedConfig?.styleKey === "platform-development" && (
-        <div className="">
+        <>
           <Banner
             platform="platform-development"
             backgroundColor={["#FFF"]}
@@ -391,11 +389,25 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#fff"
             backgroundImage="/image/platform-banner.webp"
           />
-          <PlatformDevelopment />
-          <ProcessFlow />
-          {/* <ElevateBusinessPage /> */}
-          <Projects />
-        </div>
+          {serviceData.blocks?.[0]?.data && (
+            <PlatformDevelopment data={serviceData.blocks[0].data} />
+          )}
+
+          {serviceData.blocks?.[1]?.data && (
+            <ProcessFlow data={serviceData.blocks[1].data} />
+          )}
+
+          {serviceData.blocks?.[2]?.data && (
+            <ElevateBusinessPage data={serviceData.blocks[2].data} />
+          )}
+
+          {/* wrap projectIds in data prop */}
+          {serviceData.blocks?.[3]?.data?.projectIds && (
+            <Projects
+              data={{ projectIds: serviceData.blocks[3].data.projectIds }}
+            />
+          )}
+        </>
       )}
 
       {matchedConfig?.styleKey === "ai" && (
