@@ -30,6 +30,7 @@ export default function ServicePage({ slug }: ServiceProps) {
     async function fetchServiceData() {
       setLoading(true);
       try {
+        console.log("Fetching data for slug:", slug);
         const data = await getServicePageBySlug(slug);
         setServiceData(data);
       } catch (error) {
@@ -235,7 +236,9 @@ export default function ServicePage({ slug }: ServiceProps) {
   const currentStyle = matchedConfig
     ? serviceStyles[matchedConfig.styleKey]
     : serviceStyles.default;
-
+  if (loading || !serviceData) {
+    return <Skeleton />;
+  }
   return (
     <section>
       {matchedConfig?.styleKey === "web-development" && (
@@ -257,14 +260,26 @@ export default function ServicePage({ slug }: ServiceProps) {
             title={`Build your digital <br /> foundation`}
             headerTextColor="#000"
           />
-          <ElevateBusinessPage />
-          {/* <Title
-            firstText={currentStyle.title}
-            firstColor={currentStyle.textColor || "text-[#840065]"}
-            secondText="Services"
-            subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-          /> */}
+          {serviceData.blocks?.[0]?.data && (
+            <ElevateBusinessPage data={serviceData.blocks[0].data} />
+          )}
+          {serviceData.blocks?.[1]?.data && (
+            <Title
+              firstText={serviceData.blocks[1].data.firstTitle}
+              firstColor={
+                serviceData.blocks[1].data.firstColor || "text-[#840065]"
+              }
+              secondText={serviceData.blocks[1].data.secondTitle || "Services"}
+              subText={serviceData.blocks[1].data.subtitle}
+            />
+          )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
+          {/* <div>
+            {serviceData.blocks?.[2]?.data &&
+              serviceData.blocks[2].data.points && (
+                <ChooseUsTimeline data={serviceData.blocks[2].data} />
+              )}
+          </div> */}
           <div>
             <ChooseUsTimeline />
           </div>
@@ -299,7 +314,7 @@ export default function ServicePage({ slug }: ServiceProps) {
             subText="Next Hikes delivers complete mobile app development solutions, covering frontend, backend, and full-stack services to help businesses create powerful, secure, and visually engaging mobile applications. From concept to launch, we ensure your app is fast, user-friendly, and optimized for performance across all devices."
           /> */}
           <ServiceFormPage backgroundColor="#452A7C1A" />
-          <ElevateBusinessPage />
+          {/* <ElevateBusinessPage /> */}
           <Projects />
         </div>
       )}
@@ -332,10 +347,13 @@ export default function ServicePage({ slug }: ServiceProps) {
           )}
           {serviceData.blocks?.[2]?.data && (
             <Title
-              data={serviceData.blocks?.[2]?.data}
-              firstColor={"text-[#8D88FF]"}
+              firstText={serviceData.blocks[2].data?.firstTitle}
+              firstColor={serviceData.blocks[2].data?.firstColor}
+              secondText={serviceData.blocks[2].data?.secondTitle}
+              subText={serviceData.blocks[2].data?.subtitle}
             />
           )}
+
           <ServiceFormPage backgroundColor="#452A7C1A" />
         </>
       ) : (
@@ -370,7 +388,7 @@ export default function ServicePage({ slug }: ServiceProps) {
           />
           <PlatformDevelopment />
           <ProcessFlow />
-          <ElevateBusinessPage />
+          {/* <ElevateBusinessPage /> */}
           <Projects />
         </div>
       )}

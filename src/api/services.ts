@@ -7,5 +7,7 @@ export interface ServiceData {
 
 export async function getServicePageBySlug(slug: string): Promise<any> {
   const endpoint = `/srvcPage/slug/${encodeURIComponent(slug)}`;
-  return fetchGet<ServiceData>(endpoint).then((res) => res.data);
+  const res = await fetchGet<ServiceData>(endpoint);
+  // console.log("API response:", res);
+  return res.data;
 }
