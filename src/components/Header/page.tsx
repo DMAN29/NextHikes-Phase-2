@@ -94,10 +94,10 @@ export default function Header({ menuItems, links }: HeaderProps) {
       title: "Blog",
       url: "/blogs",
     },
-    {
-      title: "Marketing",
-      url: "/marketing",
-    },
+      {
+    title: "Marketing", 
+    url: "/marketing",    
+  },
     {
       title: "Online Payment",
       url: "/online-payment",

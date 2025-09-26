@@ -19,7 +19,7 @@ interface AboutUsProps {
 
 const AboutUs = ({ data }: AboutUsProps) => {
   return (
-    <>
+<>            
       <section
         className="w-full h-screen bg-cover bg-center relative flex items-center justify-center"
         style={{
