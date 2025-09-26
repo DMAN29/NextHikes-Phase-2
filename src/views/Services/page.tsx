@@ -1,7 +1,12 @@
 "use client";
 
 import { getServicePageBySlug } from "@/api/services";
+import AiInnovation from "@/components/AI/AiInnovation";
 import AIService from "@/components/AI/aiService";
+import FutureSection from "@/components/AI/FutureSection";
+import GlobalAIRevenueForecast from "@/components/AI/GlobalAIRevenueForecast";
+import GlobalAISkills from "@/components/AI/GlobalAISkills";
+import WhyAIForBusiness from "@/components/AI/WhyAIForBusiness";
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
 import DigitalFlow from "@/components/DigitalMarkting/DigitalFlow";
@@ -413,7 +418,43 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
             backgroundImage="/image/ai-banner.webp"
           />
-          <AIService />
+          {/* <AIService /> */}
+          {/* <WhyAIForBusiness />
+          <GlobalAISkills />
+          <GlobalAIRevenueForecast />
+          <AiInnovation />
+          <FutureSection />
+          <FutureSection /> */}
+          {/* Block 0 - WhyAIForBusiness */}
+          {console.log("serviceData blocks:", serviceData.blocks)}
+          {serviceData.blocks?.[0]?.data && (
+            <WhyAIForBusiness data={serviceData.blocks[0].data} />
+          )}
+
+          {/* Block 1 - GlobalAISkills */}
+          {serviceData.blocks?.[1]?.data && (
+            <GlobalAISkills data={serviceData.blocks[1].data} />
+          )}
+
+          {/* Block 2 - GlobalAIRevenueForecast */}
+          {serviceData.blocks?.[2]?.data && (
+            <GlobalAIRevenueForecast data={serviceData.blocks[2].data} />
+          )}
+
+          {/* Block 3 - AIThatFuelsInnovation */}
+          {serviceData.blocks?.[3]?.data && (
+            <AiInnovation data={serviceData.blocks[3].data} />
+          )}
+
+          {/* Block 4 - GrowSmarterWithAI */}
+          {serviceData.blocks?.[4]?.data && (
+            <FutureSection data={serviceData.blocks[4].data} />
+          )}
+
+          {/* Block 5 - TheFutureIsIntelligentAutomation */}
+          {serviceData.blocks?.[5]?.data && (
+            <FutureSection data={serviceData.blocks[5].data} />
+          )}
         </>
       )}
 
