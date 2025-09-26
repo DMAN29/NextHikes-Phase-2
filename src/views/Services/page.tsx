@@ -1,9 +1,12 @@
 "use client";
 
+import { getServicePageBySlug } from "@/api/services";
 import AIService from "@/components/AI/aiService";
 import AppBenfits from "@/components/AppDevelopment/AppBenfits";
 import Banner from "@/components/Banner/page";
+// import { DigitalFlow } from "@/components/DigitalMarkting/DigitalFlow";
 import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
+// import { OurProcess } from "@/components/DigitalMarkting/OurProcess";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
 import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
 import ProcessFlow from "@/components/ProcessFlow/page";
@@ -11,13 +14,29 @@ import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
 import Title from "@/components/Title/page";
 import ChooseUsTimeline from "@/components/WhyChooseUs/page";
+import { useEffect } from "react";
 
 interface ServiceProps {
   slug: any;
-  data?: any;
+  // data?: any;
 }
 
-export default function ServicePage({ slug, data }: ServiceProps) {
+export default function ServicePage({ slug }: ServiceProps) {
+  // useEffect(() => {
+  //   async function fetchServiceData() {
+  //     try {
+  //       const data = await getServicePageBySlug(slug);
+  //       console.log("Service data:", data);
+  //     } catch (error) {
+  //       console.error("Failed to fetch service data:", error);
+  //     }
+  //   }
+
+  //   if (slug) {
+  //     fetchServiceData();
+  //   }
+  // }, [slug]);
+
   const serviceStyles: any = {
     "web-development": {
       bgColor: "bg-[#DEF4FF]",
@@ -300,7 +319,7 @@ export default function ServicePage({ slug, data }: ServiceProps) {
           <DigitalMarkting />
           <Title
             firstText={"Digital Marketing"}
-            firstColor={"text-[#7D0101]"}
+            firstColor={"text-[#8D88FF]"}
             secondText="Services"
             subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
           />
@@ -351,7 +370,8 @@ export default function ServicePage({ slug, data }: ServiceProps) {
               {
                 text: `Schedule a consultation`,
                 url: "",
-                backgroundColor: "linear-gradient(90deg, #5375CD 0%, #282E98 68.75%)",
+                backgroundColor:
+                  "linear-gradient(90deg, #5375CD 0%, #282E98 68.75%)",
                 textColor: "#FFFFFF",
                 borderColor: "#ffffff",
               },
