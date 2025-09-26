@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Icon from "../Icon/page";
 import Link from "next/link";
-import { FaChevronUp } from "react-icons/fa6";
 import { fetchGet } from "@/lib/fetcher";
 import BackToTop from "../BackToTop/page";
 
@@ -10,7 +9,7 @@ export const revalidate = 60;
 async function getFooterData() {
   try {
     const res: any = await fetchGet(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/link/all`
+      `/link/all`
     );
     return res?.data;
   } catch (err) {

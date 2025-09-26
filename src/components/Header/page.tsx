@@ -190,6 +190,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm">
+          <Link href={"/contact-us"}>
           <button
             className={`${
               textColor === "#fff"
@@ -198,7 +199,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
             } rounded-full font-medium text-lg flex gap-2 items-center px-4 py-2 cursor-pointer`}
           >
             Contact Us <FaAngleRight />
-          </button>
+          </button></Link>
         </div>
 
         <button

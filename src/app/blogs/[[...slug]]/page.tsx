@@ -15,7 +15,7 @@ export default async function BlogsCatchAllPage({ params }: Params) {
   try {
     if (!slugArray || slugArray.length === 0) {
       const blogsRes: any = await fetchGet(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/blog`
+        `/blog`
       );
 
       if (!blogsRes?.success) {
@@ -27,7 +27,7 @@ export default async function BlogsCatchAllPage({ params }: Params) {
 
     const slug = slugArray[slugArray.length - 1];
     const blogRes: any = await fetchGet(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/blog/slug/${slug}`
+      `/blog/slug/${slug}`
     );
 
     if (!blogRes?.success || !blogRes?.data) {
