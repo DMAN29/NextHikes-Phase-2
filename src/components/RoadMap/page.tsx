@@ -45,7 +45,9 @@ export default function RoadmapStep() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/market/all`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/market/all`
+        );
         const json = await res.json();
         setData(json?.data);
       } catch (err) {
@@ -64,10 +66,17 @@ export default function RoadmapStep() {
     const bottomLine = section.querySelector<HTMLElement>(".vline-bottom");
     const heading = section.querySelector<HTMLElement>("h3");
 
-    if (topLine) gsap.to(topLine, { height: 80, duration: 0.5, ease: "power2.out" });
-    if (bottomLine) gsap.to(bottomLine, { height: 80, duration: 0.5, ease: "power2.out" });
+    if (topLine)
+      gsap.to(topLine, { height: 80, duration: 0.5, ease: "power2.out" });
+    if (bottomLine)
+      gsap.to(bottomLine, { height: 80, duration: 0.5, ease: "power2.out" });
     if (heading)
-      gsap.to(heading, { y: -10, color: "#f97316", duration: 0.4, ease: "power2.out" });
+      gsap.to(heading, {
+        y: -10,
+        color: "#f97316",
+        duration: 0.4,
+        ease: "power2.out",
+      });
   };
 
   const handleMouseLeave = (idx: number) => {
@@ -77,14 +86,23 @@ export default function RoadmapStep() {
     const bottomLine = section.querySelector<HTMLElement>(".vline-bottom");
     const heading = section.querySelector<HTMLElement>("h3");
 
-    if (topLine) gsap.to(topLine, { height: 0, duration: 0.5, ease: "power2.out" });
-    if (bottomLine) gsap.to(bottomLine, { height: 0, duration: 0.5, ease: "power2.out" });
+    if (topLine)
+      gsap.to(topLine, { height: 0, duration: 0.5, ease: "power2.out" });
+    if (bottomLine)
+      gsap.to(bottomLine, { height: 0, duration: 0.5, ease: "power2.out" });
     if (heading)
-      gsap.to(heading, { y: 0, color: "#111827", duration: 0.4, ease: "power2.out" });
+      gsap.to(heading, {
+        y: 0,
+        color: "#111827",
+        duration: 0.4,
+        ease: "power2.out",
+      });
   };
 
-  if (loading) return <p className="text-center py-10 text-gray-600">Loading...</p>;
-  if (!data) return <p className="text-center py-10 text-red-500">No data available</p>;
+  if (loading)
+    return <p className="text-center py-10 text-gray-600">Loading...</p>;
+  if (!data)
+    return <p className="text-center py-10 text-red-500">No data available</p>;
 
   const allSubpoints: SubPoint[] = data.detailedPointsSection.points.flatMap(
     (point) => point.subpoints
@@ -108,20 +126,21 @@ export default function RoadmapStep() {
         <div className="block sm:hidden space-y-6">
           {visibleSubpoints.map((sp, i) => (
             <section
-  key={i}
-  ref={(el) => (sectionsRef.current[i] = el)}
-  className="bg-white border border-gray-200 rounded-xl p-6 mx-2 shadow-md hover:shadow-lg transition-all duration-300 overflow-visible"
->
-  <h3 className="text-lg font-semibold text-gray-900  leading-snug relative z-10">
-    {sp.title}
-  </h3>
-  {sp.description && (
-    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-      {sp.description}
-    </p>
-  )}
-</section>
-
+              key={i}
+              ref={(el) => {
+                sectionsRef.current[i] = el;
+              }}
+              className="bg-white border border-gray-200 rounded-xl p-6 mx-2 shadow-md hover:shadow-lg transition-all duration-300 overflow-visible"
+            >
+              <h3 className="text-lg font-semibold text-gray-900  leading-snug relative z-10">
+                {sp.title}
+              </h3>
+              {sp.description && (
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  {sp.description}
+                </p>
+              )}
+            </section>
           ))}
         </div>
 
@@ -130,7 +149,9 @@ export default function RoadmapStep() {
           {visibleSubpoints.map((sp, i) => (
             <section
               key={i}
-              ref={(el) => (sectionsRef.current[i] = el)}
+              ref={(el) => {
+                sectionsRef.current[i] = el;
+              }}
               onMouseEnter={() => handleMouseEnter(i)}
               onMouseLeave={() => handleMouseLeave(i)}
               className="flex-shrink-0 flex flex-col items-center text-center w-[220px] cursor-pointer"
@@ -139,7 +160,10 @@ export default function RoadmapStep() {
                 {sp.title}
               </h3>
 
-              <div className="vline-top w-1 h-4 bg-gray-800 mb-4" style={{ height: 0 }} />
+              <div
+                className="vline-top w-1 h-4 bg-gray-800 mb-4"
+                style={{ height: 0 }}
+              />
 
               <div className={`relative ${imageStyles[i]}`}>
                 <Image
@@ -151,7 +175,10 @@ export default function RoadmapStep() {
                 />
               </div>
 
-              <div className="vline-bottom w-1 bg-gray-800 mt-4" style={{ height: 0 }} />
+              <div
+                className="vline-bottom w-1 bg-gray-800 mt-4"
+                style={{ height: 0 }}
+              />
 
               {sp.description && (
                 <p className="text-sm md:text-base text-gray-600 mt-4 max-w-[200px] leading-relaxed">

@@ -1,3 +1,5 @@
+"use client";
+
 import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
