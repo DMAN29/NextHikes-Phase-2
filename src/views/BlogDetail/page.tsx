@@ -1,4 +1,6 @@
+import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 interface DetailProps {
   data: {
@@ -12,6 +14,17 @@ interface DetailProps {
 }
 
 export default function DetailPage({ data }: DetailProps) {
+  const { textColor, setTextColor } = useHeaderColor();
+  const prevColorRef = useRef(textColor);
+
+  useEffect(() => {
+    prevColorRef.current = textColor;
+    setTextColor("#000");
+
+    return () => {
+      setTextColor(prevColorRef.current);
+    };
+  }, ["#000", setTextColor]);
   if (!data) {
     return <p className="text-center mt-10 text-red-500">Blog not found</p>;
   }

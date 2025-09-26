@@ -4,10 +4,16 @@ import Image from "next/image";
 import StarBorder from "../StarBorder";
 import { useEffect, useState } from "react";
 import CardSwap, { Card } from "../CardSwap";
+import Link from "next/link";
 
 const img = "/image/WhyUs.png";
 
-export default function WhyUs() {
+interface WhyUsProps {
+  data: any;
+}
+
+export default function WhyUs({ data }: WhyUsProps) {
+  const res = data[0];
   const [cardSize, setCardSize] = useState({ width: 450, height: 300 });
 
   useEffect(() => {
@@ -50,7 +56,7 @@ export default function WhyUs() {
             Why Choose Us?
           </h1>
           <p className="lg:text-2xl  gap-5 text-gray-700 text-center md:text-left lg:mt-5">
-            We Bring You Closer To <br /> A Successful Career
+            {res?.subtitle}
           </p>
         </div>
         <div className="relative z-1 w-full h-[100px] md:w-[600px] xl:w-[700px] md:h-[450px]">
@@ -63,11 +69,11 @@ export default function WhyUs() {
             height={cardSize.height}
             skewX={0}
           >
-            {cardData.map((card, index) => (
+            {res?.items?.map((card: any, index: number) => (
               <Card key={index} className="bg-gray-100">
                 <div className="p-6 md:p-10 lg:p-12 w-full h-full flex flex-col justify-center">
                   <h3 className="text-xl md:text-3xl font-semibold mb-4">
-                    {card.title}
+                    {card.name}
                   </h3>
                   <p className="text-gray-600 text-sm md:text-base">
                     {card.description}
@@ -79,14 +85,16 @@ export default function WhyUs() {
         </div>
 
         <div className="mt-24 xl-mt-32 z-20  text-center md:text-left">
-          <StarBorder
-            as="button"
-            className="cursor-pointer"
-            color="cyan"
-            speed="5s"
-          >
-            Get In Touch
-          </StarBorder>
+          <Link href={res?.button?.url}>
+            <StarBorder
+              as="button"
+              className="cursor-pointer"
+              color="cyan"
+              speed="5s"
+            >
+              {res?.button?.label}
+            </StarBorder>
+          </Link>
         </div>
       </div>
       <div className="w-[50%] relative hidden lg:block">

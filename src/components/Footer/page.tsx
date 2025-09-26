@@ -8,9 +8,7 @@ export const revalidate = 60;
 
 async function getFooterData() {
   try {
-    const res: any = await fetchGet(
-      `/link/all`
-    );
+    const res: any = await fetchGet(`/link/all`);
     return res?.data;
   } catch (err) {
     throw new Error("Something went wrong");
@@ -87,7 +85,7 @@ export default async function Footer() {
 
   return (
     <footer className="bg-white pt-8 border-t border-gray-300">
-      <div className="custom-container mx-auto !px-6 !py-4 grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div className="custom-container mx-auto !px-6 !py-4 grid grid-cols-1 md:grid-cols-6 gap-6">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 text-xl font-bold">
             <Link className="text-orange-500 cursor-pointer" href={"/"}>
@@ -149,7 +147,7 @@ export default async function Footer() {
           <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
             {data?.map((item: any, index: any) => (
               <Link
-              key={index}
+                key={index}
                 href={item?.url}
                 target="_blank"
                 className={`text-xl p-2 border border-black aspect-square rounded-full cursor-pointer`}
@@ -171,16 +169,6 @@ export default async function Footer() {
           >
             Services
           </h4>
-
-          {/* <ul className="space-y-2 text-sm flex flex-col text-white">
-            {service?.slice(0, 4)?.map((item: any, index: any) => (
-              <Link href={`/services/${item.slug}`} key={index}>
-                <li className="hover:text-orange-400 cursor-pointer">
-                  {item.title}
-                </li>
-              </Link>
-            ))}
-          </ul> */}
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
             {serviceMenus?.slice(0, 4)?.map((item: any, index: any) => (
               <Link href={item.url} key={index}>
@@ -203,15 +191,6 @@ export default async function Footer() {
           >
             Industries
           </h4>
-          {/* <ul className="space-y-2 text-sm flex flex-col text-white">
-            {industry?.slice(0, 4)?.map((item: any, index: any) => (
-              <Link href={`/industries/${item.slug}`} key={index}>
-                <li className="hover:text-orange-400 cursor-pointer">
-                  {item.title}
-                </li>
-              </Link>
-            ))}
-          </ul> */}
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
             {menus?.slice(0, 4)?.map((item: any, index: any) => (
               <Link href={item.url} key={index}>
@@ -222,7 +201,27 @@ export default async function Footer() {
             ))}
           </ul>
         </div>
-
+        <div>
+          <h4
+            className="text-xl font-medium mb-4 uppercase"
+            style={{
+              background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Company
+          </h4>
+          <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
+            {menus?.slice(0, 4)?.map((item: any, index: any) => (
+              <Link href={item.url} key={index}>
+                <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
+                  {item.name}
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </div>
         <div>
           <h4
             className="text-xl font-medium mb-4 uppercase"
@@ -265,10 +264,7 @@ export default async function Footer() {
 
             <li className="flex items-center gap-2">
               <Icon name={"phone"} />
-              <Link
-                href={`tel:+919627865333`}
-                className="hover:underline"
-              >
+              <Link href={`tel:+919627865333`} className="hover:underline">
                 {" "}
                 +919627865333 (9AM - 6PM, Mon - Sat)
               </Link>

@@ -771,11 +771,11 @@ const MagicBento: React.FC<BentoProps> = ({
                       <div className="absolute inset-0 bg-[#00000099]"></div>
                       <div className="absolute bottom-13 left-7">
                         <h3 className="card__title z-1 capitalize text-white text-2xl font-medium">
-                          {card.title}
+                          {card.name}
                         </h3>
-                        <p className="card__description uppercase text-[#B6F214] text-base flex items-center gap-3">
+                        {/* <p className="card__description uppercase text-[#B6F214] text-base flex items-center gap-3">
                           {card.button}
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </ParticleCard>

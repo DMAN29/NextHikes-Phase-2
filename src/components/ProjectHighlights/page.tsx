@@ -1,9 +1,19 @@
 "use client";
 
-import { FaArrowRight } from "react-icons/fa6";
 import MagicBento from "../MagicBento";
-export default function ProjectHighlights() {
-  const data = [
+
+interface ImageProps {
+  name: string;
+  image: string;
+}
+
+interface ProjectProps {
+  data: ImageProps;
+}
+
+export default function ProjectHighlights({ data }: ProjectProps) {
+  console.log(data);
+  const datas = [
     { image: "/image/case-study.jpg", title: "demo", button: "case study" },
     { image: "/image/case-study.jpg", title: "demo", button: "case study" },
     { image: "/image/case-study.jpg", title: "demo", button: "case study" },

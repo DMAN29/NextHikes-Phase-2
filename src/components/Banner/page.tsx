@@ -245,13 +245,13 @@ export default function Banner({
                 <div>
                   {title && (
                     <h1
-                      className="text-2xl text-center md:text-start md:text-5xl font-extrabold text-slate-900"
+                      className="text-2xl text-center md:text-start md:text-5xl font-extrabold text-[#363636]"
                       dangerouslySetInnerHTML={{ __html: title }}
                     />
                   )}
                   {subTitle && (
                     <p
-                      className="mt-5 text-center md:text-start text-xs md:text-sm text-slate-600"
+                      className="mt-5 text-center md:text-start text-xs md:text-lg text-[#425466]"
                       dangerouslySetInnerHTML={{ __html: subTitle }}
                     />
                   )}
