@@ -258,12 +258,12 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
           />
           <ElevateBusinessPage />
-          <Title
+          {/* <Title
             firstText={currentStyle.title}
             firstColor={currentStyle.textColor || "text-[#840065]"}
             secondText="Services"
             subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-          />
+          /> */}
           <ServiceFormPage backgroundColor="#452A7C1A" />
           <div>
             <ChooseUsTimeline />
@@ -292,12 +292,12 @@ export default function ServicePage({ slug }: ServiceProps) {
             backgroundImage="/image/app-back.webp"
           />
           <AppBenfits />
-          <Title
+          {/* <Title
             firstText={"App Development"}
             firstColor={"text-[#083E92]"}
             secondText="Services"
             subText="Next Hikes delivers complete mobile app development solutions, covering frontend, backend, and full-stack services to help businesses create powerful, secure, and visually engaging mobile applications. From concept to launch, we ensure your app is fast, user-friendly, and optimized for performance across all devices."
-          />
+          /> */}
           <ServiceFormPage backgroundColor="#452A7C1A" />
           <ElevateBusinessPage />
           <Projects />
@@ -332,10 +332,8 @@ export default function ServicePage({ slug }: ServiceProps) {
           )}
           {serviceData.blocks?.[2]?.data && (
             <Title
-              firstText={"Digital Marketing"}
+              data={serviceData.blocks?.[2]?.data}
               firstColor={"text-[#8D88FF]"}
-              secondText="Services"
-              subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
             />
           )}
           <ServiceFormPage backgroundColor="#452A7C1A" />

@@ -19,7 +19,7 @@ export interface DigitalFlowProps {
   data: DigitalFlowData;
 }
 export default function DigitalFlow({ data }: DigitalFlowProps) {
-  console.log("DigitalFlow data:", data);
+  //   console.log("DigitalFlow data:", data);
   const img1 = "/image/digital1.png";
 
   //   const horizontalBlocks = [

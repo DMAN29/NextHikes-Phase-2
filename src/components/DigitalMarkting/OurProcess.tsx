@@ -1,8 +1,22 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+interface ProcessStep {
+  title: string;
+  description: string;
+}
+
+interface OurProcessData {
+  title: string;
+  steps: ProcessStep[];
+}
+
+interface OurProcessProps {
+  data: OurProcessData;
+}
+
 function useBreakpoint() {
-  const [breakpoint, setBreakpoint] = useState("xl"); // Default to xl for SSR
+  const [breakpoint, setBreakpoint] = useState("xl");
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -20,41 +34,44 @@ function useBreakpoint() {
   return breakpoint;
 }
 
-export default function OurProcess({ data }: any) {
+export default function OurProcess({ data }: OurProcessProps) {
+  //   console.log("OurProcess data:", data);
   const img2 = "/image/digital2.png";
   const img3 = "/image/digital3.png";
   const img4 = "/image/digital4.png";
 
-  const processData = {
-    headline: "Data-Led. Client-Focused. Growth-Oriented.",
-    subheadline: "Our Results-Driven Process",
-    steps: [
-      {
-        number: 1,
-        title: "Discovery & Research",
-        description:
-          "We Start By Understanding Your Business, Target Audience, Competitive Landscape, And Specific Growth Objectives.",
-      },
-      {
-        number: 2,
-        title: "Strategy & Planning",
-        description:
-          "Developing A Customized Digital Marketing Roadmap With Clear KPIs, Channel Selection, And A Detailed Plan For Execution.",
-      },
-      {
-        number: 3,
-        title: "Implementation & Optimization",
-        description:
-          "Launching Campaigns, Creating Compelling Assets, Continuous A/B Testing, And Real-Time Adjustments To Maximize Performance.",
-      },
-      {
-        number: 4,
-        title: "Reporting & Analysis",
-        description:
-          "Providing Transparent, Easy-To-Understand Reports With Actionable Insights To Inform Future Strategies And Demonstrate ROI.",
-      },
-    ],
-  };
+  //   const processData = {
+  //     headline: "Data-Led. Client-Focused. Growth-Oriented.",
+  //     subheadline: "Our Results-Driven Process",
+  //     steps: [
+  //       {
+  //         number: 1,
+  //         title: "Discovery & Research",
+  //         description:
+  //           "We Start By Understanding Your Business, Target Audience, Competitive Landscape, And Specific Growth Objectives.",
+  //       },
+  //       {
+  //         number: 2,
+  //         title: "Strategy & Planning",
+  //         description:
+  //           "Developing A Customized Digital Marketing Roadmap With Clear KPIs, Channel Selection, And A Detailed Plan For Execution.",
+  //       },
+  //       {
+  //         number: 3,
+  //         title: "Implementation & Optimization",
+  //         description:
+  //           "Launching Campaigns, Creating Compelling Assets, Continuous A/B Testing, And Real-Time Adjustments To Maximize Performance.",
+  //       },
+  //       {
+  //         number: 4,
+  //         title: "Reporting & Analysis",
+  //         description:
+  //           "Providing Transparent, Easy-To-Understand Reports With Actionable Insights To Inform Future Strategies And Demonstrate ROI.",
+  //       },
+  //     ],
+  //   };
+
+  const processData: ProcessStep[] = data.steps;
 
   // Always call the hook at component top level
   const breakpoint = useBreakpoint();
@@ -91,8 +108,8 @@ export default function OurProcess({ data }: any) {
 
         {/* Vertical steps list */}
         <div className="w-full flex flex-col gap-4">
-          {processData.steps.map((step) => (
-            <div key={step.number} className="flex items-center">
+          {processData.map((step, idx) => (
+            <div key={idx} className="flex items-center">
               {/* Purple ring image with number overlaid */}
               <div className="relative w-10 h-10 flex-shrink-0 mr-4">
                 <Image
@@ -103,7 +120,7 @@ export default function OurProcess({ data }: any) {
                   height={40}
                 />
                 <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm font-bold select-none">
-                  {step.number}
+                  {idx + 1}
                 </span>
               </div>
               <div>
@@ -129,10 +146,10 @@ export default function OurProcess({ data }: any) {
         {/* Right side - fill full height */}
         <div className="w-2/5 h-full ">
           <div className="flex flex-col justify-between h-full py-5">
-            {processData.steps.map((step, index) => (
+            {processData.map((step, idx) => (
               <div
-                key={step.number}
-                style={{ transform: `translateX(${getTranslateX(index)}px)` }}
+                key={idx}
+                style={{ transform: `translateX(${getTranslateX(idx)}px)` }}
               >
                 <div>
                   <h3 className="font-semibold lg:text-lg">{step.title}</h3>
