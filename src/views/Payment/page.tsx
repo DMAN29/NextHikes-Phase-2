@@ -31,13 +31,15 @@ export default function PaymentPage() {
   return (
     <section>
       <div className="relative">
-        <Image
+        <div className="md:min-h-screen">
+          <Image
           src={"/image/world.webp"}
           alt="world-image"
           width={1000}
           height={1000}
-          className="w-full h-auto min-h-screen object-cover"
+          className="w-full h-auto object-cover"
         />
+        </div>
         <div className="absolute w-full max-w-xl px-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
           <h1 className="text-white uppercase text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-center leading-snug">
             Complete your secure payments

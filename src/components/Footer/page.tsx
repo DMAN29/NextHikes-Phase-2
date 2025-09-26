@@ -1,39 +1,25 @@
-"use client";
-
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import Icon from "../Icon/page";
 import Link from "next/link";
 import { FaChevronUp } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { fetchGet } from "@/lib/fetcher";
+import BackToTop from "../BackToTop/page";
 
-interface FooterProps {
-  services: any;
-  industry: any;
-  page: any;
-  contact: any;
+export const revalidate = 60;
+
+async function getFooterData() {
+  try {
+    const res: any = await fetchGet(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/link/all`
+    );
+    return res?.data;
+  } catch (err) {
+    throw new Error("Something went wrong");
+  }
 }
 
-export default function Footer() {
-  const router = useRouter();
-  const [service, setService] = useState([]);
-  const [industry, setIndustry] = useState([]);
-  const [contact, setContact] = useState<any>();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      // const res = await UserService.getServices();
-      // const industryRes = await UserService.getIndustry();
-      // const contactRes = await UserService.getContact();
-      // setService(res);
-      // setIndustry(industryRes);
-      // setContact(contactRes?.data);
-    } catch (error) {}
-  };
+export default async function Footer() {
+  const data = await getFooterData();
 
   const menus = [
     {
@@ -102,13 +88,10 @@ export default function Footer() {
 
   return (
     <footer className="bg-white pt-8 border-t border-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div className="custom-container mx-auto !px-6 !py-4 grid grid-cols-1 md:grid-cols-5 gap-6">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 text-xl font-bold">
-            <span
-              className="text-orange-500 cursor-pointer"
-              onClick={() => router.push("/")}
-            >
+            <Link className="text-orange-500 cursor-pointer" href={"/"}>
               <Image
                 src={"/image/nexthikes-black.webp"}
                 alt="logo"
@@ -116,7 +99,7 @@ export default function Footer() {
                 height={96}
                 className="cursor-pointer"
               />
-            </span>
+            </Link>
           </div>
           {/* <div className="flex flex-col mt-5">
             <h5 className="uppercase text-black text-xl">Email address*</h5>
@@ -165,12 +148,12 @@ export default function Footer() {
             *Contacts information
           </p>
           <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
-            {links?.map((item: any, index: any) => (
+            {data?.map((item: any, index: any) => (
               <Link
+              key={index}
                 href={item?.url}
                 target="_blank"
                 className={`text-xl p-2 border border-black aspect-square rounded-full cursor-pointer`}
-                key={index}
               >
                 <Icon name={item?.platform} color="#000" />
               </Link>
@@ -256,12 +239,10 @@ export default function Footer() {
             <li className="flex items-center gap-2 break-words">
               <Icon name={"email"} color="#000" />
               <Link
-                href={`mailto:${
-                  contact?.officialEmail || "info@nexthikes.com"
-                }`}
+                href={`mailto:${"info@nexthikes.com"}`}
                 className="hover:underline break-all"
               >
-                {contact?.officialEmail || "info@nexthikes.com"}
+                {"info@nexthikes.com"}
               </Link>
             </li>
             <li className="flex items-start gap-2">
@@ -283,36 +264,21 @@ export default function Footer() {
               </Link>
             </li> */}
 
-            {/* <li className="flex items-center gap-2">
+            <li className="flex items-center gap-2">
               <Icon name={"phone"} />
               <Link
-                href={`tel:${contact?.contactNumber}`}
+                href={`tel:+919627865333`}
                 className="hover:underline"
               >
                 {" "}
-                {contact?.contactNumber} (9AM - 6PM, Mon - Sat)
+                +919627865333 (9AM - 6PM, Mon - Sat)
               </Link>
-            </li> */}
+            </li>
           </ul>
         </div>
       </div>
       <div className="border-t border-black mt-4 w-full" />
-      <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <p className="text-[#000]">
-          © {new Date().getFullYear()} Copyright Nexthikes All Rights Reserved
-        </p>
-        <div
-          className="items-center justify-center gap-2 cursor-pointer hidden md:flex"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          <p className="text-black leading-none">Back To Top</p>
-          <FaChevronUp className="text-black flex-shrink-0" />
-        </div>
-      </div>
-      {/* <div className="border-b border-black w-full mb-0" /> */}
-      {/* <p className="text-center px-2 text-[#A7A7A7] mt-4">
-        Copyright 2020-2024 
-      </p> */}
+      <BackToTop />
     </footer>
   );
 }

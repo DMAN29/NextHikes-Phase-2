@@ -44,9 +44,7 @@ export default async function HomePage() {
       />
       <OurService />
       <Feathers />
-      <div className="custom-container">
-        <IndustriesServe />
-      </div>
+      <IndustriesServe />
       <ProjectHighlights />
       <WhyUs />
       <Testimonials />
