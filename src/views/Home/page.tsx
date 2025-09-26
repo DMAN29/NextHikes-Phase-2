@@ -56,7 +56,7 @@ export default async function HomePage() {
       {data?.isWhyChooseBlockActive && <WhyUs data={data?.whyChooseUs} />}
       {data?.isFeaturedTestimonialBlockActive && <Testimonials />}
       <Team />
-      {data?.isGalleryBlockActive && <Gallery />}
+      {data?.isGalleryBlockActive && <Gallery image={data?.galleryBlockIds} />}
     </div>
   );
 }

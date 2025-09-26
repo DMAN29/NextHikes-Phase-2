@@ -9,8 +9,6 @@ interface TechStackProps {
 export default function TechStack({ data }: TechStackProps) {
   const [showAll, setShowAll] = useState(false);
 
-  console.log("TechStack data:", data);
-
   // Limit to 4 if not expanded
   const visibleTechs = showAll ? data : data?.slice(0, 4);
 

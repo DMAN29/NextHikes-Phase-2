@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useCallback } from "react";
 import { useGesture } from "@use-gesture/react";
 
-type ImageItem = string | { src: string; alt?: string };
+type ImageItem = string | { image: string; alt?: string };
 
 type DomeGalleryProps = {
   images?: ImageItem[];
@@ -26,7 +26,7 @@ type DomeGalleryProps = {
 };
 
 type ItemDef = {
-  src: string;
+  image: string;
   alt: string;
   x: number;
   y: number;
@@ -34,39 +34,10 @@ type ItemDef = {
   sizeY: number;
 };
 
-const DEFAULT_IMAGES: ImageItem[] = [
-  {
-    src: "https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Abstract art",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Modern sculpture",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Digital artwork",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Contemporary art",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Geometric pattern",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Textured surface",
-  },
-  {
-    src: "https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large",
-    alt: "Social media image",
-  },
-];
+const DEFAULT_IMAGES = 100;
 
 const DEFAULTS = {
-  maxVerticalRotationDeg: 5,
+  maxVerticalRotationDeg: 25,
   dragSensitivity: 20,
   enlargeTransitionMs: 300,
   segments: 35,
@@ -96,46 +67,31 @@ function buildItems(pool: ImageItem[], seg: number): ItemDef[] {
   });
 
   const totalSlots = coords.length;
-  if (pool.length === 0) {
-    return coords.map((c) => ({ ...c, src: "", alt: "" }));
-  }
-  if (pool.length > totalSlots) {
-    console.warn(
-      `[DomeGallery] Provided image count (${pool.length}) exceeds available tiles (${totalSlots}). Some images will not be shown.`
-    );
+
+  if (!pool || pool.length === 0) {
+    return coords.map((c) => ({ ...c, image: "", alt: "" }));
   }
 
-  const normalizedImages = pool.map((image) => {
-    if (typeof image === "string") {
-      return { src: image, alt: "" };
-    }
-    return { src: image.src || "", alt: image.alt || "" };
-  });
-
-  const usedImages = Array.from(
-    { length: totalSlots },
-    (_, i) => normalizedImages[i % normalizedImages.length]
+  // Normalize images
+  const normalizedImages = pool.map((img) =>
+    typeof img === "string" ? { src: img, alt: "" } : { src: img.image, alt: img.alt || "" }
   );
 
-  for (let i = 1; i < usedImages.length; i++) {
-    if (usedImages[i].src === usedImages[i - 1].src) {
-      for (let j = i + 1; j < usedImages.length; j++) {
-        if (usedImages[j].src !== usedImages[i].src) {
-          const tmp = usedImages[i];
-          usedImages[i] = usedImages[j];
-          usedImages[j] = tmp;
-          break;
-        }
-      }
-    }
+  // Fill slots with images (repetition allowed)
+  const usedImages: { src: string; alt: string }[] = [];
+  let index = 0;
+  while (usedImages.length < totalSlots) {
+    usedImages.push(normalizedImages[index % normalizedImages.length]);
+    index++;
   }
 
   return coords.map((c, i) => ({
     ...c,
-    src: usedImages[i].src,
+    image: usedImages[i].src,
     alt: usedImages[i].alt,
   }));
 }
+
 
 function computeItemBaseRotation(
   offsetX: number,
@@ -151,7 +107,7 @@ function computeItemBaseRotation(
 }
 
 export default function DomeGallery({
-  images = DEFAULT_IMAGES,
+  images,
   fit = 0.5,
   fitBasis = "auto",
   minRadius = 600,
@@ -209,7 +165,7 @@ export default function DomeGallery({
     document.body.classList.remove("dg-scroll-lock");
   }, []);
 
-  const items = useMemo(() => buildItems(images, segments), [images, segments]);
+  const items = useMemo(() => buildItems(images ?? [], segments), [images, segments]);
 
   const applyTransform = (xDeg: number, yDeg: number) => {
     const el = sphereRef.current;
@@ -855,7 +811,7 @@ export default function DomeGallery({
                 <div
                   key={`${it.x},${it.y},${i}`}
                   className="sphere-item absolute m-auto"
-                  data-src={it.src}
+                  data-src={it.image}
                   data-alt={it.alt}
                   data-offset-x={it.x}
                   data-offset-y={it.y}
@@ -896,7 +852,7 @@ export default function DomeGallery({
                     }}
                   >
                     <img
-                      src={it.src}
+                      src={it.image}
                       draggable={false}
                       alt={it.alt}
                       className="w-full h-full object-cover pointer-events-none"

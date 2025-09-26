@@ -8,15 +8,24 @@ export const revalidate = 60;
 
 async function getFooterData() {
   try {
-    const res: any = await fetchGet(`/link/all`);
-    return res?.data;
+    const [linksRes, aboutRes]: any = await Promise.all([
+      fetchGet(`/link/all`),
+      fetchGet(`/about/public`, { next: { revalidate: 60 } }),
+    ]);
+
+    return {
+      links: linksRes?.data,
+      about: aboutRes?.data,
+    };
   } catch (err) {
     throw new Error("Something went wrong");
   }
 }
 
 export default async function Footer() {
-  const data = await getFooterData();
+  const { links, about } = await getFooterData();
+
+  console.log(about);
 
   const menus = [
     {
@@ -38,25 +47,6 @@ export default async function Footer() {
     {
       url: "/industries/healthcare",
       name: "Healthcare",
-    },
-  ];
-
-  const links = [
-    {
-      platform: "facebook",
-      url: "https://www.facebook.com/nexthikes",
-    },
-    {
-      platform: "instagram",
-      url: "https://www.instagram.com/next_hikes/?igsh=MThydTFxYTg2ZGt6MQ%3D%3D#",
-    },
-    {
-      platform: "linkedin",
-      url: "https://www.linkedin.com/company/next-hikes/",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/i/flow/login?redirect_after_login=%2FNexthikes",
     },
   ];
 
@@ -145,7 +135,7 @@ export default async function Footer() {
             *Contacts information
           </p>
           <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
-            {data?.map((item: any, index: any) => (
+            {links?.map((item: any, index: any) => (
               <Link
                 key={index}
                 href={item?.url}
@@ -213,13 +203,13 @@ export default async function Footer() {
             Company
           </h4>
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
-            {menus?.slice(0, 4)?.map((item: any, index: any) => (
-              <Link href={item.url} key={index}>
-                <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
-                  {item.name}
-                </li>
-              </Link>
-            ))}
+            {/* {menus?.slice(0, 4)?.map((item: any, index: any) => ( */}
+            <Link href={about?.slug}>
+              <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
+                About Us
+              </li>
+            </Link>
+            {/* ))} */}
           </ul>
         </div>
         <div>

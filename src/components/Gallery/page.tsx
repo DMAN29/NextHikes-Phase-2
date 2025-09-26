@@ -1,6 +1,11 @@
 import DomeGallery from "../DomeGallery";
 
-export default function Gallery() {
+interface GalleryProps {
+  image: any;
+}
+
+export default function Gallery({ image }: GalleryProps) {
+  const imageUrls = image?.map((item: any) => item.image);
   return (
     <section className="w-full md:min-h-screen">
       <h3
@@ -19,6 +24,7 @@ export default function Gallery() {
           maxVerticalRotationDeg={10}
           dragDampening={2}
           segments={34}
+          images={image}
         />
       </div>
     </section>
