@@ -15,7 +15,7 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
   if (!slugPath) return notFound();
 
   try {
-    const res: any = await fetchGet(`${process.env.NEXT_PUBLIC_BASE_URL}/about/public`);
+    const res: any = await fetchGet(`/about/public`);
 
     if (!res?.success || !res.data) {
       return notFound();

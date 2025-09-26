@@ -1,21 +1,23 @@
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export async function fetchGet<T>(
-  url: string,
+  endpoint: string,
   options?: RequestInit
 ): Promise<T> {
-  const res = await fetch(url, { cache: "force-cache", ...options });
+  const res = await fetch(`${BASE_URL}${endpoint}`, { cache: "force-cache", ...options });
 
   if (!res.ok) {
-    throw new Error(`Failed to fetch ${url}. Status: ${res.status}`);
+    throw new Error(`Failed to fetch ${BASE_URL}${endpoint}. Status: ${res.status}`);
   }
   return res.json();
 }
 
 export async function fetchPost<T>(
-  url: string,
+  endpoint: string,
   body: any,
   options?: RequestInit
 ): Promise<T> {
-  const res = await fetch(url, {
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,22 +32,22 @@ export async function fetchPost<T>(
   try {
     data = await res.json();
   } catch {
-    throw new Error(`Failed to parse response from ${url}`);
+    throw new Error(`Failed to parse response from ${BASE_URL}${endpoint}`);
   }
 
   if (!res.ok) {
-    throw new Error(data?.message || `Failed to POST ${url}. Status: ${res.status}`);
+    throw new Error(data?.message || `Failed to POST ${BASE_URL}${endpoint}. Status: ${res.status}`);
   }
 
   return data;
 }
 
 export async function fetchPut<T>(
-  url: string,
+  endpoint: string,
   body: any,
   options?: RequestInit
 ): Promise<T> {
-  const res = await fetch(url, {
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -60,22 +62,22 @@ export async function fetchPut<T>(
   try {
     data = await res.json();
   } catch {
-    throw new Error(`Failed to parse response from ${url}`);
+    throw new Error(`Failed to parse response from ${BASE_URL}${endpoint}`);
   }
 
   if (!res.ok) {
-    throw new Error(data?.message || `Failed to PUT ${url}. Status: ${res.status}`);
+    throw new Error(data?.message || `Failed to PUT ${BASE_URL}${endpoint}. Status: ${res.status}`);
   }
 
   return data;
 }
 
 export async function fetchPatch<T>(
-  url: string,
+  endpoint: string,
   body: any,
   options?: RequestInit
 ): Promise<T> {
-  const res = await fetch(url, {
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -90,12 +92,12 @@ export async function fetchPatch<T>(
   try {
     data = await res.json();
   } catch {
-    throw new Error(`Failed to parse response from ${url}`);
+    throw new Error(`Failed to parse response from ${BASE_URL}${endpoint}`);
   }
 
   if (!res.ok) {
     throw new Error(
-      data?.message || `Failed to PATCH ${url}. Status: ${res.status}`
+      data?.message || `Failed to PATCH ${BASE_URL}${endpoint}. Status: ${res.status}`
     );
   }
 
@@ -103,10 +105,10 @@ export async function fetchPatch<T>(
 }
 
 export async function fetchDelete<T>(
-  url: string,
+  endpoint: string,
   options?: RequestInit
 ): Promise<T> {
-  const res = await fetch(url, {
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -121,12 +123,12 @@ export async function fetchDelete<T>(
     data = await res.json();
   } catch {
     if (res.ok) return {} as T;
-    throw new Error(`Failed to parse response from ${url}`);
+    throw new Error(`Failed to parse response from ${BASE_URL}${endpoint}`);
   }
 
   if (!res.ok) {
     throw new Error(
-      data?.message || `Failed to DELETE ${url}. Status: ${res.status}`
+      data?.message || `Failed to DELETE ${BASE_URL}${endpoint}. Status: ${res.status}`
     );
   }
 

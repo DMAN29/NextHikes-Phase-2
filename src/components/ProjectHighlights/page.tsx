@@ -36,11 +36,11 @@ export default function ProjectHighlights() {
           cardData={data}
         />
       </div>
-      <div className="flex justify-center items-center mt-7">
+      {/* <div className="flex justify-center items-center mt-7">
         <button className="flex md:hidden bg-black w-10 h-10 justify-center items-center text-white rounded-full">
-          {/* <FaArrowRight /> */}
+          <FaArrowRight />
         </button>
-      </div>
+      </div> */}
     </section>
   );
 }
