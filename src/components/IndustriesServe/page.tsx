@@ -67,7 +67,7 @@ export default function Industries() {
   }
 
   return (
-    <section className="pb-12 bg-white">
+    <section className="pb-12 mt-20 sm:mt-10 md:mt-25 bg-white">
       <div className="max-w-8xl mx-auto px-2 sm:px-4">
         {/* Only show title if API returned it */}
         {title && (
@@ -83,7 +83,7 @@ export default function Industries() {
               className="flex flex-col items-center text-center rounded-lg mb-4"
             >
               <Image
-                src={`${baseUrl}${industry.image}`}
+               src={industry.image.startsWith("http") ? industry.image : `${baseUrl}${industry.image}`}
                 alt={industry.name}
                 width={200}
                 height={200}

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -40,13 +41,11 @@ const ChallengeSolution = () => {
   }
 
   return (
-    <div className="py-9">
+    <div>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-2xl md:text-3xl font-bold mb-12">
-          {challengesSection.title}
-        </h2>
+        
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Challenges */}
           <div className="relative">
             <div className="flex items-center">
@@ -57,7 +56,7 @@ const ChallengeSolution = () => {
               <div className="relative w-52 h-52">
                 <Image src="/image/arrow.png" alt="arrow Icon" fill className="object-contain" />
                 <h2 className="absolute inset-0 flex items-center justify-center text-sm sm:text-base md:text-lg font-bold text-black">
-                  Challenges
+                 Challenges
                 </h2>
               </div>
             </div>
@@ -85,7 +84,7 @@ const ChallengeSolution = () => {
               <div className="relative w-52 h-52">
                 <Image src="/image/arrow.png" alt="arrow Icon" fill className="object-contain" />
                 <h2 className="absolute inset-0 flex items-center justify-center text-sm sm:text-base md:text-lg font-bold text-black">
-                  Solutions
+                Solutions
                 </h2>
               </div>
             </div>

@@ -48,7 +48,7 @@ export interface Member {
   socialLinks: SocialLink[];
 }
 
-const MemberCard: React.FC<{ member: Member }> = ({ member }) => {
+const MemberCard: React.FC<{ member: Member }> = ({ member }: any) => {
   return (
     <div className="relative w-full h-[280px] sm:h-[320px] md:h-[360px] lg:h-[320px] rounded-2xl overflow-hidden border-4 border-[#f37021] bg-[#111] group select-none shadow-lg transition-shadow duration-300">
       {/* Profile Image */}
@@ -72,7 +72,7 @@ const MemberCard: React.FC<{ member: Member }> = ({ member }) => {
 
       {/* Overlay on Hover */}
       <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-6">
-        {member.socialLinks.map((link, linkIdx) => {
+        {member.socialLinks.map((link: any, linkIdx: any) => {
           if (!icons[link.platform]) return null;
           return (
             <Link
