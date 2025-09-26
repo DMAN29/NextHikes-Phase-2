@@ -2,7 +2,7 @@
 
 import { getServicePageBySlug } from "@/api/services";
 import AiInnovation from "@/components/AI/AiInnovation";
-import AIService from "@/components/AI/aiService";
+// import AIService from "@/components/AI/aiService";
 import FutureSection from "@/components/AI/FutureSection";
 import GlobalAIRevenueForecast from "@/components/AI/GlobalAIRevenueForecast";
 import GlobalAISkills from "@/components/AI/GlobalAISkills";
