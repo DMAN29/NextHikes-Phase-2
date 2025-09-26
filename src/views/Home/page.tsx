@@ -18,8 +18,6 @@ export default async function HomePage() {
   try {
     const res: any = await fetchGet(`${process.env.NEXT_PUBLIC_BASE_URL}/home`);
 
-    console.log(res);
-
     if (!res?.success) {
       throw new Error("Failed to fetch home data");
     }

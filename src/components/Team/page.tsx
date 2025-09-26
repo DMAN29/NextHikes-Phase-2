@@ -244,7 +244,7 @@ const teamMembers: Member[] = [
 
 export default function Team() {
   return (
-    <section className="custom-container min-h-screen flex flex-col !mt-20 !mb-20 md:!mb-0">
+    <section className="custom-container md:min-h-screen flex flex-col !mt-20 !mb-20 md:!mb-0">
       <h3 className="uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl  mb-3">
         meet our team at{" "}
         <span className="text-[#F37021] font-semibold">next hikes</span>
