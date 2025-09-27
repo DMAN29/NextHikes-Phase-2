@@ -6,16 +6,24 @@ interface WhyChooseUsPoint {
   name: string;
   content: string;
 }
+
 interface WhyChooseUsData {
   title: string;
   subtitle: string;
   points: WhyChooseUsPoint[];
 }
+
 interface WhyChooseUsProps {
   data: WhyChooseUsData;
 }
 const PathIcon = ({ isActive }: any) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle
       cx="12"
       cy="12"
@@ -27,36 +35,38 @@ const PathIcon = ({ isActive }: any) => (
   </svg>
 );
 
-// Added one more position for the extra step (+1).
-const positions = [
-  { top: "0%", left: "8%" },
-  { top: "20%", left: "25%" },
-  { top: "45%", left: "50%" },
-  { top: "75%", left: "70%" },
-  { top: "95%", left: "90%" },
-];
-
 export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
   const [activeStep, setActiveStep] = useState(0);
   const pathRef = useRef<any>(null);
   const containerRef = useRef<any>(null);
   const [pathLength, setPathLength] = useState(0);
 
-  // Add an extra step as a placeholder or duplicate final step if your data has only 4 points.
-  const extendedPoints = [...data.points];
-  if (extendedPoints.length < positions.length) {
-    // Add an empty or placeholder step for the extra position if needed
-    extendedPoints.push({
-      name: "Next Component",
-      content: "Proceed to the next section.",
-    });
-  }
-
-  const steps = extendedPoints.map((point, i) => ({
-    title: point.name,
-    description: point.content,
-    position: positions[i] || { top: "0%", left: "0%" },
-  }));
+  const steps = [
+    {
+      title: "End-to-End Solutions",
+      description:
+        "From strategy and design to development and deployment, we handle every stage of your project under one roof.",
+      position: { top: "0%", left: "8%" },
+    },
+    {
+      title: "Cutting-Edge Technologies",
+      description:
+        "Our expertise in the latest technologies ensures that your project is built to be scalable, secure, and future-proof.",
+      position: { top: "25%", left: "35%" },
+    },
+    {
+      title: "Skilled & Experienced Team",
+      description:
+        "Our developers, designers, and project managers bring years of industry expertise to deliver high-quality solutions.",
+      position: { top: "55%", left: "60%" },
+    },
+    {
+      title: "Timely Delivery",
+      description:
+        "We respect deadlines and ensure your project is delivered on time without compromising on the quality of the final product.",
+      position: { top: "75%", left: "85%" },
+    },
+  ];
 
   useEffect(() => {
     if (pathRef.current) {
@@ -80,12 +90,8 @@ export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
           let progress = -top / scrollableHeight;
           progress = Math.max(0, Math.min(1, progress));
 
-          const intervals = steps.length - 1; // 4 intervals for 5 steps
-          const intervalLength = 1 / intervals;
-          const newStep = Math.min(
-            intervals,
-            Math.round(progress / intervalLength)
-          );
+          const stepIndex = Math.floor(progress * (steps.length - 1));
+          const newStep = Math.min(stepIndex, steps.length - 1);
 
           if (newStep !== activeStep) {
             setActiveStep(newStep);
@@ -118,12 +124,14 @@ export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
         <div className="w-full mx-auto">
           <div className="text-right max-w-md ml-auto">
             <h1 className="text-3xl md:text-5xl font-bold text-gray-800">
-              {data.title}
+              Why <span className="text-[#840065]">Choose us</span>?
             </h1>
             <p className="text-gray-600 mt-4 text-sm md:text-lg">
-              {data.subtitle}
+              Choosing the right development partner can make all the difference
+              in your digital success. Here’s why businesses trust us:
             </p>
           </div>
+
           {/* Mobile Layout */}
           {isMobile ? (
             <div className="flex flex-col space-y-8 mt-10">
@@ -205,6 +213,7 @@ export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
                   }}
                 >
                   <div className="relative flex flex-col items-center">
+                    {/* <PathIcon isActive={activeStep >= index} /> */}
                     <div
                       className="text-left w-full max-w-[250px] md:max-w-[280px] p-3 md:p-4 rounded-lg transition-all duration-500"
                       style={{
@@ -227,6 +236,7 @@ export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
             </div>
           )}
         </div>
+
         {/* Progress Bar */}
         <div className="absolute bottom-[30px] md:bottom-[50px] left-1/2 -translate-x-1/2 w-32 md:w-48 h-2 bg-gray-200 rounded-full">
           <div
