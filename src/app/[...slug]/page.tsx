@@ -22,7 +22,6 @@ export default async function DynamicPage({ params }: DynamicPageProps) {
     }
 
     return <AboutUs data={res.data} />;
-
   } catch (error) {
     console.error("Error loading page:", error);
     return notFound();

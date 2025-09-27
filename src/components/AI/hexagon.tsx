@@ -2,8 +2,8 @@ import React from "react";
 
 const img = "/image/ai4.png";
 
-interface AIServiceHexagon {
-  title: string;
+export interface AIServiceHexagon {
+  heading: string;
   description: string;
 }
 interface HexagonProps {
@@ -32,7 +32,7 @@ const getRows = (
   return rows;
 };
 
-const AiHexagon: React.FC<HexagonProps> = ({ data }) => {
+const AiHexagon: React.FC<HexagonProps> = ({ data }: HexagonProps) => {
   const rows = getRows(data, 3, 4);
 
   const [hexWidth, setHexWidth] = React.useState(HEX_WIDTH_PERCENT_DESKTOP);
@@ -102,7 +102,7 @@ const AiHexagon: React.FC<HexagonProps> = ({ data }) => {
                 }}
               >
                 <h3 className="font-bold text-[8px] md:text-base xl:text-xl md:mb-2 leading-tight">
-                  {item.title}
+                  {item.heading}
                 </h3>
                 <p className="hidden md:block text-[6px] md:text-[10px] xl:text-xs leading-tight">
                   {item.description}

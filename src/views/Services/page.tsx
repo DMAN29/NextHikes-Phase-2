@@ -1,20 +1,28 @@
 "use client";
 
 import { getServicePageBySlug } from "@/api/services";
-import AIService from "@/components/AI/aiService";
-import AppBenfits from "@/components/AppDevelopment/AppBenfits";
+import AiInnovation from "@/components/AI/AiInnovation";
+// import AIService from "@/components/AI/aiService";
+import FutureSection from "@/components/AI/FutureSection";
+import GlobalAIRevenueForecast from "@/components/AI/GlobalAIRevenueForecast";
+import GlobalAISkills from "@/components/AI/GlobalAISkills";
+import WhyAIForBusiness from "@/components/AI/WhyAIForBusiness";
+import IntroText from "@/components/AppDevelopment/IntroText";
+import ToolsGrid from "@/components/AppDevelopment/ToolsGrid";
 import Banner from "@/components/Banner/page";
-// import { DigitalFlow } from "@/components/DigitalMarkting/DigitalFlow";
-import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
-// import { OurProcess } from "@/components/DigitalMarkting/OurProcess";
+import DigitalFlow from "@/components/DigitalMarkting/DigitalFlow";
+// import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
+import OurProcess from "@/components/DigitalMarkting/OurProcess";
 import ElevateBusinessPage from "@/components/ElevateBusiness/page";
-import PlatformDevelopment from "@/components/PlatformDevelopment/platformDevelopment";
-import ProcessFlow from "@/components/ProcessFlow/page";
+import PlatformDevelopment from "@/components/Platform/platformDevelopment";
+import ProcessFlow from "@/components/Platform/ProgressFlow";
 import Projects from "@/components/Projects/Projects";
 import ServiceFormPage from "@/components/ServiceForm/page";
+import Skeleton from "@/components/Skeleton/page";
 import Title from "@/components/Title/page";
 import ChooseUsTimeline from "@/components/WhyChooseUs/page";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import AppBenefits from "@/components/AppDevelopment/AppBenifits";
 
 interface ServiceProps {
   slug: any;
@@ -22,20 +30,28 @@ interface ServiceProps {
 }
 
 export default function ServicePage({ slug }: ServiceProps) {
-  // useEffect(() => {
-  //   async function fetchServiceData() {
-  //     try {
-  //       const data = await getServicePageBySlug(slug);
-  //       console.log("Service data:", data);
-  //     } catch (error) {
-  //       console.error("Failed to fetch service data:", error);
-  //     }
-  //   }
+  const [loading, setLoading] = useState(false);
+  const [serviceData, setServiceData] = useState<any>(null);
 
-  //   if (slug) {
-  //     fetchServiceData();
-  //   }
-  // }, [slug]);
+  useEffect(() => {
+    async function fetchServiceData() {
+      setLoading(true);
+      try {
+        console.log("Fetching data for slug:", slug);
+        const data = await getServicePageBySlug(slug);
+        setServiceData(data);
+      } catch (error) {
+        console.error("Failed to fetch service data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (slug) {
+      fetchServiceData();
+    }
+  }, [slug]);
+
+  console.log("Service Data:", serviceData);
 
   const serviceStyles: any = {
     "web-development": {
@@ -227,7 +243,9 @@ export default function ServicePage({ slug }: ServiceProps) {
   const currentStyle = matchedConfig
     ? serviceStyles[matchedConfig.styleKey]
     : serviceStyles.default;
-
+  if (loading || !serviceData) {
+    return <Skeleton />;
+  }
   return (
     <section>
       {matchedConfig?.styleKey === "web-development" && (
@@ -249,16 +267,25 @@ export default function ServicePage({ slug }: ServiceProps) {
             title={`Build your digital <br /> foundation`}
             headerTextColor="#000"
           />
-          <ElevateBusinessPage />
-          <Title
-            firstText={currentStyle.title}
-            firstColor={currentStyle.textColor || "text-[#840065]"}
-            secondText="Services"
-            subText="Next Hikes provide complete frontend, backend, and full-stack development solutions designed to help businesses build strong, secure, and visually engaging digital platforms. From concept to launch, we ensure your website is fast, responsive, and optimized for success."
-          />
+          {serviceData.blocks?.[0]?.data && (
+            <ElevateBusinessPage data={serviceData.blocks[0].data} />
+          )}
+          {serviceData.blocks?.[1]?.data && (
+            <Title
+              firstText={serviceData.blocks[1].data.firstTitle}
+              firstColor={
+                serviceData.blocks[1].data.firstColor || "text-[#840065]"
+              }
+              secondText={serviceData.blocks[1].data.secondTitle || "Services"}
+              subText={serviceData.blocks[1].data.subtitle}
+            />
+          )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
           <div>
-            <ChooseUsTimeline />
+            {serviceData.blocks?.[2]?.data &&
+              serviceData.blocks[2].data.points && (
+                <ChooseUsTimeline data={serviceData.blocks[2].data} />
+              )}
           </div>
         </div>
       )}
@@ -283,16 +310,36 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
             backgroundImage="/image/app-back.webp"
           />
-          <AppBenfits />
-          <Title
-            firstText={"App Development"}
-            firstColor={"text-[#083E92]"}
-            secondText="Services"
-            subText="Next Hikes delivers complete mobile app development solutions, covering frontend, backend, and full-stack services to help businesses create powerful, secure, and visually engaging mobile applications. From concept to launch, we ensure your app is fast, user-friendly, and optimized for performance across all devices."
-          />
+          {serviceData.blocks?.[0]?.data && (
+            <IntroText data={serviceData.blocks[0].data} />
+          )}
+
+          {serviceData.blocks?.[1]?.data && (
+            <AppBenefits data={serviceData.blocks[1].data} />
+          )}
+
+          {serviceData.blocks?.[2]?.data && (
+            <ToolsGrid data={serviceData.blocks[2].data} />
+          )}
+
+          {serviceData.blocks?.[3]?.data && (
+            <Title
+              firstText={serviceData.blocks[3].data?.firstTitle}
+              firstColor={
+                serviceData.blocks[3].data?.firstColor || "text-[#083E92]"
+              }
+              secondText={serviceData.blocks[3].data?.secondTitle}
+              subText={serviceData.blocks[3].data?.subtitle}
+            />
+          )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
-          <ElevateBusinessPage />
-          <Projects />
+          {serviceData.blocks?.[4]?.data && (
+            <ElevateBusinessPage data={serviceData.blocks[4].data} />
+          )}
+
+          {serviceData.blocks?.[5]?.data && (
+            <Projects data={serviceData.blocks[5].data} />
+          )}
         </div>
       )}
 
@@ -316,19 +363,27 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
             backgroundImage="/image/app-back.webp"
           />
-          <DigitalMarkting />
-          <Title
-            firstText={"Digital Marketing"}
-            firstColor={"text-[#8D88FF]"}
-            secondText="Services"
-            subText="Next Hikes provides end-to-end digital marketing solutions designed to help businesses build a strong online presence, attract the right audience, and drive measurable results. From strategy to execution, we ensure your campaigns are creative, data-driven, and optimized for maximum performance across all digital channels."
-          />
+          {serviceData.blocks?.[0]?.data && (
+            <DigitalFlow data={serviceData.blocks[0].data} />
+          )}
+          {serviceData.blocks?.[1]?.data && (
+            <OurProcess data={serviceData.blocks[1].data} />
+          )}
+          {serviceData.blocks?.[2]?.data && (
+            <Title
+              firstText={serviceData.blocks[2].data?.firstTitle}
+              firstColor={serviceData.blocks[2].data?.firstColor}
+              secondText={serviceData.blocks[2].data?.secondTitle}
+              subText={serviceData.blocks[2].data?.subtitle}
+            />
+          )}
+
           <ServiceFormPage backgroundColor="#452A7C1A" />
         </>
       )}
 
       {matchedConfig?.styleKey === "platform-development" && (
-        <div className="">
+        <>
           <Banner
             platform="platform-development"
             backgroundColor={["#FFF"]}
@@ -353,11 +408,22 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#fff"
             backgroundImage="/image/platform-banner.webp"
           />
-          <PlatformDevelopment />
-          <ProcessFlow />
-          <ElevateBusinessPage />
-          <Projects />
-        </div>
+          {serviceData.blocks?.[0]?.data && (
+            <PlatformDevelopment data={serviceData.blocks[0].data} />
+          )}
+
+          {serviceData.blocks?.[1]?.data && (
+            <ProcessFlow data={serviceData.blocks[1].data} />
+          )}
+
+          {serviceData.blocks?.[2]?.data && (
+            <ElevateBusinessPage data={serviceData.blocks[2].data} />
+          )}
+
+          {serviceData.blocks?.[3]?.data?.projectIds && (
+            <Projects data={serviceData.blocks[3].data} />
+          )}
+        </>
       )}
 
       {matchedConfig?.styleKey === "ai" && (
@@ -380,7 +446,30 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
             backgroundImage="/image/ai-banner.webp"
           />
-          <AIService />
+
+          {serviceData.blocks?.[0]?.data && (
+            <WhyAIForBusiness data={serviceData.blocks[0].data} />
+          )}
+
+          {serviceData.blocks?.[1]?.data && (
+            <GlobalAISkills data={serviceData.blocks[1].data} />
+          )}
+
+          {serviceData.blocks?.[2]?.data && (
+            <GlobalAIRevenueForecast data={serviceData.blocks[2].data} />
+          )}
+
+          {serviceData.blocks?.[3]?.data && (
+            <AiInnovation data={serviceData.blocks[3].data} />
+          )}
+
+          {serviceData.blocks?.[4]?.data && (
+            <FutureSection data={serviceData.blocks[4].data} />
+          )}
+
+          {serviceData.blocks?.[5]?.data && (
+            <FutureSection data={serviceData.blocks[5].data} />
+          )}
         </>
       )}
 

@@ -2,6 +2,20 @@
 
 import { useState, useEffect, useRef } from "react";
 
+interface WhyChooseUsPoint {
+  name: string;
+  content: string;
+}
+
+interface WhyChooseUsData {
+  title: string;
+  subtitle: string;
+  points: WhyChooseUsPoint[];
+}
+
+interface WhyChooseUsProps {
+  data: WhyChooseUsData;
+}
 const PathIcon = ({ isActive }: any) => (
   <svg
     width="24"
@@ -21,7 +35,7 @@ const PathIcon = ({ isActive }: any) => (
   </svg>
 );
 
-export default function ChooseUsTimeline() {
+export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
   const [activeStep, setActiveStep] = useState(0);
   const pathRef = useRef<any>(null);
   const containerRef = useRef<any>(null);
@@ -55,46 +69,45 @@ export default function ChooseUsTimeline() {
   ];
 
   useEffect(() => {
-  if (pathRef.current) {
-    const length = pathRef.current.getTotalLength();
-    setPathLength(length);
-  }
-}, []);
-
-useEffect(() => {
-  let ticking = false;
-
-  const handleScroll = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        const { top, height } = container.getBoundingClientRect();
-        const scrollableHeight = height - window.innerHeight;
-
-        let progress = -top / scrollableHeight;
-        progress = Math.max(0, Math.min(1, progress));
-
-        const stepIndex = Math.floor(progress * (steps.length - 1));
-        const newStep = Math.min(stepIndex, steps.length - 1);
-
-        if (newStep !== activeStep) {
-          setActiveStep(newStep);
-        }
-
-        ticking = false;
-      });
-      ticking = true;
+    if (pathRef.current) {
+      const length = pathRef.current.getTotalLength();
+      setPathLength(length);
     }
-  };
+  }, []);
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll(); // initial call
+  useEffect(() => {
+    let ticking = false;
 
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [activeStep, steps.length]);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const container = containerRef.current;
+          if (!container) return;
 
+          const { top, height } = container.getBoundingClientRect();
+          const scrollableHeight = height - window.innerHeight;
+
+          let progress = -top / scrollableHeight;
+          progress = Math.max(0, Math.min(1, progress));
+
+          const stepIndex = Math.floor(progress * (steps.length - 1));
+          const newStep = Math.min(stepIndex, steps.length - 1);
+
+          if (newStep !== activeStep) {
+            setActiveStep(newStep);
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // initial call
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeStep, steps.length]);
 
   const strokeDashoffset =
     pathLength - pathLength * (activeStep / (steps.length - 1));
@@ -126,7 +139,9 @@ useEffect(() => {
                 <div
                   key={index}
                   className={`p-4 rounded-lg transition-all duration-500 ${
-                    activeStep === index ? "bg-white shadow-lg" : "bg-transparent"
+                    activeStep === index
+                      ? "bg-white shadow-lg"
+                      : "bg-transparent"
                   }`}
                 >
                   <div className="flex items-start space-x-3">
@@ -151,7 +166,7 @@ useEffect(() => {
                   key={index}
                   className="absolute text-[100px] md:text-[250px] font-medium text-[#C4C4C4] transition-all duration-500"
                   style={{
-                    ...(steps[index].position),
+                    ...steps[index].position,
                     opacity: activeStep === index ? 1 : 0.5,
                     transform: `translate(-50%, -50%) scale(${
                       activeStep === index ? 1 : 0.9
@@ -193,7 +208,7 @@ useEffect(() => {
                   key={index}
                   className="absolute transition-all duration-500"
                   style={{
-                    ...(step.position),
+                    ...step.position,
                     zIndex: 2,
                   }}
                 >
