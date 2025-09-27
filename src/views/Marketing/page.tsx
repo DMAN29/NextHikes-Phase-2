@@ -27,12 +27,14 @@ interface MarketingProps {
 const MarketingHero: React.FC<MarketingProps> = ({ data }) => {
   if (!data) return <p className="text-center py-10">Hero data not available.</p>;
 
+  console.log(data)
+
   return (
     <section className="w-full flex items-center justify-center px-4 my-20 sm:px-6 md:px-12 lg:px-20">
       <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-15 sm:gap-10 items-center justify-items-center">
         <div className="flex justify-center">
           <Image
-            src={data.image.startsWith("http") ? data.image : `${data.image}`}
+            src={"/image/image.png"}
             alt="Hero banner"
             width={400}
             height={350}

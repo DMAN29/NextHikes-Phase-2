@@ -25,8 +25,6 @@ async function getFooterData() {
 export default async function Footer() {
   const { links, about } = await getFooterData();
 
-  console.log(about);
-
   const menus = [
     {
       url: "/industries/astrology",

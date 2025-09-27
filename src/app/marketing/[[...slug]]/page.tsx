@@ -3,11 +3,7 @@ import Skeleton from "@/components/Skeleton/page";
 import { Suspense } from "react";
 import { fetchGet } from "@/lib/fetcher";
 import { notFound } from "next/navigation";
-
-const DynamicMarketing = dynamic(() => import("@/views/Marketing/page"), {
-  ssr: false,
-  loading: () => <Skeleton />,
-});
+import MarketingPage from "@/views/Marketing/page";
 
 export default async function MarketingWrapper() {
   try {
@@ -19,7 +15,7 @@ export default async function MarketingWrapper() {
 
     return (
       <Suspense fallback={<Skeleton />}>
-        <DynamicMarketing />
+        <MarketingPage />
       </Suspense>
     );
   } catch (error) {
