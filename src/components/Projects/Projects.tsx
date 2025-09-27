@@ -4,6 +4,21 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const image = "/image/project-bg.jpg";
+
+interface ProjectButton {
+  label: string;
+  url: string;
+}
+
+interface ProjectsData {
+  title: string;
+  button: ProjectButton;
+  projectIds: string[];
+}
+
+interface ProjectsProps {
+  data: ProjectsData;
+}
 const localProjects = [
   {
     id: 1,
@@ -61,7 +76,7 @@ const localProjects = [
   },
 ];
 
-export default function Projects() {
+export default function Projects({ data }: ProjectsProps) {
   const [expandedIndex, setExpandedIndex] = useState(0);
 
   useEffect(() => {

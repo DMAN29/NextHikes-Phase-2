@@ -320,7 +320,7 @@ export default function ServicePage({ slug }: ServiceProps) {
           /> */}
           <ServiceFormPage backgroundColor="#452A7C1A" />
           {/* <ElevateBusinessPage /> */}
-          <Projects />
+          {/* <Projects /> */}
         </div>
       )}
 
@@ -401,11 +401,8 @@ export default function ServicePage({ slug }: ServiceProps) {
             <ElevateBusinessPage data={serviceData.blocks[2].data} />
           )}
 
-          {/* wrap projectIds in data prop */}
           {serviceData.blocks?.[3]?.data?.projectIds && (
-            <Projects
-              data={{ projectIds: serviceData.blocks[3].data.projectIds }}
-            />
+            <Projects data={serviceData.blocks[3].data} />
           )}
         </>
       )}
@@ -430,40 +427,27 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
             backgroundImage="/image/ai-banner.webp"
           />
-          {/* <AIService /> */}
-          {/* <WhyAIForBusiness />
-          <GlobalAISkills />
-          <GlobalAIRevenueForecast />
-          <AiInnovation />
-          <FutureSection />
-          <FutureSection /> */}
-          {/* Block 0 - WhyAIForBusiness */}
-          {console.log("serviceData blocks:", serviceData.blocks)}
+
           {serviceData.blocks?.[0]?.data && (
             <WhyAIForBusiness data={serviceData.blocks[0].data} />
           )}
 
-          {/* Block 1 - GlobalAISkills */}
           {serviceData.blocks?.[1]?.data && (
             <GlobalAISkills data={serviceData.blocks[1].data} />
           )}
 
-          {/* Block 2 - GlobalAIRevenueForecast */}
           {serviceData.blocks?.[2]?.data && (
             <GlobalAIRevenueForecast data={serviceData.blocks[2].data} />
           )}
 
-          {/* Block 3 - AIThatFuelsInnovation */}
           {serviceData.blocks?.[3]?.data && (
             <AiInnovation data={serviceData.blocks[3].data} />
           )}
 
-          {/* Block 4 - GrowSmarterWithAI */}
           {serviceData.blocks?.[4]?.data && (
             <FutureSection data={serviceData.blocks[4].data} />
           )}
 
-          {/* Block 5 - TheFutureIsIntelligentAutomation */}
           {serviceData.blocks?.[5]?.data && (
             <FutureSection data={serviceData.blocks[5].data} />
           )}
