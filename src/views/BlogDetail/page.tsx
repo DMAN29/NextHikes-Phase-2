@@ -36,10 +36,13 @@ export default function DetailPage({ data }: DetailProps) {
       {data.imageUrl && (
         <div className="relative w-full h-80 md:h-[28rem] mb-8">
           <Image
-            src={data.imageUrl}
+            src={data.imageUrl || "/image/blog.webp"}
             alt={data.title}
             fill
             className="w-full h-full object-contain rounded-lg"
+            onError={(e) => {
+              e.currentTarget.src = "/image/blog.webp";
+            }}
           />
         </div>
       )}

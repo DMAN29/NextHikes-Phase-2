@@ -18,39 +18,51 @@ export interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Esther Howard",
-    profession: "Co-Founder of SaaSWave",
-    image: "/image/testimonial.webp",
+    name: "Sophia Williams",
+    profession: "UX Designer at GlobalTech",
+    image: "/video/video1.mp4",
   },
   {
     id: 2,
-    name: "Esther Howard",
-    profession: "CTO of FinSuite",
-    image: "/image/testimonial.webp",
+    name: "Alexander Smith",
+    profession: "CTO at NextGen Solutions",
+    image: "/video/video2.mp4",
   },
   {
     id: 3,
-    name: "Esther Howard",
-    profession: "Head HR at TechNify",
-    image: "/image/testimonial.webp",
+    name: "Isabella Martinez",
+    profession: "Marketing Manager at BrightWave",
+    image: "/video/video3.mp4",
   },
   {
     id: 4,
-    name: "Esther Howard",
-    profession: "Product Manager",
-    image: "/image/testimonial.webp",
+    name: "Sophia Williams",
+    profession: "UX Designer at GlobalTech",
+    image: "/video/video1.mp4",
   },
   {
     id: 5,
-    name: "Esther Howard",
-    profession: "Marketing Lead",
-    image: "/image/testimonial.webp",
+    name: "Vikas",
+    profession: "Owner of Square Feet Home",
+    image: "/video/video4.mp4",
   },
   {
     id: 6,
-    name: "Esther Howard",
-    profession: "CEO at DevHub",
-    image: "/image/testimonial.webp",
+    name: "Alexander Smith",
+    profession: "CTO at NextGen Solutions",
+    image: "/video/video2.mp4",
+  },
+  {
+    id: 7,
+    name: "Isabella Martinez",
+    profession: "Marketing Manager at BrightWave",
+    image: "/video/video3.mp4",
+  },
+  {
+    id: 8,
+    name: "Vikas",
+    profession: "Owner of Square Feet Home",
+    image: "/video/video4.mp4",
   },
 ];
 
@@ -81,16 +93,20 @@ const Testimonials: React.FC = () => {
           spaceBetween={20}
           slidesPerView={1}
           breakpoints={{
-          "0": { slidesPerView: 1.5, spaceBetween: 10 },
-          "480": { slidesPerView: 2.5, spaceBetween: 20 },
-          "768": { slidesPerView: 3, spaceBetween: 50 },
-          "1024": { slidesPerView: 3, spaceBetween: 20 },
-          "1280": { slidesPerView: 3, spaceBetween: 20 },
-        }}
+            "0": { slidesPerView: 1.5, spaceBetween: 10 },
+            "480": { slidesPerView: 2.5, spaceBetween: 20 },
+            "768": { slidesPerView: 3, spaceBetween: 50 },
+            "1024": { slidesPerView: 3, spaceBetween: 20 },
+            "1280": { slidesPerView: 3, spaceBetween: 20 },
+          }}
           loop={true}
           centeredSlides={true}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           className="w-full"
         >
           {testimonials.map((testimonial, idx) => (

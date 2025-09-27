@@ -4,72 +4,48 @@ import Link from "next/link";
 import { fetchGet } from "@/lib/fetcher";
 import BackToTop from "../BackToTop/page";
 
-export const revalidate = 60;
-
 async function getFooterData() {
   try {
-    const [linksRes, aboutRes]: any = await Promise.all([
-      fetchGet(`/link/all`),
-      fetchGet(`/about/public`, { next: { revalidate: 60 } }),
-    ]);
+    const [aboutRes, industryRes, serviceRes, linkRes]: any = await Promise.all(
+      [
+        fetchGet(`/about/public`, { next: { revalidate: 60 } }),
+        fetchGet(`/industry`, { next: { revalidate: 10 } }),
+        fetchGet(`/srvc/all`, { next: { revalidate: 10 } }),
+        fetchGet(`/link/all`, { next: { revalidate: 60 } }),
+      ]
+    );
 
-    return {
-      links: linksRes?.data,
-      about: aboutRes?.data,
+    if (!aboutRes || !industryRes || !serviceRes || !linkRes?.success) {
+      throw new Error("Failed to fetch header data");
+    }
+
+    const combinedData = {
+      industry: industryRes || [],
+      about: aboutRes?.data || [],
+      services: serviceRes || [],
+      links: linkRes?.data || [],
     };
-  } catch (err) {
+
+    return combinedData;
+  } catch (error) {
     throw new Error("Something went wrong");
   }
 }
 
 export default async function Footer() {
-  const { links, about } = await getFooterData();
+  const { links, about, services, industry } = await getFooterData();
 
-  const menus = [
-    {
-      url: "/industries/astrology",
-      name: "Astrology",
-    },
-    {
-      url: "/industries/e-commerce",
-      name: "E-Commerce",
-    },
-    {
-      url: "/industries/gaming",
-      name: "Gaming",
-    },
-    {
-      url: "/industries/crm",
-      name: "CRM & ERP",
-    },
-    {
-      url: "/industries/healthcare",
-      name: "Healthcare",
-    },
-  ];
+  const industryMenus =
+    industry?.map((item: any) => ({
+      name: item.name,
+      url: `/industries/${item.slug}`,
+    })) || [];
 
-  const serviceMenus = [
-    {
-      url: "/services/web-dev",
-      name: "Web Development",
-    },
-    {
-      url: "/services/app-dev",
-      name: "App Development",
-    },
-    {
-      url: "/services/platform-dev",
-      name: "Platform Development",
-    },
-    {
-      url: "/services/digital-marketing",
-      name: "Digital Marketing",
-    },
-    {
-      url: "/services/ai",
-      name: "Artificial Inteligence",
-    },
-  ];
+  const serviceMenus =
+    services?.map((item: any) => ({
+      name: item.name,
+      url: `/services/${item.slug}`,
+    })) || [];
 
   return (
     <footer className="bg-white pt-8 border-t border-gray-300">
@@ -180,7 +156,7 @@ export default async function Footer() {
             Industries
           </h4>
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
-            {menus?.slice(0, 4)?.map((item: any, index: any) => (
+            {industryMenus?.slice(0, 4)?.map((item: any, index: any) => (
               <Link href={item.url} key={index}>
                 <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
                   {item.name}
@@ -201,13 +177,11 @@ export default async function Footer() {
             Company
           </h4>
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
-            {/* {menus?.slice(0, 4)?.map((item: any, index: any) => ( */}
             <Link href={`/${about?.slug}`}>
               <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
                 About Us
               </li>
             </Link>
-            {/* ))} */}
           </ul>
         </div>
         <div>
@@ -236,19 +210,9 @@ export default async function Footer() {
                 <Icon name={"pin"} color="#000" />
               </div>
               <p className="text-black">
-                Unit no. - 1137 ,11th Floor , Bhutani Alphathum Sector 90 Noida
+                Unit no.- 1137, 11th Floor, Bhutani Alphathum Sector 90 Noida
               </p>
-              {/* {contact?.address} */}
             </li>
-            {/* <li className="flex items-center gap-2">
-              <Icon name={"email"} />
-              <Link
-                href={`mailto:${contact?.officialEmail}`}
-                className="hover:underline"
-              >
-                {contact?.officialEmail}
-              </Link>
-            </li> */}
 
             <li className="flex items-center gap-2">
               <Icon name={"phone"} />
