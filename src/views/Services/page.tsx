@@ -7,7 +7,8 @@ import FutureSection from "@/components/AI/FutureSection";
 import GlobalAIRevenueForecast from "@/components/AI/GlobalAIRevenueForecast";
 import GlobalAISkills from "@/components/AI/GlobalAISkills";
 import WhyAIForBusiness from "@/components/AI/WhyAIForBusiness";
-import AppBenfits from "@/components/AppDevelopment/AppBenfits";
+import IntroText from "@/components/AppDevelopment/IntroText";
+import ToolsGrid from "@/components/AppDevelopment/ToolsGrid";
 import Banner from "@/components/Banner/page";
 import DigitalFlow from "@/components/DigitalMarkting/DigitalFlow";
 // import DigitalMarkting from "@/components/DigitalMarkting/digitalMarketing";
@@ -21,6 +22,7 @@ import Skeleton from "@/components/Skeleton/page";
 import Title from "@/components/Title/page";
 import ChooseUsTimeline from "@/components/WhyChooseUs/page";
 import { useEffect, useState } from "react";
+import AppBenefits from "@/components/AppDevelopment/AppBenifits";
 
 interface ServiceProps {
   slug: any;
@@ -285,9 +287,6 @@ export default function ServicePage({ slug }: ServiceProps) {
                 <ChooseUsTimeline data={serviceData.blocks[2].data} />
               )}
           </div>
-          {/* <div>
-            <ChooseUsTimeline />
-          </div> */}
         </div>
       )}
 
@@ -311,16 +310,36 @@ export default function ServicePage({ slug }: ServiceProps) {
             headerTextColor="#000"
             backgroundImage="/image/app-back.webp"
           />
-          <AppBenfits />
-          {/* <Title
-            firstText={"App Development"}
-            firstColor={"text-[#083E92]"}
-            secondText="Services"
-            subText="Next Hikes delivers complete mobile app development solutions, covering frontend, backend, and full-stack services to help businesses create powerful, secure, and visually engaging mobile applications. From concept to launch, we ensure your app is fast, user-friendly, and optimized for performance across all devices."
-          /> */}
+          {serviceData.blocks?.[0]?.data && (
+            <IntroText data={serviceData.blocks[0].data} />
+          )}
+
+          {serviceData.blocks?.[1]?.data && (
+            <AppBenefits data={serviceData.blocks[1].data} />
+          )}
+
+          {serviceData.blocks?.[2]?.data && (
+            <ToolsGrid data={serviceData.blocks[2].data} />
+          )}
+
+          {serviceData.blocks?.[3]?.data && (
+            <Title
+              firstText={serviceData.blocks[3].data?.firstTitle}
+              firstColor={
+                serviceData.blocks[3].data?.firstColor || "text-[#083E92]"
+              }
+              secondText={serviceData.blocks[3].data?.secondTitle}
+              subText={serviceData.blocks[3].data?.subtitle}
+            />
+          )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
-          {/* <ElevateBusinessPage /> */}
-          {/* <Projects /> */}
+          {serviceData.blocks?.[4]?.data && (
+            <ElevateBusinessPage data={serviceData.blocks[4].data} />
+          )}
+
+          {serviceData.blocks?.[5]?.data && (
+            <Projects data={serviceData.blocks[5].data} />
+          )}
         </div>
       )}
 
