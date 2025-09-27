@@ -204,7 +204,7 @@ export default async function Footer() {
           </h4>
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
             {/* {menus?.slice(0, 4)?.map((item: any, index: any) => ( */}
-            <Link href={about?.slug}>
+            <Link href={`/${about?.slug}`}>
               <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
                 About Us
               </li>
