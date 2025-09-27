@@ -279,15 +279,15 @@ export default function ServicePage({ slug }: ServiceProps) {
             />
           )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
-          {/* <div>
+          <div>
             {serviceData.blocks?.[2]?.data &&
               serviceData.blocks[2].data.points && (
                 <ChooseUsTimeline data={serviceData.blocks[2].data} />
               )}
-          </div> */}
-          <div>
-            <ChooseUsTimeline />
           </div>
+          {/* <div>
+            <ChooseUsTimeline />
+          </div> */}
         </div>
       )}
 
