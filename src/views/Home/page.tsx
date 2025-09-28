@@ -17,6 +17,7 @@ export default async function HomePage() {
 
   try {
     const res: any = await fetchGet(`/home`);
+    console.log(res?.data)
 
     if (!res?.success) {
       throw new Error("Failed to fetch home data");
