@@ -26,18 +26,18 @@ import AppBenefits from "@/components/AppDevelopment/AppBenifits";
 
 interface ServiceProps {
   slug: any;
-  // data?: any;
+  data?: any;
 }
 
-export default function ServicePage({ slug }: ServiceProps) {
+export default function ServicePage({ slug, data: initialData }: ServiceProps) {
   const [loading, setLoading] = useState(false);
-  const [serviceData, setServiceData] = useState<any>(null);
+  const [serviceData, setServiceData] = useState<any>(initialData ?? null);
 
   useEffect(() => {
     async function fetchServiceData() {
+      if (!slug) return;
       setLoading(true);
       try {
-        // console.log("Fetching data for slug:", slug);
         const data = await getServicePageBySlug(slug);
         setServiceData(data);
       } catch (error) {
@@ -46,11 +46,10 @@ export default function ServicePage({ slug }: ServiceProps) {
         setLoading(false);
       }
     }
-    if (slug) {
+    if (!initialData && slug) {
       fetchServiceData();
     }
-  }, [slug]);
-
+  }, [slug, initialData]);
   // console.log("Service Data:", serviceData);
 
   const serviceStyles: any = {

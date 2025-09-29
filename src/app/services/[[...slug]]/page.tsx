@@ -1,21 +1,17 @@
-"use client";
+import { getServicePageBySlug } from "@/api/services";
+import ServicePage from "@/views/Services/page";
 
-import Skeleton from "@/components/Skeleton/page";
-import dynamic from "next/dynamic";
-import { useParams } from "next/navigation";
-import { Suspense } from "react";
+export default async function Services({
+  params,
+}: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  const resolvedParams = await params;
+  const slugParam = Array.isArray(resolvedParams?.slug)
+    ? resolvedParams.slug[0]
+    : resolvedParams?.slug;
 
-const ServicePage = dynamic(() => import("@/views/Services/page"), {
-  loading: () => <Skeleton />,
-});
+  const serviceData = slugParam ? await getServicePageBySlug(slugParam) : null;
 
-export default function Services() {
-  const params = useParams<{ slug?: string[] }>();
-  const slugParam = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
-
-  return (
-    <Suspense fallback={<Skeleton />}>
-      <ServicePage slug={slugParam} />
-    </Suspense>
-  );
+  return <ServicePage data={serviceData} slug={slugParam} />;
 }

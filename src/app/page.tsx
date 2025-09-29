@@ -5,8 +5,8 @@ export default async function Home() {
   let data = null;
 
   try {
-    const res: any = await fetchGet(`/home`, {next: {revalidate: 60}});
-    console.log(res?.data);
+    const res: any = await fetchGet(`/home`, { next: { revalidate: 60 } });
+    // console.log(res?.data);
 
     if (!res?.success) {
       throw new Error("Failed to fetch home data");
