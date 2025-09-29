@@ -1,3 +1,5 @@
+"use client";
+
 import Banner from "@/components/Banner/page";
 import ChooseNexthikesPage from "@/components/ChooseNexthikes/page";
 import CRMBanner from "@/components/CRMBanner/page";
@@ -18,22 +20,16 @@ import Image from "next/image";
 
 interface IndustriesPageProps {
   slug?: string;
+  industryData: any;
 }
 
-export default function IndustriesPage({ slug }: IndustriesPageProps) {
+export default function IndustriesPage({
+  slug,
+  industryData,
+}: IndustriesPageProps) {
   const img = "/image/crm.png";
-  const techStackData = [
-    { name: "Next.js", imageUrl: "/icons/nextjs-icon.svg" },
-    { name: "React", imageUrl: "/icons/react.svg" },
-    { name: "Tailwind CSS", imageUrl: "/icons/tailwind.svg" },
-    { name: "Node.js", imageUrl: "/icons/nodejs.svg" },
-    { name: "Express.js", imageUrl: "/icons/express.svg" },
-    { name: "PostgreSQL", imageUrl: "/icons/postgresql.svg" },
-    { name: "MongoDB", imageUrl: "/icons/mongodb.svg" },
-    { name: "AWS", imageUrl: "/icons/aws.svg" },
-    { name: "Docker", imageUrl: "/icons/docker.svg" },
-    { name: "GitHub", imageUrl: "/icons/github.svg" },
-  ];
+
+  console.log(industryData);
 
   const data = {
     descriptionBlock: `"{\\"imageUrl\\": \\"/image/astrology-industry.jpg\\", \\"description\\": \\"We specialize in astrology app development, creating personalized and engaging experiences for users seeking astrological insights. Our apps offer features like daily horoscopes, birth chart analysis, and compatibility reports, all designed to help users connect with the stars and understand their cosmic journey.\\"}"`,
@@ -159,6 +155,16 @@ export default function IndustriesPage({ slug }: IndustriesPageProps) {
 
   const imageUrl = currentStyle.image;
 
+  const techStackData = industryData?.blocks?.find(
+    (block: any) => block.type === "techStack"
+  )?.data;
+
+  const expertiseData = industryData?.blocks?.find(
+    (block: any) => block.type === "developmentMaker"
+  )?.data;
+
+  console.log(expertiseData);
+
   return (
     <div className="">
       {matchedConfig?.styleKey === "astrology" && (
@@ -275,37 +281,25 @@ EVERYWHERE`}
           <Banner
             platform="gaming"
             backgroundColor={["#000"]}
-            bannerImage={[{ icon: "/image/game-bg.webp" }]}
+            bannerImage={
+              industryData?.common?.images?.map((img: string) => ({
+                icon: img,
+              })) || []
+            }
             subTitle={``}
-            cta={[
-              {
-                text: "Get a free e-commerce quote",
-                url: "",
-                backgroundColor:
-                  "linear-gradient(90deg, #E0802E 0%, #F6A756 100%)",
-                textColor: "#ffffff",
-                borderColor: "",
-              },
-              {
-                text: "View Our Portfolio",
-                url: "https://next-hikes.framer.website",
-                textColor: "#ffffff",
-                borderColor: "#B3D8F0",
-              },
-            ]}
-            title={`Level Up Your Vision.<br /> Build the Next Big Game <br />
-with NextHikes.`}
+            cta={industryData?.common?.buttons}
+            title={industryData?.common?.title}
             headerTextColor="#fff"
           />
 
-          <TechStack data={techStackData} />
+          <TechStack techStackData={techStackData} />
           <ElevateBusinessPage />
           <section className="custom-container relative !my-[100px]">
             <div className="absolute top-5 left-0 w-full max-w-[300px] h-20 bg-[#153A9C] blur-[100px]"></div>
             <h3 className="text-[#363636] font-semibold text-2xl md:text-3xl text-center capitalize mb-5">
-              Our Game Development Expertise
+              {expertiseData?.title}
             </h3>
-            <Expertise />
+            <Expertise cards={expertiseData?.cards} />
             <div className="absolute bottom-0 right-0 w-full max-w-[300px] h-20 bg-[#5D1B99] blur-[100px]"></div>
           </section>
           <ChooseNexthikesPage />

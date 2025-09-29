@@ -231,7 +231,7 @@ export default function Banner({
   switch (platform) {
     case "home":
       return (
-        <section className="relative overflow-hidden md:min-h-screen">
+        <section className="relative overflow-hidden h-full md:min-h-screen">
           <div className="absolute inset-0 -z-10 [clip-path:polygon(0_0,100%_0,100%_4%,0_13%)] md:[clip-path:polygon(0_0,100%_0,100%_18%,0_56%)]">
             <Aurora
               colorStops={["#9AE3FF", "#FED375", "#FF403D", "#B98AD9"]}
@@ -725,26 +725,26 @@ export default function Banner({
 
             {/* CTA Buttons */}
             <div className="mt-6 flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
-              {cta.map((btn, idx) => (
+              {cta?.map((btn: any, idx: any) => (
                 <Link
                   key={idx}
                   href={btn.url}
                   className="px-6 py-3 rounded-full font-medium text-center w-full sm:w-auto transition hover:opacity-90 inline-flex uppercase"
                   style={{
-                    background: btn.backgroundColor || "transparent",
-                    color: btn.textColor,
+                    background: btn.backgroundColor || "linear-gradient(90deg, #E0802E 0%, #F6A756 100%)",
+                    color: btn.textColor || "white",
                     border: `2px solid ${btn.borderColor || "transparent"}`,
                   }}
                 >
-                  {btn.text}
+                  {btn.label}
                 </Link>
               ))}
             </div>
           </div>
 
-          {bannerImage && bannerImage.length > 0 && (
+          {bannerImage && (
             <>
-              {bannerImage.map((img, idx) => (
+              {bannerImage.map((img: any, idx) => (
                 <Image
                   key={idx}
                   src={img.icon}
@@ -813,7 +813,7 @@ export default function Banner({
             >
               <div className="absolute inset-0 bg-black/60 rounded-[40px]"></div>
               <div className="relative flex items-center min-h-[400px] md:min-h-[450px] bg-opacity-0 rounded-[40px] overflow-hidden">
-                <div className="absolute z-10 hidden md:block left-[-2%] top-1/2 transform -translate-y-1/2 w-[40%] max-w-[396px] h-[100%]">
+                <div className="absolute z-10  left-[-2%] top-1/2 transform -translate-y-1/2 w-[40%] max-w-[396px] h-[100%]">
                   {bannerImage && bannerImage.length > 0 && (
                     <>
                       {bannerImage.map((img, idx) => (

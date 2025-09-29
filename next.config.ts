@@ -14,7 +14,8 @@ const nextConfig: NextConfig = {
       "35.208.89.220",
       "example.com",
       "cdn.example.com",
-      "img.freepik.com", // ✅ Add Freepik here
+      "img.freepik.com",
+      "api.nexthikes.com"
     ],
   },
 };

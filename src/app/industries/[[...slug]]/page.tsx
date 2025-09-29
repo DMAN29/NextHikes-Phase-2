@@ -1,21 +1,18 @@
-"use client";
+import { fetchGet } from "@/lib/fetcher";
+import IndustriesPage from "@/views/Industries/page";
 
-import Skeleton from "@/components/Skeleton/page";
-import dynamic from "next/dynamic";
-import { useParams } from "next/navigation";
-import { Suspense } from "react";
+interface IndustriesProps {
+  params: { slug?: string[] };
+}
 
-const IndustriesPage = dynamic(() => import("@/views/Industries/page"), {
-  loading: () => <Skeleton />,
-});
-
-export default function Industries() {
-  const params = useParams<{ slug?: string[] }>();
+export default async function Industries({ params }: IndustriesProps) {
   const slugParam = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
-  
-  return (
-    <Suspense fallback={<Skeleton />}>
-      <IndustriesPage slug={slugParam} />
-    </Suspense>
-  );
+  let slugData: any = null;
+  try {
+    slugData = await fetchGet(`/page/slug/${slugParam}`, {
+      next: { revalidate: 60 },
+    });
+  } catch (error) {}
+
+  return <IndustriesPage slug={slugParam} industryData={slugData?.data} />;
 }

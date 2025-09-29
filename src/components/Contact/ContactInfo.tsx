@@ -75,8 +75,7 @@ export default function ContactInfo() {
             </span>
           </h1>
           <p className="font-medium mt-4 mb-8 text-sm md:text-base">
-            Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo
-            molestie vel, ornare non id blandit netus.
+            Let’s build the future together. Whether it’s digital solutions, cutting-edge apps, or IT support, our team is ready to turn your vision into reality. Reach out today and let’s create something extraordinary.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -145,21 +144,21 @@ export default function ContactInfo() {
               <LuPhoneCall fontSize={"1.5rem"} />
               <div>
                 <div className="font-bold">PHONE</div>
-                <div className="text-[#D564AB]">03 5342 1254</div>
+                <div className="text-[#D564AB]">+919627865333</div>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <BiMailSend fontSize={"1.5rem"} />
               <div>
                 <div className="font-bold">EMAIL</div>
-                <div className="text-[#D564AB]">info@emce.com.au</div>
+                <div className="text-[#D564AB]">info@nexthikes.com</div>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <SlLocationPin fontSize={"1.5rem"} />
               <div>
                 <div className="font-bold">Address</div>
-                <div className="text-[#D564AB]">Bhutan</div>
+                <div className="text-[#D564AB]">Unit no.- 1137, 11th Floor, Bhutani Alphathum Sector 90 Noida</div>
               </div>
             </div>
           </div>

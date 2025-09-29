@@ -1,10 +1,11 @@
 "use client";
 
+import { fetchPost } from "@/lib/fetcher";
 import { countryCodes } from "@/utils/countryCodes";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import Select from "react-select";
+import Success from "../Popup/Success";
 
 const FrontEndIcon = () => (
   <Image
@@ -63,9 +64,6 @@ const ServiceCard = ({ icon, title, selected, onClick }: any) => (
 );
 
 export default function ServiceFormPage({ backgroundColor }: any) {
-  const [selectedService, setSelectedService] = useState(
-    "Front-End Development"
-  );
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
@@ -85,7 +83,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev: any) => ({ ...prev, [name]: "" })); // clear error on change
+    setErrors((prev: any) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
@@ -115,39 +113,40 @@ export default function ServiceFormPage({ backgroundColor }: any) {
     // setLoading(true);
 
     const data = {
-      name: formData.fullName,
+      fullName: formData.fullName,
       city: formData.city,
       email: formData.email,
       phoneNumber: formData.phone,
-      launchProject: formData.launchPlan,
-      projectAbout: formData.projectAbout,
-      countryCode : formData.countryCode
+      launchTimeline: formData.launchPlan,
+      projectDescription: formData.projectAbout,
+      countryCode: formData.countryCode,
     };
 
     console.log(data);
-    setLoading(false)
+    setLoading(false);
 
-    // try {
-    //   const res = await UserService.createQuery(data);
-    //   if (res?.success) {
-    //     setShowPopup(true);
-    //     setFormData({
-    //       fullName: "",
-    //       city: "",
-    //       email: "",
-    //       phone: "",
-    //       launchPlan: "immediate",
-    //       projectAbout: "",
-    //     });
-    //   } else if (
-    //     res?.response?.error === "Error creating query: Validation error"
-    //   ) {
-    //     setErrorPopup(true);
-    //   }
-    // } catch (error) {
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      const res: any = await fetchPost(`/contact`, data);
+      if (res?.success) {
+        setShowPopup(true);
+        setFormData({
+          fullName: "",
+          city: "",
+          email: "",
+          phone: "",
+          launchPlan: "immediate",
+          projectAbout: "",
+          countryCode: "",
+        });
+      } else if (
+        res?.response?.error === "Error creating query: Validation error"
+      ) {
+        setErrorPopup(true);
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   const services = [
@@ -162,9 +161,9 @@ export default function ServiceFormPage({ backgroundColor }: any) {
   ];
 
   const launchOptions = [
-    { key: "Immediately", value: "immediate" },
-    { key: "Within 2-3 weeks", value: "2-3 weeks" },
-    { key: "1 Month", value: "one month" },
+    { key: "Immediately", value: "immediately" },
+    { key: "Within 2-3 weeks", value: "within 2-3 weeks" },
+    { key: "1 Month", value: "1 month" },
     { key: "Not sure", value: "not sure" },
   ];
 
@@ -182,7 +181,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
     ),
   }));
 
-  const defaultCountry = countryOptions.find(c => c.value === "+91");
+  const defaultCountry = countryOptions.find((c) => c.value === "+91");
 
   return (
     <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans mb-10">
@@ -361,7 +360,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`w-full md:w-auto px-4 py-2 md:px-6 md:py-3 rounded-full shadow-lg focus:outline-none transform transition-all duration-300 text-[12px] ${
+                  className={`w-full md:w-auto px-4 py-2 md:px-6 md:py-3 rounded-full shadow-lg focus:outline-none transform transition-all duration-300 text-base ${
                     loading
                       ? "bg-gray-400 text-white cursor-not-allowed"
                       : "bg-[#011C2A] text-white cursor-pointer"
@@ -371,52 +370,10 @@ export default function ServiceFormPage({ backgroundColor }: any) {
                 </button>
               </div>
             </form>
-
-            {/* Popup */}
           </div>
         </div>
       </main>
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="bg-white rounded-2xl shadow-lg p-6 max-w-sm w-full text-center">
-            <h3 className="text-lg font-semibold text-gray-800">
-              Thanks for contacting us!
-            </h3>
-            <p className="text-gray-600 mt-2">
-              {" "}
-              We will contact you shortly 😊
-            </p>
-
-            <Link href={"/"}>
-              <button
-                // onClick={() => setShowPopup(false)}
-                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 cursor-pointer"
-              >
-                Close
-              </button>
-            </Link>
-          </div>
-        </div>
-      )}
-      {errorPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="bg-white rounded-2xl shadow-lg p-6 max-w-sm w-full text-center">
-            <h3 className="text-lg font-semibold text-gray-800">
-              Your query is already submitted!
-            </h3>
-            <p className="text-gray-600 mt-2">
-              {" "}
-              Our team will contact you shortly 😊
-            </p>
-
-            <Link href={"/"}>
-              <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 cursor-pointer">
-                Close
-              </button>
-            </Link>
-          </div>
-        </div>
-      )}
+      {showPopup && <Success onClose={() => setShowPopup(false)} />}
     </div>
   );
 }
