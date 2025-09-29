@@ -62,12 +62,12 @@ export default function ContactInfo() {
   };
 
   return (
-    <section className="w-5/6 mx-auto my-20">
+    <section className="md:w-5/6 w-full md:mx-auto my-20 px-3">
       <div
-        className="bg-white rounded-2xl flex flex-col md:flex-row overflow-hidden md:justify-end"
+        className="bg-white rounded-2xl flex flex-col md:flex-row overflow-hidden md:justify-end "
         style={{ boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)" }}
       >
-        <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-center ">
+        <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-center">
           <h1 className="text-2xl md:text-4xl font-bold">
             Get in{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#372874] to-[#D564AB] inline-block">
@@ -165,18 +165,17 @@ export default function ContactInfo() {
           </div>
         </div>
 
-        <div className="w-full md:w-2/5 flex items-center justify-center relative h-[200px] md:h-[600px]">
+        <div className="w-full md:w-2/5 flex items-center justify-center relative h-auto md:h-auto">
           <iframe
             title="Next Hikes: IT Solutions"
             src="https://www.google.com/maps?q=Next+Hikes+IT+Solutions&output=embed"
             width="100%"
             height="100%"
-            className="p-2 md:py-8 md:pr-8 rounded-2xl z-2"
+            className="p-2 md:py-8 md:pr-8 rounded-2xl z-2 h-full"
             allowFullScreen
             loading="lazy"
           />
-
-          <div className="absolute top-0 right-0 h-full z-1 bg-[#183A4A] w-full md:w-2/3" />
+          <div className="absolute top-0 right-0 h-full z-1 bg-[#183A4A] w-full md:w-2/3 " />
         </div>
       </div>
     </section>
