@@ -66,6 +66,10 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+interface TestimonialProps{
+  testimonials: {}
+}
+
 const Testimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
