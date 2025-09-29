@@ -13,10 +13,13 @@ export default function BlogCard({ data }: BlogData) {
       <div className="cursor-pointer">
         <div className="relative w-full h-[420px] rounded-2xl overflow-hidden shadow-md bg-gray-800">
           <Image
-            src={data.imageUrl || "/image/nexthikes.png"}
+            src={data.imageUrl || "/image/blog.webp"}
             alt="Blog Background"
             fill
             className="object-cover"
+            onError={(e) => {
+              e.currentTarget.src = "/image/blog.webp";
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00000080] to-[#000000]"></div>
           {data.isFeatured && (

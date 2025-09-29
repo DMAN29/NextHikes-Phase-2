@@ -1,4 +1,8 @@
+"use client";
+
+import { useHeaderColor } from "@/app/context/HeaderColorContext";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 interface DetailProps {
   data: {
@@ -12,6 +16,17 @@ interface DetailProps {
 }
 
 export default function DetailPage({ data }: DetailProps) {
+  const { textColor, setTextColor } = useHeaderColor();
+  const prevColorRef = useRef(textColor);
+
+  useEffect(() => {
+    prevColorRef.current = textColor;
+    setTextColor("#000");
+
+    return () => {
+      setTextColor(prevColorRef.current);
+    };
+  }, ["#000", setTextColor]);
   if (!data) {
     return <p className="text-center mt-10 text-red-500">Blog not found</p>;
   }
@@ -21,10 +36,13 @@ export default function DetailPage({ data }: DetailProps) {
       {data.imageUrl && (
         <div className="relative w-full h-80 md:h-[28rem] mb-8">
           <Image
-            src={data.imageUrl}
+            src={data.imageUrl || "/image/blog.webp"}
             alt={data.title}
             fill
             className="w-full h-full object-contain rounded-lg"
+            onError={(e) => {
+              e.currentTarget.src = "/image/blog.webp";
+            }}
           />
         </div>
       )}

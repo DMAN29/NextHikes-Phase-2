@@ -2,7 +2,6 @@ import { Work_Sans, ZCOOL_XiaoWei } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
 import { HeaderColorProvider } from "./context/HeaderColorContext";
-import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
 import FloatingContactWidget from "@/components/FloatingContactWidget/page";
 import { MobileMenuProvider } from "./context/MobileMenuContext";

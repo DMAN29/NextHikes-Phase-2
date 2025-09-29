@@ -31,51 +31,17 @@ export default function Header({ menuItems, links }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menus = [
-    {
-      url: "/industries/astrology",
-      name: "Astrology",
-    },
-    {
-      url: "/industries/e-commerce",
-      name: "E-Commerce",
-    },
-    {
-      url: "/industries/gaming",
-      name: "Gaming",
-    },
-    {
-      url: "/industries/crm",
-      name: "CRM & ERP",
-    },
-    {
-      url: "/industries/healthcare",
-      name: "Healthcare",
-    },
-  ];
+  const industryMenus =
+    menuItems?.industry?.map((item: any) => ({
+      name: item.name,
+      url: `/industries/${item.slug}`,
+    })) || [];
 
-  const serviceMenus = [
-    {
-      url: "/services/web-dev",
-      name: "Web Development",
-    },
-    {
-      url: "/services/app-dev",
-      name: "App Development",
-    },
-    {
-      url: "/services/platform-dev",
-      name: "Platform Development",
-    },
-    {
-      url: "/services/digital-marketing",
-      name: "Digital Marketing",
-    },
-    {
-      url: "/services/ai",
-      name: "Artificial Inteligence",
-    },
-  ];
+  const serviceMenus =
+    menuItems?.services?.map((item: any) => ({
+      name: item.name,
+      url: `/services/${item.slug}`,
+    })) || [];
 
   const menuItemss = [
     {
@@ -84,11 +50,11 @@ export default function Header({ menuItems, links }: HeaderProps) {
     },
     {
       title: "Industries",
-      submenu: menus,
+      submenu: industryMenus,
     },
     {
       title: "About Us",
-      url: `/${menuItems?.slug}`,
+      url: `/${menuItems?.about?.slug}`,
     },
     {
       title: "Blog",
@@ -101,25 +67,6 @@ export default function Header({ menuItems, links }: HeaderProps) {
     {
       title: "Online Payment",
       url: "/online-payment",
-    },
-  ];
-
-  const linkss = [
-    {
-      platform: "facebook",
-      url: "https://www.facebook.com/nexthikes",
-    },
-    {
-      platform: "instagram",
-      url: "https://www.instagram.com/next_hikes/?igsh=MThydTFxYTg2ZGt6MQ%3D%3D#",
-    },
-    {
-      platform: "linkedin",
-      url: "https://www.linkedin.com/company/next-hikes/",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/i/flow/login?redirect_after_login=%2FNexthikes",
     },
   ];
 
@@ -170,7 +117,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
 
                   {dropdownMenu === item.title && (
                     <div className="absolute scrollbar-hide top-full left-0 w-56 bg-white shadow-lg rounded-xl text-gray-800 flex flex-col py-2 overflow-y-auto max-h-60 transition-all duration-300 opacity-100 scale-100 origin-top z-50">
-                      {item.submenu.map((subItem, subIndex) => (
+                      {item.submenu.map((subItem: any, subIndex: any) => (
                         <Link
                           key={subIndex}
                           href={subItem.url}
@@ -183,7 +130,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
                   )}
                 </>
               ) : (
-                <Link href={item.url}>{item.title}</Link>
+                <Link href={item.url || "/"}>{item.title}</Link>
               )}
             </div>
           ))}
@@ -191,15 +138,16 @@ export default function Header({ menuItems, links }: HeaderProps) {
 
         <div className="hidden md:flex items-center gap-8 text-sm">
           <Link href={"/contact-us"}>
-          <button
-            className={`${
-              textColor === "#fff"
-                ? "text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition"
-                : "text-black bg-black/10 backdrop-blur-md hover:bg-black/30 transition"
-            } rounded-full font-medium text-lg flex gap-2 items-center px-4 py-2 cursor-pointer`}
-          >
-            Contact Us <FaAngleRight />
-          </button></Link>
+            <button
+              className={`${
+                textColor === "#fff"
+                  ? "text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition"
+                  : "text-black bg-black/10 backdrop-blur-md hover:bg-black/30 transition"
+              } rounded-full font-medium text-lg flex gap-2 items-center px-4 py-2 cursor-pointer`}
+            >
+              Contact Us <FaAngleRight />
+            </button>
+          </Link>
         </div>
 
         <button
@@ -264,7 +212,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
 
                   {dropdownMenu === item.title && (
                     <div className="flex flex-col scrollbar-hide mt-2 space-y-2 max-h-60 text-black bg-white/90 backdrop-blur-sm rounded-xl shadow-md overflow-y-auto transition-all duration-300">
-                      {item.submenu.map((subItem, subIndex) => (
+                      {item.submenu.map((subItem: any, subIndex: any) => (
                         <Link
                           key={subIndex}
                           href={subItem.url}
@@ -279,7 +227,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
                 </>
               ) : (
                 <Link
-                  href={item.url}
+                  href={item.url || "/"}
                   onClick={() => setMenuOpen(false)}
                   className="py-2"
                 >
@@ -289,7 +237,7 @@ export default function Header({ menuItems, links }: HeaderProps) {
             </div>
           ))}
           <div className="flex justify-center gap-4 mb-4">
-            {linkss?.map((item: any, index: any) => (
+            {links?.map((item: any, index: any) => (
               <Link
                 href={item?.url}
                 target="_blank"

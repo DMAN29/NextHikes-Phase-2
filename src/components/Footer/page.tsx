@@ -4,90 +4,52 @@ import Link from "next/link";
 import { fetchGet } from "@/lib/fetcher";
 import BackToTop from "../BackToTop/page";
 
-export const revalidate = 60;
-
 async function getFooterData() {
   try {
-    const res: any = await fetchGet(
-      `/link/all`
+    const [aboutRes, industryRes, serviceRes, linkRes]: any = await Promise.all(
+      [
+        fetchGet(`/about/public`, { next: { revalidate: 60 } }),
+        fetchGet(`/industry`, { next: { revalidate: 10 } }),
+        fetchGet(`/srvc/all`, { next: { revalidate: 10 } }),
+        fetchGet(`/link/all`, { next: { revalidate: 60 } }),
+      ]
     );
-    return res?.data;
-  } catch (err) {
+
+    if (!aboutRes || !industryRes || !serviceRes || !linkRes?.success) {
+      throw new Error("Failed to fetch header data");
+    }
+
+    const combinedData = {
+      industry: industryRes || [],
+      about: aboutRes?.data || [],
+      services: serviceRes || [],
+      links: linkRes?.data || [],
+    };
+
+    return combinedData;
+  } catch (error) {
     throw new Error("Something went wrong");
   }
 }
 
 export default async function Footer() {
-  const data = await getFooterData();
+  const { links, about, services, industry } = await getFooterData();
 
-  const menus = [
-    {
-      url: "/industries/astrology",
-      name: "Astrology",
-    },
-    {
-      url: "/industries/e-commerce",
-      name: "E-Commerce",
-    },
-    {
-      url: "/industries/gaming",
-      name: "Gaming",
-    },
-    {
-      url: "/industries/crm",
-      name: "CRM & ERP",
-    },
-    {
-      url: "/industries/healthcare",
-      name: "Healthcare",
-    },
-  ];
+  const industryMenus =
+    industry?.map((item: any) => ({
+      name: item.name,
+      url: `/industries/${item.slug}`,
+    })) || [];
 
-  const links = [
-    {
-      platform: "facebook",
-      url: "https://www.facebook.com/nexthikes",
-    },
-    {
-      platform: "instagram",
-      url: "https://www.instagram.com/next_hikes/?igsh=MThydTFxYTg2ZGt6MQ%3D%3D#",
-    },
-    {
-      platform: "linkedin",
-      url: "https://www.linkedin.com/company/next-hikes/",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/i/flow/login?redirect_after_login=%2FNexthikes",
-    },
-  ];
-
-  const serviceMenus = [
-    {
-      url: "/services/web-dev",
-      name: "Web Development",
-    },
-    {
-      url: "/services/app-dev",
-      name: "App Development",
-    },
-    {
-      url: "/services/platform-dev",
-      name: "Platform Development",
-    },
-    {
-      url: "/services/digital-marketing",
-      name: "Digital Marketing",
-    },
-    {
-      url: "/services/ai",
-      name: "Artificial Inteligence",
-    },
-  ];
+  const serviceMenus =
+    services?.map((item: any) => ({
+      name: item.name,
+      url: `/services/${item.slug}`,
+    })) || [];
 
   return (
     <footer className="bg-white pt-8 border-t border-gray-300">
-      <div className="custom-container mx-auto !px-6 !py-4 grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div className="custom-container mx-auto !px-6 !py-4 grid grid-cols-1 md:grid-cols-6 gap-6">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 text-xl font-bold">
             <Link className="text-orange-500 cursor-pointer" href={"/"}>
@@ -147,9 +109,9 @@ export default async function Footer() {
             *Contacts information
           </p>
           <div className="flex md:gap-1 lg:gap-4 gap-4 mt-4">
-            {data?.map((item: any, index: any) => (
+            {links?.map((item: any, index: any) => (
               <Link
-              key={index}
+                key={index}
                 href={item?.url}
                 target="_blank"
                 className={`text-xl p-2 border border-black aspect-square rounded-full cursor-pointer`}
@@ -171,16 +133,6 @@ export default async function Footer() {
           >
             Services
           </h4>
-
-          {/* <ul className="space-y-2 text-sm flex flex-col text-white">
-            {service?.slice(0, 4)?.map((item: any, index: any) => (
-              <Link href={`/services/${item.slug}`} key={index}>
-                <li className="hover:text-orange-400 cursor-pointer">
-                  {item.title}
-                </li>
-              </Link>
-            ))}
-          </ul> */}
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
             {serviceMenus?.slice(0, 4)?.map((item: any, index: any) => (
               <Link href={item.url} key={index}>
@@ -203,17 +155,8 @@ export default async function Footer() {
           >
             Industries
           </h4>
-          {/* <ul className="space-y-2 text-sm flex flex-col text-white">
-            {industry?.slice(0, 4)?.map((item: any, index: any) => (
-              <Link href={`/industries/${item.slug}`} key={index}>
-                <li className="hover:text-orange-400 cursor-pointer">
-                  {item.title}
-                </li>
-              </Link>
-            ))}
-          </ul> */}
           <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
-            {menus?.slice(0, 4)?.map((item: any, index: any) => (
+            {industryMenus?.slice(0, 4)?.map((item: any, index: any) => (
               <Link href={item.url} key={index}>
                 <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
                   {item.name}
@@ -222,7 +165,25 @@ export default async function Footer() {
             ))}
           </ul>
         </div>
-
+        <div>
+          <h4
+            className="text-xl font-medium mb-4 uppercase"
+            style={{
+              background: "linear-gradient(270deg, #D564AB 0%, #372874 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Company
+          </h4>
+          <ul className="space-y-2 text-lg font-normal flex flex-col text-black">
+            <Link href={`/${about?.slug}`}>
+              <li className="hover:text-blue-400 cursor-pointer line-clamp-1">
+                About Us
+              </li>
+            </Link>
+          </ul>
+        </div>
         <div>
           <h4
             className="text-xl font-medium mb-4 uppercase"
@@ -249,26 +210,13 @@ export default async function Footer() {
                 <Icon name={"pin"} color="#000" />
               </div>
               <p className="text-black">
-                Unit no. - 1137 ,11th Floor , Bhutani Alphathum Sector 90 Noida
+                Unit no.- 1137, 11th Floor, Bhutani Alphathum Sector 90 Noida
               </p>
-              {/* {contact?.address} */}
             </li>
-            {/* <li className="flex items-center gap-2">
-              <Icon name={"email"} />
-              <Link
-                href={`mailto:${contact?.officialEmail}`}
-                className="hover:underline"
-              >
-                {contact?.officialEmail}
-              </Link>
-            </li> */}
 
             <li className="flex items-center gap-2">
               <Icon name={"phone"} />
-              <Link
-                href={`tel:+919627865333`}
-                className="hover:underline"
-              >
+              <Link href={`tel:+919627865333`} className="hover:underline">
                 {" "}
                 +919627865333 (9AM - 6PM, Mon - Sat)
               </Link>

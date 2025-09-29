@@ -39,7 +39,7 @@ const poojaServices: PoojaService[] = [
     title: "Bandham Yagna Pooja",
     price: "₹15,000",
     icon: "/image/icon3.png",
-    iconBg: "bg-blue-100",
+    iconBg: "bg-purple-100",
     benefits: [
       "Heal emotional wounds and restore relationships.",
       "Strengthen bonds with family and loved ones.",
@@ -110,7 +110,7 @@ const PoojaCard = ({ s }: { s: PoojaService }) => (
       </h3>
 
       <div className="flex items-start justify-between mb-6">
-        <h1 className="flex items-center space-x-2 text-xl text-gray-900">
+        <h1 className="flex items-center font-semibold space-x-2 text-xl text-purple-900">
           <span>{s.price}</span>
 
           {/* Image replaces icon */}

@@ -26,9 +26,12 @@ export default function AstroPayment() {
                 Your Email
               </span>
 
-              <div className="bg-white text-black font-semibold px-3 sm:px-4 py-2 rounded-lg -ml-2 cursor-pointer text-sm sm:text-base">
+              <button
+                type="button"
+                className="bg-white text-black font-semibold px-3 sm:px-4 py-2 rounded-lg -ml-2 hover:scale-105 transition-transform duration-200 cursor-pointer text-sm sm:text-base"
+              >
                 Send
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -67,14 +70,10 @@ export default function AstroPayment() {
             <p className="text-gray-700 text-sm sm:text-base mb-4 sm:mb-5">
               Powered by Razorpay
             </p>
-            <p className="text-gray-900 text-sm sm:text-base mb-9 sm:mb-8 leading-relaxed">
+            <p className="text-gray-900 text-sm sm:text-base mb-12 sm:mb-8 leading-relaxed">
               Pay Instantly via PhonePe / GPay / UPI - No Login Required,
               <br /> Just pay & Start your Journey
             </p>
-
-            <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-2 rounded-full bg-gradient-to-r from-purple-900 to-pink-500 text-lg sm:text-xl text-white font-semibold shadow-lg hover:scale-105 transition-transform">
-              Book Now – Begin your Astrology Journey
-            </button>
           </div>
 
           {/* Right Image */}
@@ -87,6 +86,27 @@ export default function AstroPayment() {
               className="object-contain"
             />
           </div>
+        </div>
+
+        <div className=" flex justify-center">
+          <button
+            className="
+
+  px-4 sm:px-12
+  py-2 sm:py-4
+  bg-gradient-to-r from-purple-900 to-pink-500
+  text-base sm:text-2xl
+  text-white
+  font-semibold
+  rounded-full
+  shadow-md
+  cursor-pointer
+  transform transition-transform duration-300
+  hover:scale-105
+"
+          >
+            Book Now – Begin your Astrology Journey
+          </button>
         </div>
       </section>
     </div>

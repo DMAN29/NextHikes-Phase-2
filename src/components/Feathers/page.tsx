@@ -1,54 +1,55 @@
 import Image from "next/image";
 
-export default function Feathers() {
-  const icons = [
-    "/icons/nass-memeber.webp",
-    "/icons/shopify-plus-vector-logo.svg",
-    "/icons/gesia.png",
-    "/icons/clutch-global.jpg",
-    "/icons/amazon.png",
-  ];
+interface RecognitionProps {
+  title: string;
+  images: { url: string; alt?: string }[];
+}
+interface FeatherProps {
+  recognizedBy: RecognitionProps;
+  feathers: RecognitionProps;
+}
 
-  const icons2 = [
-    "/icons/The_Economic_Times_logo.svg",
-    "/icons/The_Hindu_logo.svg",
-    "/icons/yourstory-logo.svg",
-    "/icons/Deccan_Chronicle_Logo.svg",
-  ];
+export default function Feathers({ recognizedBy, feathers }: FeatherProps) {
   return (
-    <section className="my-15 md:min-h-screen">
+    <section className="my-15 md:min-h-screen flex flex-col items-center justify-center">
       <h3 className="uppercase text-[#000000CC] text-[15px] md:text-4xl font-semibold text-center mb-5 md:mb-10">
-        feathers in our cap
+        {feathers?.title}
       </h3>
-      <div className="flex flex-wrap justify-center gap-6">
-        {icons?.map((icon, index) => (
-          <div key={index} className="flex items-center">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
+        {feathers?.images?.map((icon, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-center w-24 h-24 md:w-32 md:h-32"
+          >
             <Image
-              src={icon}
-              alt={`icon-${index}`}
-              width={200}
-              height={200}
-              className="object-contain grayscale h-[50px] md:h-auto"
+              src={icon.url}
+              alt={icon.alt || `icon-${index}`}
+              width={128}
+              height={128}
+              className="object-contain grayscale"
             />
           </div>
         ))}
       </div>
 
-      <h3 className="uppercase text-[#000000CC] text-[15px] md:text-4xl font-semibold text-center mt-10">
-        recognized by
+      <h3 className="uppercase text-[#000000CC] text-[15px] md:text-4xl font-semibold text-center mt-10 mb-5 md:mb-10">
+        {recognizedBy?.title}
       </h3>
-      <div className="flex flex-wrap justify-center gap-6">
-        {icons2?.map((icon, index) => (
-        <div key={index} className="mx-20 mt-5 flex items-center">
-          <Image
-            src={icon}
-            alt={`icon-${index}`}
-            width={200}
-            height={200}
-            className="object-contain grayscale h-[24px] md:h-auto"
-          />
-        </div>
-      ))}
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
+        {recognizedBy?.images?.map((icon, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-center w-24 h-24 md:w-32 md:h-32"
+          >
+            <Image
+              src={icon.url}
+              alt={icon.alt || `icon-${index}`}
+              width={128}
+              height={128}
+              className="object-contain grayscale"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );

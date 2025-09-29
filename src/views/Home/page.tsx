@@ -17,6 +17,7 @@ export default async function HomePage() {
 
   try {
     const res: any = await fetchGet(`/home`);
+    console.log(res?.data)
 
     if (!res?.success) {
       throw new Error("Failed to fetch home data");
@@ -28,28 +29,35 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="">
-      <Banner
-        platform="home"
-        backgroundColor={[""]}
-        subTitle={data?.subtitle}
-        cta={data?.mainButtons}
-        title={data?.title}
-        headerTextColor="#000"
-        backgroundImage={"/image/home-banner.png"}
-      />
-      <WhoWeAre
-        title={data?.whoWeAre?.description}
-        button={data?.whoWeAre?.button}
-      />
+    <div>
+      {data?.isMainBlockActive && (
+        <Banner
+          platform="home"
+          backgroundColor={[""]}
+          subTitle={data?.subtitle}
+          cta={data?.mainButtons}
+          title={data?.title}
+          headerTextColor="#000"
+          backgroundImage={data?.mainImage || "/image/home-banner.png"}
+        />
+      )}
+
+      {(data?.whoWeAre || data?.isCompaniesBlockActive) && (
+        <WhoWeAre
+          title={data?.whoWeAre?.description}
+          button={data?.whoWeAre?.button}
+        />
+      )}
+
       <OurService />
-      <Feathers />
+      <Feathers recognizedBy={data?.recognisedBy} feathers={data?.recognition} />
       <IndustriesServe />
-      <ProjectHighlights />
-      <WhyUs />
-      <Testimonials />
+      {data?.isLatestWorkBlockActive && <ProjectHighlights data={data?.latestWorkIds} />}
+
+      {data?.isWhyChooseBlockActive && <WhyUs data={data?.whyChooseUs} />}
+      {data?.isFeaturedTestimonialBlockActive && <Testimonials />}
       <Team />
-      <Gallery />
+      {data?.isGalleryBlockActive && <Gallery image={data?.galleryBlockIds} />}
     </div>
   );
 }

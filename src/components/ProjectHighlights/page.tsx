@@ -1,15 +1,17 @@
 "use client";
 
-import { FaArrowRight } from "react-icons/fa6";
 import MagicBento from "../MagicBento";
-export default function ProjectHighlights() {
-  const data = [
-    { image: "/image/case-study.jpg", title: "demo", button: "case study" },
-    { image: "/image/case-study.jpg", title: "demo", button: "case study" },
-    { image: "/image/case-study.jpg", title: "demo", button: "case study" },
-    { image: "/image/case-study.jpg", title: "demo", button: "case study" },
-    { image: "/image/case-study.jpg", title: "demo", button: "case study" },
-  ];
+
+interface ImageProps {
+  name: string;
+  image: string;
+}
+
+interface ProjectProps {
+  data: ImageProps;
+}
+
+export default function ProjectHighlights({ data }: ProjectProps) {
   return (
     <section className="md:flex my-10">
       <div className="w-full md:w-1/3 text-center md:text-left md:ml-5 lg:ml-15  flex flex-col  gap-5 justify-center mb-5 md:mb-0  ">

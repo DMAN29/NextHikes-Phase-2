@@ -68,7 +68,7 @@ export default function Astrosteps() {
                     alt="connector"
                     width={120}
                     height={120}
-                    className="object-contain"
+                    className="object-contain h-19"
                   />
                 </div>
               )}
@@ -78,7 +78,7 @@ export default function Astrosteps() {
 
         {/* CTA Button */}
         <div className="mt-8 sm:mt-12 flex justify-center">
-          <button className="w-full sm:w-auto px-6 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-purple-900 to-pink-500 text-lg sm:text-2xl text-white font-semibold rounded-full shadow-md hover:opacity-90 transition">
+          <button className="w-full sm:w-auto px-6 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-purple-900 to-pink-500 text-lg sm:text-2xl text-white font-semibold rounded-full shadow-md cursor-pointer hover:scale-90 transition">
             Book Now - Begin your Astrology Journey
           </button>
         </div>
