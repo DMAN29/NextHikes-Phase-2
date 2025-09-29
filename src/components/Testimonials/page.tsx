@@ -36,33 +36,21 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 4,
-    name: "Sophia Williams",
-    profession: "UX Designer at GlobalTech",
-    image: "/video/video1.mp4",
+    name: "Vikas",
+    profession: "Owner of Square Feet Home",
+    image: "/video/video4.mp4",
   },
   {
     id: 5,
-    name: "Vikas",
-    profession: "Owner of Square Feet Home",
-    image: "/video/video4.mp4",
+    name: "David Johnson",
+    profession: "Senior Product Manager at InnovateTech",
+    image: "/video/video5.mp4",
   },
   {
     id: 6,
-    name: "Alexander Smith",
-    profession: "CTO at NextGen Solutions",
-    image: "/video/video2.mp4",
-  },
-  {
-    id: 7,
-    name: "Isabella Martinez",
-    profession: "Marketing Manager at BrightWave",
-    image: "/video/video3.mp4",
-  },
-  {
-    id: 8,
-    name: "Vikas",
-    profession: "Owner of Square Feet Home",
-    image: "/video/video4.mp4",
+    name: "Manish Rana",
+    profession: "Head of Product Development at TechSphere Innovations",
+    image: "/video/video6.mp4",
   },
 ];
 
