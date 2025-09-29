@@ -25,9 +25,10 @@ interface MarketingProps {
 // Hero Section
 // ----------------------
 const MarketingHero: React.FC<MarketingProps> = ({ data }) => {
-  if (!data) return <p className="text-center py-10">Hero data not available.</p>;
+  if (!data)
+    return <p className="text-center py-10">Hero data not available.</p>;
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <section className="w-full flex items-center justify-center px-4 my-20 sm:px-6 md:px-12 lg:px-20">

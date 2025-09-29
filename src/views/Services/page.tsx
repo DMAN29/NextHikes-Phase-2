@@ -37,7 +37,7 @@ export default function ServicePage({ slug }: ServiceProps) {
     async function fetchServiceData() {
       setLoading(true);
       try {
-        console.log("Fetching data for slug:", slug);
+        // console.log("Fetching data for slug:", slug);
         const data = await getServicePageBySlug(slug);
         setServiceData(data);
       } catch (error) {
@@ -51,7 +51,7 @@ export default function ServicePage({ slug }: ServiceProps) {
     }
   }, [slug]);
 
-  console.log("Service Data:", serviceData);
+  // console.log("Service Data:", serviceData);
 
   const serviceStyles: any = {
     "web-development": {
@@ -372,7 +372,9 @@ export default function ServicePage({ slug }: ServiceProps) {
           {serviceData.blocks?.[2]?.data && (
             <Title
               firstText={serviceData.blocks[2].data?.firstTitle || "Our"}
-              firstColor={serviceData.blocks[2].data?.firstColor || "text-[#840065]"}
+              firstColor={
+                serviceData.blocks[2].data?.firstColor || "text-[#840065]"
+              }
               secondText={serviceData.blocks[2].data?.secondTitle || "Process"}
               subText={serviceData.blocks[2].data?.subtitle || ""}
             />

@@ -17,7 +17,7 @@ export default async function HomePage() {
 
   try {
     const res: any = await fetchGet(`/home`);
-    console.log(res?.data)
+    // console.log(res?.data)
 
     if (!res?.success) {
       throw new Error("Failed to fetch home data");
@@ -50,9 +50,14 @@ export default async function HomePage() {
       )}
 
       <OurService />
-      <Feathers recognizedBy={data?.recognisedBy} feathers={data?.recognition} />
+      <Feathers
+        recognizedBy={data?.recognisedBy}
+        feathers={data?.recognition}
+      />
       <IndustriesServe />
-      {data?.isLatestWorkBlockActive && <ProjectHighlights data={data?.latestWorkIds} />}
+      {data?.isLatestWorkBlockActive && (
+        <ProjectHighlights data={data?.latestWorkIds} />
+      )}
 
       {data?.isWhyChooseBlockActive && <WhyUs data={data?.whyChooseUs} />}
       {data?.isFeaturedTestimonialBlockActive && <Testimonials />}
