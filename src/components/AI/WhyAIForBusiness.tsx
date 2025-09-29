@@ -13,7 +13,7 @@ interface WhyAIForBusinessProps {
 }
 
 export default function WhyAIForBusiness({ data }: WhyAIForBusinessProps) {
-  console.log("WhyAIForBusiness data:", data);
+  // console.log("WhyAIForBusiness data:", data);
   return (
     <div className="flex gap-4 w-11/12 mx-auto">
       <div className="w-full md:w-2/3">

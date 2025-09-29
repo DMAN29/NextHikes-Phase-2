@@ -37,7 +37,7 @@ export default function ServicePage({ slug }: ServiceProps) {
     async function fetchServiceData() {
       setLoading(true);
       try {
-        console.log("Fetching data for slug:", slug);
+        // console.log("Fetching data for slug:", slug);
         const data = await getServicePageBySlug(slug);
         setServiceData(data);
       } catch (error) {
@@ -51,7 +51,7 @@ export default function ServicePage({ slug }: ServiceProps) {
     }
   }, [slug]);
 
-  console.log("Service Data:", serviceData);
+  // console.log("Service Data:", serviceData);
 
   const serviceStyles: any = {
     "web-development": {
@@ -272,18 +272,18 @@ export default function ServicePage({ slug }: ServiceProps) {
           )}
           {serviceData.blocks?.[1]?.data && (
             <Title
-              firstText={serviceData.blocks[1].data.firstTitle}
+              firstText={serviceData.blocks[1].data?.firstTitle || "Our"}
               firstColor={
-                serviceData.blocks[1].data.firstColor || "text-[#840065]"
+                serviceData.blocks[1].data?.firstColor || "text-[#840065]"
               }
-              secondText={serviceData.blocks[1].data.secondTitle || "Services"}
-              subText={serviceData.blocks[1].data.subtitle}
+              secondText={serviceData.blocks[1].data?.secondTitle || "Services"}
+              subText={serviceData.blocks[1].data?.subtitle || ""}
             />
           )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
           <div>
             {serviceData.blocks?.[2]?.data &&
-              serviceData.blocks[2].data.points && (
+              serviceData.blocks[2].data?.points && (
                 <ChooseUsTimeline data={serviceData.blocks[2].data} />
               )}
           </div>
@@ -324,12 +324,12 @@ export default function ServicePage({ slug }: ServiceProps) {
 
           {serviceData.blocks?.[3]?.data && (
             <Title
-              firstText={serviceData.blocks[3].data?.firstTitle}
+              firstText={serviceData.blocks[3].data?.firstTitle || "Our"}
               firstColor={
                 serviceData.blocks[3].data?.firstColor || "text-[#083E92]"
               }
-              secondText={serviceData.blocks[3].data?.secondTitle}
-              subText={serviceData.blocks[3].data?.subtitle}
+              secondText={serviceData.blocks[3].data?.secondTitle || "Process"}
+              subText={serviceData.blocks[3].data?.subtitle || ""}
             />
           )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
@@ -371,10 +371,12 @@ export default function ServicePage({ slug }: ServiceProps) {
           )}
           {serviceData.blocks?.[2]?.data && (
             <Title
-              firstText={serviceData.blocks[2].data?.firstTitle}
-              firstColor={serviceData.blocks[2].data?.firstColor}
-              secondText={serviceData.blocks[2].data?.secondTitle}
-              subText={serviceData.blocks[2].data?.subtitle}
+              firstText={serviceData.blocks[2].data?.firstTitle || "Our"}
+              firstColor={
+                serviceData.blocks[2].data?.firstColor || "text-[#840065]"
+              }
+              secondText={serviceData.blocks[2].data?.secondTitle || "Process"}
+              subText={serviceData.blocks[2].data?.subtitle || ""}
             />
           )}
 
