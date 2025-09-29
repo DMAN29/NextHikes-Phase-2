@@ -67,7 +67,7 @@ const testimonials: Testimonial[] = [
 ];
 
 interface TestimonialProps{
-  testimonials: {}
+  testimonials: any
 }
 
 const Testimonials: React.FC = () => {
