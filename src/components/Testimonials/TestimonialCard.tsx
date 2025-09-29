@@ -11,26 +11,25 @@ const TestimonialCard: React.FC<{
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // Reset video when slide is not active
   useEffect(() => {
     if (!videoRef.current) return;
 
-    if (isActive) {
-      videoRef.current.muted = false; // UNMUTE active card
-      videoRef.current.play().catch(() => {});
-      setIsPlaying(true);
-    } else {
+    if (!isActive) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
-      videoRef.current.muted = true; // keep inactive muted
+      videoRef.current.muted = true;
       setIsPlaying(false);
     }
   }, [isActive]);
 
+  // Play/pause toggle only when user clicks
   const togglePlay = () => {
     if (!videoRef.current) return;
 
     if (videoRef.current.paused) {
-      videoRef.current.play();
+      videoRef.current.muted = false; // unmute when playing
+      videoRef.current.play().catch(() => {});
       setIsPlaying(true);
     } else {
       videoRef.current.pause();
@@ -55,7 +54,7 @@ const TestimonialCard: React.FC<{
         <video
           ref={videoRef}
           src={testimonial.image}
-          muted={!isActive} // only active card has sound
+          muted // always muted by default until play is clicked
           loop
           playsInline
           className="object-cover w-full h-full"
@@ -63,6 +62,7 @@ const TestimonialCard: React.FC<{
 
         {isActive && (
           <>
+            {/* Overlay text */}
             <div
               className="absolute bottom-0 left-0 w-full text-white p-4"
               style={{
@@ -76,6 +76,7 @@ const TestimonialCard: React.FC<{
               </p>
             </div>
 
+            {/* Play / Pause button */}
             <button
               onClick={togglePlay}
               className="absolute bottom-4 right-4 text-[#F37021] text-2xl p-2 bg-black/50 rounded-xl border border-[#F37021]"

@@ -1,26 +1,48 @@
 "use client";
 
+import { countryCodes } from "@/utils/countryCodes";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Select from "react-select";
 
 const FrontEndIcon = () => (
-  <Image src={"/icons/frontend-icon.svg"} alt="frontend-service" fill />
+  <Image
+    src={"/icons/front-icon.svg"}
+    alt="frontend-service"
+    width={100}
+    height={100}
+    className="w-full h-full"
+  />
 );
 
 const BackEndIcon = () => (
-  <Image src={"/icons/backend-icon.svg"} alt="backend-service" fill />
+  <Image
+    src={"/icons/app-icon.svg"}
+    alt="backend-service"
+    width={100}
+    height={100}
+    className="w-full h-full"
+  />
 );
 
 const AiIntegrationIcon = () => (
-  <Image src={"/icons/ai-icon.svg"} alt="ai-integration-service" fill />
+  <Image
+    src={"/icons/ai-inte-icon.svg"}
+    alt="ai-integration-service"
+    width={100}
+    height={100}
+    className="w-full h-full"
+  />
 );
 
 const DigitalMarketingIcon = () => (
   <Image
-    src={"/icons/marketing-icon.svg"}
+    src={"/icons/digi-icon.svg"}
     alt="digital-marketing-service"
-    fill
+    width={100}
+    height={100}
+    className="w-full h-full"
   />
 );
 
@@ -29,12 +51,12 @@ const ServiceCard = ({ icon, title, selected, onClick }: any) => (
     onClick={onClick}
     className={`
       bg-white w-full p-4 lg:p-6 rounded-2xl flex flex-col items-center justify-center 
-      text-center cursor-pointer transition-all duration-300 ease-in-out transform
+      text-center transition-all duration-300 ease-in-out transform
       ${selected ? "ring-2 ring-blue-500" : ""}
     `}
   >
     <div className="relative h-12 lg:h-16 w-16 mb-4">{icon}</div>
-    <h3 className="font-medium text-[#363636] sm:text-xs md:text-sm mt-2">
+    <h3 className="font-medium text-[##363636] sm:text-sm md:text-lg mt-2">
       {title}
     </h3>
   </div>
@@ -55,6 +77,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
     phone: "",
     launchPlan: "immediate",
     projectAbout: "",
+    countryCode: "+91",
   });
 
   const [errors, setErrors] = useState<any>({});
@@ -89,7 +112,7 @@ export default function ServiceFormPage({ backgroundColor }: any) {
       return;
     }
 
-    setLoading(true);
+    // setLoading(true);
 
     const data = {
       name: formData.fullName,
@@ -98,7 +121,11 @@ export default function ServiceFormPage({ backgroundColor }: any) {
       phoneNumber: formData.phone,
       launchProject: formData.launchPlan,
       projectAbout: formData.projectAbout,
+      countryCode : formData.countryCode
     };
+
+    console.log(data);
+    setLoading(false)
 
     // try {
     //   const res = await UserService.createQuery(data);
@@ -141,6 +168,22 @@ export default function ServiceFormPage({ backgroundColor }: any) {
     { key: "Not sure", value: "not sure" },
   ];
 
+  const countryOptions = countryCodes.map((c) => ({
+    value: c.dial_code,
+    label: (
+      <div className="flex items-center gap-2">
+        <img
+          src={`https://flagcdn.com/${c.code.toLowerCase()}.svg`}
+          alt={c.code}
+          className="w-5 h-4"
+        />
+        <span>{c.dial_code}</span>
+      </div>
+    ),
+  }));
+
+  const defaultCountry = countryOptions.find(c => c.value === "+91");
+
   return (
     <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans mb-10">
       <main
@@ -166,7 +209,6 @@ export default function ServiceFormPage({ backgroundColor }: any) {
           <div className="bg-white p-6 sm:p-8 rounded-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* Full Name */}
                 <div className="relative">
                   <label
                     htmlFor="fullName"
@@ -209,37 +251,48 @@ export default function ServiceFormPage({ backgroundColor }: any) {
                     <p className="text-red-500 text-xs">{errors.city}</p>
                   )}
                 </div>
+              </div>
+              <div className="relative">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-gray-600"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full bg-transparent border-b-2 border-gray-300 focus:border-blue-500 outline-none py-2 text-black"
+                  placeholder="example@email.com"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-xs">{errors.email}</p>
+                )}
+              </div>
 
-                {/* Email */}
-                <div className="relative">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium text-gray-600"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="mt-1 w-full bg-transparent border-b-2 border-gray-300 focus:border-blue-500 outline-none py-2 text-black"
-                    placeholder="example@email.com"
+              <div className="relative">
+                <label
+                  htmlFor="phone"
+                  className="text-sm font-medium text-gray-600"
+                >
+                  Phone Number
+                </label>
+                <div className="flex items-end gap-2 mt-1">
+                  <Select
+                    options={countryOptions}
+                    defaultValue={defaultCountry}
+                    onChange={(option) =>
+                      setFormData((prev: any) => ({
+                        ...prev,
+                        countryCode: option?.value,
+                      }))
+                    }
+                    className="w-full max-w-[140px] scrollbar-hide"
                   />
-                  {errors.email && (
-                    <p className="text-red-500 text-xs">{errors.email}</p>
-                  )}
-                </div>
 
-                {/* Phone */}
-                <div className="relative">
-                  <label
-                    htmlFor="phone"
-                    className="text-sm font-medium text-gray-600"
-                  >
-                    Phone Number
-                  </label>
                   <input
                     type="tel"
                     id="phone"
@@ -248,16 +301,15 @@ export default function ServiceFormPage({ backgroundColor }: any) {
                     onChange={handleInputChange}
                     maxLength={10}
                     pattern="[0-9]{10}"
-                    className="mt-1 w-full bg-transparent border-b-2 border-gray-300 focus:border-blue-500 outline-none py-2 text-black"
+                    className="w-full bg-transparent border-b-2 border-gray-300 focus:border-blue-500 outline-none py-2 text-black"
                     placeholder="9876543210"
                   />
-                  {errors.phone && (
-                    <p className="text-red-500 text-xs">{errors.phone}</p>
-                  )}
                 </div>
+                {errors.phone && (
+                  <p className="text-red-500 text-xs">{errors.phone}</p>
+                )}
               </div>
 
-              {/* Launch Plan */}
               <div>
                 <label className="text-sm font-medium text-gray-600">
                   Planning to launch your project?

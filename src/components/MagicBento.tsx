@@ -766,6 +766,7 @@ const MagicBento: React.FC<BentoProps> = ({
                         backgroundImage: `url(${card.image})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
                       }}
                     >
                       <div className="absolute inset-0 bg-[#00000099]"></div>

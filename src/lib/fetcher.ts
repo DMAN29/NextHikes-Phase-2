@@ -4,7 +4,7 @@ export async function fetchGet<T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> {
-  const res = await fetch(`${BASE_URL}${endpoint}`, { cache: "force-cache", ...options });
+  const res = await fetch(`${BASE_URL}${endpoint}`, { ...options });
 
   if (!res.ok) {
     throw new Error(`Failed to fetch ${BASE_URL}${endpoint}. Status: ${res.status}`);
@@ -24,7 +24,6 @@ export async function fetchPost<T>(
       ...(options?.headers || {}),
     },
     body: JSON.stringify(body),
-    cache: "force-cache",
     ...options,
   });
 
@@ -54,7 +53,6 @@ export async function fetchPut<T>(
       ...(options?.headers || {}),
     },
     body: JSON.stringify(body),
-    cache: "force-cache",
     ...options,
   });
 
@@ -84,7 +82,6 @@ export async function fetchPatch<T>(
       ...(options?.headers || {}),
     },
     body: JSON.stringify(body),
-    cache: "force-cache",
     ...options,
   });
 

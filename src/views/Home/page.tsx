@@ -8,26 +8,12 @@ import WhoWeAre from "@/components/WeAre/page";
 import WhyUs from "@/components/WhyUs/page";
 import IndustriesServe from "@/components/IndustriesServe/page";
 import Feathers from "@/components/Feathers/page";
-import { fetchGet } from "@/lib/fetcher";
 
-export const revalidate = 60;
+interface HomeProps {
+  data: any;
+}
 
-export default async function HomePage() {
-  let data = null;
-
-  try {
-    const res: any = await fetchGet(`/home`);
-    // console.log(res?.data)
-
-    if (!res?.success) {
-      throw new Error("Failed to fetch home data");
-    }
-
-    data = res?.data;
-  } catch (error) {
-    throw new Error("Something went wrong!!");
-  }
-
+export default async function HomePage({ data }: HomeProps) {
   return (
     <div>
       {data?.isMainBlockActive && (
