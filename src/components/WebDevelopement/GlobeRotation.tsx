@@ -3,7 +3,15 @@ import Image from "next/image";
 import SplitText from "./SplitText";
 import { gsap } from "gsap";
 
-export default function AIIntegration() {
+interface ServiceData {
+  title: string;
+  image: string;
+  points: string[];
+}
+interface GlobeRotationProps {
+  data: ServiceData;
+}
+export default function AIIntegration({ data }: GlobeRotationProps) {
   const imageRef = useRef(null);
   const textRefs = [useRef(null), useRef(null), useRef(null)];
   const imageRotationDuration = 40; // seconds
@@ -129,7 +137,7 @@ export default function AIIntegration() {
   return (
     <>
       <div
-        className="relative flex items-center justify-center min-h-[600px] md:min-h-[700px] lg:min-h-[900px] bg-black text-white my-20 w-full overflow-hidden"
+        className="relative flex items-center justify-center min-h-[600px] md:min-h-[700px]  bg-black text-white my-20 w-full overflow-hidden"
         style={{
           boxShadow:
             "0 0 40px 0 rgba(0,0,0,0.9), 0 20px 40px 0 rgba(0,0,0,0.9)",
@@ -137,7 +145,10 @@ export default function AIIntegration() {
       >
         <div className="absolute top-12 md:left-16 left-1/2 transform md:translate-x-0 -translate-x-1/2 text-center md:text-left w-full">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-wide">
-            <span className="text-cyan-400 font-bold">AI</span> Integration
+            <span className="text-cyan-400 font-bold">
+              {data.title.split(" ")[0]}
+            </span>{" "}
+            {data.title.split(" ").slice(1).join(" ")}
           </h1>
         </div>
 
@@ -148,7 +159,7 @@ export default function AIIntegration() {
           style={{ willChange: "transform" }}
         >
           <Image
-            src="/icons/web1.svg"
+            src={data.image}
             alt="AI Globe"
             layout="fill"
             objectFit="contain"
@@ -179,7 +190,7 @@ export default function AIIntegration() {
           <div className="w-4 h-4 rounded-full bg-white shrink-0"></div>
           <div style={{ transformOrigin: "center center", opacity: 1 }}>
             <SplitText
-              text="AI Astrologer Implementation step 1"
+              text={data.points[0]}
               className="text-base md:text-2xl font-medium ml-2"
               delay={100}
               duration={0.6}
@@ -202,7 +213,7 @@ export default function AIIntegration() {
           <div className="w-4 h-4 rounded-full bg-white shrink-0"></div>
           <div style={{ transformOrigin: "center center", opacity: 1 }}>
             <SplitText
-              text="AI Doctor Implementation"
+              text={data.points[1]}
               className="text-base md:text-2xl font-medium ml-2"
               delay={100}
               duration={0.6}
@@ -225,7 +236,7 @@ export default function AIIntegration() {
           <div className="w-4 h-4 rounded-full bg-white shrink-0"></div>
           <div style={{ transformOrigin: "center center", opacity: 1 }}>
             <SplitText
-              text="AI Astrologer Implementation"
+              text={data.points[2]}
               className="text-base md:text-2xl font-medium ml-2"
               delay={100}
               duration={0.6}

@@ -11,6 +11,7 @@ interface DigitalFlowData {
 }
 
 interface DigitalService {
+  icon: string;
   title: string;
   description: string;
 }
@@ -73,11 +74,10 @@ export default function DigitalFlow({ data }: DigitalFlowProps) {
   const horizontalElements = 2 * horizontalBlocks.length - 1;
   const verticalElements = 2 * verticalBlocks.length - 1;
   const arrowGap = "1.5rem";
-
   return (
     <div className="w-11/12 mx-auto">
       <h1 className="text-xl md:text-3xl lg:text-5xl mt-10 my-4 md:my-10 xl:w-1/2 w-11/12 text-center md:text-left">
-        {data.title}
+        {data.title}{" "}
         <span className="text-[#ACA9FF]">{data.secondaryTitle}</span>
       </h1>
       <p className="text-center md:text-left text-sm md:text-lg lg:text-2xl text-[#363636]">
@@ -93,7 +93,7 @@ export default function DigitalFlow({ data }: DigitalFlowProps) {
           >
             <span className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-gray-50 mr-3 rounded-full p-1">
               <Image
-                src={img1}
+                src={block.icon}
                 alt={block.title}
                 width={32}
                 height={32}
@@ -120,7 +120,7 @@ export default function DigitalFlow({ data }: DigitalFlowProps) {
                   <div className="border bg-white rounded-lg min-h-52 p-3 flex items-center gap-4">
                     <div className="w-8 h-8 xl:w-16 xl:h-16 flex items-center justify-center">
                       <Image
-                        src={img1}
+                        src={block.icon}
                         height={50}
                         width={50}
                         alt={block.title}
@@ -179,7 +179,7 @@ export default function DigitalFlow({ data }: DigitalFlowProps) {
                     <div className="bg-white rounded-lg min-h-80 p-2 xl:p-5 flex flex-col justify-center items-center text-center">
                       <div className="w-8 h-8 xl:w-16 xl:h-16 flex items-center justify-center">
                         <Image
-                          src={img1}
+                          src={block.icon}
                           height={50}
                           width={50}
                           alt={block.title}

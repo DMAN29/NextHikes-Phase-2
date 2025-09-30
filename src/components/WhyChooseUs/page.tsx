@@ -41,32 +41,45 @@ export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
   const containerRef = useRef<any>(null);
   const [pathLength, setPathLength] = useState(0);
 
-  const steps = [
-    {
-      title: "End-to-End Solutions",
-      description:
-        "From strategy and design to development and deployment, we handle every stage of your project under one roof.",
-      position: { top: "0%", left: "8%" },
-    },
-    {
-      title: "Cutting-Edge Technologies",
-      description:
-        "Our expertise in the latest technologies ensures that your project is built to be scalable, secure, and future-proof.",
-      position: { top: "25%", left: "35%" },
-    },
-    {
-      title: "Skilled & Experienced Team",
-      description:
-        "Our developers, designers, and project managers bring years of industry expertise to deliver high-quality solutions.",
-      position: { top: "55%", left: "60%" },
-    },
-    {
-      title: "Timely Delivery",
-      description:
-        "We respect deadlines and ensure your project is delivered on time without compromising on the quality of the final product.",
-      position: { top: "75%", left: "85%" },
-    },
+  const positions = [
+    { top: "0%", left: "8%" },
+    { top: "25%", left: "35%" },
+    { top: "55%", left: "60%" },
+    { top: "75%", left: "85%" },
   ];
+
+  const steps = (data?.points || []).map((point, index) => ({
+    title: point?.name || "",
+    description: point?.content || "",
+    position: positions[index] || { top: "0%", left: "0%" },
+  }));
+
+  // const steps = [
+  //   {
+  //     title: "End-to-End Solutions",
+  //     description:
+  //       "From strategy and design to development and deployment, we handle every stage of your project under one roof.",
+  //     position: { top: "0%", left: "8%" },
+  //   },
+  //   {
+  //     title: "Cutting-Edge Technologies",
+  //     description:
+  //       "Our expertise in the latest technologies ensures that your project is built to be scalable, secure, and future-proof.",
+  //     position: { top: "25%", left: "35%" },
+  //   },
+  //   {
+  //     title: "Skilled & Experienced Team",
+  //     description:
+  //       "Our developers, designers, and project managers bring years of industry expertise to deliver high-quality solutions.",
+  //     position: { top: "55%", left: "60%" },
+  //   },
+  //   {
+  //     title: "Timely Delivery",
+  //     description:
+  //       "We respect deadlines and ensure your project is delivered on time without compromising on the quality of the final product.",
+  //     position: { top: "75%", left: "85%" },
+  //   },
+  // ];
 
   useEffect(() => {
     if (pathRef.current) {
@@ -124,11 +137,13 @@ export default function ChooseUsTimeline({ data }: WhyChooseUsProps) {
         <div className="w-full mx-auto">
           <div className="text-right max-w-md ml-auto">
             <h1 className="text-3xl md:text-5xl font-bold text-gray-800">
-              Why <span className="text-[#840065]">Choose us</span>?
+              {data.title.split(" ")[0]}{" "}
+              <span className="text-[#840065]">
+                {data.title.split(" ").slice(1).join(" ")}
+              </span>
             </h1>
             <p className="text-gray-600 mt-4 text-sm md:text-lg">
-              Choosing the right development partner can make all the difference
-              in your digital success. Here’s why businesses trust us:
+              {data.subtitle}
             </p>
           </div>
 

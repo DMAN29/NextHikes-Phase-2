@@ -51,7 +51,7 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
       fetchServiceData();
     }
   }, [slug, initialData]);
-  // console.log("Service Data:", serviceData);
+  console.log("Service Data:", serviceData);
 
   const serviceStyles: any = {
     "web-development": {
@@ -250,23 +250,29 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
     <section>
       {matchedConfig?.styleKey === "web-development" && (
         <div className="">
-          <Banner
-            platform="web-dev"
-            backgroundColor={["#FCF4EC"]}
-            bannerImage={[{ icon: "/image/web-service.webp" }]}
-            subTitle={`Expert web development <br /> for unstoppable growth`}
-            cta={[
-              {
-                text: "Explore Now",
-                url: "",
-                backgroundColor: "#ffffff",
-                textColor: "#363636",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`Build your digital <br /> foundation`}
-            headerTextColor="#000"
-          />
+          {serviceData.common && (
+            <Banner
+              platform="web-dev"
+              title={serviceData.common?.title || ""}
+              subTitle={serviceData.common?.subtitle || ""}
+              backgroundColor={["#FCF4EC"]}
+              bannerImage={
+                serviceData.common?.images?.length &&
+                serviceData.common.images.map((img: string) => ({ icon: img }))
+              }
+              cta={
+                serviceData.common?.buttons?.length &&
+                serviceData.common.buttons.map((btn: any) => ({
+                  text: btn.label || "",
+                  url: btn.url || "",
+                  backgroundColor: "#ffffff",
+                  textColor: "#363636",
+                  borderColor: "#ffffff",
+                }))
+              }
+              headerTextColor="#000"
+            />
+          )}
           {serviceData.blocks?.[0]?.data && (
             <ElevateBusinessPage data={serviceData.blocks[0].data} />
           )}
@@ -285,30 +291,38 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
             serviceData.blocks[2].data?.points && (
               <ChooseUsTimeline data={serviceData.blocks[2].data} />
             )}
-          <GlobeRotation />
+          {serviceData.blocks?.[3]?.data && (
+            <GlobeRotation data={serviceData.blocks[3].data} />
+          )}
         </div>
       )}
 
       {matchedConfig?.styleKey === "app-development" && (
         <div className="">
-          <Banner
-            platform="app-development"
-            backgroundColor={["#FFF"]}
-            bannerImage={[{ icon: "/icons/mobile-second.webp" }]}
-            subTitle={`Revolutionary Mobile Experiences Starts Here.`}
-            cta={[
-              {
-                text: "lauch your app idea",
-                url: "",
-                backgroundColor: "#083E92",
-                textColor: "#FFFFFF",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`innovate. <br/> create. <br /> dominate.`}
-            headerTextColor="#000"
-            backgroundImage="/image/app-back.webp"
-          />
+          {serviceData.common && (
+            <Banner
+              platform="app-development"
+              title={serviceData.common?.title || ""}
+              subTitle={serviceData.common?.subtitle || ""}
+              backgroundColor={["#FFF"]}
+              bannerImage={
+                serviceData.common?.images?.length &&
+                serviceData.common.images.map((img: string) => ({ icon: img }))
+              }
+              cta={
+                serviceData.common?.buttons?.length &&
+                serviceData.common.buttons.map((btn: any) => ({
+                  text: btn.label || "",
+                  url: btn.url || "",
+                  backgroundColor: btn.backgroundColor || "#083E92",
+                  textColor: btn.textColor || "#FFFFFF",
+                  borderColor: btn.borderColor || "#ffffff",
+                }))
+              }
+              headerTextColor="#000"
+              backgroundImage={serviceData.common?.backgroundImage}
+            />
+          )}
           {serviceData.blocks?.[0]?.data && (
             <IntroText data={serviceData.blocks[0].data} />
           )}
@@ -344,24 +358,32 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
 
       {matchedConfig?.styleKey === "digital-marketing" && (
         <>
-          <Banner
-            platform="digital"
-            backgroundColor={["#000"]}
-            bannerImage={[{ icon: "/icons/mobile-second.webp" }]}
-            subTitle={`Revolutionary Mobile Experiences Starts Here.`}
-            cta={[
-              {
-                text: "lauch your app idea",
-                url: "",
-                backgroundColor: "#083E92",
-                textColor: "#FFFFFF",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`innovate. <br/> create. <br /> dominate.`}
-            headerTextColor="#000"
-            backgroundImage="/image/app-back.webp"
-          />
+          {serviceData.common && (
+            <Banner
+              platform="digital"
+              backgroundColor={["#000"]}
+              bannerImage={
+                serviceData.common?.images?.length &&
+                serviceData.common.images.map((img: string) => ({
+                  icon: img,
+                }))
+              }
+              subTitle={serviceData.common?.subtitle}
+              cta={
+                serviceData.common?.buttons?.length &&
+                serviceData.common.buttons.map((btn: any) => ({
+                  text: btn.label || "",
+                  url: btn.url || "",
+                  backgroundColor: "#083E92",
+                  textColor: "#FFFFFF",
+                  borderColor: "#ffffff",
+                }))
+              }
+              title={serviceData.common?.title}
+              headerTextColor="#000"
+              backgroundImage="/image/app-back.webp"
+            />
+          )}
           {serviceData.blocks?.[0]?.data && (
             <DigitalFlow data={serviceData.blocks[0].data} />
           )}
