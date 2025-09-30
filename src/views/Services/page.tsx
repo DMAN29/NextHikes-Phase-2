@@ -246,6 +246,8 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
   if (loading || !serviceData) {
     return <Skeleton />;
   }
+
+  const imageTitles = ["App", "Web", "Design", "Branding", "Marketing"];
   return (
     <section>
       {matchedConfig?.styleKey === "web-development" && (
@@ -407,30 +409,23 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
 
       {matchedConfig?.styleKey === "platform-development" && (
         <>
-          <Banner
-            platform="platform-development"
-            backgroundColor={["#FFF"]}
-            bannerImage={[
-              { icon: "/icons/app.svg", title: "app" },
-              { icon: "/icons/web-icon.svg", title: "web" },
-              { icon: "/icons/design.svg", title: "design" },
-              { icon: "/icons/branding.svg", title: "branding" },
-              { icon: "/icons/marketing-plat.svg", title: "marketing" },
-            ]}
-            subTitle={``}
-            cta={[
-              {
-                text: "lauch your app idea",
-                url: "",
-                backgroundColor: "#083E92",
-                textColor: "#FFFFFF",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`innovate. create. dominate.`}
-            headerTextColor="#fff"
-            backgroundImage="/image/platform-banner.webp"
-          />
+          {serviceData.common && (
+            <Banner
+              platform="platform-development"
+              title={serviceData.common?.title}
+              subTitle={serviceData.common?.subtitle}
+              backgroundColor={["#FFF"]}
+              bannerImage={(serviceData.common?.images || []).map(
+                (url: string, index: number) => ({
+                  icon: url,
+                  title: imageTitles[index] || `item_${index + 1}`,
+                })
+              )}
+              cta={[]}
+              headerTextColor="#fff"
+              backgroundImage={serviceData.common?.backgroundImage}
+            />
+          )}
           {serviceData.blocks?.[0]?.data && (
             <PlatformDevelopment data={serviceData.blocks[0].data} />
           )}
@@ -451,24 +446,26 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
 
       {matchedConfig?.styleKey === "ai" && (
         <>
-          <Banner
-            platform="ai"
-            backgroundColor={["#FFF"]}
-            subTitle={`Harness the power of AI to transform complex data into actionable insights that resonate with your audience and deliver measurable results. `}
-            cta={[
-              {
-                text: `Schedule a consultation`,
-                url: "",
-                backgroundColor:
-                  "linear-gradient(90deg, #5375CD 0%, #282E98 68.75%)",
-                textColor: "#FFFFFF",
-                borderColor: "#ffffff",
-              },
-            ]}
-            title={`Artificial Intelligence Company in India`}
-            headerTextColor="#000"
-            backgroundImage="/image/ai-banner.webp"
-          />
+          {serviceData.common && (
+            <Banner
+              platform="ai"
+              title={serviceData.common?.title}
+              subTitle={serviceData.common?.subtitle}
+              backgroundColor={["#FFF"]}
+              cta={[
+                {
+                  text: `Schedule a consultation`,
+                  url: "",
+                  backgroundColor:
+                    "linear-gradient(90deg, #5375CD 0%, #282E98 68.75%)",
+                  textColor: "#FFFFFF",
+                  borderColor: "#ffffff",
+                },
+              ]}
+              headerTextColor="#000"
+              backgroundImage={serviceData.common?.backgroundImage}
+            />
+          )}
 
           {serviceData.blocks?.[0]?.data && (
             <WhyAIForBusiness data={serviceData.blocks[0].data} />

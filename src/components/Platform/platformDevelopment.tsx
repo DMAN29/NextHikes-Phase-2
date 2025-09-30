@@ -15,7 +15,7 @@ interface Solution {
 interface ChallengeSolutionData {
   title: string;
   image: string;
-  imageSM: string;
+  // imageSM: string;
   challenges: Challenge[];
   solutions: Solution[];
 }
@@ -133,11 +133,11 @@ export default function PlatformDevelopment({ data }: ChallengeSolutionProps) {
           </div>
 
           <Image
-            src={data.imageSM}
+            src={data.image}
             alt="Digital Growth Illustration"
             width={1000}
             height={1000}
-            className="w-full h-[190px]"
+            className="object-contain w-full h-[100px] md:h-[280px]  rounded-lg"
           />
 
           <div className=" bg-opacity-90 p-4 rounded-lg text-base w-11/12 md:w-5/6 ">
