@@ -23,6 +23,7 @@ import Title from "@/components/Title/page";
 import ChooseUsTimeline from "@/components/WhyChooseUs/page";
 import { useEffect, useState } from "react";
 import AppBenefits from "@/components/AppDevelopment/AppBenifits";
+import GlobeRotation from "@/components/WebDevelopement/GlobeRotation";
 
 interface ServiceProps {
   slug: any;
@@ -280,12 +281,11 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
             />
           )}
           <ServiceFormPage backgroundColor="#452A7C1A" />
-          <div>
-            {serviceData.blocks?.[2]?.data &&
-              serviceData.blocks[2].data?.points && (
-                <ChooseUsTimeline data={serviceData.blocks[2].data} />
-              )}
-          </div>
+          {serviceData.blocks?.[2]?.data &&
+            serviceData.blocks[2].data?.points && (
+              <ChooseUsTimeline data={serviceData.blocks[2].data} />
+            )}
+          <GlobeRotation />
         </div>
       )}
 
