@@ -131,7 +131,7 @@ export default function AIIntegration({ data }: GlobeRotationProps) {
   }, []);
 
   const handleAnimationComplete = () => {
-    console.log("All letters have animated!");
+    // console.log("All letters have animated!");
   };
 
   return (

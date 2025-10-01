@@ -51,7 +51,7 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
       fetchServiceData();
     }
   }, [slug, initialData]);
-  console.log("Service Data:", serviceData);
+  // console.log("Service Data:", serviceData);
 
   const serviceStyles: any = {
     "web-development": {
