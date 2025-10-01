@@ -413,7 +413,7 @@ export default function ServicePage({ slug, data: initialData }: ServiceProps) {
             <Banner
               platform="platform-development"
               title={serviceData.common?.title}
-              subTitle={serviceData.common?.subtitle}
+              subTitle={""}
               backgroundColor={["#FFF"]}
               bannerImage={(serviceData.common?.images || []).map(
                 (url: string, index: number) => ({

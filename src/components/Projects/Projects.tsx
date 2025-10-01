@@ -13,9 +13,13 @@ interface ProjectButton {
 interface ProjectsData {
   title: string;
   button: ProjectButton;
-  projectIds: string[];
+  projectIds: ProjectIds[];
 }
 
+interface ProjectIds {
+  title: string;
+  image: string;
+}
 interface ProjectsProps {
   data: ProjectsData;
 }
@@ -107,11 +111,14 @@ export default function Projects({ data }: ProjectsProps) {
     <section className="custom-container bg-white !mt-7 !mb-20">
       <div className="flex flex-col md:flex-row justify-between items-start gap-4">
         <h2 className="text-[#262F2E] text-[25px] md:text-[30px] lg:text-[60px] leading-snug">
-          Our <span className="text-[#F37021] font-bold">Projects</span>
+          {data.title.split(" ")[0]}{" "}
+          <span className="text-[#F37021] font-bold">
+            {data.title.split(" ").slice(1).join(" ")}
+          </span>
         </h2>
-        <button className="cursor-pointer bg-[#262F2E] text-white rounded-full px-5 py-2">
+        {/* <button className="cursor-pointer bg-[#262F2E] text-white rounded-full px-5 py-2">
           Learn More
-        </button>
+        </button> */}
       </div>
       <div className="my-7">
         <div
@@ -122,7 +129,7 @@ export default function Projects({ data }: ProjectsProps) {
           rounded-2xl no-scrollbar
         "
         >
-          {localProjects.map((item, index) => {
+          {data.projectIds.map((item, index) => {
             const isExpanded = index === expandedIndex;
             const titleKey = item.title.toLowerCase() || "";
             const customBg = projectBgMap[titleKey] || "bg-gray-200 text-black";
@@ -140,7 +147,7 @@ export default function Projects({ data }: ProjectsProps) {
                 ${customBg}
                 ${isExpanded ? "md:w-72" : "md:w-14"}
                 w-40 md:flex-grow
-                
+
               `}
               >
                 <Image
@@ -157,16 +164,16 @@ export default function Projects({ data }: ProjectsProps) {
 
                 <div
                   className={`
-                  absolute inset-0 
+                  absolute inset-0
                   ${isExpanded ? "bg-opacity-30" : "bg-opacity-10"}
                 `}
                 />
 
                 <div className="relative z-10 text-center px-2 flex flex-col justify-center items-center h-full">
                   <span className="text-3xl pointer-events-none select-none">
-                    {item.imageUrl ? (
+                    {item.image ? (
                       <Image
-                        src={item.imageUrl}
+                        src={item.image}
                         alt="logo"
                         width={200}
                         height={200}
@@ -184,3 +191,38 @@ export default function Projects({ data }: ProjectsProps) {
     </section>
   );
 }
+
+// app/components/ProjectsServer.tsx
+
+// app/components/Projects.tsx (Server Component)
+// import { getProjectById } from "@/api/projects";
+// import ProjectsRender from "./ProjectsRender";
+
+// interface Project {
+//   _id: string;
+//   name: string;
+//   image: string;
+//   description: string;
+// }
+
+// interface ProjectButton {
+//   label: string;
+//   url: string;
+// }
+// interface ProjectsData {
+//   title: string;
+//   button: ProjectButton;
+//   projectIds: string[];
+// }
+
+// interface ProjectsProps {
+//   data: ProjectsData;
+// }
+
+// export default async function Projects({ data }: ProjectsProps) {
+//   const projects: Project[] = (
+//     await Promise.all(data.projectIds.map((id) => getProjectById(id)))
+//   ).filter(Boolean);
+
+//   return <ProjectsRender data={data} projects={projects} />;
+// }
